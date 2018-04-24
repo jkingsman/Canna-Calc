@@ -1,5 +1,5 @@
 {
-  "name": "minimal-react-webpack-babel-setup",
+  "name": "Canna-Calc",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,8 +10,8 @@
     "test": "echo \"No test specified\" && exit 0"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Jack Kingsman <jack.kingsman@gmail.com>",
+  "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.23.1",
     "babel-loader": "^7.1.2",
