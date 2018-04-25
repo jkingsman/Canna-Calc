@@ -5,12 +5,12 @@ export default class CalculatorContainer extends React.Component {
     render() {
         return (
             <div>
-                <h3>General Conversions</h3>
+                <h5>General Conversions</h5>
                 <GeneralCalculators />
-                <h3>Growing &amp; Plant Production</h3>
-                <h3>Harvest &amp; Potency</h3>
-                <h3>Concentrates</h3>
-                <h3>Profits</h3>
+                <h5>Growing &amp; Plant Production</h5>
+                <h5>Harvest &amp; Potency</h5>
+                <h5>Concentrates</h5>
+                <h5>Profits</h5>
             </div>
         );
     }

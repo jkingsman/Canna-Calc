@@ -1,7 +1,6 @@
 import React from 'react';
 
-import {WeightInput} from 'app/io/inputs';
-import {WeightOutput} from 'app/io/outputs';
+import WeightCalculator from 'app/calculators/general/weight';
 
 export default class GeneralCalculators extends React.Component {
     constructor(props) {
@@ -19,7 +18,7 @@ export default class GeneralCalculators extends React.Component {
 
     render() {
         return (
-            <div id="generalAccordion">
+            <div id="generalAccordion" className="padLeft">
                 <div className="card">
                     <a className="card-header" id="weightConversion" data-toggle="collapse" data-target="#weightConversionCollapse" aria-controls="collapseWeightConversion">
                         <p className="mb-0">
@@ -27,10 +26,9 @@ export default class GeneralCalculators extends React.Component {
                         </p>
                     </a>
 
-                    <div id="weightConversionCollapse" className="collapse show" aria-labelledby="weightConversion" data-parent="#generalAccordion">
+                    <div id="weightConversionCollapse" className="collapse" aria-labelledby="weightConversion" data-parent="#generalAccordion">
                         <div className="card-body">
-                            <WeightInput inputLabel="Input Weight" onChange={this.setNumber}/>
-                            <WeightOutput outputLabel="Output Weight" weight={this.state.number}/>
+                            <WeightCalculator/>
                         </div>
                     </div>
                 </div>

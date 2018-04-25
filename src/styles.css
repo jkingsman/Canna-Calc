@@ -5,3 +5,7 @@
 .input-width {
     width: 80px;
 }
+
+.padLeft {
+    margin-left: 25px;
+}
