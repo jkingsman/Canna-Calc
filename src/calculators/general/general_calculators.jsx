@@ -1,6 +1,7 @@
 import React from 'react';
 
-import WeightCalculator from 'app/calculators/general/weight';
+import GenericCalculator from 'app/calculators/io';
+import {weightConversionFactors, temperatureConversionFactors} from 'app/utils/conversion_factors';
 
 export default class GeneralCalculators extends React.Component {
     constructor(props) {
@@ -28,7 +29,20 @@ export default class GeneralCalculators extends React.Component {
 
                     <div id="weightConversionCollapse" className="collapse" aria-labelledby="weightConversion" data-parent="#generalAccordion">
                         <div className="card-body">
-                            <WeightCalculator/>
+                            <GenericCalculator conversionFactors={weightConversionFactors} labelSuffix="Weight"/>
+                        </div>
+                    </div>
+                </div>
+                <div className="card">
+                    <a className="card-header" id="temperatureConversion" data-toggle="collapse" data-target="#temperatureConversionCollapse" aria-controls="collapseWeightConversion">
+                        <p className="mb-0">
+                            Temperature Conversion
+                        </p>
+                    </a>
+
+                    <div id="temperatureConversionCollapse" className="collapse" aria-labelledby="temperatureConversion" data-parent="#generalAccordion">
+                        <div className="card-body">
+                            <GenericCalculator conversionFactors={temperatureConversionFactors} labelSuffix="Temperature" negative/>
                         </div>
                     </div>
                 </div>

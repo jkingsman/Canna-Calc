@@ -9,7 +9,7 @@ export class GenericInput extends React.Component {
         super(props);
         this.state = {
             number: this.props.number,
-            unit: Object.keys(this.props.conversionFactors)[0],
+            unit: Object.keys(this.props.conversionFactors.to)[0],
             result: 0
         };
 
@@ -40,7 +40,7 @@ export class GenericInput extends React.Component {
             return;
         }
 
-        const result = this.state.number * this.props.conversionFactors[this.state.unit];
+        const result = this.props.conversionFactors.to[this.state.unit](this.state.number);
         this.setState({
             result: result
         });
@@ -53,7 +53,7 @@ export class GenericInput extends React.Component {
             return null;
         }
 
-        let selectOptions = Object.keys(this.props.conversionFactors).map(unit => <option value={unit} key={'unitSelect' + newId()}>{unit}</option>);
+        let selectOptions = Object.keys(this.props.conversionFactors.to).map(unit => <option value={unit} key={'unitSelect' + newId()}>{unit}</option>);
 
         return (
             <select value={this.state.unit} onChange={this.handleUnitChange}>{selectOptions}</select>
@@ -64,7 +64,7 @@ export class GenericInput extends React.Component {
         return (
             <div className='form-group'>
                 <label htmlFor={'input' + this.inputID}>{this.props.inputLabel}:&nbsp;</label>
-                <input type='number' value={this.state.number} onChange={this.handleNumberChange} min="0" className='input-width' id={'input' + this.inputID}/> {this.renderSelect()}
+                <input type='number' value={this.state.number} onChange={this.handleNumberChange} min={this.props.negative ? -9999999999 : 0} className='input-width' id={'input' + this.inputID}/> {this.renderSelect()}
             </div>
         );
     }
@@ -75,6 +75,7 @@ GenericInput.propTypes = {
     conversionFactors: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     number: PropTypes.number.isRequired,
+    negative: PropTypes.bool.isRequired,
 };
 
 GenericInput.defaultProps = {
@@ -82,6 +83,7 @@ GenericInput.defaultProps = {
     conversionFactors: {},
     onChange: () => null,
     number: 0,
+    negative: false,
 };
 
 export class GenericOutput extends React.Component {
@@ -91,7 +93,7 @@ export class GenericOutput extends React.Component {
             originalNumber: this.props.number,
             outputNumber: this.props.number,
             conversionFactors: this.props.conversionFactors,
-            unit: Object.keys(this.props.conversionFactors)[0],
+            unit: Object.keys(this.props.conversionFactors.from)[0],
             outputLabel: this.props.outputLabel
         };
 
@@ -116,7 +118,7 @@ export class GenericOutput extends React.Component {
     }
 
     generateFinal() {
-        const result = this.state.originalNumber / this.state.conversionFactors[this.state.unit];
+        const result = this.state.conversionFactors.from[this.state.unit](this.state.originalNumber);
         const roundedResult = Math.round(result * 1000) / 1000;
         this.setState({outputNumber: roundedResult});
     }
@@ -126,7 +128,7 @@ export class GenericOutput extends React.Component {
             return null;
         }
 
-        let selectOptions = Object.keys(this.state.conversionFactors).map(unit => <option value={unit} key={'unitSelect' + newId()}>{unit}</option>);
+        let selectOptions = Object.keys(this.state.conversionFactors.from).map(unit => <option value={unit} key={'unitSelect' + newId()}>{unit}</option>);
 
         return (
             <select value={this.state.unit} onChange={this.handleUnitChange}>{selectOptions}</select>
@@ -153,4 +155,41 @@ GenericOutput.defaultProps = {
     outputLabel: "",
     conversionFactors: {},
     number: 0,
+};
+
+export default class GenericCalculator extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            number: 0
+        };
+
+        this.setNumber = this.setNumber.bind(this);
+    }
+
+    setNumber(number) {
+        this.setState({number: number});
+    }
+
+    render() {
+        return (
+            <div>
+                <GenericInput inputLabel={"Input " + this.props.labelSuffix} onChange={this.setNumber} conversionFactors={this.props.conversionFactors} negative={this.props.negative}/>
+                <GenericOutput outputLabel={"Ouput " + this.props.labelSuffix} number={this.state.number} conversionFactors={this.props.conversionFactors} />
+            </div>
+        );
+    }
+}
+
+
+GenericCalculator.propTypes = {
+    labelSuffix: PropTypes.string.isRequired,
+    conversionFactors: PropTypes.object.isRequired,
+    negative: PropTypes.bool.isRequired,
+};
+
+GenericOutput.defaultProps = {
+    outputLabel: "",
+    conversionFactors: {},
+    negative: false,
 };
