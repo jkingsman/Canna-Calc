@@ -14,7 +14,7 @@
     },
 
     "plugins": [
-        "react"
+        "react",
     ],
 
     "extends": [

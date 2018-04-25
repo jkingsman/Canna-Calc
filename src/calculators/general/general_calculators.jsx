@@ -4,7 +4,7 @@ import {WeightInput} from 'app/io/inputs';
 
 export default class GeneralCalculators extends React.Component {
     render() {
-        return <WeightInput/>;
+        return <WeightInput label="Wet Weight"/>;
         // return (
         //     <div id="accordion">
         //         <div className="card">
