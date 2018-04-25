@@ -7,7 +7,7 @@ export default class Boilerplate extends React.Component {
         return (
             <div className="container">
                 <div className="alert alert-success" role="alert">
-                    Canna-Calc has the calculators you need for growing, concentrates, yield, and more! Click the header to open a calculator.
+                    <h4 className="text-center">Canna-Calc has the calculators you need for growing, concentrates, yield, and more! Click the header to open a calculator.</h4>
                 </div>
                 <CalculatorContainer />
             </div>
