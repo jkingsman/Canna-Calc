@@ -1,26 +1,40 @@
 import React from 'react';
 
 import {WeightInput} from 'app/io/inputs';
+import {WeightOutput} from 'app/io/outputs';
 
 export default class GeneralCalculators extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            number: 0,
+        };
+
+        this.setNumber = this.setNumber.bind(this);
+    }
+
+    setNumber(number) {
+        this.setState({number: number});
+    }
+
     render() {
-        return <WeightInput label="Wet Weight"/>;
-        // return (
-        //     <div id="accordion">
-        //         <div className="card">
-        //             <a className="card-header" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-        //                 <p className="mb-0">
-        //                     My Thing
-        //                 </p>
-        //             </a>
-        //
-        //             <div id="collapseOne" className="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-        //                 <div className="card-body">
-        //                     Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably havent heard of them accusamus labore sustainable VHS.
-        //                 </div>
-        //             </div>
-        //         </div>
-        //     </div>
-        // );
+        return (
+            <div id="generalAccordion">
+                <div className="card">
+                    <a className="card-header" id="weightConversion" data-toggle="collapse" data-target="#weightConversionCollapse" aria-controls="collapseWeightConversion">
+                        <p className="mb-0">
+                            Weight Conversion
+                        </p>
+                    </a>
+
+                    <div id="weightConversionCollapse" className="collapse show" aria-labelledby="weightConversion" data-parent="#generalAccordion">
+                        <div className="card-body">
+                            <WeightInput inputLabel="Input Weight" onChange={this.setNumber}/>
+                            <WeightOutput outputLabel="Output Weight" weight={this.state.number}/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
     }
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import {weightConversionFactors} from 'app/utils/conversion_factors';
 import newId from 'app/utils/unique_key';
 import 'app/styles.css';
 
@@ -39,7 +40,9 @@ export class GenericInput extends React.Component {
         const result = this.state.number * this.props.conversionFactors[this.state.unit];
         this.setState({
             result: result
-        }, () => console.log(this.state.result));
+        });
+
+        this.props.onChange(result);
     }
 
     renderSelect() {
@@ -57,7 +60,7 @@ export class GenericInput extends React.Component {
     render() {
         return (
             <div className='form-group'>
-                <label htmlFor={'input' + this.inputID}>{this.props.label}:&nbsp;</label>
+                <label htmlFor={'input' + this.inputID}>{this.props.inputLabel}:&nbsp;</label>
                 <input type='number' value={this.state.number} onChange={this.handleNumberChange} min="0" className='input-width' id={'input' + this.inputID}/> {this.renderSelect()}
             </div>
         );
@@ -65,30 +68,23 @@ export class GenericInput extends React.Component {
 }
 
 GenericInput.propTypes = {
-    label: PropTypes.string,
-    conversionFactors: PropTypes.object
+    inputLabel: PropTypes.string,
+    conversionFactors: PropTypes.object,
+    onChange: PropTypes.func,
 };
 
 export class WeightInput extends React.Component {
-    componentWillMount() {
-        // to grams
-        this.conversionFactors = {
-            'g': 1,
-            'oz': 28.3495231,
-            'lbs': 453.59237,
-            'kg': 1000
-        }
-    }
-
     render() {
-        return <GenericInput label={this.props.label} conversionFactors={this.conversionFactors}/>;
+        return <GenericInput inputLabel={this.props.inputLabel} conversionFactors={weightConversionFactors} onChange={this.props.onChange}/>;
     }
 }
 
 WeightInput.propTypes = {
-    label: PropTypes.string.required
+    inputLabel: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
 };
 
 WeightInput.defaultProps = {
-    label: 'Weight'
+    inputLabel: 'Input Weight',
+    onChange: () => null,
 }
