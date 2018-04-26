@@ -10,7 +10,7 @@ export default class GeneralCalculatorTemplate extends React.Component {
         this.state = {
             splitFactor: 1,
             resultNumber: 0,
-            resultUnit: '',
+            resultUnit: ''
         }
 
         this.resultHandler = this.resultHandler.bind(this);
@@ -22,7 +22,9 @@ export default class GeneralCalculatorTemplate extends React.Component {
     }
 
     updateSplitFactor(ev) {
-        this.setState({splitFactor: Number(ev.target.value)});
+        this.setState({
+            splitFactor: Number(ev.target.value)
+        });
     }
 
     getSplitResult() {
@@ -49,11 +51,17 @@ export default class GeneralCalculatorTemplate extends React.Component {
                     </p>
                 </a>
 
-                <div id={"conversionCollapse" + this.uniqueID} className="collapse" aria-labelledby={"conversion" + this.uniqueID} data-parent="#generalAccordion">
+                <div id={"conversionCollapse" + this.uniqueID} className={this.props.shouldShow ? "collapse show" : "collapse"} aria-labelledby={"conversion" + this.uniqueID} data-parent="#generalAccordion">
                     <div className="card-body">
                         {message}
                         <GenericCalculator conversionFactors={this.props.conversionFactors} labelSuffix={this.props.labelSuffix} negative={this.props.negative} resultHandler={this.resultHandler}/>
-                        (or <input value={this.getSplitResult()} disabled className="calc-input-width" /> when split <input value={this.state.splitFactor} onChange={this.updateSplitFactor} type='number' min={1} className="calc-tiny-input-width" /> ways i.e. per plant or per room)
+                        <div className={this.props.hideSplitter ? "d-none" : ""}>
+                            (or{' '}
+                            <input value={this.getSplitResult()} disabled className="calc-input-width"/>{' '}
+                            when split{' '}
+                            <input value={this.state.splitFactor} onChange={this.updateSplitFactor} type='number' min={1} className="calc-tiny-input-width"/>{' '}
+                            ways i.e. per plant or per room)
+                        </div>
                     </div>
                 </div>
             </div>
@@ -65,5 +73,7 @@ GeneralCalculatorTemplate.propTypes = {
     labelSuffix: PropTypes.string,
     conversionFactors: PropTypes.object,
     negative: PropTypes.bool,
-    message: PropTypes.string
+    message: PropTypes.string,
+    hideSplitter: PropTypes.bool,
+    shouldShow: PropTypes.bool,
 };
