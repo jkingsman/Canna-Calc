@@ -1,11 +1,20 @@
 .card-header {
-  padding:0;
+    padding: 0;
 }
 
-.input-width {
-    width: 80px;
+.calc-input-width {
+    width: 100px;
+}
+
+.calc-tiny-input-width {
+    width: 30px;
 }
 
 .padLeft {
     margin-left: 25px;
+}
+
+.card-header {
+    padding: .5rem .75rem !important;
+    cursor: pointer;
 }

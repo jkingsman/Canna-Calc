@@ -1,0 +1,19 @@
+{
+    "name": "Canna-Calc",
+    "short_name": "Canna-Calc",
+    "icons": [
+        {
+            "src": "android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#008712",
+    "background_color": "#008712",
+    "display": "standalone"
+}

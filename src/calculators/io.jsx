@@ -41,9 +41,7 @@ export class GenericInput extends React.Component {
         }
 
         const result = this.props.conversionFactors.to[this.state.unit](this.state.number);
-        this.setState({
-            result: result
-        });
+        this.setState({result: result});
 
         this.props.onChange(result);
     }
@@ -64,7 +62,9 @@ export class GenericInput extends React.Component {
         return (
             <div className='form-group'>
                 <label htmlFor={'input' + this.inputID}>{this.props.inputLabel}:&nbsp;</label>
-                <input type='number' value={this.state.number} onChange={this.handleNumberChange} min={this.props.negative ? -9999999999 : 0} className='input-width' id={'input' + this.inputID}/> {this.renderSelect()}
+                <input type='number' value={this.state.number} onChange={this.handleNumberChange} min={this.props.negative
+                    ? -9999999999
+                    : 0} className='input-width' id={'input' + this.inputID}/> {this.renderSelect()}
             </div>
         );
     }
@@ -75,7 +75,7 @@ GenericInput.propTypes = {
     conversionFactors: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     number: PropTypes.number.isRequired,
-    negative: PropTypes.bool.isRequired,
+    negative: PropTypes.bool.isRequired
 };
 
 GenericInput.defaultProps = {
@@ -83,7 +83,7 @@ GenericInput.defaultProps = {
     conversionFactors: {},
     onChange: () => null,
     number: 0,
-    negative: false,
+    negative: false
 };
 
 export class GenericOutput extends React.Component {
@@ -119,8 +119,10 @@ export class GenericOutput extends React.Component {
 
     generateFinal() {
         const result = this.state.conversionFactors.from[this.state.unit](this.state.originalNumber);
-        const roundedResult = Math.round(result * 1000) / 1000;
+        const roundedResult = Math.round(result * 10000) / 10000;
         this.setState({outputNumber: roundedResult});
+
+        this.props.resultHandler(roundedResult, this.state.unit);
     }
 
     renderSelect() {
@@ -149,12 +151,14 @@ GenericOutput.propTypes = {
     outputLabel: PropTypes.string.isRequired,
     conversionFactors: PropTypes.object.isRequired,
     number: PropTypes.number.isRequired,
+    resultHandler: PropTypes.func
 };
 
 GenericOutput.defaultProps = {
     outputLabel: "",
     conversionFactors: {},
     number: 0,
+    resultHandler: () => null
 };
 
 export default class GenericCalculator extends React.Component {
@@ -167,6 +171,11 @@ export default class GenericCalculator extends React.Component {
         this.setNumber = this.setNumber.bind(this);
     }
 
+
+    shouldComponentUpdate(nextProps, nextState){
+        return nextState.number != this.state.number;
+    }
+
     setNumber(number) {
         this.setState({number: number});
     }
@@ -174,22 +183,23 @@ export default class GenericCalculator extends React.Component {
     render() {
         return (
             <div>
-                <GenericInput inputLabel={"Input " + this.props.labelSuffix} onChange={this.setNumber} conversionFactors={this.props.conversionFactors} negative={this.props.negative}/>
-                <GenericOutput outputLabel={"Ouput " + this.props.labelSuffix} number={this.state.number} conversionFactors={this.props.conversionFactors} />
+                <GenericInput inputLabel={`Input ${this.props.labelSuffix}`} onChange={this.setNumber} conversionFactors={this.props.conversionFactors} negative={this.props.negative}/>
+                <GenericOutput outputLabel={`Ouput ${this.props.labelSuffix}`} resultHandler={this.props.resultHandler} number={this.state.number} conversionFactors={this.props.conversionFactors}/>
             </div>
         );
     }
 }
 
-
 GenericCalculator.propTypes = {
     labelSuffix: PropTypes.string.isRequired,
     conversionFactors: PropTypes.object.isRequired,
-    negative: PropTypes.bool.isRequired,
+    negative: PropTypes.bool,
+    resultHandler: PropTypes.func,
 };
 
 GenericOutput.defaultProps = {
     outputLabel: "",
     conversionFactors: {},
     negative: false,
+    resultHandler: () => null
 };
