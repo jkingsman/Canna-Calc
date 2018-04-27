@@ -25,7 +25,7 @@ export class FixedUnitInput extends React.Component {
     render() {
         return (
             <div className='form-group'>
-                <label htmlFor={'input' + this.inputID} className="text-label">{this.props.inputLabel}:&nbsp;</label>
+                <label htmlFor={'input' + this.inputID} className={this.props.noPadding ? "" : "text-label"}>{this.props.inputLabel}:&nbsp;</label>
                 <input type='number' value={this.state.number} onChange={this.handleNumberChange} min={this.props.negative
                     ? -9999999999
                     : 0} className='calc-input-width' id={'input' + this.inputID}/>{' '}{this.props.unit}
@@ -39,7 +39,8 @@ FixedUnitInput.propTypes = {
     onChange: PropTypes.func.isRequired,
     number: PropTypes.number.isRequired,
     negative: PropTypes.bool,
-    unit: PropTypes.string
+    unit: PropTypes.string,
+    noPadding: PropTypes.bool,
 };
 
 FixedUnitInput.defaultProps = {
@@ -47,7 +48,8 @@ FixedUnitInput.defaultProps = {
     onChange: () => null,
     number: 0,
     negative: false,
-    unit: 'unit'
+    unit: 'unit',
+    noPadding: false,
 };
 
 export class GenericInput extends React.Component {
@@ -115,7 +117,7 @@ export class GenericInput extends React.Component {
     render() {
         return (
             <div className='form-group'>
-                <label htmlFor={'input' + this.inputID} className="text-label">{this.props.inputLabel}:&nbsp;</label>
+                <label htmlFor={'input' + this.inputID} className={this.props.noPadding ? "" : "text-label"}>{this.props.inputLabel}:&nbsp;</label>
                 <input type='number' value={this.state.number} onChange={this.handleNumberChange} min={this.props.negative
                     ? -9999999999
                     : 0} className='calc-input-width' id={'input' + this.inputID}/> {this.renderPer()}{this.renderSelect()}
@@ -130,7 +132,8 @@ GenericInput.propTypes = {
     onChange: PropTypes.func.isRequired,
     number: PropTypes.number.isRequired,
     negative: PropTypes.bool,
-    per: PropTypes.bool
+    per: PropTypes.bool,
+    noPadding: PropTypes.bool,
 };
 
 GenericInput.defaultProps = {
@@ -139,7 +142,8 @@ GenericInput.defaultProps = {
     onChange: () => null,
     number: 0,
     negative: false,
-    per: false
+    per: false,
+    noPadding: false,
 };
 
 export class GenericOutput extends React.Component {
@@ -225,7 +229,7 @@ export class GenericOutput extends React.Component {
     render() {
         return (
             <div className='form-group'>
-                <label htmlFor={'input' + this.inputID} className="text-label">{this.state.outputLabel}:&nbsp;</label>
+                <label htmlFor={'input' + this.inputID} className={this.props.noPadding ? "" : "text-label"}>{this.state.outputLabel}:&nbsp;</label>
                 <input type='number' value={this.state.outputNumber} disabled className='calc-input-width' id={'input' + this.inputID}/>{' '} {this.renderSelect()}{' '} {this.renderSplitter()}
             </div>
         );
@@ -238,7 +242,8 @@ GenericOutput.propTypes = {
     number: PropTypes.number.isRequired,
     resultHandler: PropTypes.func,
     per: PropTypes.bool,
-    showSplitter: PropTypes.bool
+    showSplitter: PropTypes.bool,
+    noPadding: PropTypes.bool,
 };
 
 GenericOutput.defaultProps = {
@@ -247,7 +252,8 @@ GenericOutput.defaultProps = {
     number: 0,
     resultHandler: () => null,
     per: false,
-    showSplitter: false
+    showSplitter: false,
+    noPadding: false,
 };
 
 export default class GenericCalculator extends React.Component {
@@ -271,8 +277,14 @@ export default class GenericCalculator extends React.Component {
     render() {
         return (
             <div>
-                <GenericInput inputLabel={`Input ${this.props.labelSuffix}`} onChange={this.setNumber} conversionFactors={this.props.conversionFactors} negative={this.props.negative}/>
-                <GenericOutput outputLabel={`Ouput ${this.props.labelSuffix}`} resultHandler={this.props.resultHandler} number={this.state.number} conversionFactors={this.props.conversionFactors} showSplitter={this.props.showSplitter}/>
+                <div className="row">
+                    <div className="col-sm">
+                        <GenericInput inputLabel={`Input ${this.props.labelSuffix}`} onChange={this.setNumber} conversionFactors={this.props.conversionFactors} negative={this.props.negative} noPadding={this.props.noPadding}/>
+                    </div>
+                    <div className="col-sm">
+                        <GenericOutput outputLabel={`Ouput ${this.props.labelSuffix}`} resultHandler={this.props.resultHandler} number={this.state.number} conversionFactors={this.props.conversionFactors} showSplitter={this.props.showSplitter} noPadding={this.props.noPadding}/>
+                    </div>
+                </div>
             </div>
         );
     }
@@ -283,7 +295,8 @@ GenericCalculator.propTypes = {
     conversionFactors: PropTypes.object.isRequired,
     negative: PropTypes.bool,
     resultHandler: PropTypes.func,
-    showSplitter: PropTypes.bool
+    showSplitter: PropTypes.bool,
+    noPadding: PropTypes.bool,
 };
 
 GenericOutput.defaultProps = {
@@ -291,5 +304,6 @@ GenericOutput.defaultProps = {
     conversionFactors: {},
     negative: false,
     resultHandler: () => null,
-    showSplitter: true
+    showSplitter: true,
+    noPadding: false,
 };

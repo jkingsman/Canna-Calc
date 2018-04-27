@@ -20,19 +20,19 @@ export default class LightingCalculator extends React.Component {
     }
 
     setLumens(lumensNeededSqFt) {
-        this.setState({lumensNeededSqFt: lumensNeededSqFt});
+        this.setState({lumensNeededSqFt: Number(lumensNeededSqFt)});
     }
 
     setWatts(wattageNeededSqFt) {
-        this.setState({wattageNeededSqFt: wattageNeededSqFt});
+        this.setState({wattageNeededSqFt: Number(wattageNeededSqFt)});
     }
 
     setWidth(growSpaceWidthFt) {
-        this.setState({growSpaceWidthFt: growSpaceWidthFt});
+        this.setState({growSpaceWidthFt: Number(growSpaceWidthFt)});
     }
 
     setLength(growSpaceLengthFt) {
-        this.setState({growSpaceLengthFt: growSpaceLengthFt});
+        this.setState({growSpaceLengthFt: Number(growSpaceLengthFt)});
     }
 
     getArea() {
@@ -60,7 +60,6 @@ export default class LightingCalculator extends React.Component {
                         <GenericInput inputLabel={'Watts'} onChange={this.setWatts} conversionFactors={ConversionFactors.basicArea} number={this.state.wattageNeededSqFt} per/>
                         <GenericInput inputLabel={'Grow Area Width'} onChange={this.setWidth} conversionFactors={ConversionFactors.basicDistance} number={this.state.growSpaceWidthFt}/>
                         <GenericInput inputLabel={'Grow Area Length'} onChange={this.setLength} conversionFactors={ConversionFactors.basicDistance} number={this.state.growSpaceLengthFt}/>
-
                     </div>
                     <div className="col-sm">
                         <div className='form-group'>

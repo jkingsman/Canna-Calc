@@ -42,7 +42,7 @@ export default class GeneralCalculatorTemplate extends React.Component {
         return (
             <div>
                 {message}
-                <GenericCalculator conversionFactors={this.props.conversionFactors} labelSuffix={this.props.labelSuffix} negative={this.props.negative} resultHandler={this.resultHandler} showSplitter={!this.props.hideSplitter}/>
+                <GenericCalculator conversionFactors={this.props.conversionFactors} labelSuffix={this.props.labelSuffix} negative={this.props.negative} resultHandler={this.resultHandler} showSplitter={!this.props.hideSplitter} noPadding/>
             </div>
         );
     }

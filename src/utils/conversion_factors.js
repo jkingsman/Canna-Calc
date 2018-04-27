@@ -5,6 +5,21 @@ const HOURS_IN_DAY = 24;
 const MINUTES_IN_DAY = MINUTES_IN_HOUR * HOURS_IN_DAY;
 
 const ConversionFactors = {
+    basicWeight: {
+        to: {
+            // to get X to oz from...
+            'oz': (grams) => Number(grams),
+            'g': (grams) => Number(grams) / 28.3495231,
+            'lbs': (grams) => Number(grams) * 16,
+        },
+        from: {
+            // to get X from oz into...
+            'oz': (grams) => Number(grams),
+            'g': (grams) => Number(grams) * 28.3495231,
+            'lbs': (grams) => Number(grams) / 16,
+        },
+    },
+
     weight: {
         to: {
             // to get X to grams from...
@@ -172,10 +187,6 @@ const ConversionFactors = {
         // cm,
         to: {
             // to get X to m^3/min from...
-            // 'm³/s': (m) => Number(m) * SECONDS_IN_MINUTE,
-            // 'm³/min': (m) => Number(m),
-            // 'm³/hr': (m) => Number(m) / MINUTES_IN_HOUR,
-            // 'm³/day': (m) => Number(m) / MINUTES_IN_DAY,
             'cm³/s': (m) => (Number(m) / 1000000) / SECONDS_IN_MINUTE,
             'cm³/min': (m) => (Number(m) / 1000000),
             'cm³/hr': (m) => (Number(m) / 1000000) / MINUTES_IN_HOUR,
