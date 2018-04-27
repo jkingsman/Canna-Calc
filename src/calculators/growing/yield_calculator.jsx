@@ -59,9 +59,9 @@ export default class YieldCalculator extends React.Component {
                         <FixedUnitInput inputLabel={'Plant Count'} onChange={this.setPlantCount} number={this.state.plantCount} unit="plants"/>
                     </div>
                     <div className="col-sm">
-                        <GenericOutput outputLabel={`Min Yield`} number={this.getYield()[0]} conversionFactors={ConversionFactors.basicWeight} showSplitter={false}/>
-                        <GenericOutput outputLabel={`Avg Yield`} number={this.getYield()[1]} conversionFactors={ConversionFactors.basicWeight} showSplitter={false}/>
-                        <GenericOutput outputLabel={`Max Yield`} number={this.getYield()[2]} conversionFactors={ConversionFactors.basicWeight} showSplitter={false}/>
+                        <GenericOutput outputLabel={'Min Yield'} number={this.getYield()[0]} conversionFactors={ConversionFactors.basicWeight} showSplitter={false}/>
+                        <GenericOutput outputLabel={'Avg Yield'} number={this.getYield()[1]} conversionFactors={ConversionFactors.basicWeight} showSplitter={false}/>
+                        <GenericOutput outputLabel={'Max Yield'} number={this.getYield()[2]} conversionFactors={ConversionFactors.basicWeight} showSplitter={false}/>
                     </div>
                 </div>
             </div>

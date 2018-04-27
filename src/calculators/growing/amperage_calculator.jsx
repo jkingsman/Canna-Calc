@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {FixedUnitInput} from 'app/calculators/components/io';
+import {FixedUnitInput, FixedUnitOutput} from 'app/calculators/components/io';
 import {defaultRound, round} from 'app/utils/math';
 
 export default class AmperageCalculator extends React.Component {
@@ -75,29 +75,11 @@ export default class AmperageCalculator extends React.Component {
                         <FixedUnitInput inputLabel={'Plant Count'} onChange={this.setPlantCount} number={this.state.plantCount} unit="plants"/>
                     </div>
                     <div className="col-sm">
-                        <div className='form-group'>
-                            <label htmlFor="amps" className="text-label">Total Amperage:&nbsp;</label>
-                            <input type='number' value={defaultRound(this.getAmps())} disabled className='calc-input-width' id="amps"/>{' '}
-                            amps
-                        </div>
-                        <div className='form-group'>
-                            <label htmlFor="kwhDay" className="text-label">Power per Day:&nbsp;</label>
-                            <input type='number' value={this.getKWhPerDay()} disabled className='calc-input-width' id="kwhDay"/>{' '}
-                            kWh/day
-                        </div>
-                        <div className='form-group'>
-                            <label htmlFor="costPerDay" className="text-label">Cost/Day:&nbsp;</label>
-                            <input value={`$${this.getCostPerDay()}`} disabled className='calc-input-width' id="costPerDay"/>
-                        </div>
-                        <div className='form-group'>
-                            <label htmlFor="kwhMonth" className="text-label">Power per Month:&nbsp;</label>
-                            <input type='number' value={defaultRound(this.getKWhPerDay() * 31)} disabled className='calc-input-width' id="kwhMonth"/>{' '}
-                            kWh/mo
-                        </div>
-                        <div className='form-group'>
-                            <label htmlFor="costPerMonth" className="text-label">Cost/Month:&nbsp;</label>
-                            <input value={`$${this.getCostPerDay() * 31}`} disabled className='calc-input-width' id="costPerMonth"/>
-                        </div>
+                        <FixedUnitOutput outputLabel="Total Amperage" number={defaultRound(this.getAmps())} unit="amps"/>
+                        <FixedUnitOutput outputLabel="Power per Day" number={defaultRound(this.getKWhPerDay())} unit="kWh/day"/>
+                        <FixedUnitOutput outputLabel="Cost/Day" number={defaultRound(this.getKWhPerDay())} unit="" prefix="$"/>
+                        <FixedUnitOutput outputLabel="Power per Month" number={defaultRound(this.getKWhPerDay() * 31)} unit="kWh/mo"/>
+                        <FixedUnitOutput outputLabel="Cost/Month" number={defaultRound(this.getCostPerDay() * 31)} unit="" prefix="$"/>
                     </div>
                 </div>
             </div>

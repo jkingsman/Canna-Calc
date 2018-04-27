@@ -5,7 +5,7 @@ import GrowingCalculators from 'app/calculators/growing/growing_calculators';
 const CalculatorContainer = () => {
     return (
         <div>
-            <h5 className="group-header">General Conversions</h5>
+            <h5 className="group-header">General Conversions & Math</h5>
             <GeneralCalculators/>
             <h5 className="group-header">Growing &amp; Plant Production</h5>
             <GrowingCalculators/>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {FixedUnitInput} from 'app/calculators/components/io';
+import {FixedUnitInput, FixedUnitOutput} from 'app/calculators/components/io';
 import {defaultRound, round} from 'app/utils/math';
 
 export default class WaterCalculator extends React.Component {
@@ -50,8 +50,6 @@ export default class WaterCalculator extends React.Component {
     render() {
         return (
             <div className="container">
-                <p>Month assumes 31 days.</p>
-                <hr/>
                 <div className="row">
                     <div className="col-sm">
                         <FixedUnitInput inputLabel={'Water Rate per Plant'} onChange={this.setGphPerPlant} number={this.state.gphPerPlant} unit="gal/hr (GPH)"/>
@@ -60,24 +58,11 @@ export default class WaterCalculator extends React.Component {
                         <FixedUnitInput inputLabel={'Water Cost'} onChange={this.setWaterCost} number={this.state.waterCost} unit="dollars per ft³"/>
                     </div>
                     <div className="col-sm">
-                        <div className='form-group'>
-                            <label htmlFor="waterPerDay" className="text-label">Water per Day:&nbsp;</label>
-                            <input type='number' value={defaultRound(this.getGallonsPerDay())} disabled className='calc-input-width' id="waterPerDay"/>{' '}
-                             gallons/day
-                        </div>
-                        <div className='form-group'>
-                            <label htmlFor="costPerDay" className="text-label">Cost/Day:&nbsp;</label>
-                            <input value={`$${this.getCostPerDay()}`} disabled className='calc-input-width' id="costPerDay"/>
-                        </div>
-                        <div className='form-group'>
-                            <label htmlFor="waterPerMonth" className="text-label">Water per Day:&nbsp;</label>
-                            <input type='number' value={defaultRound(this.getGallonsPerDay() * 31)} disabled className='calc-input-width' id="waterPerMonth"/>{' '}
-                             gallons/mo
-                        </div>
-                        <div className='form-group'>
-                            <label htmlFor="costPerMonth" className="text-label">Cost/Month:&nbsp;</label>
-                            <input value={`$${this.getCostPerDay() * 31}`} disabled className='calc-input-width' id="costPerMonth"/>
-                        </div>
+                        <FixedUnitOutput outputLabel="Water Used/Day" number={defaultRound(this.getGallonsPerDay())} unit="gal/day"/>
+                        <FixedUnitOutput outputLabel="Cost/Day" prefix="$" number={this.getCostPerDay()}/>
+                        <FixedUnitOutput outputLabel="Water Used/Month*" number={defaultRound(this.getGallonsPerDay() * 31)} unit="gal/mo"/>
+                        <FixedUnitOutput outputLabel="Cost/Month*" prefix="$" number={this.getCostPerDay() * 31}/>
+                        <i>*Month assumes 31 days</i>
                     </div>
                 </div>
             </div>

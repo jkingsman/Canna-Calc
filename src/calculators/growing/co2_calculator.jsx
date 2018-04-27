@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {GenericInput, FixedUnitInput} from 'app/calculators/components/io';
+import {GenericInput, FixedUnitInput, FixedUnitOutput} from 'app/calculators/components/io';
 import ConversionFactors from 'app/utils/conversion_factors';
 import {defaultRound} from 'app/utils/math';
 
@@ -11,14 +11,16 @@ export default class CO2Calculator extends React.Component {
             growSpaceWidthFt: 10,
             growSpaceLengthFt: 10,
             growSpaceHeightFt: 8,
+            volumeReductionFt3: 0,
             ambientPPM: 400,
             desiredPPM: 1500,
-            minutesOn: 15,
+            minutesOn: 15
         }
 
         this.setWidth = this.setWidth.bind(this);
         this.setLength = this.setLength.bind(this);
         this.setHeight = this.setHeight.bind(this);
+        this.setVolumeReduction = this.setVolumeReduction.bind(this);
         this.setAmbientPPM = this.setAmbientPPM.bind(this);
         this.setDesiredPPM = this.setDesiredPPM.bind(this);
         this.setMinutesOn = this.setMinutesOn.bind(this);
@@ -48,20 +50,24 @@ export default class CO2Calculator extends React.Component {
         this.setState({minutesOn: Number(minutesOn)});
     }
 
+    setVolumeReduction(volumeReductionFt3) {
+        this.setState({volumeReductionFt3: Number(volumeReductionFt3)});
+    }
+
     getTimeOnFraction() {
         return this.state.minutesOn / 60;
     }
 
     getRoomVolume() {
-        return this.state.growSpaceWidthFt * this.state.growSpaceLengthFt * this.state.growSpaceHeightFt;
+        return (this.state.growSpaceWidthFt * this.state.growSpaceLengthFt * this.state.growSpaceHeightFt) - this.state.volumeReductionFt3;
     }
 
-    getAddltPPM() {
+    getAddtlPPM() {
         return this.state.desiredPPM - this.state.ambientPPM;
     }
 
     getFt3HrFlowRate() {
-        return (this.getAddltPPM() * 1e-6) * this.getRoomVolume();
+        return (this.getAddtlPPM() * 1e-6) * this.getRoomVolume();
     }
 
     getTimedFtHrFlowRate() {
@@ -71,7 +77,6 @@ export default class CO2Calculator extends React.Component {
     render() {
         return (
             <div>
-                <p>Sane presets for ambient and target levels have been preset.</p>
                 <div className="row">
                     <div className="col-sm">
                         <GenericInput inputLabel={'Room Width'} onChange={this.setWidth} conversionFactors={ConversionFactors.basicDistance} number={this.state.growSpaceWidthFt}/>
@@ -80,27 +85,16 @@ export default class CO2Calculator extends React.Component {
                         <FixedUnitInput inputLabel={'Ambient CO₂'} onChange={this.setAmbientPPM} number={this.state.ambientPPM} unit="ppm"/>
                         <FixedUnitInput inputLabel={'Desired CO₂'} onChange={this.setDesiredPPM} number={this.state.desiredPPM} unit="ppm"/>
                         <FixedUnitInput inputLabel={'Minutes On'} onChange={this.setMinutesOn} number={this.state.minutesOn} unit="per hour"/>
+                        <GenericInput inputLabel={'Volume Reduction*'} onChange={this.setVolumeReduction} conversionFactors={ConversionFactors.basicVolume} number={this.state.volumeReductionFt3}/>
                     </div>
                     <div className="col-sm">
-                        <div className='form-group'>
-                            <label htmlFor="cubicFootage" className="text-label">Room Volume:&nbsp;</label>
-                            <input type='number' value={this.getRoomVolume()} disabled className='calc-input-width' id="cubicFootage"/> ft³
-                        </div>
-                        <div className='form-group'>
-                            <label htmlFor="co2Increase" className="text-label">Desired Addtl. CO₂:&nbsp;</label>
-                            <input type='number' value={this.getAddltPPM()} disabled className='calc-input-width' id="co2Increase"/> ppm
-                        </div>
-                        <div className='form-group'>
-                            <label htmlFor="flowRateHr" className="text-label">CO₂ Flow Rate:&nbsp;</label>
-                            <input type='number' value={defaultRound(this.getTimedFtHrFlowRate())} disabled className='calc-input-width' id="flowRateHr"/> SCFH (ft³/hr)
-                        </div>
-                        <div className='form-group'>
-                            <label htmlFor="flowRateMin" className="text-label"></label>
-                            <input type='number' value={defaultRound(this.getTimedFtHrFlowRate() / 60)} disabled className='calc-input-width' id="flowRateMin"/> SCFM (ft³/min)
-                        </div>
+                        <FixedUnitOutput outputLabel="Room Volume" number={defaultRound(this.getRoomVolume())} unit="ft³"/>
+                        <FixedUnitOutput outputLabel="Desired Addtl. CO₂" number={defaultRound(this.getAddtlPPM())} unit="ppm"/>
+                        <FixedUnitOutput outputLabel="CO₂ Flow Rate" number={defaultRound(this.getTimedFtHrFlowRate())} unit="SCFH (ft³/hr)"/>
+                        <FixedUnitOutput noColon number={defaultRound(this.getTimedFtHrFlowRate() / 60)} unit="SCFM (ft³/min)"/>
                     </div>
                 </div>
-
+                <i>*Room volume does not account for space taken by ducting, fans, plant holders, etc. -- enter approximate volume consumed by objects in room here increase volume accuracy. For ducting, use the Cylinder Volume calculator with length of ducting as cylinder height.</i>
             </div>
         );
     }

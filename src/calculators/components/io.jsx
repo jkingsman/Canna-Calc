@@ -52,6 +52,34 @@ FixedUnitInput.defaultProps = {
     noPadding: false,
 };
 
+export class FixedUnitOutput extends React.Component {
+    render() {
+        return (
+            <div className='form-group'>
+                <label htmlFor={'output' + this.inputID} className="text-label">{this.props.outputLabel}{this.props.noColon ? "" : ":"}&nbsp;</label>
+                <input value={this.props.prefix + this.props.number} disabled className='calc-input-width' htmlFor={'output' + this.inputID}/>{' '}
+                {this.props.unit}
+            </div>
+        );
+    }
+}
+
+FixedUnitOutput.propTypes = {
+    outputLabel: PropTypes.string.isRequired,
+    number: PropTypes.number.isRequired,
+    unit: PropTypes.string,
+    noColon: PropTypes.bool,
+    prefix: PropTypes.string,
+};
+
+FixedUnitOutput.defaultProps = {
+    outputLabel: "",
+    number: 0,
+    unit: 'units',
+    noColon: false,
+    prefix: '',
+};
+
 export class GenericInput extends React.Component {
     constructor(props) {
         super(props);
