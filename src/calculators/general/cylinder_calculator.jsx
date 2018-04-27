@@ -39,7 +39,7 @@ export default class CylinderCalculator extends React.Component {
                         <FixedUnitOutput outputLabel="Volume" number={defaultRound(this.getVolume())} unit="units³"/>
                     </div>
                 </div>
-                <i>*When using cylinder volume to determine total ducting volume, use the total ducting length as the Height</i>
+                <i>*When using cylinder volume to determine total ducting volume, use the total ducting length as the Height. For more in-depth ducting assistance, use our Ducting Calculator</i>
             </div>
         );
     }

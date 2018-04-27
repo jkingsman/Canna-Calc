@@ -32,7 +32,7 @@ const GeneralCalculators = () => {
                 <GeneralCalculatorTemplate labelSuffix="Flow Rate" conversionFactors={ConversionFactors.flowRate} message="If your volume isn't already in cubic meters (m³), convert to cubic meters via the Volume converter, then enter it here to convert."/>
             </CardTemplate>
 
-            <CardTemplate id="cylinderVolume" title="Cylinder Volume" parentID="generalAccordion">
+            <CardTemplate id="cylinderVolume" title="Cylinder (Ducting) Volume" parentID="generalAccordion">
                 <CylinderCalculator/>
             </CardTemplate>
         </AccordionContainer>
