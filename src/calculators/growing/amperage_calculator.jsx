@@ -58,7 +58,7 @@ export default class AmperageCalculator extends React.Component {
             <div className="container">
                 <p>
                     <strong>
-                        Important note:
+                        Important note:{' '}
                     </strong>
                     the wattage referred to here is not the light output wattage (i.e. how bright the lights are). This is wattage in the true sense of power consumed by the lights. This information can usually be found in the datasheet for your lights. If no wattage is found, you can calculate it by multiplying the amperage the lights consume by the voltage (usually 120 in the US). For example, a light consuming 5 amps of power would consume 600 watts (5 amps * 120 volts).</p>
                 <p>Month assumes 31 days.</p>
