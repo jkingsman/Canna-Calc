@@ -6,4 +6,6 @@ import 'app/styles.css';
 
 ReactDOM.render(<Boilerplate />, document.getElementById('app'));
 
-module.hot.accept();
+if(process.env.NODE_ENV == 'development'){
+    module.hot.accept();
+}
