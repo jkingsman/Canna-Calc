@@ -1,0 +1,79 @@
+import React from 'react';
+
+import {GenericInput} from 'app/calculators/components/io';
+import ConversionFactors from 'app/utils/conversion_factors';
+
+export default class LightingCalculator extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            lumensNeededSqFt: 8000,
+            wattageNeededSqFt: 45,
+            growSpaceWidthFt: 10,
+            growSpaceLengthFt: 10
+        }
+
+        this.setLumens = this.setLumens.bind(this);
+        this.setWatts = this.setWatts.bind(this);
+        this.setWidth = this.setWidth.bind(this);
+        this.setLength = this.setLength.bind(this);
+    }
+
+    setLumens(lumensNeededSqFt) {
+        this.setState({lumensNeededSqFt: lumensNeededSqFt});
+    }
+
+    setWatts(wattageNeededSqFt) {
+        this.setState({wattageNeededSqFt: wattageNeededSqFt});
+    }
+
+    setWidth(growSpaceWidthFt) {
+        this.setState({growSpaceWidthFt: growSpaceWidthFt});
+    }
+
+    setLength(growSpaceLengthFt) {
+        this.setState({growSpaceLengthFt: growSpaceLengthFt});
+    }
+
+    getArea() {
+        return this.state.growSpaceWidthFt * this.state.growSpaceLengthFt;
+    }
+
+    getLumensNeeded() {
+        const lumensNeeded = this.getArea() * this.state.lumensNeededSqFt;
+        return Math.round(lumensNeeded);
+    }
+
+    getWattsNeeded() {
+        const wattsNeeded = this.getArea() * this.state.wattageNeededSqFt;
+        return Math.round(wattsNeeded);
+    }
+
+    render() {
+        return (
+            <div className="container">
+                <p>Sane presets for lumens and wattage have been set for you. Although lumens are a more precise measure of actual light ouput, watts have become a de facto standard -- when in doubt, use watts and disregard lumens.</p>
+                <hr />
+                <div className="row">
+                    <div className="col-sm">
+                        <GenericInput inputLabel={'Lumens'} onChange={this.setLumens} conversionFactors={ConversionFactors.basicArea} number={this.state.lumensNeededSqFt} per/>
+                        <GenericInput inputLabel={'Watts'} onChange={this.setWatts} conversionFactors={ConversionFactors.basicArea} number={this.state.wattageNeededSqFt} per/>
+                        <GenericInput inputLabel={'Grow Area Width'} onChange={this.setWidth} conversionFactors={ConversionFactors.basicDistance} number={this.state.growSpaceWidthFt}/>
+                        <GenericInput inputLabel={'Grow Area Length'} onChange={this.setLength} conversionFactors={ConversionFactors.basicDistance} number={this.state.growSpaceLengthFt}/>
+
+                    </div>
+                    <div className="col-sm">
+                        <div className='form-group'>
+                            <label htmlFor="lumensNeeded" className="text-label">Lumens Needed:&nbsp;</label>
+                            <input type='number' value={this.getLumensNeeded()} disabled className='calc-input-width' id="lumensNeeded"/>
+                        </div>
+                        <div className='form-group'>
+                            <label htmlFor="wattsNeeded" className="text-label">Watts Needed:&nbsp;</label>
+                            <input type='number' value={this.getWattsNeeded()} disabled className='calc-input-width' id="wattsNeeded"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+}
