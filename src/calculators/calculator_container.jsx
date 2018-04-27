@@ -5,13 +5,13 @@ import GrowingCalculators from 'app/calculators/growing/growing_calculators';
 const CalculatorContainer = () => {
     return (
         <div>
-            <h5>General Conversions</h5>
+            <h5 className="group-header">General Conversions</h5>
             <GeneralCalculators/>
-            <h5>Growing &amp; Plant Production</h5>
+            <h5 className="group-header">Growing &amp; Plant Production</h5>
             <GrowingCalculators/>
-            <h5>Harvest &amp; Potency</h5>
-            <h5>Concentrates</h5>
-            <h5>Profits</h5>
+            <h5 className="group-header">Harvest &amp; Potency</h5>
+            <h5 className="group-header">Concentrates</h5>
+            <h5 className="group-header">Profits</h5>
         </div>
     );
 }
