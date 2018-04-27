@@ -1,19 +1,37 @@
 import React from 'react';
 
+import {AccordionContainer, CardTemplate} from 'app/calculators/components/accordion';
 import GeneralCalculatorTemplate from 'app/calculators/general/general_calculator_template';
 import ConversionFactors from 'app/utils/conversion_factors';
 
-export default class GeneralCalculators extends React.Component {
-    render() {
-        return (
-            <div id="generalAccordion" className="padLeft">
-                <GeneralCalculatorTemplate labelSuffix="Weight" conversionFactors={ConversionFactors.weight} negative={false}/>
+const GeneralCalculators = () => {
+    return (
+        <AccordionContainer id="generalAccordion" padLeft>
+            <CardTemplate id="weightConversion" title="Weight Conversion" parentID="generalAccordion">
+                <GeneralCalculatorTemplate labelSuffix="Weight" conversionFactors={ConversionFactors.weight}/>
+            </CardTemplate>
+
+            <CardTemplate id="temperatureConversion" title="Temperature Conversion" parentID="generalAccordion">
                 <GeneralCalculatorTemplate labelSuffix="Temperature" conversionFactors={ConversionFactors.temperature} negative hideSplitter/>
-                <GeneralCalculatorTemplate labelSuffix="Distance" conversionFactors={ConversionFactors.distance} negative={false} shouldShow/>
-                <GeneralCalculatorTemplate labelSuffix="Area" conversionFactors={ConversionFactors.area} negative={false}/>
-                <GeneralCalculatorTemplate labelSuffix="Volume" conversionFactors={ConversionFactors.volume} negative={false}/>
-                <GeneralCalculatorTemplate labelSuffix="Flow Rate" conversionFactors={ConversionFactors.flowRate} negative={false} message="If your volume isn't already in cubic meters (m³), convert to cubic meters via the Volume converter, then enter it here to convert."/>
-            </div>
-        );
-    }
+            </CardTemplate>
+
+            <CardTemplate id="distanceConversion" title="Distance Conversion" parentID="generalAccordion">
+                <GeneralCalculatorTemplate labelSuffix="Distance" conversionFactors={ConversionFactors.distance}/>
+            </CardTemplate>
+
+            <CardTemplate id="areaConversion" title="Area Conversion" parentID="generalAccordion">
+                <GeneralCalculatorTemplate labelSuffix="Area" conversionFactors={ConversionFactors.area}/>
+            </CardTemplate>
+
+            <CardTemplate id="volumeConversion" title="Volume Conversion" parentID="generalAccordion">
+                <GeneralCalculatorTemplate labelSuffix="Volume" conversionFactors={ConversionFactors.volume}/>
+            </CardTemplate>
+
+            <CardTemplate id="flowRateConversion" title="Flow Rate Conversion" parentID="generalAccordion">
+                <GeneralCalculatorTemplate labelSuffix="Flow Rate" conversionFactors={ConversionFactors.flowRate} message="If your volume isn't already in cubic meters (m³), convert to cubic meters via the Volume converter, then enter it here to convert."/>
+            </CardTemplate>
+        </AccordionContainer>
+    );
 }
+
+export default GeneralCalculators;

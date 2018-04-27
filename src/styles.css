@@ -3,15 +3,19 @@
 }
 
 .calc-input-width {
-    width: 100px;
+    width: 80px;
 }
 
 .calc-tiny-input-width {
     width: 30px;
 }
 
-.padLeft {
+.pad-left {
     margin-left: 25px;
+}
+
+.text-label {
+    min-width: 150px;
 }
 
 .card-header {

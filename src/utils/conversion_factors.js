@@ -39,6 +39,21 @@ const ConversionFactors = {
         },
     },
 
+    basicDistance: {
+        to: {
+            // to get X to ft from...
+            'ft.': (m) => Number(m),
+            'm': (m) => Number(m) * 3.2808,
+            'yd.': (m) => Number(m) * 3,
+        },
+        from: {
+            // to get X from ft into...
+            'ft.': (m) => Number(m),
+            'm': (m) => Number(m) / 3.2808,
+            'yd.': (m) => Number(m) / 3,
+        },
+    },
+
     distance: {
         to: {
             // to get X to meters from...
@@ -64,9 +79,24 @@ const ConversionFactors = {
         },
     },
 
+    basicArea: {
+        to: {
+            // to get X to ft^2 from...
+            'ft².': (m) => Number(m),
+            'm²': (m) => Number(m) * .0929,
+            'yd².': (m) => Number(m) * .11111,
+        },
+        from: {
+            // to get X from ft^2 into...
+            'ft².': (m) => Number(m),
+            'm²': (m) => Number(m) / 10.7639,
+            'yd².': (m) => Number(m) / 1.196,
+        },
+    },
+
     area: {
         to: {
-            // to get X to cm^2 from...
+            // to get X to m^2 from...
             'm²': (m) => Number(m),
             'mm²': (m) => Number(m) / 1000000,
             'cm²': (m) => Number(m) / 10000,
@@ -79,7 +109,7 @@ const ConversionFactors = {
             'acre': (m) => Number(m) * 4046.8564,
         },
         from: {
-            // to get cm^2 from meters into...
+            // to get m^2 from meters into...
             'm²': (m) => Number(m),
             'mm²': (m) => Number(m) * 1000000,
             'cm²': (m) => Number(m) * 10000,

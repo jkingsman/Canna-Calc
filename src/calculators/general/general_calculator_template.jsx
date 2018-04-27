@@ -1,8 +1,8 @@
 import React from 'react';
-
-import GenericCalculator from 'app/calculators/io';
 import PropTypes from 'prop-types';
-import newId from 'app/utils/unique_key';
+
+import GenericCalculator from 'app/calculators/components/io';
+import {defaultRound} from 'app/utils/math';
 
 export default class GeneralCalculatorTemplate extends React.Component {
     constructor(props) {
@@ -29,41 +29,20 @@ export default class GeneralCalculatorTemplate extends React.Component {
 
     getSplitResult() {
         const splitResult = (this.state.resultNumber / this.state.splitFactor);
-        const roundedResult = Math.round(splitResult * 10000) / 10000;
-        const roundedResultWithUnit = `${roundedResult.toString()} ${this.state.resultUnit}`;
+        const roundedResultWithUnit = `${defaultRound(splitResult).toString()} ${this.state.resultUnit}`;
         return roundedResultWithUnit;
     }
 
     render() {
-        this.uniqueID = newId();
-
         let message = null;
         if (this.props.message) {
-            message = <p>{this.props.message}</p>;
+            message = <span><p>{this.props.message}</p><hr /></span>;
         }
 
         return (
-            <div className="card">
-                <a className="card-header" id={"conversion" + this.uniqueID} data-toggle="collapse" data-target={"#conversionCollapse" + this.uniqueID} aria-expanded="true" aria-controls={"conversionCollapse" + this.uniqueID}>
-                    <p className="mb-0">
-                        {this.props.labelSuffix}{' '}
-                        Conversion
-                    </p>
-                </a>
-
-                <div id={"conversionCollapse" + this.uniqueID} className={this.props.shouldShow ? "collapse show" : "collapse"} aria-labelledby={"conversion" + this.uniqueID} data-parent="#generalAccordion">
-                    <div className="card-body">
-                        {message}
-                        <GenericCalculator conversionFactors={this.props.conversionFactors} labelSuffix={this.props.labelSuffix} negative={this.props.negative} resultHandler={this.resultHandler}/>
-                        <div className={this.props.hideSplitter ? "d-none" : ""}>
-                            (or{' '}
-                            <input value={this.getSplitResult()} disabled className="calc-input-width"/>{' '}
-                            when split{' '}
-                            <input value={this.state.splitFactor} onChange={this.updateSplitFactor} type='number' min={1} className="calc-tiny-input-width"/>{' '}
-                            ways i.e. per plant or per room)
-                        </div>
-                    </div>
-                </div>
+            <div>
+                {message}
+                <GenericCalculator conversionFactors={this.props.conversionFactors} labelSuffix={this.props.labelSuffix} negative={this.props.negative} resultHandler={this.resultHandler} showSplitter={!this.props.hideSplitter}/>
             </div>
         );
     }
@@ -74,6 +53,10 @@ GeneralCalculatorTemplate.propTypes = {
     conversionFactors: PropTypes.object,
     negative: PropTypes.bool,
     message: PropTypes.string,
-    hideSplitter: PropTypes.bool,
-    shouldShow: PropTypes.bool,
+    hideSplitter: PropTypes.bool
+};
+
+GeneralCalculatorTemplate.defaultProps = {
+    negative: false,
+    hideSplitter: false
 };
