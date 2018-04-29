@@ -68,8 +68,8 @@ export default class ExhaustCalculator extends React.Component {
                     </div>
                     <div className="col-sm">
                         <FixedUnitOutput outputLabel="Room Volume" number={defaultRound(this.getRoomVolume())} unit="ft³"/>
-                        <FixedUnitOutput outputLabel="Min. Total Flow" number={defaultRound(this.getFlowRate())} unit="CFM (ft³/min)"/>
-                        <FixedUnitOutput outputLabel="Min. Fan Flow Each" number={defaultRound(this.getSingleFanFlow())} unit="CFM (ft³/min)"/>
+                        <FixedUnitOutput outputLabel="Min. Total Flow" number={defaultRound(this.getFlowRate())} unit="SCFM (ft³/min)"/>
+                        <FixedUnitOutput outputLabel="Min. Fan Flow Each" number={defaultRound(this.getSingleFanFlow())} unit="SCFM (ft³/min)"/>
                     </div>
                 </div>
             </div>

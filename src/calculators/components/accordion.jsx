@@ -24,7 +24,14 @@ AccordionContainer.propTypes = {
     ])
 };
 
-export const CardTemplate = ({id, title, children, parentID}) => {
+export const CardTemplate = ({
+    id,
+    title,
+    children,
+    parentID,
+    keywords,
+    searchTerm
+}) => {
     const toggleHash = () => {
         if (window.location.hash.length < 1 || window.location.hash != `#${id}`) {
             window.location.hash = id;
@@ -37,24 +44,28 @@ export const CardTemplate = ({id, title, children, parentID}) => {
 
     const uniqueID = newId();
 
-    return (
-        <div className="card">
-            <span className="card-header" onClick={debounce(toggleHash, 250)} id={`#card${uniqueID}`} data-target={`#cardCollapse${uniqueID}`} aria-controls={`cardCollapse${uniqueID}`} data-toggle="collapse" aria-expanded="false">
-                <p className="mb-0">
+    const matchesKeyword = searchTerm.trim().split(" ").every(singleTerm => keywords.includes(singleTerm.toLowerCase()));
+
+    if (matchesKeyword) {
+        return (
+            <div className="card">
+                <h6 className="card-header mb-0" onClick={debounce(toggleHash, 250)} id={`#card${uniqueID}`} data-target={`#cardCollapse${uniqueID}`} aria-controls={`cardCollapse${uniqueID}`} data-toggle="collapse" aria-expanded="false">
                     {title}
-                </p>
-            </span>
+                </h6>
 
-            <div id={"cardCollapse" + uniqueID} className={shouldShow()
-                ? "collapse show"
-                : "collapse"} aria-labelledby={"card" + uniqueID} data-parent={`#${parentID}`}>
-                <div className="card-body">
-                    {children}
+                <div id={"cardCollapse" + uniqueID} className={shouldShow()
+                    ? "collapse show"
+                    : "collapse"} aria-labelledby={"card" + uniqueID} data-parent={`#${parentID}`}>
+                    <div className="card-body">
+                        {children}
 
+                    </div>
                 </div>
             </div>
-        </div>
-    );
+        );
+    }
+
+    return null;
 }
 
 CardTemplate.propTypes = {
@@ -64,5 +75,7 @@ CardTemplate.propTypes = {
     children: PropTypes.oneOfType([
         PropTypes.element,
         PropTypes.arrayOf(PropTypes.element)
-    ])
+    ]),
+    keywords: PropTypes.string,
+    searchTerm: PropTypes.string,
 };
