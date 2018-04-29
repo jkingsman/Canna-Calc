@@ -5,6 +5,7 @@ import GeneralCalculatorTemplate from 'app/calculators/general/general_calculato
 
 import PercentChange from 'app/calculators/general/percentchange_calculator';
 import CylinderCalculator from 'app/calculators/general/cylinder_calculator';
+import DateCalculator from 'app/calculators/general/date_calculator';
 import ConversionFactors from 'app/utils/conversion_factors';
 
 import LightingCalculator from 'app/calculators/growing/lighting_calculator.jsx';
@@ -65,6 +66,10 @@ export default class CalculatorContainer extends React.Component {
 
                     <CardTemplate id="timeConversion" keywords="time hours hrs minutes mins seconds secs days weeks wks months" searchTerm={this.state.searchTerm} title="Time Conversion" parentID="generalAccordion">
                         <GeneralCalculatorTemplate labelSuffix="Time" conversionFactors={ConversionFactors.basicTime} hideSplitter/>
+                    </CardTemplate>
+
+                    <CardTemplate id="dateCalculator" keywords="add subtract datetime hours hrs minutes mins seconds secs days weeks wks months" searchTerm={this.state.searchTerm} title="Add/Subtract to Date/Time" parentID="generalAccordion">
+                        <DateCalculator />
                     </CardTemplate>
 
                     <CardTemplate id="areaConversion" keywords="area squared sqft ^2 kilometers km^2 m^2 millimeters mm^2 centimeters cm^2 inches in^2 feet ft^2 yards yd^2 miles mi^2 hectares acres" searchTerm={this.state.searchTerm} title="Area Conversion" parentID="generalAccordion">

@@ -1,9 +1,23 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    /* Margin bottom by footer height */
+}
+
 .card-header {
     padding: 0;
 }
 
+input[disabled] {
+    background-color: #D3D3D3;
+}
+
 .calc-input-width {
-    width: 80px;
+    width: 100px;
 }
 
 .calc-tiny-input-width {
@@ -34,14 +48,8 @@
     margin-bottom: 25px;
 }
 
-html {
-    position: relative;
-    min-height: 100%;
-}
-
-body {
-    margin-bottom: 60px;
-    /* Margin bottom by footer height */
+input[type="radio"] {
+    margin-right: 7px;
 }
 
 .footer {

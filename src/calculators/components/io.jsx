@@ -4,6 +4,50 @@ import PropTypes from 'prop-types';
 import newId from 'app/utils/unique_key';
 import {defaultRound} from 'app/utils/math';
 
+export class FreeInput extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            val: this.props.val
+        };
+
+        this.handleNumberChange = this.handleNumberChange.bind(this);
+
+        this.inputID = newId();
+    }
+
+    handleNumberChange(ev) {
+        this.setState({
+            val: ev.target.value
+        }, this.props.onChange(ev.target.value));
+    }
+
+    render() {
+        return (
+            <div className='form-group'>
+                <label htmlFor={'input' + this.inputID} className={this.props.noPadding ? "" : "text-label"}>{this.props.inputLabel}:&nbsp;</label>
+                <input value={this.state.val} onChange={this.handleNumberChange} className='calc-input-width' id={'input' + this.inputID}/>{' '}{this.props.units}
+            </div>
+        );
+    }
+}
+
+FreeInput.propTypes = {
+    inputLabel: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+    val: PropTypes.any.isRequired,
+    units: PropTypes.any.isRequired,
+    noPadding: PropTypes.bool,
+};
+
+FreeInput.defaultProps = {
+    inputLabel: "",
+    onChange: () => null,
+    val: "",
+    units: "",
+    noPadding: false,
+};
+
 export class FixedUnitInput extends React.Component {
     constructor(props) {
         super(props);
@@ -50,6 +94,34 @@ FixedUnitInput.defaultProps = {
     negative: false,
     unit: 'unit',
     noPadding: false,
+};
+
+export class FreeOutput extends React.Component {
+    render() {
+        return (
+            <div className='form-group'>
+                <label htmlFor={'output' + this.inputID} className="text-label">{this.props.outputLabel}{this.props.noColon ? "" : ":"}&nbsp;</label>
+                <input value={this.props.prefix + this.props.val} disabled className='calc-input-width' htmlFor={'output' + this.inputID}/>{' '}
+                {this.props.unit}
+            </div>
+        );
+    }
+}
+
+FreeOutput.propTypes = {
+    outputLabel: PropTypes.string.isRequired,
+    val: PropTypes.any.isRequired,
+    unit: PropTypes.string,
+    noColon: PropTypes.bool,
+    prefix: PropTypes.string,
+};
+
+FreeOutput.defaultProps = {
+    outputLabel: "",
+    val: 0,
+    unit: 'units',
+    noColon: false,
+    prefix: '',
 };
 
 export class FixedUnitOutput extends React.Component {
