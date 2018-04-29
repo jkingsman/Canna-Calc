@@ -60,11 +60,11 @@ export default class ExhaustCalculator extends React.Component {
                 <p>Note that this is for pure airflow; this does not account for pressure lost due to bends in ducting, dust, etc. which is highly duct- and layout-specific.</p>
                 <div className="row">
                     <div className="col-sm">
-                        <GenericInput inputLabel={'Room Width'} onChange={this.setWidth} conversionFactors={ConversionFactors.basicDistance} number={this.state.growSpaceWidthFt}/>
-                        <GenericInput inputLabel={'Room Length'} onChange={this.setLength} conversionFactors={ConversionFactors.basicDistance} number={this.state.growSpaceLengthFt}/>
-                        <GenericInput inputLabel={'Room Height'} onChange={this.setHeight} conversionFactors={ConversionFactors.basicDistance} number={this.state.growSpaceHeightFt}/>
-                        <FixedUnitInput inputLabel={'Fan Count'} onChange={this.setFanCount} number={this.state.fanCount} unit="fans"/>
-                        <FixedUnitInput inputLabel={'Exchange Time'} onChange={this.setExchangeTime} number={this.state.exchangeTime} unit="minutes to total air flush"/>
+                        <GenericInput inputLabel="Room Width" onChange={this.setWidth} conversionFactors={ConversionFactors.basicDistance} number={this.state.growSpaceWidthFt}/>
+                        <GenericInput inputLabel="Room Length" onChange={this.setLength} conversionFactors={ConversionFactors.basicDistance} number={this.state.growSpaceLengthFt}/>
+                        <GenericInput inputLabel="Room Height" onChange={this.setHeight} conversionFactors={ConversionFactors.basicDistance} number={this.state.growSpaceHeightFt}/>
+                        <FixedUnitInput inputLabel="Fan Count" onChange={this.setFanCount} number={this.state.fanCount} unit="fans"/>
+                        <FixedUnitInput inputLabel="Exchange Time" onChange={this.setExchangeTime} number={this.state.exchangeTime} unit="minutes to total air flush"/>
                     </div>
                     <div className="col-sm">
                         <FixedUnitOutput outputLabel="Room Volume" number={defaultRound(this.getRoomVolume())} unit="ft³"/>

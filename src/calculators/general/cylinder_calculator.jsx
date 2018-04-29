@@ -32,8 +32,8 @@ export default class CylinderCalculator extends React.Component {
             <div className="container">
                 <div className="row">
                     <div className="col-sm">
-                        <FixedUnitInput inputLabel={'Radius'} onChange={this.setRadius} number={this.state.radius} unit="units"/>
-                        <FixedUnitInput inputLabel={'Height*'} onChange={this.setHeight} number={this.state.height} unit="units"/>
+                        <FixedUnitInput inputLabel="Radius" onChange={this.setRadius} number={this.state.radius} unit="units"/>
+                        <FixedUnitInput inputLabel="Height*" onChange={this.setHeight} number={this.state.height} unit="units"/>
                     </div>
                     <div className="col-sm">
                         <FixedUnitOutput outputLabel="Volume" number={defaultRound(this.getVolume())} unit="units³"/>

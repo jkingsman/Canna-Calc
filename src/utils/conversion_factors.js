@@ -7,16 +7,16 @@ const MINUTES_IN_DAY = MINUTES_IN_HOUR * HOURS_IN_DAY;
 const ConversionFactors = {
     basicWeight: {
         to: {
-            // to get X to oz from...
-            'oz': (grams) => Number(grams),
-            'g': (grams) => Number(grams) / 28.3495231,
-            'lbs': (grams) => Number(grams) * 16,
+            // to get X to grams from...
+            'g': (grams) => Number(grams),
+            'oz': (grams) => Number(grams) * 28.3495231,
+            'lbs': (grams) => Number(grams) * 453.59237,
         },
         from: {
-            // to get X from oz into...
-            'oz': (grams) => Number(grams),
-            'g': (grams) => Number(grams) * 28.3495231,
-            'lbs': (grams) => Number(grams) / 16,
+            // to get X from grams into...
+            'g': (grams) => Number(grams),
+            'oz.': (grams) => Number(grams) / 28.3495,
+            'mg': (grams) => Number(grams) * 1000,
         },
     },
 
@@ -24,6 +24,7 @@ const ConversionFactors = {
         to: {
             // to get X to grams from...
             'g': (grams) => Number(grams),
+            'mg': (grams) => Number(grams) / 1000,
             'oz': (grams) => Number(grams) * 28.3495231,
             'lbs': (grams) => Number(grams) * 453.59237,
             'kg': (grams) => Number(grams) * 1000,
@@ -32,6 +33,7 @@ const ConversionFactors = {
         from: {
             // to get X from grams into...
             'g': (grams) => Number(grams),
+            'mg': (grams) => Number(grams) * 1000,
             'oz.': (grams) => Number(grams) / 28.3495,
             'lbs': (grams) => Number(grams) / 453.5924,
             'kg': (grams) => Number(grams) / 1000,
@@ -243,6 +245,19 @@ const ConversionFactors = {
             'liters/min': (m) => (Number(m) * 1000),
             'liters/hr': (m) => (Number(m) * 1000) * MINUTES_IN_HOUR,
             'liters/day': (m) => (Number(m) * 1000) * MINUTES_IN_DAY,
+        },
+    },
+
+    basicTime: {
+        to: {
+            // to get X to hours from...
+            'hours': (hours) => Number(hours),
+            'days': (hours) => Number(hours) * HOURS_IN_DAY,
+        },
+        from: {
+            // to get X from hours into...
+            'hours': (hours) => Number(hours),
+            'days': (hours) => Number(hours) / HOURS_IN_DAY,
         },
     },
 };

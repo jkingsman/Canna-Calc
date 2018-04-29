@@ -10,8 +10,10 @@
     width: 30px;
 }
 
-.pad-left {
-    margin-left: 25px;
+@media (min-width: 845px) {
+    .pad-left {
+        margin-left: 25px;
+    }
 }
 
 .text-label {
@@ -38,10 +40,11 @@ body {
 }
 
 .footer {
+    bottom: 0;
     margin-top: 80px;
+    padding-top: 10px;
     width: 100%;
-    height: 60px;
-    line-height: 60px;
+    min-height: 60px;
     background-color: #d4edda;
     border-color: #c3e6cb;
 }

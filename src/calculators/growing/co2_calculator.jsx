@@ -79,13 +79,13 @@ export default class CO2Calculator extends React.Component {
             <div>
                 <div className="row">
                     <div className="col-sm">
-                        <GenericInput inputLabel={'Room Width'} onChange={this.setWidth} conversionFactors={ConversionFactors.basicDistance} number={this.state.growSpaceWidthFt}/>
-                        <GenericInput inputLabel={'Room Length'} onChange={this.setLength} conversionFactors={ConversionFactors.basicDistance} number={this.state.growSpaceLengthFt}/>
-                        <GenericInput inputLabel={'Room Height'} onChange={this.setHeight} conversionFactors={ConversionFactors.basicDistance} number={this.state.growSpaceHeightFt}/>
-                        <FixedUnitInput inputLabel={'Ambient CO₂'} onChange={this.setAmbientPPM} number={this.state.ambientPPM} unit="ppm"/>
-                        <FixedUnitInput inputLabel={'Desired CO₂'} onChange={this.setDesiredPPM} number={this.state.desiredPPM} unit="ppm"/>
-                        <FixedUnitInput inputLabel={'Minutes On'} onChange={this.setMinutesOn} number={this.state.minutesOn} unit="per hour"/>
-                        <GenericInput inputLabel={'Volume Compensation*'} onChange={this.setVolumeReduction} conversionFactors={ConversionFactors.basicVolume} number={this.state.volumeReductionFt3}/>
+                        <GenericInput inputLabel="Room Width" onChange={this.setWidth} conversionFactors={ConversionFactors.basicDistance} number={this.state.growSpaceWidthFt}/>
+                        <GenericInput inputLabel="Room Length" onChange={this.setLength} conversionFactors={ConversionFactors.basicDistance} number={this.state.growSpaceLengthFt}/>
+                        <GenericInput inputLabel="Room Height" onChange={this.setHeight} conversionFactors={ConversionFactors.basicDistance} number={this.state.growSpaceHeightFt}/>
+                        <FixedUnitInput inputLabel="Ambient CO₂" onChange={this.setAmbientPPM} number={this.state.ambientPPM} unit="ppm"/>
+                        <FixedUnitInput inputLabel="Desired CO₂" onChange={this.setDesiredPPM} number={this.state.desiredPPM} unit="ppm"/>
+                        <FixedUnitInput inputLabel="Minutes On" onChange={this.setMinutesOn} number={this.state.minutesOn} unit="per hour"/>
+                        <GenericInput inputLabel="Volume Compensation*" onChange={this.setVolumeReduction} conversionFactors={ConversionFactors.basicVolume} number={this.state.volumeReductionFt3}/>
                     </div>
                     <div className="col-sm">
                         <FixedUnitOutput outputLabel="Room Volume" number={defaultRound(this.getRoomVolume())} unit="ft³"/>

@@ -29,7 +29,7 @@ export const CardTemplate = ({id, title, children, parentID}) => {
         if (window.location.hash.length < 1 || window.location.hash != `#${id}`) {
             window.location.hash = id;
         } else {
-            window.location.hash = '';
+            history.pushState("", document.title, window.location.pathname + window.location.search);
         }
     }
 
@@ -39,11 +39,11 @@ export const CardTemplate = ({id, title, children, parentID}) => {
 
     return (
         <div className="card">
-            <a className="card-header" onClick={_.debounce(toggleHash, 250)} id={`#card${uniqueID}`} data-target={`#cardCollapse${uniqueID}`} aria-controls={`cardCollapse${uniqueID}`} data-toggle="collapse" aria-expanded="false">
+            <span className="card-header" onClick={_.debounce(toggleHash, 250)} id={`#card${uniqueID}`} data-target={`#cardCollapse${uniqueID}`} aria-controls={`cardCollapse${uniqueID}`} data-toggle="collapse" aria-expanded="false">
                 <p className="mb-0">
                     {title}
                 </p>
-            </a>
+            </span>
 
             <div id={"cardCollapse" + uniqueID} className={shouldShow()
                 ? "collapse show"

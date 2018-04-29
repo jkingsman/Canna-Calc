@@ -2,6 +2,7 @@ import React from 'react';
 
 import {AccordionContainer, CardTemplate} from 'app/calculators/components/accordion';
 import GeneralCalculatorTemplate from 'app/calculators/general/general_calculator_template';
+import PercentChange from 'app/calculators/general/percentchange_calculator';
 import CylinderCalculator from 'app/calculators/general/cylinder_calculator';
 import ConversionFactors from 'app/utils/conversion_factors';
 
@@ -30,6 +31,10 @@ const GeneralCalculators = () => {
 
             <CardTemplate id="flowRateConversion" title="Flow Rate Conversion" parentID="generalAccordion">
                 <GeneralCalculatorTemplate labelSuffix="Flow Rate" conversionFactors={ConversionFactors.flowRate} message="If your volume isn't already in cubic meters (m³), convert to cubic meters via the Volume converter, then enter it here to convert."/>
+            </CardTemplate>
+
+            <CardTemplate id="percentChange" title="Percent Change" parentID="generalAccordion">
+                <PercentChange/>
             </CardTemplate>
 
             <CardTemplate id="cylinderVolume" title="Cylinder (Ducting) Volume" parentID="generalAccordion">

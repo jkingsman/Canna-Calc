@@ -65,14 +65,14 @@ export default class AmperageCalculator extends React.Component {
                 <hr/>
                 <div className="row">
                     <div className="col-sm">
-                        <FixedUnitInput inputLabel={'Total Light Wattage'} onChange={this.setWatts} number={this.state.watts} unit="watts"/>
-                        <FixedUnitInput inputLabel={'Voltage'} onChange={this.setVoltage} number={this.state.voltage} unit="volts"/>
-                        <FixedUnitInput inputLabel={'Dollar Cost per kWh'} onChange={this.setKWhCost} number={this.state.kWhCost} unit="dollars"/>
-                        <FixedUnitInput inputLabel={'Hours On per Day'} onChange={this.setHoursOnPerDay} number={this.state.hoursOnPerDay} unit="hours"/>
+                        <FixedUnitInput inputLabel="Total Light Wattage" onChange={this.setWatts} number={this.state.watts} unit="watts"/>
+                        <FixedUnitInput inputLabel="Voltage" onChange={this.setVoltage} number={this.state.voltage} unit="volts"/>
+                        <FixedUnitInput inputLabel="Dollar Cost per kWh" onChange={this.setKWhCost} number={this.state.kWhCost} unit="dollars"/>
+                        <FixedUnitInput inputLabel="Hours On per Day" onChange={this.setHoursOnPerDay} number={this.state.hoursOnPerDay} unit="hours"/>
                         <hr/>
                         <i>Leave Plant Count set to 1 to input Total Light Wattage for all lights used; if Plant Count is set to greater than 1, Total Light Wattage is assumed to be per-plant (kWh and cost will by multiplied by Plant Count).</i>
                         <br/><br/>
-                        <FixedUnitInput inputLabel={'Plant Count'} onChange={this.setPlantCount} number={this.state.plantCount} unit="plants"/>
+                        <FixedUnitInput inputLabel="Plant Count" onChange={this.setPlantCount} number={this.state.plantCount} unit="plants"/>
                     </div>
                     <div className="col-sm">
                         <FixedUnitOutput outputLabel="Total Amperage" number={defaultRound(this.getAmps())} unit="amps"/>

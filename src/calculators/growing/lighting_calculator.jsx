@@ -54,10 +54,10 @@ export default class LightingCalculator extends React.Component {
             <div className="container">
                 <div className="row">
                     <div className="col-sm">
-                        <GenericInput inputLabel={'Lumens*'} onChange={this.setLumens} conversionFactors={ConversionFactors.basicArea} number={this.state.lumensNeededSqFt} per/>
-                        <GenericInput inputLabel={'Watts'} onChange={this.setWatts} conversionFactors={ConversionFactors.basicArea} number={this.state.wattageNeededSqFt} per/>
-                        <GenericInput inputLabel={'Grow Area Width'} onChange={this.setWidth} conversionFactors={ConversionFactors.basicDistance} number={this.state.growSpaceWidthFt}/>
-                        <GenericInput inputLabel={'Grow Area Length'} onChange={this.setLength} conversionFactors={ConversionFactors.basicDistance} number={this.state.growSpaceLengthFt}/>
+                        <GenericInput inputLabel="Lumens*" onChange={this.setLumens} conversionFactors={ConversionFactors.basicArea} number={this.state.lumensNeededSqFt} per/>
+                        <GenericInput inputLabel="Watts" onChange={this.setWatts} conversionFactors={ConversionFactors.basicArea} number={this.state.wattageNeededSqFt} per/>
+                        <GenericInput inputLabel="Grow Area Width" onChange={this.setWidth} conversionFactors={ConversionFactors.basicDistance} number={this.state.growSpaceWidthFt}/>
+                        <GenericInput inputLabel="Grow Area Length" onChange={this.setLength} conversionFactors={ConversionFactors.basicDistance} number={this.state.growSpaceLengthFt}/>
                     </div>
                     <div className="col-sm">
                         <FixedUnitOutput outputLabel="Illumination Needed" number={this.getLumensNeeded()} unit="lumens"/>

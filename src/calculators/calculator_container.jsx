@@ -1,6 +1,7 @@
 import React from 'react';
-import GeneralCalculators from 'app/calculators/general/general_calculators';
-import GrowingCalculators from 'app/calculators/growing/growing_calculators';
+import GeneralCalculators from 'app/calculators/general/general_container';
+import GrowingCalculators from 'app/calculators/growing/growing_container';
+import ConcentratesEdiblesCalculator from 'app/calculators/concentratesedibles/concentratesedibles_container';
 
 const CalculatorContainer = () => {
     return (
@@ -9,8 +10,8 @@ const CalculatorContainer = () => {
             <GeneralCalculators/>
             <h5 className="group-header">Growing &amp; Plant Production</h5>
             <GrowingCalculators/>
-            <h5 className="group-header">Harvest &amp; Potency</h5>
-            <h5 className="group-header">Concentrates</h5>
+            <h5 className="group-header">Concentrates & Edibles</h5>
+            <ConcentratesEdiblesCalculator />
             <h5 className="group-header">Profits</h5>
         </div>
     );

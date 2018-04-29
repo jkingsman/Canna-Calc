@@ -246,7 +246,7 @@ export class GenericOutput extends React.Component {
                 <span>
                     when split{' '}
                     <input value={this.state.splitFactor} onChange={this.updateSplitFactor} type='number' min={1} className="calc-tiny-input-width"/>{' '}
-                    ways i.e. per plant or per room)
+                    ways (e.g. per plant or per room)
                 </span>
             )
         } else {

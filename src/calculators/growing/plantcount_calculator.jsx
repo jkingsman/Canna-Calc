@@ -48,10 +48,10 @@ export default class PlantCount extends React.Component {
             <div>
                 <div className="row">
                     <div className="col-sm">
-                        <GenericInput inputLabel={'Grow Space Width'} onChange={this.setWidth} conversionFactors={ConversionFactors.basicDistance} number={this.state.growSpaceWidthFt}/>
-                        <GenericInput inputLabel={'Grow Space Length'} onChange={this.setLength} conversionFactors={ConversionFactors.basicDistance} number={this.state.growSpaceLengthFt}/>
-                        <GenericInput inputLabel={'Plant Length*'} onChange={this.setplantWidthFt} conversionFactors={ConversionFactors.basicDistance} number={this.state.plantWidthFt}/>
-                        <GenericInput inputLabel={'Plant Width*'} onChange={this.setplantLengthFt} conversionFactors={ConversionFactors.basicDistance} number={this.state.plantLengthFt}/>
+                        <GenericInput inputLabel="Grow Space Width" onChange={this.setWidth} conversionFactors={ConversionFactors.basicDistance} number={this.state.growSpaceWidthFt}/>
+                        <GenericInput inputLabel="Grow Space Length" onChange={this.setLength} conversionFactors={ConversionFactors.basicDistance} number={this.state.growSpaceLengthFt}/>
+                        <GenericInput inputLabel="Plant Length*" onChange={this.setplantWidthFt} conversionFactors={ConversionFactors.basicDistance} number={this.state.plantWidthFt}/>
+                        <GenericInput inputLabel="Plant Width*" onChange={this.setplantLengthFt} conversionFactors={ConversionFactors.basicDistance} number={this.state.plantLengthFt}/>
                     </div>
                     <div className="col-sm">
                         <FixedUnitOutput outputLabel="Total Area" number={this.state.growSpaceLengthFt * this.state.growSpaceWidthFt} unit="ft²"/>
