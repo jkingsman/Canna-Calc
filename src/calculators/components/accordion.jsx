@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-var _ = require('lodash');
+import debounce from 'lodash/debounce'
 
 import newId from 'app/utils/unique_key';
 
@@ -39,7 +39,7 @@ export const CardTemplate = ({id, title, children, parentID}) => {
 
     return (
         <div className="card">
-            <span className="card-header" onClick={_.debounce(toggleHash, 250)} id={`#card${uniqueID}`} data-target={`#cardCollapse${uniqueID}`} aria-controls={`cardCollapse${uniqueID}`} data-toggle="collapse" aria-expanded="false">
+            <span className="card-header" onClick={debounce(toggleHash, 250)} id={`#card${uniqueID}`} data-target={`#cardCollapse${uniqueID}`} aria-controls={`cardCollapse${uniqueID}`} data-toggle="collapse" aria-expanded="false">
                 <p className="mb-0">
                     {title}
                 </p>
