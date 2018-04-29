@@ -59,6 +59,14 @@ export default class CalculatorContainer extends React.Component {
                         <GeneralCalculatorTemplate labelSuffix="Distance" conversionFactors={ConversionFactors.distance}/>
                     </CardTemplate>
 
+                    <CardTemplate id="speedConversion" keywords="speed velocity pace meters miles feet ft per second hour mph kph m/s" searchTerm={this.state.searchTerm} title="Speed Conversion" parentID="generalAccordion">
+                        <GeneralCalculatorTemplate labelSuffix="Speed" conversionFactors={ConversionFactors.speed} hideSplitter/>
+                    </CardTemplate>
+
+                    <CardTemplate id="timeConversion" keywords="time hours hrs minutes mins seconds secs days weeks wks months" searchTerm={this.state.searchTerm} title="Time Conversion" parentID="generalAccordion">
+                        <GeneralCalculatorTemplate labelSuffix="Time" conversionFactors={ConversionFactors.basicTime} hideSplitter/>
+                    </CardTemplate>
+
                     <CardTemplate id="areaConversion" keywords="area squared sqft ^2 kilometers km^2 m^2 millimeters mm^2 centimeters cm^2 inches in^2 feet ft^2 yards yd^2 miles mi^2 hectares acres" searchTerm={this.state.searchTerm} title="Area Conversion" parentID="generalAccordion">
                         <GeneralCalculatorTemplate labelSuffix="Area" conversionFactors={ConversionFactors.area}/>
                     </CardTemplate>
@@ -67,7 +75,7 @@ export default class CalculatorContainer extends React.Component {
                         <GeneralCalculatorTemplate labelSuffix="Volume" conversionFactors={ConversionFactors.volume}/>
                     </CardTemplate>
 
-                    <CardTemplate id="flowRateConversion" keywords="flow rate speed volume cubic standard ^3 per minute second hour hr day centimeters cm minutes gallons gpm inches liters scfm scfh" searchTerm={this.state.searchTerm} title="Flow Rate Conversion" parentID="generalAccordion">
+                    <CardTemplate id="flowRateConversion" keywords="flow rate speed volume cubic standard ^3 per minute second hour hr day centimeters cm minutes gallons gpm inches liters scfm scfh" searchTerm={this.state.searchTerm} title="Flow Rate Conversion" parentID="generalAccordion" hideSplitter>
                         <GeneralCalculatorTemplate labelSuffix="Flow Rate" conversionFactors={ConversionFactors.flowRate} message="If your volume isn't already in cubic meters (m³), convert to cubic meters via the Volume converter, then enter it here to convert."/>
                     </CardTemplate>
 
