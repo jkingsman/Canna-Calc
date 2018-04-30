@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const OfflinePlugin = require('offline-plugin');
 const path = require('path');
 
 module.exports = {
@@ -28,6 +29,7 @@ module.exports = {
       from: 'src/favicon',
       to: 'favicon'
     }]),
+    new OfflinePlugin(),
   ],
   resolve: {
     extensions: ['*', '.js', '.jsx'],
