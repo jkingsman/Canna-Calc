@@ -1,5 +1,4 @@
 import React from 'react';
-import './styles.css';
 import CalculatorContainer from 'app/calculators/calculator_container';
 
 export default class Boilerplate extends React.Component {
