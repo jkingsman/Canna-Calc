@@ -126,7 +126,7 @@ export default class CalculatorContainer extends React.Component {
                     <AmperageCalculator/>
                 </CardTemplate>
 
-                <CardTemplate id="waterCalculator" keywords="water usage cost gallon gal cubic foot unit" searchTerm={this.state.searchTerm} title="Water Usage &amp; Cost" parentID="mainAccordion">
+                <CardTemplate id="waterCalculator" keywords="water usage cost gallon gal cubic foot unit" searchTerm={this.state.searchTerm} title="Water Usage/Drip Tip Flow &amp; Cost" parentID="mainAccordion">
                     <WaterCalculator/>
                 </CardTemplate>
 
