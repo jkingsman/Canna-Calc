@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as OfflinePluginRuntime from 'offline-plugin/runtime';
-
 import 'app/css/styles.css';
 
 import Boilerplate from 'app/boilerplate';
