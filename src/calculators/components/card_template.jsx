@@ -5,26 +5,7 @@ import debounce from 'lodash/debounce'
 
 import newId from 'app/utils/unique_key';
 
-export const AccordionContainer = ({id, padLeft, children}) => {
-    return (
-        <div id={id} className={padLeft
-            ? "pad-left"
-            : ""}>
-            {children}
-        </div>
-    );
-}
-
-AccordionContainer.propTypes = {
-    id: PropTypes.string,
-    padLeft: PropTypes.bool,
-    children: PropTypes.oneOfType([
-        PropTypes.element,
-        PropTypes.arrayOf(PropTypes.element)
-    ])
-};
-
-export const CardTemplate = ({
+const CardTemplate = ({
     id,
     title,
     children,
@@ -48,7 +29,7 @@ export const CardTemplate = ({
 
     if (matchesKeyword) {
         return (
-            <div className="card">
+            <div className="card pad-left">
                 <h6 className="card-header mb-0" onClick={debounce(toggleHash, 250)} id={`#card${uniqueID}`} data-target={`#cardCollapse${uniqueID}`} aria-controls={`cardCollapse${uniqueID}`} data-toggle="collapse" aria-expanded="false">
                     {title}
                 </h6>
@@ -79,3 +60,5 @@ CardTemplate.propTypes = {
     keywords: PropTypes.string,
     searchTerm: PropTypes.string,
 };
+
+export default CardTemplate;
