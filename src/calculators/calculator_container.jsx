@@ -22,7 +22,7 @@ import {PercentageToMG, MGToPercentage, Density, FreeWeight} from 'app/calculato
 import DecarbLoss from 'app/calculators/concentratesedibles/decarb_loss';
 import ExtractionEfficiency from 'app/calculators/concentratesedibles/extraction_efficiency';
 import EvapPrediction from 'app/calculators/concentratesedibles/evap_prediction';
-import {EdiblePotency, EdibleProduct, EdibleServings} from 'app/calculators/concentratesedibles/edible_calculators';
+import {EdiblePotency, EdibleProduct, EdibleServings, VariableServingPotency} from 'app/calculators/concentratesedibles/edible_calculators';
 
 export default class CalculatorContainer extends React.Component {
     constructor(props) {
@@ -38,8 +38,6 @@ export default class CalculatorContainer extends React.Component {
         return this.state.searchTerm.length > 0;
     }
 
-    getResultsCount() {}
-
     setSearchTerm(ev) {
         this.setState({searchTerm: ev.target.value});
     }
@@ -50,6 +48,7 @@ export default class CalculatorContainer extends React.Component {
                 <input value={this.state.searchTerm} onChange={this.setSearchTerm} placeholder="Enter a keyword or term to search for a calculator..." id="searchBar"/> {this.isSearching()
                     ? ""
                     : <h5>General Conversions & Math</h5>}
+
                 <CardTemplate id="weightConversion" keywords="weight mass grams ounces oz pounds lbs milligrams mg stone st kilograms kilos kg" searchTerm={this.state.searchTerm} title="Weight Conversion" parentID="mainAccordion">
                     <GeneralCalculatorTemplate labelSuffix="Weight" conversionFactors={ConversionFactors.weight}/>
                 </CardTemplate>
@@ -136,7 +135,20 @@ export default class CalculatorContainer extends React.Component {
 
                 {this.isSearching()
                     ? ""
-                    : <h5 className="group-header">Concentrates & Edibles</h5>}
+                    : <h5 className="group-header">Edibles & Concentrates</h5>}
+
+                <CardTemplate id="ediblePotency" keywords="thc potency mg milligrams grams ml ejuice vape vaporizer liquid wax oil concentrate extract baking cannaoil cannabutter servings size medibles" searchTerm={this.state.searchTerm} title="Edible Potency" parentID="mainAccordion">
+                    <p>Note that these calculators do not take into account THCa to THC weight loss; to correct for this, use our Decarboxylation Loss calculator to adjust Product Weight or multiply your potency by .877. This assumes perfect yield (e.g. all THC is removed from plant material) and is therefore most accurate for oils baked into the goods.</p>
+                    <hr/>
+                    <VariableServingPotency/>
+                    <hr/>
+                    <EdiblePotency/>
+                    <hr/>
+                    <EdibleProduct/>
+                    <hr/>
+                    <EdibleServings/>
+                </CardTemplate>
+
                 <CardTemplate id="potency" keywords="medibles thc potency mg milligrams grams ml ejuice vape vaporizer liquid wax oil concentrate extract baking cannaoil cannabutter" searchTerm={this.state.searchTerm} title="THC/Potency Conversions" parentID="mainAccordion">
                     <p>Choose the appropriate calculator section for your units. mg and g are used as standard analyte units; if your starting values are in a different unit, use our Weight Conversion calculator.</p>
                     <hr/>
@@ -161,15 +173,9 @@ export default class CalculatorContainer extends React.Component {
                     <EvapPrediction/>
                 </CardTemplate>
 
-                <CardTemplate id="ediblePotency" keywords="thc potency mg milligrams grams ml ejuice vape vaporizer liquid wax oil concentrate extract baking cannaoil cannabutter servings size medibles" searchTerm={this.state.searchTerm} title="Edible Potency" parentID="mainAccordion">
-                    <p>Note that these calculators do not take into account THCa to THC weight loss; to correct for this, use our Decarboxylation Loss calculator to adjust Product Weight or multiply your potency by .877. This assumes perfect yield (e.g. all THC is removed from plant material) and is therefore most accurate for oils baked into the goods.</p>
-                    <hr/>
-                    <EdiblePotency/>
-                    <hr/>
-                    <EdibleProduct/>
-                    <hr/>
-                    <EdibleServings/>
-                </CardTemplate>
+                {!this.isSearching()
+                    ? ""
+                    : <h5 className="text-center"><br/><br/>End of Results</h5>}
             </div>
         );
     }

@@ -172,13 +172,34 @@ const ConversionFactors = {
         },
     },
 
+    cookingVolume: {
+        to: {
+            // to get X to cups from...
+            'cups': (cups) => Number(cups),
+            'tbsp.': (cups) => Number(cups) / 16,
+            'tsp.': (cups) => Number(cups) / 48,
+            'fl. oz.': (cups) => Number(cups) / 8,
+            'pint': (cups) => Number(cups) / .5,
+            'quart': (cups) => Number(cups) / .25,
+        },
+        from: {
+            // to get X from cups into...
+            'cups': (cups) => Number(cups),
+            'tbsp.': (cups) => Number(cups) * 16,
+            'tsp.': (cups) => Number(cups) * 48,
+            'fl. oz.': (cups) => Number(cups) * 8,
+            'pint': (cups) => Number(cups) * .5,
+            'quart': (cups) => Number(cups) * .25,
+        },
+    },
+
     volume: {
         to: {
             // to get X to m^3 from...
             'm³': (m) => Number(m),
             'cc': (m) => Number(m) / 1000000,
             'cm³': (m) => Number(m) / 1000000,
-            'cup.': (m) => Number(m) / 4226.7528,
+            'cups': (m) => Number(m) / 4226.7528,
             'fl. oz.': (m) => Number(m) / 33814.0227,
             'ft³.': (m) => Number(m) / 35.3147,
             'gal': (m) => Number(m) / 264.172052,
@@ -199,7 +220,7 @@ const ConversionFactors = {
             'm³': (m) => Number(m),
             'cc': (m) => Number(m) * 1000000,
             'cm³': (m) => Number(m) * 1000000,
-            'cup.': (m) => Number(m) * 4226.7528,
+            'cups': (m) => Number(m) * 4226.7528,
             'fl. oz.': (m) => Number(m) * 33814.0227,
             'ft³.': (m) => Number(m) * 35.3147,
             'gal': (m) => Number(m) * 264.172052,

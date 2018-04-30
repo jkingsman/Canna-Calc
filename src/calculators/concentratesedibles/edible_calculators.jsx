@@ -4,13 +4,93 @@ import {FixedUnitInput, GenericInput, FixedUnitOutput, GenericOutput} from 'app/
 import ConversionFactors from 'app/utils/conversion_factors';
 import {defaultRound} from 'app/utils/math';
 
+export class VariableServingPotency extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            productWeight: 10,
+            productPotency: 25,
+            infuserVolume: 10,
+            bakedGoodOil: 1,
+            bakedGoodServings: 12,
+        }
+
+        this.setProductWeight = this.setProductWeight.bind(this);
+        this.setProductPotency = this.setProductPotency.bind(this);
+        this.setInfuserVolume = this.setInfuserVolume.bind(this);
+        this.setBakedGoodOil = this.setBakedGoodOil.bind(this);
+        this.setBakedGoodServings = this.setBakedGoodServings.bind(this);
+    }
+
+    setProductWeight(productWeight) {
+        this.setState({productWeight: Number(productWeight)});
+    }
+
+    setProductPotency(productPotency) {
+        this.setState({productPotency: Number(productPotency)});
+    }
+
+    setInfuserVolume(infuserVolume) {
+        this.setState({infuserVolume: Number(infuserVolume)});
+    }
+
+    setBakedGoodOil(bakedGoodOil) {
+        this.setState({bakedGoodOil: Number(bakedGoodOil)});
+    }
+
+    setBakedGoodServings(bakedGoodServings) {
+        this.setState({bakedGoodServings: Number(bakedGoodServings)});
+    }
+
+    getTotalTHC() {
+        return (this.state.productWeight * (this.state.productPotency / 100)) * 1000;
+    }
+
+    getTHCperTblsp() {
+        const infuserVolumeInTblsp = this.state.infuserVolume * 16;
+        return this.getTotalTHC() / infuserVolumeInTblsp;
+    }
+
+    getTHCinBakedGood() {
+        const thcPerCup = this.getTHCperTblsp() * 16;
+        return thcPerCup * this.state.bakedGoodOil;
+    }
+
+    getTHCperServing() {
+        return this.getTHCinBakedGood() / this.state.bakedGoodServings;
+    }
+
+    render() {
+        return (
+            <div className="container">
+                <h5>Complete Recipe</h5>
+                <div className="row">
+                    <div className="col-sm">
+                        <GenericInput inputLabel="Product Amount" onChange={this.setProductWeight} conversionFactors={ConversionFactors.basicWeight} number={this.state.productWeight}/>
+                        <FixedUnitInput inputLabel="Product Potency" onChange={this.setProductPotency} number={this.state.productPotency} unit="% THC"/>
+                        <GenericInput inputLabel="Oil/Butter Infused" onChange={this.setInfuserVolume} conversionFactors={ConversionFactors.cookingVolume} number={this.state.infuserVolume}/>
+                        <GenericInput inputLabel="Baked Good Oil Amt." onChange={this.setBakedGoodOil} conversionFactors={ConversionFactors.cookingVolume} number={this.state.bakedGoodOil}/>
+                        <FixedUnitInput inputLabel="Baked Good Servings" onChange={this.setBakedGoodServings} number={this.state.bakedGoodServings} unit="servings"/>
+                    </div>
+                    <div className="col-sm">
+                        <FixedUnitOutput outputLabel="Oil/Butter Total THC" number={defaultRound(this.getTotalTHC())} unit="mg"/>
+                        <FixedUnitOutput outputLabel="Oil/Butter THC/tbsp" number={defaultRound(this.getTHCperTblsp())} unit="mg/tbsp"/>
+                        <FixedUnitOutput outputLabel="Baked Good Total THC" number={defaultRound(this.getTHCinBakedGood())} unit="mg"/>
+                        <FixedUnitOutput outputLabel="THC/Serving" number={defaultRound(this.getTHCperServing())} unit="mg/serving"/>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+}
+
 export class EdiblePotency extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            productWeight: 1,
+            productWeight: 10,
             productPotency: 25,
-            servings: 25
+            servings: 25,
         }
 
         this.setProductWeight = this.setProductWeight.bind(this);
@@ -37,6 +117,7 @@ export class EdiblePotency extends React.Component {
     render() {
         return (
             <div className="container">
+                <h5>mg/Serving</h5>
                 <div className="row">
                     <div className="col-sm">
                         <GenericInput inputLabel="Product Amount" onChange={this.setProductWeight} conversionFactors={ConversionFactors.basicWeight} number={this.state.productWeight}/>
@@ -57,7 +138,7 @@ export class EdibleProduct extends React.Component {
         this.state = {
             productPotency: 25,
             servings: 25,
-            mgPerServing: 10
+            mgPerServing: 10,
         }
 
         this.setProductPotency = this.setProductPotency.bind(this);
@@ -89,6 +170,7 @@ export class EdibleProduct extends React.Component {
     render() {
         return (
             <div className="container">
+                <h5>Product Amount</h5>
                 <div className="row">
                     <div className="col-sm">
                         <FixedUnitInput inputLabel="Product Potency" onChange={this.setProductPotency} number={this.state.productPotency} unit="% THC"/>
@@ -108,9 +190,9 @@ export class EdibleServings extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            productWeight: 1,
+            productWeight: 10,
             productPotency: 25,
-            mgPerServing: 10
+            mgPerServing: 100,
         }
 
         this.setProductWeight = this.setProductWeight.bind(this);
@@ -137,6 +219,7 @@ export class EdibleServings extends React.Component {
     render() {
         return (
             <div className="container">
+                <h5>Serving Count</h5>
                 <div className="row">
                     <div className="col-sm">
                         <GenericInput inputLabel="Product Amount" onChange={this.setProductWeight} conversionFactors={ConversionFactors.basicWeight} number={this.state.productWeight}/>
