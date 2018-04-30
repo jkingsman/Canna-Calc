@@ -13,33 +13,7 @@ export class VariableServingPotency extends React.Component {
             infuserVolume: 10,
             bakedGoodOil: 1,
             bakedGoodServings: 12,
-        }
-
-        this.setProductWeight = this.setProductWeight.bind(this);
-        this.setProductPotency = this.setProductPotency.bind(this);
-        this.setInfuserVolume = this.setInfuserVolume.bind(this);
-        this.setBakedGoodOil = this.setBakedGoodOil.bind(this);
-        this.setBakedGoodServings = this.setBakedGoodServings.bind(this);
-    }
-
-    setProductWeight(productWeight) {
-        this.setState({productWeight: Number(productWeight)});
-    }
-
-    setProductPotency(productPotency) {
-        this.setState({productPotency: Number(productPotency)});
-    }
-
-    setInfuserVolume(infuserVolume) {
-        this.setState({infuserVolume: Number(infuserVolume)});
-    }
-
-    setBakedGoodOil(bakedGoodOil) {
-        this.setState({bakedGoodOil: Number(bakedGoodOil)});
-    }
-
-    setBakedGoodServings(bakedGoodServings) {
-        this.setState({bakedGoodServings: Number(bakedGoodServings)});
+        };
     }
 
     getTotalTHC() {
@@ -66,11 +40,11 @@ export class VariableServingPotency extends React.Component {
                 <h5>Complete Recipe</h5>
                 <div className="row">
                     <div className="col-sm">
-                        <GenericInput inputLabel="Product Amount" onChange={this.setProductWeight} conversionFactors={ConversionFactors.basicWeight} number={this.state.productWeight}/>
-                        <FixedUnitInput inputLabel="Product Potency" onChange={this.setProductPotency} number={this.state.productPotency} unit="% THC"/>
-                        <GenericInput inputLabel="Oil/Butter Infused" onChange={this.setInfuserVolume} conversionFactors={ConversionFactors.cookingVolume} number={this.state.infuserVolume}/>
-                        <GenericInput inputLabel="Baked Good Oil Amt." onChange={this.setBakedGoodOil} conversionFactors={ConversionFactors.cookingVolume} number={this.state.bakedGoodOil}/>
-                        <FixedUnitInput inputLabel="Baked Good Servings" onChange={this.setBakedGoodServings} number={this.state.bakedGoodServings} unit="servings"/>
+                        <GenericInput inputLabel="Product Amount" onChange={(val) => this.setState({productWeight: Number(val)})} conversionFactors={ConversionFactors.basicWeight} number={this.state.productWeight}/>
+                        <FixedUnitInput inputLabel="Product Potency" onChange={(val) => this.setState({productPotency: Number(val)})} number={this.state.productPotency} unit="% THC"/>
+                        <GenericInput inputLabel="Oil/Butter Infused" onChange={(val) => this.setState({infuserVolume: Number(val)})} conversionFactors={ConversionFactors.cookingVolume} number={this.state.infuserVolume}/>
+                        <GenericInput inputLabel="Baked Good Oil Amt." onChange={(val) => this.setState({bakedGoodOil: Number(val)})} conversionFactors={ConversionFactors.cookingVolume} number={this.state.bakedGoodOil}/>
+                        <FixedUnitInput inputLabel="Baked Good Servings" onChange={(val) => this.setState({bakedGoodServings: Number(val)})} number={this.state.bakedGoodServings} unit="servings"/>
                     </div>
                     <div className="col-sm">
                         <FixedUnitOutput outputLabel="Oil/Butter Total THC" number={defaultRound(this.getTotalTHC())} unit="mg"/>
@@ -91,23 +65,7 @@ export class EdiblePotency extends React.Component {
             productWeight: 10,
             productPotency: 25,
             servings: 25,
-        }
-
-        this.setProductWeight = this.setProductWeight.bind(this);
-        this.setProductPotency = this.setProductPotency.bind(this);
-        this.setServings = this.setServings.bind(this);
-    }
-
-    setProductWeight(productWeight) {
-        this.setState({productWeight: Number(productWeight)});
-    }
-
-    setProductPotency(productPotency) {
-        this.setState({productPotency: Number(productPotency)});
-    }
-
-    setServings(servings) {
-        this.setState({servings: Number(servings)});
+        };
     }
 
     getMGPerServing() {
@@ -120,9 +78,9 @@ export class EdiblePotency extends React.Component {
                 <h5>mg/Serving</h5>
                 <div className="row">
                     <div className="col-sm">
-                        <GenericInput inputLabel="Product Amount" onChange={this.setProductWeight} conversionFactors={ConversionFactors.basicWeight} number={this.state.productWeight}/>
-                        <FixedUnitInput inputLabel="Product Potency" onChange={this.setProductPotency} number={this.state.productPotency} unit="% THC"/>
-                        <FixedUnitInput inputLabel="Servings" onChange={this.setServings} number={this.state.servings} unit="servings"/></div>
+                        <GenericInput inputLabel="Product Amount" onChange={(val) => this.setState({productWeight: Number(val)})} conversionFactors={ConversionFactors.basicWeight} number={this.state.productWeight}/>
+                        <FixedUnitInput inputLabel="Product Potency" onChange={(val) => this.setState({productPotency: Number(val)})} number={this.state.productPotency} unit="% THC"/>
+                        <FixedUnitInput inputLabel="Servings" onChange={(val) => this.setState({servings: Number(val)})} number={this.state.servings} unit="servings"/></div>
                     <div className="col-sm">
                         <FixedUnitOutput outputLabel="mg THC/serving" number={defaultRound(this.getMGPerServing())} unit="mg"/>
                     </div>
@@ -139,23 +97,7 @@ export class EdibleProduct extends React.Component {
             productPotency: 25,
             servings: 25,
             mgPerServing: 10,
-        }
-
-        this.setProductPotency = this.setProductPotency.bind(this);
-        this.setServings = this.setServings.bind(this);
-        this.setMGPerServing = this.setMGPerServing.bind(this);
-    }
-
-    setProductPotency(productPotency) {
-        this.setState({productPotency: Number(productPotency)});
-    }
-
-    setMGPerServing(mgPerServing) {
-        this.setState({mgPerServing: Number(mgPerServing)});
-    }
-
-    setServings(servings) {
-        this.setState({servings: Number(servings)});
+        };
     }
 
     getTHCNeeded() {
@@ -173,9 +115,9 @@ export class EdibleProduct extends React.Component {
                 <h5>Product Amount</h5>
                 <div className="row">
                     <div className="col-sm">
-                        <FixedUnitInput inputLabel="Product Potency" onChange={this.setProductPotency} number={this.state.productPotency} unit="% THC"/>
-                        <FixedUnitInput inputLabel="mg THC/serving" onChange={this.setMGPerServing} number={this.state.mgPerServing} unit="mg"/>
-                        <FixedUnitInput inputLabel="Servings" onChange={this.setServings} number={this.state.servings} unit="servings"/>
+                        <FixedUnitInput inputLabel="Product Potency" onChange={(val) => this.setState({productPotency: Number(val)})} number={this.state.productPotency} unit="% THC"/>
+                        <FixedUnitInput inputLabel="mg THC/serving" onChange={(val) => this.setState({mgPerServing: Number(val)})} number={this.state.mgPerServing} unit="mg"/>
+                        <FixedUnitInput inputLabel="Servings" onChange={(val) => this.setState({servings: Number(val)})} number={this.state.servings} unit="servings"/>
                     </div>
                     <div className="col-sm">
                         <GenericOutput outputLabel="Product Needed" number={defaultRound(this.getProductWeightNeeded())} conversionFactors={ConversionFactors.basicWeight} showSplitter={false}/>
@@ -193,23 +135,7 @@ export class EdibleServings extends React.Component {
             productWeight: 10,
             productPotency: 25,
             mgPerServing: 100,
-        }
-
-        this.setProductWeight = this.setProductWeight.bind(this);
-        this.setProductPotency = this.setProductPotency.bind(this);
-        this.setMGPerServing = this.setMGPerServing.bind(this);
-    }
-
-    setProductWeight(productWeight) {
-        this.setState({productWeight: Number(productWeight)});
-    }
-
-    setProductPotency(productPotency) {
-        this.setState({productPotency: Number(productPotency)});
-    }
-
-    setMGPerServing(mgPerServing) {
-        this.setState({mgPerServing: Number(mgPerServing)});
+        };
     }
 
     getServings() {
@@ -222,9 +148,9 @@ export class EdibleServings extends React.Component {
                 <h5>Serving Count</h5>
                 <div className="row">
                     <div className="col-sm">
-                        <GenericInput inputLabel="Product Amount" onChange={this.setProductWeight} conversionFactors={ConversionFactors.basicWeight} number={this.state.productWeight}/>
-                        <FixedUnitInput inputLabel="Product Potency" onChange={this.setProductPotency} number={this.state.productPotency} unit="% THC"/>
-                        <FixedUnitInput inputLabel="mg THC/serving" onChange={this.setMGPerServing} number={this.state.mgPerServing} unit="mg"/>
+                        <GenericInput inputLabel="Product Amount" onChange={(val) => this.setState({productWeight: Number(val)})} conversionFactors={ConversionFactors.basicWeight} number={this.state.productWeight}/>
+                        <FixedUnitInput inputLabel="Product Potency" onChange={(val) => this.setState({productPotency: Number(val)})} number={this.state.productPotency} unit="% THC"/>
+                        <FixedUnitInput inputLabel="mg THC/serving" onChange={(val) => this.setState({mgPerServing: Number(val)})} number={this.state.mgPerServing} unit="mg"/>
                     </div>
                     <div className="col-sm">
                         <FixedUnitOutput outputLabel="Servings" number={defaultRound(this.getServings())} unit="servings"/>

@@ -12,28 +12,7 @@ export default class ExtractionEfficiency extends React.Component {
             feedTHCPercentage: 25,
             extractWeight: 96,
             extractTHCPercentage: 85
-        }
-
-        this.setFeedWeight = this.setFeedWeight.bind(this);
-        this.setFeedTHCPercentage = this.setFeedTHCPercentage.bind(this);
-        this.setExtractWeight = this.setExtractWeight.bind(this);
-        this.setExtractTHCPercentage = this.setExtractTHCPercentage.bind(this);
-    }
-
-    setFeedWeight(feedWeight) {
-        this.setState({feedWeight: Number(feedWeight)});
-    }
-
-    setFeedTHCPercentage(feedTHCPercentage) {
-        this.setState({feedTHCPercentage: Number(feedTHCPercentage)});
-    }
-
-    setExtractWeight(extractWeight) {
-        this.setState({extractWeight: Number(extractWeight)});
-    }
-
-    setExtractTHCPercentage(extractTHCPercentage) {
-        this.setState({extractTHCPercentage: Number(extractTHCPercentage)});
+        };
     }
 
     getYield() {
@@ -59,10 +38,10 @@ export default class ExtractionEfficiency extends React.Component {
                 <hr/>
                 <div className="row">
                     <div className="col-sm">
-                        <GenericInput inputLabel="Feedstock Weight" onChange={this.setFeedWeight} conversionFactors={ConversionFactors.weight} number={this.state.feedWeight}/>
-                        <FixedUnitInput inputLabel="Feedstock THC Content" onChange={this.setFeedTHCPercentage} number={this.state.feedTHCPercentage} unit="%"/>
-                        <GenericInput inputLabel="Extract Quantity" onChange={this.setExtractWeight} conversionFactors={ConversionFactors.weight} number={this.state.extractWeight}/>
-                        <FixedUnitInput inputLabel="Extract THC Content" onChange={this.setExtractTHCPercentage} number={this.state.extractTHCPercentage} unit="%"/>
+                        <GenericInput inputLabel="Feedstock Weight" onChange={(val) => this.setState({feedWeight: Number(val)})} conversionFactors={ConversionFactors.weight} number={this.state.feedWeight}/>
+                        <FixedUnitInput inputLabel="Feedstock THC Content" onChange={(val) => this.setState({feedTHCPercentage: Number(val)})} number={this.state.feedTHCPercentage} unit="%"/>
+                        <GenericInput inputLabel="Extract Quantity" onChange={(val) => this.setState({extractWeight: Number(val)})} conversionFactors={ConversionFactors.weight} number={this.state.extractWeight}/>
+                        <FixedUnitInput inputLabel="Extract THC Content" onChange={(val) => this.setState({extractTHCPercentage: Number(val)})} number={this.state.extractTHCPercentage} unit="%"/>
                     </div>
                     <div className="col-sm">
                         <FixedUnitOutput outputLabel="Weight Yield" number={defaultRound(this.getYield())} unit="%"/>
