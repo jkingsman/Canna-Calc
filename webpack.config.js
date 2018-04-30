@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const ManifestPlugin = require('webpack-manifest-plugin');
 const path = require('path');
 
 module.exports = {
@@ -33,7 +34,8 @@ module.exports = {
         filename: 'bundle.js'
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new ManifestPlugin(),
     ],
     devtool: 'source-map',
     devServer: {
