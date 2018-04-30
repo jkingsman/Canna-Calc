@@ -15,56 +15,8 @@ export default class DateCalculator extends React.Component {
             days: 0,
             hours: 0,
             minutes: 0,
-            seconds: 0
-        }
-
-        this.setStartDateStr = this.setStartDateStr.bind(this);
-        this.setStartTimeStr = this.setStartTimeStr.bind(this);
-        this.setAction = this.setAction.bind(this);
-        this.setYears = this.setYears.bind(this);
-        this.setMonths = this.setMonths.bind(this);
-        this.setDays = this.setDays.bind(this);
-        this.setHours = this.setHours.bind(this);
-        this.setMinutes = this.setMinutes.bind(this);
-        this.setSeconds = this.setSeconds.bind(this);
-        this.isDateValid = this.isDateValid.bind(this);
-        this.isTimeValid = this.isTimeValid.bind(this);
-    }
-
-    setStartDateStr(startDateStr) {
-        this.setState({startDateStr: startDateStr});
-    }
-
-    setStartTimeStr(startTimeStr) {
-        this.setState({startTimeStr: startTimeStr});
-    }
-
-    setAction(str) {
-        this.setState({action: str});
-    }
-
-    setYears(years) {
-        this.setState({years: Number(years)});
-    }
-
-    setMonths(months) {
-        this.setState({months: Number(months)});
-    }
-
-    setDays(days) {
-        this.setState({days: Number(days)});
-    }
-
-    setHours(hours) {
-        this.setState({hours: Number(hours)});
-    }
-
-    setMinutes(minutes) {
-        this.setState({minutes: Number(minutes)});
-    }
-
-    setSeconds(seconds) {
-        this.setState({seconds: Number(seconds)});
+            seconds: 0,
+        };
     }
 
     isDateValid() {
@@ -141,21 +93,21 @@ export default class DateCalculator extends React.Component {
             <div className="container">
                 <div className="row">
                     <div className="col-sm">
-                        <FreeInput inputLabel="Start Date (YYYY-MM-DD)" onChange={this.setStartDateStr} val={this.state.startDateStr} unit={this.isDateValid()}/>
-                        <FreeInput inputLabel="Start Time (HH:MM:SS)" onChange={this.setStartTimeStr} val={this.state.startTimeStr} unit={this.isTimeValid()}/>
+                        <FreeInput inputLabel="Start Date (YYYY-MM-DD)" onChange={(val) => this.setState({radius: val})} val={this.state.startDateStr} unit={this.isDateValid()}/>
+                        <FreeInput inputLabel="Start Time (HH:MM:SS)" onChange={(val) => this.setState({radius: val})} val={this.state.startTimeStr} unit={this.isTimeValid()}/>
                         <div className="form-group">
-                            <input type="radio" id="addRadio" name="addSubRadioGroup" value="add" checked={this.state.action === 'add'} onChange={() => this.setAction('add')}/>
+                            <input type="radio" id="addRadio" name="addSubRadioGroup" value="add" checked={this.state.action === 'add'} onChange={() => this.setState({action: 'add'})}/>
                             <label htmlFor="addRadio">Add</label><br/>
-                            <input type="radio" id="subRadio" name="addSubRadioGroup" value="sub" checked={this.state.action === 'sub'} onChange={() => this.setAction('sub')}/>
+                            <input type="radio" id="subRadio" name="addSubRadioGroup" value="sub" checked={this.state.action === 'sub'} onChange={() => this.setState({action: 'sub'})}/>
                             <label htmlFor="subRadio">Subtract</label>
                         </div>
 
-                        <FreeInput inputLabel="Years" onChange={this.setYears} val={this.state.years}/>
-                        <FreeInput inputLabel="Months" onChange={this.setMonths} val={this.state.months}/>
-                        <FreeInput inputLabel="Days" onChange={this.setDays} val={this.state.days}/>
-                        <FreeInput inputLabel="Hours" onChange={this.setHours} val={this.state.hours}/>
-                        <FreeInput inputLabel="Minutes" onChange={this.setMinutes} val={this.state.minutes}/>
-                        <FreeInput inputLabel="Seconds" onChange={this.setSeconds} val={this.state.seconds}/>
+                        <FreeInput inputLabel="Years" onChange={(val) => this.setState({years: Number(val)})} val={this.state.years}/>
+                        <FreeInput inputLabel="Months" onChange={(val) => this.setState({months: Number(val)})} val={this.state.months}/>
+                        <FreeInput inputLabel="Days" onChange={(val) => this.setState({days: Number(val)})} val={this.state.days}/>
+                        <FreeInput inputLabel="Hours" onChange={(val) => this.setState({hours: Number(val)})} val={this.state.hours}/>
+                        <FreeInput inputLabel="Minutes" onChange={(val) => this.setState({minutes: Number(val)})} val={this.state.minutes}/>
+                        <FreeInput inputLabel="Seconds" onChange={(val) => this.setState({seconds: Number(val)})} val={this.state.seconds}/>
                     </div>
                     <div className="col-sm">
                         <FreeOutput outputLabel="Adjusted Date" val={this.getFinalDate()}/>
