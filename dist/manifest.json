@@ -1,14 +1,14 @@
 {
   "main.js": "/bundle.js",
-  "favicon/favicon-32x32.png": "/favicon/favicon-32x32.png",
-  "favicon/android-chrome-192x192.png": "/favicon/android-chrome-192x192.png",
+  "favicon/mstile-150x150.png": "/favicon/mstile-150x150.png",
+  "favicon/apple-touch-icon.png": "/favicon/apple-touch-icon.png",
+  "favicon/android-chrome-512x512.png": "/favicon/android-chrome-512x512.png",
   "favicon/browserconfig.xml": "/favicon/browserconfig.xml",
   "favicon/favicon-16x16.png": "/favicon/favicon-16x16.png",
-  "favicon/android-chrome-512x512.png": "/favicon/android-chrome-512x512.png",
-  "favicon/apple-touch-icon.png": "/favicon/apple-touch-icon.png",
-  "favicon/mstile-150x150.png": "/favicon/mstile-150x150.png",
+  "favicon/android-chrome-192x192.png": "/favicon/android-chrome-192x192.png",
   "favicon/favicon.ico": "/favicon/favicon.ico",
+  "favicon/favicon-32x32.png": "/favicon/favicon-32x32.png",
+  "favicon/site.webmanifest": "/favicon/site.webmanifest",
   "favicon/safari-pinned-tab.svg": "/favicon/safari-pinned-tab.svg",
-  "favicon/og.png": "/favicon/og.png",
-  "favicon/site.webmanifest": "/favicon/site.webmanifest"
+  "favicon/og.png": "/favicon/og.png"
 }

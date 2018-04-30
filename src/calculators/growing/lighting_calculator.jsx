@@ -10,7 +10,7 @@ export default class LightingCalculator extends React.Component {
             lumensNeededSqFt: 8000,
             wattageNeededSqFt: 45,
             growSpaceWidthFt: 10,
-            growSpaceLengthFt: 10
+            growSpaceLengthFt: 8,
         }
 
         this.setLumens = this.setLumens.bind(this);
