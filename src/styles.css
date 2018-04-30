@@ -8,6 +8,10 @@ body {
     /* Margin bottom by footer height */
 }
 
+a {
+    color: #0065b1 !important;
+}
+
 .card {
     margin-top: 2px;
 }

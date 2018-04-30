@@ -45,7 +45,7 @@ export default class CalculatorContainer extends React.Component {
     render() {
         return (
             <div id="mainAccordion">
-                <input value={this.state.searchTerm} onChange={this.setSearchTerm} placeholder="Enter a keyword or term to search for a calculator..." id="searchBar"/> {this.isSearching()
+                <input aria-label="search for calculators" value={this.state.searchTerm} onChange={this.setSearchTerm} placeholder="Enter a keyword or term to search for a calculator..." id="searchBar"/> {this.isSearching()
                     ? ""
                     : <h5>General Conversions & Math</h5>}
 

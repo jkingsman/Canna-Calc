@@ -97,6 +97,11 @@ FixedUnitInput.defaultProps = {
 };
 
 export class FreeOutput extends React.Component {
+    constructor(props) {
+        super(props);
+        this.inputID = newId();
+    }
+
     render() {
         return (
             <div className='form-group'>
@@ -125,11 +130,16 @@ FreeOutput.defaultProps = {
 };
 
 export class FixedUnitOutput extends React.Component {
+    constructor(props) {
+        super(props);
+        this.inputID = newId();
+    }
+
     render() {
         return (
             <div className='form-group'>
                 <label htmlFor={'output' + this.inputID} className="text-label">{this.props.outputLabel}{this.props.noColon ? "" : ":"}&nbsp;</label>
-                <input value={this.props.prefix + this.props.number} disabled className='calc-input-width' htmlFor={'output' + this.inputID}/>{' '}
+                <input value={this.props.prefix + this.props.number} disabled className='calc-input-width' id={'output' + this.inputID}/>{' '}
                 {this.props.unit}
             </div>
         );
@@ -210,7 +220,7 @@ export class GenericInput extends React.Component {
         let selectOptions = Object.keys(this.props.conversionFactors.to).map(unit => <option value={unit} key={'unitSelect' + newId()}>{unit}</option>);
 
         return (
-            <select value={this.state.unit} onChange={this.handleUnitChange}>{selectOptions}</select>
+            <select aria-label="measurement input" value={this.state.unit} onChange={this.handleUnitChange}>{selectOptions}</select>
         )
     }
 
@@ -302,7 +312,7 @@ export class GenericOutput extends React.Component {
         let selectOptions = Object.keys(this.state.conversionFactors.from).map(unit => <option value={unit} key={'unitSelect' + newId()}>{unit}</option>);
 
         return (
-            <select value={this.state.unit} onChange={this.handleUnitChange}>{selectOptions}</select>
+            <select aria-label="measurement input" value={this.state.unit} onChange={this.handleUnitChange}>{selectOptions}</select>
         )
     }
 

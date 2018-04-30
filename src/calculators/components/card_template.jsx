@@ -30,7 +30,7 @@ const CardTemplate = ({
     if (matchesKeyword) {
         return (
             <div className="card pad-left">
-                <h6 className="card-header mb-0" onClick={debounce(toggleHash, 250)} id={`#card${uniqueID}`} data-target={`#cardCollapse${uniqueID}`} aria-controls={`cardCollapse${uniqueID}`} data-toggle="collapse" aria-expanded="false">
+                <h6 className="card-header mb-0" onClick={debounce(toggleHash, 250)} id={`card${uniqueID}`} data-target={`#cardCollapse${uniqueID}`} aria-controls={`cardCollapse${uniqueID}`} data-toggle="collapse" aria-expanded="false">
                     {title}
                 </h6>
 
