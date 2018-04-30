@@ -13,45 +13,8 @@ export default class GrowthTimeline extends React.Component {
             flowering: 49,
             drying: 7,
             curing: 28,
-            processing: 0
-        }
-
-        this.setStartDateStr = this.setStartDateStr.bind(this);
-        this.setSprout = this.setSprout.bind(this);
-        this.setVegetative = this.setVegetative.bind(this);
-        this.setFlowering = this.setFlowering.bind(this);
-        this.setDrying = this.setDrying.bind(this);
-        this.setCuring = this.setCuring.bind(this);
-        this.setProcessing = this.setProcessing.bind(this);
-        this.getFinalDateISO = this.getFinalDateISO.bind(this);
-    }
-
-    setStartDateStr(startDateStr) {
-        this.setState({startDateStr: startDateStr});
-    }
-
-    setSprout(sprout) {
-        this.setState({sprout: Number(sprout)});
-    }
-
-    setVegetative(vegetative) {
-        this.setState({vegetative: Number(vegetative)});
-    }
-
-    setFlowering(flowering) {
-        this.setState({flowering: Number(flowering)});
-    }
-
-    setDrying(drying) {
-        this.setState({drying: Number(drying)});
-    }
-
-    setCuring(curing) {
-        this.setState({curing: Number(curing)});
-    }
-
-    setProcessing(processing) {
-        this.setState({processing: Number(processing)});
+            processing: 0,
+        };
     }
 
     isDateValid() {
@@ -90,13 +53,13 @@ export default class GrowthTimeline extends React.Component {
             <div className="container">
                 <div className="row">
                     <div className="col-sm">
-                        <FreeInput inputLabel="Plant Date (YYYY-MM-DD)" onChange={this.setStartDateStr} val={this.state.startDateStr} unit={this.isDateValid()}/>
-                        <FixedUnitInput inputLabel="Days to Sprout" onChange={this.setSprout} number={this.state.sprout} unit="days"/>
-                        <FixedUnitInput inputLabel="Days Vegetative" onChange={this.setVegetative} number={this.state.vegetative} unit="days"/>
-                        <FixedUnitInput inputLabel="Days Flowering" onChange={this.setFlowering} number={this.state.flowering} unit="days"/>
-                        <FixedUnitInput inputLabel="Days Drying" onChange={this.setDrying} number={this.state.drying} unit="days"/>
-                        <FixedUnitInput inputLabel="Days Curing" onChange={this.setCuring} number={this.state.curing} unit="days"/>
-                        <FixedUnitInput inputLabel="Days Processing" onChange={this.setProcessing} number={this.state.processing} unit="days"/>
+                        <FreeInput inputLabel="Plant Date (YYYY-MM-DD)" onChange={(val) => this.setState({startDateStr: Number(val)})} val={this.state.startDateStr} unit={this.isDateValid()}/>
+                        <FixedUnitInput inputLabel="Days to Sprout" onChange={(val) => this.setState({sprout: Number(val)})} number={this.state.sprout} unit="days"/>
+                        <FixedUnitInput inputLabel="Days Vegetative" onChange={(val) => this.setState({vegetative: Number(val)})} number={this.state.vegetative} unit="days"/>
+                        <FixedUnitInput inputLabel="Days Flowering" onChange={(val) => this.setState({flowering: Number(val)})} number={this.state.flowering} unit="days"/>
+                        <FixedUnitInput inputLabel="Days Drying" onChange={(val) => this.setState({drying: Number(val)})} number={this.state.drying} unit="days"/>
+                        <FixedUnitInput inputLabel="Days Curing" onChange={(val) => this.setState({curing: Number(val)})} number={this.state.curing} unit="days"/>
+                        <FixedUnitInput inputLabel="Days Processing" onChange={(val) => this.setState({processing: Number(val)})} number={this.state.processing} unit="days"/>
                     </div>
                     <div className="col-sm">
                         <br/>
