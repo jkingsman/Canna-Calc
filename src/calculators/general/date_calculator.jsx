@@ -141,8 +141,8 @@ export default class DateCalculator extends React.Component {
             <div className="container">
                 <div className="row">
                     <div className="col-sm">
-                        <FreeInput inputLabel="Start Date (YYYY-MM-DD)" onChange={this.setStartDateStr} val={this.state.startDateStr} units={this.isDateValid()}/>
-                        <FreeInput inputLabel="Start Time (HH:MM:SS)" onChange={this.setStartTimeStr} val={this.state.startTimeStr} units={this.isTimeValid()}/>
+                        <FreeInput inputLabel="Start Date (YYYY-MM-DD)" onChange={this.setStartDateStr} val={this.state.startDateStr} unit={this.isDateValid()}/>
+                        <FreeInput inputLabel="Start Time (HH:MM:SS)" onChange={this.setStartTimeStr} val={this.state.startTimeStr} unit={this.isTimeValid()}/>
                         <div className="form-group">
                             <input type="radio" id="addRadio" name="addSubRadioGroup" value="add" checked={this.state.action === 'add'} onChange={() => this.setAction('add')}/>
                             <label htmlFor="addRadio">Add</label><br/>

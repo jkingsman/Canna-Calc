@@ -26,7 +26,7 @@ export class FreeInput extends React.Component {
         return (
             <div className='form-group'>
                 <label htmlFor={'input' + this.inputID} className={this.props.noPadding ? "" : "text-label"}>{this.props.inputLabel}:&nbsp;</label>
-                <input value={this.state.val} onChange={this.handleNumberChange} className='calc-input-width' id={'input' + this.inputID}/>{' '}{this.props.units}
+                <input value={this.state.val} onChange={this.handleNumberChange} className='calc-input-width' id={'input' + this.inputID}/>{' '}{this.props.unit}
             </div>
         );
     }
@@ -36,7 +36,7 @@ FreeInput.propTypes = {
     inputLabel: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     val: PropTypes.any.isRequired,
-    units: PropTypes.any.isRequired,
+    unit: PropTypes.any.isRequired,
     noPadding: PropTypes.bool,
 };
 
@@ -44,7 +44,7 @@ FreeInput.defaultProps = {
     inputLabel: "",
     onChange: () => null,
     val: "",
-    units: "",
+    unit: "",
     noPadding: false,
 };
 
@@ -119,7 +119,7 @@ FreeOutput.propTypes = {
 FreeOutput.defaultProps = {
     outputLabel: "",
     val: 0,
-    unit: 'units',
+    unit: '',
     noColon: false,
     prefix: '',
 };

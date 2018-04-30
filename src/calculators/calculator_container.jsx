@@ -8,6 +8,7 @@ import CylinderCalculator from 'app/calculators/general/cylinder_calculator';
 import DateCalculator from 'app/calculators/general/date_calculator';
 import ConversionFactors from 'app/utils/conversion_factors';
 
+import GrowthTimeline from 'app/calculators/growing/growth_timeline.jsx';
 import LightingCalculator from 'app/calculators/growing/lighting_calculator.jsx';
 import CO2Calculator from 'app/calculators/growing/co2_calculator.jsx';
 import ExhaustCalculator from 'app/calculators/growing/exhaust_calculator.jsx';
@@ -68,7 +69,7 @@ export default class CalculatorContainer extends React.Component {
                         <GeneralCalculatorTemplate labelSuffix="Time" conversionFactors={ConversionFactors.basicTime} hideSplitter/>
                     </CardTemplate>
 
-                    <CardTemplate id="dateCalculator" keywords="add subtract datetime hours hrs minutes mins seconds secs days weeks wks months" searchTerm={this.state.searchTerm} title="Add/Subtract to Date/Time" parentID="generalAccordion">
+                    <CardTemplate id="dateCalculator" keywords="add subtract datetime years yrs hours hrs minutes mins seconds secs days weeks wks months" searchTerm={this.state.searchTerm} title="Add/Subtract to Date/Time" parentID="generalAccordion">
                         <DateCalculator />
                     </CardTemplate>
 
@@ -97,6 +98,10 @@ export default class CalculatorContainer extends React.Component {
                     ? ""
                     : <h5 className="group-header">Growing &amp; Plant Production</h5>}
                 <AccordionContainer id="growingAccordion" padLeft>
+                    <CardTemplate id="growthTimeline" keywords="growing growth calculator timeline planning years yrs months days projection projected" searchTerm={this.state.searchTerm} title="Projected Growth Timeline/Calendar" parentID="growingAccordion">
+                        <GrowthTimeline/>
+                    </CardTemplate>
+
                     <CardTemplate id="lighting" keywords="lighting lights led hid wattage power watts lumens" searchTerm={this.state.searchTerm} title="Light Wattage" parentID="growingAccordion">
                         <LightingCalculator/>
                     </CardTemplate>
@@ -117,11 +122,11 @@ export default class CalculatorContainer extends React.Component {
                         <WaterCalculator/>
                     </CardTemplate>
 
-                    <CardTemplate id="yieldCalculator" keywords="yield plants ounces oz grams pounds lbs harvest" searchTerm={this.state.searchTerm} title="General Crop Yield" parentID="growingAccordion">
+                    <CardTemplate id="yieldCalculator" keywords="yield plants ounces oz grams pounds lbs harvest projection projected" searchTerm={this.state.searchTerm} title="General Crop Yield" parentID="growingAccordion">
                         <YieldCalculator/>
                     </CardTemplate>
 
-                    <CardTemplate id="yieldDryWetCalculator" keywords="yield plants ounces oz grams pounds lbs harvest drying wet cure curing" searchTerm={this.state.searchTerm} title="Dry/Wet Yield" parentID="growingAccordion">
+                    <CardTemplate id="yieldDryWetCalculator" keywords="yield plants ounces oz grams pounds lbs harvest drying wet cure curing projection projected" searchTerm={this.state.searchTerm} title="Dry/Wet Yield" parentID="growingAccordion">
                         <YieldDryWetCalculator/>
                     </CardTemplate>
 
