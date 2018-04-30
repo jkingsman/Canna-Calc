@@ -164,11 +164,13 @@ const ConversionFactors = {
             // to get X to ft^3 from...
             'ft³.': (m) => Number(m),
             'm³': (m) => Number(m) / 35.3147,
+            'gal': (m) => Number(m) * 0.133680556,
         },
         from: {
             // to get X from ft^3 into...
             'ft³.': (m) => Number(m),
             'm³': (m) => Number(m) * 35.3147,
+            'gal': (m) => Number(m) / 0.133680556,
         },
     },
 

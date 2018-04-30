@@ -8,15 +8,16 @@ import CylinderCalculator from 'app/calculators/general/cylinder_calculator';
 import DateCalculator from 'app/calculators/general/date_calculator';
 import ConversionFactors from 'app/utils/conversion_factors';
 
-import GrowthTimeline from 'app/calculators/growing/growth_timeline.jsx';
-import LightingCalculator from 'app/calculators/growing/lighting_calculator.jsx';
-import CO2Calculator from 'app/calculators/growing/co2_calculator.jsx';
-import ExhaustCalculator from 'app/calculators/growing/exhaust_calculator.jsx';
-import AmperageCalculator from 'app/calculators/growing/amperage_calculator.jsx';
-import YieldCalculator from 'app/calculators/growing/yield_calculator.jsx';
-import YieldDryWetCalculator from 'app/calculators/growing/yielddrywet_calculator.jsx';
-import WaterCalculator from 'app/calculators/growing/water_calculator.jsx';
-import PlantCount from 'app/calculators/growing/plantcount_calculator.jsx';
+import GrowthTimeline from 'app/calculators/growing/growth_timeline';
+import SoilCalculator from 'app/calculators/growing/soil_calculator';
+import LightingCalculator from 'app/calculators/growing/lighting_calculator';
+import CO2Calculator from 'app/calculators/growing/co2_calculator';
+import ExhaustCalculator from 'app/calculators/growing/exhaust_calculator';
+import AmperageCalculator from 'app/calculators/growing/amperage_calculator';
+import YieldCalculator from 'app/calculators/growing/yield_calculator';
+import YieldDryWetCalculator from 'app/calculators/growing/yielddrywet_calculator';
+import WaterCalculator from 'app/calculators/growing/water_calculator';
+import PlantCount from 'app/calculators/growing/plantcount_calculator';
 
 import {PercentageToMG, MGToPercentage, Density, FreeWeight} from 'app/calculators/concentratesedibles/thc_conversions';
 import DecarbLoss from 'app/calculators/concentratesedibles/decarb_loss';
@@ -101,6 +102,14 @@ export default class CalculatorContainer extends React.Component {
                     <GrowthTimeline/>
                 </CardTemplate>
 
+                <CardTemplate id="plantCountCalculator" keywords="growing layout grid space sqft square footage feet width length size" searchTerm={this.state.searchTerm} title="Plant Layout" parentID="mainAccordion">
+                    <PlantCount/>
+                </CardTemplate>
+
+                <CardTemplate id="SoilCalculator" keywords="soil dirt loam peat worm casings bat guano bone meal kelp dirt potting" searchTerm={this.state.searchTerm} title="Soil Proportions" parentID="mainAccordion">
+                    <SoilCalculator/>
+                </CardTemplate>
+
                 <CardTemplate id="lighting" keywords="lighting lights led hid wattage power watts lumens" searchTerm={this.state.searchTerm} title="Light Wattage" parentID="mainAccordion">
                     <LightingCalculator/>
                 </CardTemplate>
@@ -127,10 +136,6 @@ export default class CalculatorContainer extends React.Component {
 
                 <CardTemplate id="yieldDryWetCalculator" keywords="yield plants ounces oz grams pounds lbs harvest drying wet cure curing projection projected" searchTerm={this.state.searchTerm} title="Dry/Wet Yield" parentID="mainAccordion">
                     <YieldDryWetCalculator/>
-                </CardTemplate>
-
-                <CardTemplate id="plantCountCalculator" keywords="growing layout grid space sqft square footage feet width length size" searchTerm={this.state.searchTerm} title="Plant Layout" parentID="mainAccordion">
-                    <PlantCount/>
                 </CardTemplate>
 
                 {this.isSearching()
