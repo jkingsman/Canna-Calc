@@ -4,10 +4,10 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "watch": "webpack-dev-server --config ./webpack.config.js --mode development --display-reasons --display-modules",
-        "build": "webpack-cli --config ./webpack.production.config.js  --display-reasons --display-modules",
+        "watch": "webpack-dev-server --config ./webpack.config.js --mode development",
+        "build": "webpack-cli --config ./webpack.production.config.js",
         "lint": "eslint src\\**\\*",
-        "test": "echo \"No test specified\" && exit 0"
+        "test": "echo \"No test specified\" && exit 0",
     },
     "keywords": [],
     "author": "Jack Kingsman <jack.kingsman@gmail.com>",
