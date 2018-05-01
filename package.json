@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "watch": "webpack-dev-server --config ./webpack.config.js --mode development",
-    "build": "webpack-cli --config ./webpack.production.config.js",
+    "watch": "webpack-dev-server --config ./webpack.config.js --mode development --display-reasons --display-modules",
+    "build": "webpack-cli --config ./webpack.production.config.js  --display-reasons --display-modules",
     "lint": "eslint src\\**\\*",
     "test": "echo \"No test specified\" && exit 0"
   },
