@@ -11,33 +11,7 @@ export default class YieldCalculator extends React.Component {
             avgOz: 2.25,
             maxOz: 3.5,
             plantCount: 10,
-
-        }
-
-        this.setMin = this.setMin.bind(this);
-        this.setAvg = this.setAvg.bind(this);
-        this.setMax = this.setMax.bind(this);
-        this.setPlantCount = this.setPlantCount.bind(this);
-    }
-
-    setMin(minOz) {
-        this.setState({minOz: Number(minOz)});
-    }
-
-    setAvg(avgOz) {
-        this.setState({avgOz: Number(avgOz)});
-    }
-
-    setMax(maxOz) {
-        this.setState({maxOz: Number(maxOz)});
-    }
-
-    setPlantCount(plantCount) {
-        this.setState({plantCount: Number(plantCount)});
-    }
-
-    setHoursOnPerDay(hoursOnPerDay) {
-        this.setState({hoursOnPerDay: Number(hoursOnPerDay)});
+        };
     }
 
     getYield() {
@@ -53,10 +27,10 @@ export default class YieldCalculator extends React.Component {
             <div className="container">
                 <div className="row">
                     <div className="col-sm">
-                        <GenericInput inputLabel="Min Yield/Plant" onChange={this.setMin} conversionFactors={ConversionFactors.basicWeight} number={this.state.minOz}/>
-                        <GenericInput inputLabel="Avg Yield/Plant" onChange={this.setAvg} conversionFactors={ConversionFactors.basicWeight} number={this.state.avgOz}/>
-                        <GenericInput inputLabel="Max Yield/Plant" onChange={this.setMax} conversionFactors={ConversionFactors.basicWeight} number={this.state.maxOz}/>
-                        <FixedUnitInput inputLabel="Plant Count" onChange={this.setPlantCount} number={this.state.plantCount} unit="plants"/>
+                        <GenericInput inputLabel="Min Yield/Plant" onChange={(val) => this.setState({minOz: Number(val)})} conversionFactors={ConversionFactors.basicWeight} number={this.state.minOz}/>
+                        <GenericInput inputLabel="Avg Yield/Plant" onChange={(val) => this.setState({avgOz: Number(val)})} conversionFactors={ConversionFactors.basicWeight} number={this.state.avgOz}/>
+                        <GenericInput inputLabel="Max Yield/Plant" onChange={(val) => this.setState({maxOz: Number(val)})} conversionFactors={ConversionFactors.basicWeight} number={this.state.maxOz}/>
+                        <FixedUnitInput inputLabel="Plant Count" onChange={(val) => this.setState({plantCount: Number(val)})} number={this.state.plantCount} unit="plants"/>
                     </div>
                     <div className="col-sm">
                         <GenericOutput outputLabel="Min Yield" number={this.getYield()[0]} conversionFactors={ConversionFactors.basicWeight} showSplitter={false}/>

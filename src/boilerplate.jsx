@@ -1,5 +1,4 @@
 import React from 'react';
-import './styles.css';
 import CalculatorContainer from 'app/calculators/calculator_container';
 
 export default class Boilerplate extends React.Component {
@@ -15,7 +14,7 @@ export default class Boilerplate extends React.Component {
 
                 <footer className="footer">
                     <div className="container">
-                        <span className="text-muted">This project is open source! Contribute, comment, or ask questions at <a rel="noopener noreferrer" target="_blank" href="https://github.com/jkingsman/Canna-Calc">Github</a>.</span>
+                        <span className="text-muted">This project is open source and not for profit! Contribute, comment, or ask questions at <a rel="noopener noreferrer" target="_blank" href="https://github.com/jkingsman/Canna-Calc">Github</a>.</span>
                     </div>
                 </footer>
             </div>

@@ -9,12 +9,6 @@ export default class DecarbLoss extends React.Component {
         this.state = {
             totalWeight: 25
         }
-
-        this.setTotalWeight = this.setTotalWeight.bind(this);
-    }
-
-    setTotalWeight(totalWeight) {
-        this.setState({totalWeight: Number(totalWeight)});
     }
 
     getPostDecarbWeight() {
@@ -29,7 +23,7 @@ export default class DecarbLoss extends React.Component {
                 <hr />
                 <div className="row">
                     <div className="col-sm">
-                        <FixedUnitInput inputLabel="Product THCa Content" onChange={this.setTotalWeight} number={this.state.totalWeight} unit="mg"/>
+                        <FixedUnitInput inputLabel="Product THCa Content" onChange={(val) => this.setState({totalWeight: Number(val)})} number={this.state.totalWeight} unit="mg"/>
                     </div>
                     <div className="col-sm">
                         <FixedUnitOutput outputLabel="Post-Decarb THC Content" number={defaultRound(this.getPostDecarbWeight())} unit="mg/g"/>

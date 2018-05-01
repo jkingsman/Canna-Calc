@@ -11,42 +11,17 @@ export default class AmperageCalculator extends React.Component {
             voltage: 120,
             kWhCost: 0.12,
             hoursOnPerDay: 12,
-            plantCount: 1
-        }
-
-        this.setWatts = this.setWatts.bind(this);
-        this.setVoltage = this.setVoltage.bind(this);
-        this.setKWhCost = this.setKWhCost.bind(this);
-        this.setHoursOnPerDay = this.setHoursOnPerDay.bind(this);
-        this.setPlantCount = this.setPlantCount.bind(this);
+            lightCount: 1,
+        };
     }
 
-    setWatts(watts) {
-        this.setState({watts: Number(watts)});
-    }
-
-    setVoltage(voltage) {
-        this.setState({voltage: Number(voltage)});
-    }
-
-    setKWhCost(kWhCost) {
-        this.setState({kWhCost: Number(kWhCost)});
-    }
-
-    setHoursOnPerDay(hoursOnPerDay) {
-        this.setState({hoursOnPerDay: Number(hoursOnPerDay)});
-    }
-
-    setPlantCount(plantCount) {
-        this.setState({plantCount: Number(plantCount)});
-    }
-
+    // W = A * V
     getAmps() {
-        return this.state.watts / this.state.voltage;
+        return (this.state.watts / this.state.voltage) * this.state.lightCount;
     }
 
     getKWhPerDay() {
-        return ((this.state.watts * this.state.hoursOnPerDay) * this.state.plantCount) / 1000;
+        return ((this.state.watts * this.state.hoursOnPerDay) * this.state.lightCount) / 1000;
     }
 
     getCostPerDay() {
@@ -65,19 +40,16 @@ export default class AmperageCalculator extends React.Component {
                 <hr/>
                 <div className="row">
                     <div className="col-sm">
-                        <FixedUnitInput inputLabel="Total Light Wattage" onChange={this.setWatts} number={this.state.watts} unit="watts"/>
-                        <FixedUnitInput inputLabel="Voltage" onChange={this.setVoltage} number={this.state.voltage} unit="volts"/>
-                        <FixedUnitInput inputLabel="Dollar Cost per kWh" onChange={this.setKWhCost} number={this.state.kWhCost} unit="dollars"/>
-                        <FixedUnitInput inputLabel="Hours On per Day" onChange={this.setHoursOnPerDay} number={this.state.hoursOnPerDay} unit="hours"/>
-                        <hr/>
-                        <i>Leave Plant Count set to 1 to input Total Light Wattage for all lights used; if Plant Count is set to greater than 1, Total Light Wattage is assumed to be per-plant (kWh and cost will by multiplied by Plant Count).</i>
-                        <br/><br/>
-                        <FixedUnitInput inputLabel="Plant Count" onChange={this.setPlantCount} number={this.state.plantCount} unit="plants"/>
+                        <FixedUnitInput inputLabel="Single Light Wattage" onChange={(val) => this.setState({watts: Number(val)})} number={this.state.watts} unit="watts"/>
+                        <FixedUnitInput inputLabel="Voltage" onChange={(val) => this.setState({voltage: Number(val)})} number={this.state.voltage} unit="volts"/>
+                        <FixedUnitInput inputLabel="Dollar Cost per kWh" onChange={(val) => this.setState({kWhCost: Number(val)})} number={this.state.kWhCost} unit="dollars"/>
+                        <FixedUnitInput inputLabel="Hours On per Day" onChange={(val) => this.setState({hoursOnPerDay: Number(val)})} number={this.state.hoursOnPerDay} unit="hours"/>
+                        <FixedUnitInput inputLabel="Light Count" onChange={(val) => this.setState({lightCount: Number(val)})} number={this.state.lightCount} unit="plants"/>
                     </div>
                     <div className="col-sm">
                         <FixedUnitOutput outputLabel="Total Amperage" number={defaultRound(this.getAmps())} unit="amps"/>
                         <FixedUnitOutput outputLabel="Power per Day" number={defaultRound(this.getKWhPerDay())} unit="kWh/day"/>
-                        <FixedUnitOutput outputLabel="Cost/Day" number={defaultRound(this.getKWhPerDay())} unit="" prefix="$"/>
+                        <FixedUnitOutput outputLabel="Cost/Day" number={defaultRound(this.getCostPerDay())} unit="" prefix="$"/>
                         <FixedUnitOutput outputLabel="Power per Month" number={defaultRound(this.getKWhPerDay() * 31)} unit="kWh/mo"/>
                         <FixedUnitOutput outputLabel="Cost/Month" number={defaultRound(this.getCostPerDay() * 31)} unit="" prefix="$"/>
                     </div>

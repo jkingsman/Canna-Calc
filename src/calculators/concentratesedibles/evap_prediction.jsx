@@ -12,28 +12,7 @@ export default class EvapPrediction extends React.Component {
             weightAfterTime: 9.2,
             time: 12,
             expectedYield: .5,
-        }
-
-        this.setSolventStartWeight = this.setSolventStartWeight.bind(this);
-        this.setWeightAfterTime = this.setWeightAfterTime.bind(this);
-        this.setTime = this.setTime.bind(this);
-        this.setExpectedYield = this.setExpectedYield.bind(this);
-    }
-
-    setSolventStartWeight(solventStartWeight) {
-        this.setState({solventStartWeight: Number(solventStartWeight)});
-    }
-
-    setWeightAfterTime(weightAfterTime) {
-        this.setState({weightAfterTime: Number(weightAfterTime)});
-    }
-
-    setTime(time) {
-        this.setState({time: Number(time)});
-    }
-
-    setExpectedYield(expectedYield) {
-        this.setState({expectedYield: Number(expectedYield)});
+        };
     }
 
     getCorrectedSolventAmt() {
@@ -59,10 +38,10 @@ export default class EvapPrediction extends React.Component {
                 <hr/>
                 <div className="row">
                     <div className="col-sm">
-                        <GenericInput inputLabel="Pre-cannabis Solvent Weight" onChange={this.setSolventStartWeight} conversionFactors={ConversionFactors.basicWeight} number={this.state.solventStartWeight}/>
-                        <GenericInput inputLabel="Current Solvent Weight" onChange={this.setWeightAfterTime} conversionFactors={ConversionFactors.basicWeight} number={this.state.weightAfterTime}/>
-                        <GenericInput inputLabel="Time Since Start" onChange={this.setTime} conversionFactors={ConversionFactors.basicTime} number={this.state.time}/>
-                        <GenericInput inputLabel="Estimated Yield" onChange={this.setExpectedYield} conversionFactors={ConversionFactors.basicWeight} number={this.state.expectedYield}/>
+                        <GenericInput inputLabel="Pre-cannabis Solvent Weight" onChange={(val) => this.setState({solventStartWeight: Number(val)})} conversionFactors={ConversionFactors.basicWeight} number={this.state.solventStartWeight}/>
+                        <GenericInput inputLabel="Current Solvent Weight" onChange={(val) => this.setState({weightAfterTime: Number(val)})} conversionFactors={ConversionFactors.basicWeight} number={this.state.weightAfterTime}/>
+                        <GenericInput inputLabel="Time Since Start" onChange={(val) => this.setState({time: Number(val)})} conversionFactors={ConversionFactors.basicTime} number={this.state.time}/>
+                        <GenericInput inputLabel="Estimated Yield" onChange={(val) => this.setState({expectedYield: Number(val)})} conversionFactors={ConversionFactors.basicWeight} number={this.state.expectedYield}/>
                     </div>
                     <div className="col-sm">
                         <GenericOutput outputLabel="Evapd. Solvent" number={defaultRound(this.getSolventLoss())} conversionFactors={ConversionFactors.basicWeight} showSplitter={false}/>

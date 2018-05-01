@@ -1,6 +1,8 @@
 const SECONDS_IN_MINUTE = 60;
 const MINUTES_IN_HOUR = 60;
 const HOURS_IN_DAY = 24;
+const DAYS_IN_WEEK = 7;
+const DAYS_IN_MONTH = 31;
 
 const MINUTES_IN_DAY = MINUTES_IN_HOUR * HOURS_IN_DAY;
 
@@ -53,6 +55,23 @@ const ConversionFactors = {
             '°C': (celsius) => Number(celsius),
             '°F': (celsius) => Number(celsius) * 1.8 + 32,
             'K': (celsius) => Number(celsius) - 273.15,
+        },
+    },
+
+    speed: {
+        to: {
+            // to get X to m/s from...
+            'm/s': (ms) => Number(ms),
+            'ft/s': (ms) => Number(ms) * .3048,
+            'mph': (ms) => Number(ms) * .44704,
+            'kph': (ms) => Number(ms) * .2778,
+        },
+        from: {
+            // to get X from m/s into...
+            'm/s': (ms) => Number(ms),
+            'ft/s': (ms) => Number(ms) / .3048,
+            'mph': (ms) => Number(ms) / .44704,
+            'kph': (ms) => Number(ms) / .2778,
         },
     },
 
@@ -145,11 +164,34 @@ const ConversionFactors = {
             // to get X to ft^3 from...
             'ft³.': (m) => Number(m),
             'm³': (m) => Number(m) / 35.3147,
+            'gal': (m) => Number(m) * 0.133680556,
         },
         from: {
             // to get X from ft^3 into...
             'ft³.': (m) => Number(m),
             'm³': (m) => Number(m) * 35.3147,
+            'gal': (m) => Number(m) / 0.133680556,
+        },
+    },
+
+    cookingVolume: {
+        to: {
+            // to get X to cups from...
+            'cups': (cups) => Number(cups),
+            'tbsp.': (cups) => Number(cups) / 16,
+            'tsp.': (cups) => Number(cups) / 48,
+            'fl. oz.': (cups) => Number(cups) / 8,
+            'pint': (cups) => Number(cups) / .5,
+            'quart': (cups) => Number(cups) / .25,
+        },
+        from: {
+            // to get X from cups into...
+            'cups': (cups) => Number(cups),
+            'tbsp.': (cups) => Number(cups) * 16,
+            'tsp.': (cups) => Number(cups) * 48,
+            'fl. oz.': (cups) => Number(cups) * 8,
+            'pint': (cups) => Number(cups) * .5,
+            'quart': (cups) => Number(cups) * .25,
         },
     },
 
@@ -159,7 +201,7 @@ const ConversionFactors = {
             'm³': (m) => Number(m),
             'cc': (m) => Number(m) / 1000000,
             'cm³': (m) => Number(m) / 1000000,
-            'cup.': (m) => Number(m) / 4226.7528,
+            'cups': (m) => Number(m) / 4226.7528,
             'fl. oz.': (m) => Number(m) / 33814.0227,
             'ft³.': (m) => Number(m) / 35.3147,
             'gal': (m) => Number(m) / 264.172052,
@@ -180,7 +222,7 @@ const ConversionFactors = {
             'm³': (m) => Number(m),
             'cc': (m) => Number(m) * 1000000,
             'cm³': (m) => Number(m) * 1000000,
-            'cup.': (m) => Number(m) * 4226.7528,
+            'cups': (m) => Number(m) * 4226.7528,
             'fl. oz.': (m) => Number(m) * 33814.0227,
             'ft³.': (m) => Number(m) * 35.3147,
             'gal': (m) => Number(m) * 264.172052,
@@ -202,14 +244,14 @@ const ConversionFactors = {
         // cm,
         to: {
             // to get X to m^3/min from...
+            'm³/min': (m) => Number(m),
+            'm³/s': (m) => Number(m) * SECONDS_IN_MINUTE,
+            'm³/hr': (m) => Number(m) / MINUTES_IN_HOUR,
+            'm³/day': (m) => Number(m) / MINUTES_IN_DAY,
             'cm³/s': (m) => (Number(m) / 1000000) / SECONDS_IN_MINUTE,
             'cm³/min': (m) => (Number(m) / 1000000),
             'cm³/hr': (m) => (Number(m) / 1000000) / MINUTES_IN_HOUR,
             'cm³/day': (m) => (Number(m) / 1000000) / MINUTES_IN_DAY,
-            'm³/s': (m) => Number(m) * SECONDS_IN_MINUTE,
-            'm³/min': (m) => Number(m),
-            'm³/hr': (m) => Number(m) / MINUTES_IN_HOUR,
-            'm³/day': (m) => Number(m) / MINUTES_IN_DAY,
             'gal/s': (m) => (Number(m) / 264.172052) * SECONDS_IN_MINUTE,
             'gal/min (gpm)': (m) => (Number(m) / 264.172052),
             'gal/hr': (m) => (Number(m) / 264.172052) / MINUTES_IN_HOUR,
@@ -218,6 +260,10 @@ const ConversionFactors = {
             'in³/min': (m) => (Number(m) / 61023.7441),
             'in³/hr': (m) => (Number(m) / 61023.7441) / MINUTES_IN_HOUR,
             'in³/day': (m) => (Number(m) / 61023.7441) / MINUTES_IN_DAY,
+            'ft³/s': (m) => (Number(m) / 35.3147) * SECONDS_IN_MINUTE,
+            'ft³/min (SCFM)': (m) => (Number(m) / 35.3147),
+            'ft³/hr (SCFH)': (m) => (Number(m) / 35.3147) / MINUTES_IN_HOUR,
+            'ft³/day': (m) => (Number(m) / 35.3147) / MINUTES_IN_DAY,
             'liters/s': (m) => (Number(m) / 1000) * SECONDS_IN_MINUTE,
             'liters/min': (m) => (Number(m) / 1000),
             'liters/hr': (m) => (Number(m) / 1000) / MINUTES_IN_HOUR,
@@ -225,14 +271,14 @@ const ConversionFactors = {
         },
         from: {
             // to get X from m^3/min into...
+            'm³/min': (m) => Number(m),
+            'm³/s': (m) => Number(m) / SECONDS_IN_MINUTE,
+            'm³/hr': (m) => Number(m) * MINUTES_IN_HOUR,
+            'm³/day': (m) => Number(m) * MINUTES_IN_DAY,
             'cm³/s': (m) => (Number(m) * 1000000) / SECONDS_IN_MINUTE,
             'cm³/min': (m) => (Number(m) * 1000000),
             'cm³/hr': (m) => (Number(m) * 1000000) * MINUTES_IN_HOUR,
             'cm³/day': (m) => (Number(m) * 1000000) * MINUTES_IN_DAY,
-            'm³/s': (m) => Number(m) / SECONDS_IN_MINUTE,
-            'm³/min': (m) => Number(m),
-            'm³/hr': (m) => Number(m) * MINUTES_IN_HOUR,
-            'm³/day': (m) => Number(m) * MINUTES_IN_DAY,
             'gal/s': (m) => (Number(m) * 264.172052) / SECONDS_IN_MINUTE,
             'gal/min (gpm)': (m) => (Number(m) * 264.172052),
             'gal/hr': (m) => (Number(m) * 264.172052) * MINUTES_IN_HOUR,
@@ -241,6 +287,10 @@ const ConversionFactors = {
             'in³/min': (m) => (Number(m) * 61023.7441),
             'in³/hr': (m) => (Number(m) * 61023.7441) * MINUTES_IN_HOUR,
             'in³/day': (m) => (Number(m) * 61023.7441) * MINUTES_IN_DAY,
+            'ft³/s': (m) => (Number(m) * 35.3147) * SECONDS_IN_MINUTE,
+            'ft³/min (SCFM)': (m) => (Number(m) * 35.3147),
+            'ft³/hr (SCFH)': (m) => (Number(m) * 35.3147) / MINUTES_IN_HOUR,
+            'ft³/day': (m) => (Number(m) * 35.3147) / MINUTES_IN_DAY,
             'liters/s': (m) => (Number(m) * 1000) / SECONDS_IN_MINUTE,
             'liters/min': (m) => (Number(m) * 1000),
             'liters/hr': (m) => (Number(m) * 1000) * MINUTES_IN_HOUR,
@@ -252,12 +302,20 @@ const ConversionFactors = {
         to: {
             // to get X to hours from...
             'hours': (hours) => Number(hours),
+            'seconds': (hours) => (Number(hours) * SECONDS_IN_MINUTE) * MINUTES_IN_HOUR,
+            'minutes': (hours) => Number(hours) * MINUTES_IN_HOUR,
             'days': (hours) => Number(hours) * HOURS_IN_DAY,
+            'weeks': (hours) => (Number(hours) * DAYS_IN_WEEK) * HOURS_IN_DAY,
+            'months': (hours) => (Number(hours) * DAYS_IN_MONTH) * HOURS_IN_DAY,
         },
         from: {
             // to get X from hours into...
             'hours': (hours) => Number(hours),
+            'seconds': (hours) => (Number(hours) * MINUTES_IN_HOUR) * SECONDS_IN_MINUTE,
+            'minutes': (hours) => Number(hours) * MINUTES_IN_HOUR,
             'days': (hours) => Number(hours) / HOURS_IN_DAY,
+            'weeks': (hours) => (Number(hours) / HOURS_IN_DAY) / DAYS_IN_WEEK,
+            'months': (hours) => (Number(hours) / HOURS_IN_DAY) / DAYS_IN_MONTH,
         },
     },
 };
