@@ -32,7 +32,7 @@ export default class TDSDilution extends React.Component {
     render() {
         return (
             <div>
-                <p>For dilution with pure distilled water, use Additive TDS = 0.00.</p>
+                <p>Compute needed dilution to achieve target dissolved solids. For dilution with pure distilled water, use Additive TDS = 0.00.</p>
                 <div className="row">
                     <div className="col-sm">
                         <FixedUnitInput inputLabel="Current TDS" number={this.state.currentTDS} onChange={(val) => this.setState({currentTDS: Number(val)})} unit="ppm TDS"/>

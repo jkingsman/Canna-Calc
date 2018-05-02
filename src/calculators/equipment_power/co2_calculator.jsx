@@ -46,7 +46,9 @@ export default class CO2Calculator extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
+                <p>Determine CO₂ flow rate necessary for CO₂ supplementation to desired concentation.</p>
+                <hr />
                 <div className="row">
                     <div className="col-sm">
                         <GenericInput inputLabel="Room Width" onChange={(val) => this.setState({growSpaceWidthFt: Number(val)})} conversionFactors={ConversionFactors.basicDistance} number={this.state.growSpaceWidthFt}/>

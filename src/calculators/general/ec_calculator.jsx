@@ -24,6 +24,8 @@ export default class CylinderCalculator extends React.Component {
     render() {
         return (
             <div className="container">
+                <p>Convert between internation standards of EC to PPM.</p>
+                <hr />
                 <div className="row">
                     <div className="col-sm">
                         <FixedUnitInput inputLabel="Radius" onChange={(val) => this.setState({radius: Number(val)})} number={this.state.radius} unit="units"/>

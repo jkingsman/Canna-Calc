@@ -34,6 +34,8 @@ export default class LightingCalculator extends React.Component {
     render() {
         return (
             <div className="container">
+                <p>Determine necessary illumination for a given area</p>
+                <hr />
                 <div className="row">
                     <div className="col-sm">
                         <GenericInput inputLabel="Lumens*" onChange={(val) => this.setState({lumensNeededSqFt: Number(val)})} conversionFactors={ConversionFactors.basicArea} number={this.state.lumensNeededSqFt} per/>

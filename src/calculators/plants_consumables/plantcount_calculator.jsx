@@ -40,7 +40,7 @@ export default class PlantCount extends React.Component {
     render() {
         return (
             <div>
-                <p>This calculator works best with square or near-square plants. For non-square plants, it may be possible to place additional plants in the leftover space.</p>
+                <p>This calculator provides best layouts for square or near-square plants. For non-square plants, it may be possible to place additional plants in the leftover space.</p>
                 <hr/>
                 <div className="row">
                     <div className="col-sm">

@@ -30,6 +30,7 @@ export default class YieldDryWetCalculator extends React.Component {
     render() {
         return (
             <div className="container">
+                <p>Compute min, avg., and max theoretical yields given a number of plants based on harvest-time weights.</p>
                 <div className="row">
                     <div className="col-sm">
                         <GenericInput inputLabel="Min Wet Yield/Plant" onChange={(val) => this.setState({minOz: Number(val)})} conversionFactors={ConversionFactors.basicWeight} number={this.state.minOz}/>

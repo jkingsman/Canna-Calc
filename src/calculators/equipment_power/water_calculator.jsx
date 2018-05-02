@@ -35,6 +35,8 @@ export default class WaterCalculator extends React.Component {
     render() {
         return (
             <div className="container">
+                <p>Determine water usage and cost for a given number of plants and flow rate</p>
+                <hr />
                 <div className="row">
                     <div className="col-sm">
                         <FixedUnitInput inputLabel="Water Rate per Plant" onChange={(val) => this.setState({gphPerPlant: Number(val)})} number={this.state.gphPerPlant} unit="gal/hr (GPH)"/>

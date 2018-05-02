@@ -36,7 +36,7 @@ export default class ExhaustCalculator extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
                 <p>Note that this is for pure airflow; this does not account for pressure lost due to bends in ducting, dust, etc. which is highly duct- and layout-specific.</p>
                 <div className="row">
                     <div className="col-sm">

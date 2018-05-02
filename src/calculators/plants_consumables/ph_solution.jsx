@@ -32,7 +32,7 @@ export default class pHConverter extends React.Component {
     render() {
         return (
             <div>
-                <p>Some common additive pHs:</p>
+                <p>Adjust pH of solution up or down with a known additive pH. Some common additive pHs:</p>
                 <table >
                     <thead>
                         <tr>

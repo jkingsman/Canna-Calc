@@ -94,6 +94,8 @@ export default class DateCalculator extends React.Component {
     render() {
         return (
             <div className="container">
+                <p>Add or subtract dates from a given start date</p>
+                <hr />
                 <div className="row">
                     <div className="col-sm">
                         <FreeInput inputLabel="Start Date (YYYY-MM-DD)" onChange={(val) => this.setState({radius: val})} val={this.state.startDateStr} unit={this.isDateValid()}/>

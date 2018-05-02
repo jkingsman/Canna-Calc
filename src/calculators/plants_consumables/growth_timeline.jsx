@@ -55,6 +55,8 @@ export default class GrowthTimeline extends React.Component {
     render() {
         return (
             <div className="container">
+                <p>Determine calendar dates for important times in your plants&#39; lives</p>
+                <hr />
                 <div className="row">
                     <div className="col-sm">
                         <FreeInput inputLabel="Plant Date (YYYY-MM-DD)" onChange={(val) => this.setState({startDateStr: Number(val)})} val={this.state.startDateStr} unit={this.isDateValid()}/>
