@@ -318,6 +318,19 @@ const ConversionFactors = {
             'months': (hours) => (Number(hours) / HOURS_IN_DAY) / DAYS_IN_MONTH,
         },
     },
+
+    conductivity: {
+        to: {
+            // to get X to PPM TDS from...
+            'PPM TDS': (tds) => Number(tds),
+            'EC': (tds) => Number(tds) * 0.00156,
+        },
+        from: {
+            // to get X from PPM TDS into...
+            'PPM TDS': (tds) => Number(tds),
+            'EC': (tds) => Number(tds) * 0.00156,
+        },
+    },
 };
 
 export default ConversionFactors;

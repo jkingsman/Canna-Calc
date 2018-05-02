@@ -3,5 +3,5 @@ export function round(value, decimals) {
 }
 
 export function defaultRound(value) {
-    return Number(round(value, 3));
+    return Number(round(value, 4));
 }

@@ -78,6 +78,10 @@ export default class CalculatorContainer extends React.Component {
                 <GeneralCalculatorTemplate labelSuffix="Weight" conversionFactors={ConversionFactors.weight}/>
             </CardTemplate>
 
+            <CardTemplate id="ecVConversion" keywords="conductivity tds ppm tds" searchTerm={this.state.searchTerm} title="EC/TDS Conversion" parentID="mainAccordion">
+                <GeneralCalculatorTemplate labelSuffix="Conductivity" conversionFactors={ConversionFactors.conductivity}/>
+            </CardTemplate>
+
             <CardTemplate id="temperatureConversion" keywords="temperature heat celsius centigrade farenheit kelvin" searchTerm={this.state.searchTerm} title="Temperature Conversion" parentID="mainAccordion">
                 <GeneralCalculatorTemplate labelSuffix="Temperature" conversionFactors={ConversionFactors.temperature} negative hideSplitter/>
             </CardTemplate>
