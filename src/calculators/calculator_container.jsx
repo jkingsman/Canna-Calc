@@ -18,6 +18,7 @@ import WaterCalculator from 'app/calculators/equipment_power/water_calculator';
 import GrowthTimeline from 'app/calculators/plants_consumables/growth_timeline';
 import SoilCalculator from 'app/calculators/plants_consumables/soil_calculator';
 import PHCalculator from 'app/calculators/plants_consumables/ph_solution';
+import NpkToTDS from 'app/calculators/plants_consumables/npkToTDS';
 import YieldCalculator from 'app/calculators/plants_consumables/yield_calculator';
 import YieldDryWetCalculator from 'app/calculators/plants_consumables/yielddrywet_calculator';
 import PlantCount from 'app/calculators/plants_consumables/plantcount_calculator';
@@ -173,6 +174,10 @@ export default class CalculatorContainer extends React.Component {
 
             <CardTemplate id="phCalculator" keywords="ph acid base buffer" searchTerm={this.state.searchTerm} title="pH/Water Adjustment" parentID="mainAccordion">
                 <PHCalculator/>
+            </CardTemplate>
+
+            <CardTemplate id="NPKtoTDS" keywords="tds ppm potassium nitrogen phosphorus" searchTerm={this.state.searchTerm} title="NPK to PPM TDS" parentID="mainAccordion">
+                <NpkToTDS/>
             </CardTemplate>
 
             <CardTemplate id="yieldCalculator" keywords="yield plants ounces oz grams pounds lbs harvest projection projected" searchTerm={this.state.searchTerm} title="General Crop Yield" parentID="mainAccordion">

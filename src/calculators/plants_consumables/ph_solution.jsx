@@ -26,7 +26,6 @@ export default class pHConverter extends React.Component {
         const desiredMolarity = Math.pow(10, this.state.desiredpH * -1);
 
         const additiveVolume = ((desiredMolarity - startMolarity) * this.state.startVolume) / (additiveMolarity - startMolarity);
-        console.log(additiveVolume)
         return additiveVolume;
     }
 
