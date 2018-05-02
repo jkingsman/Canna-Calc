@@ -10,6 +10,7 @@ import ConversionFactors from 'app/utils/conversion_factors';
 
 import LightingCalculator from 'app/calculators/equipment_power/lighting_calculator';
 import CO2Calculator from 'app/calculators/equipment_power/co2_calculator';
+import BTUCalculator from 'app/calculators/equipment_power/btu_calculator';
 import ExhaustCalculator from 'app/calculators/equipment_power/exhaust_calculator';
 import AmperageCalculator from 'app/calculators/equipment_power/amperage_calculator';
 import WaterCalculator from 'app/calculators/equipment_power/water_calculator';
@@ -125,6 +126,10 @@ export default class CalculatorContainer extends React.Component {
 
             <CardTemplate id="lighting" keywords="lighting lights led hid wattage power watts lumens" searchTerm={this.state.searchTerm} title="Light Wattage" parentID="mainAccordion">
                 <LightingCalculator/>
+            </CardTemplate>
+
+            <CardTemplate id="btus" keywords="btus thermal energy power temperature" searchTerm={this.state.searchTerm} title="BTU/AC Unit Calculator" parentID="mainAccordion">
+                <BTUCalculator/>
             </CardTemplate>
 
             <CardTemplate id="co2FlowRate" keywords="co2 fan carbon dioxide ppm scfh scfm regulator gas" searchTerm={this.state.searchTerm} title="CO₂ Flow Rate" parentID="mainAccordion">
