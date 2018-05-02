@@ -8,7 +8,7 @@ export default class PercentChange extends React.Component {
         super(props);
         this.state = {
             before: 110,
-            after: 20
+            after: 20,
         };
     }
 

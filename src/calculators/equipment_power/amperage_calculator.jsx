@@ -11,7 +11,7 @@ export default class AmperageCalculator extends React.Component {
             voltage: 120,
             kWhCost: 0.12,
             hoursOnPerDay: 12,
-            lightCount: 1
+            lightCount: 1,
         };
     }
 

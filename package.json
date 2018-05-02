@@ -6,7 +6,7 @@
     "scripts": {
         "watch": "webpack-dev-server --config ./webpack.config.js --mode development",
         "build": "webpack-cli --config ./webpack.production.config.js",
-        "lint": "eslint --fix src\\**\\*",
+        "lint": "prettier --write --tab-width 4 --trailing-comma es5 'src/**/*.{js,jsx}'",
         "test": "echo \"No test specified\" && exit 0"
     },
     "keywords": [],
@@ -42,6 +42,7 @@
         "webpack-manifest-plugin": "^2.0.2"
     },
     "devDependencies": {
-        "prettier": "1.12.1"
+        "prettier": "^1.12.1",
+        "prettier-webpack-plugin": "^1.0.0"
     }
 }

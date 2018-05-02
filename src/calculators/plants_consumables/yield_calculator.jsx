@@ -3,7 +3,7 @@ import React from "react";
 import {
     FixedUnitInput,
     GenericInput,
-    GenericOutput
+    GenericOutput,
 } from "app/calculators/components/io";
 import ConversionFactors from "app/utils/conversion_factors";
 
@@ -14,7 +14,7 @@ export default class YieldCalculator extends React.Component {
             minOz: 1.5,
             avgOz: 2.25,
             maxOz: 3.5,
-            plantCount: 10
+            plantCount: 10,
         };
     }
 
@@ -22,7 +22,7 @@ export default class YieldCalculator extends React.Component {
         return [
             this.state.minOz * this.state.plantCount,
             this.state.avgOz * this.state.plantCount,
-            this.state.maxOz * this.state.plantCount
+            this.state.maxOz * this.state.plantCount,
         ];
     }
 

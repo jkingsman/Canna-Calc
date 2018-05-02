@@ -10,7 +10,7 @@ export default class PlantCount extends React.Component {
             growSpaceWidthFt: 17,
             growSpaceLengthFt: 8,
             plantWidthFt: 3,
-            plantLengthFt: 2
+            plantLengthFt: 2,
         };
     }
 
@@ -69,7 +69,7 @@ export default class PlantCount extends React.Component {
                             inputLabel="Grow Space Length"
                             onChange={val =>
                                 this.setState({
-                                    growSpaceLengthFt: Number(val)
+                                    growSpaceLengthFt: Number(val),
                                 })
                             }
                             conversionFactors={ConversionFactors.basicDistance}

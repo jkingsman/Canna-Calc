@@ -4,7 +4,7 @@ import {
     FreeInput,
     FixedUnitInput,
     GenericInput,
-    GenericOutput
+    GenericOutput,
 } from "app/calculators/components/io";
 import ConversionFactors from "app/utils/conversion_factors";
 
@@ -22,7 +22,7 @@ export default class SoilCalculator extends React.Component {
             medium4Amt: 0.1,
             medium5: "Bone Meal",
             medium5Amt: 0.1,
-            potCount: 25
+            potCount: 25,
         };
     }
 
@@ -32,7 +32,7 @@ export default class SoilCalculator extends React.Component {
             this.state.medium2Amt * this.state.potCount,
             this.state.medium3Amt * this.state.potCount,
             this.state.medium4Amt * this.state.potCount,
-            this.state.medium5Amt * this.state.potCount
+            this.state.medium5Amt * this.state.potCount,
         ];
     }
 

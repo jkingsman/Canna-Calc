@@ -30,7 +30,7 @@ import {
     PercentageToMG,
     MGToPercentage,
     Density,
-    FreeWeight
+    FreeWeight,
 } from "app/calculators/concentratesedibles/thc_conversions";
 import DecarbLoss from "app/calculators/concentratesedibles/decarb_loss";
 import ExtractionEfficiency from "app/calculators/concentratesedibles/extraction_efficiency";
@@ -40,14 +40,14 @@ import {
     EdiblePotency,
     EdibleProduct,
     EdibleServings,
-    VariableServingPotency
+    VariableServingPotency,
 } from "app/calculators/concentratesedibles/edible_calculators";
 
 export default class CalculatorContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            searchTerm: ""
+            searchTerm: "",
         };
 
         this.setSearchTerm = this.setSearchTerm.bind(this);
@@ -69,7 +69,7 @@ export default class CalculatorContainer extends React.Component {
 
     setSearchTerm(ev) {
         this.setState({
-            searchTerm: ev.target.value
+            searchTerm: ev.target.value,
         });
     }
 

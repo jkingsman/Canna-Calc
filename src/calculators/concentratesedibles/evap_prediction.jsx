@@ -11,7 +11,7 @@ export default class EvapPrediction extends React.Component {
             solventStartWeight: 10,
             weightAfterTime: 9.2,
             time: 12,
-            expectedYield: 0.5
+            expectedYield: 0.5,
         };
     }
 
@@ -54,7 +54,7 @@ export default class EvapPrediction extends React.Component {
                             inputLabel="Pre-cannabis Solvent Weight"
                             onChange={val =>
                                 this.setState({
-                                    solventStartWeight: Number(val)
+                                    solventStartWeight: Number(val),
                                 })
                             }
                             conversionFactors={ConversionFactors.basicWeight}

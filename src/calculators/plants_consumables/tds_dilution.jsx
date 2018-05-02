@@ -3,7 +3,7 @@ import React from "react";
 import {
     FixedUnitInput,
     GenericInput,
-    GenericOutput
+    GenericOutput,
 } from "app/calculators/components/io";
 
 import ConversionFactors from "app/utils/conversion_factors";
@@ -17,7 +17,7 @@ export default class TDSDilution extends React.Component {
             currentTDS: 700,
             currentVol: 1,
             targetTDS: 100,
-            additiveTDS: 25
+            additiveTDS: 25,
         };
     }
 

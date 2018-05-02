@@ -12,7 +12,7 @@ export default class BTUCalculator extends React.Component {
             co2BTUs: 17000,
             co2Count: 1,
             dehumWattage: 300,
-            dehumCount: 1
+            dehumCount: 1,
         };
     }
 

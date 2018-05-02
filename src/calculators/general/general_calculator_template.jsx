@@ -10,7 +10,7 @@ export default class GeneralCalculatorTemplate extends React.Component {
         this.state = {
             splitFactor: 1,
             resultNumber: 0,
-            resultUnit: ""
+            resultUnit: "",
         };
 
         this.resultHandler = this.resultHandler.bind(this);
@@ -20,13 +20,13 @@ export default class GeneralCalculatorTemplate extends React.Component {
     resultHandler(number, unit) {
         this.setState({
             resultNumber: number,
-            resultUnit: unit
+            resultUnit: unit,
         });
     }
 
     updateSplitFactor(ev) {
         this.setState({
-            splitFactor: Number(ev.target.value)
+            splitFactor: Number(ev.target.value),
         });
     }
 
@@ -70,10 +70,10 @@ GeneralCalculatorTemplate.propTypes = {
     conversionFactors: PropTypes.object,
     negative: PropTypes.bool,
     message: PropTypes.string,
-    hideSplitter: PropTypes.bool
+    hideSplitter: PropTypes.bool,
 };
 
 GeneralCalculatorTemplate.defaultProps = {
     negative: false,
-    hideSplitter: false
+    hideSplitter: false,
 };

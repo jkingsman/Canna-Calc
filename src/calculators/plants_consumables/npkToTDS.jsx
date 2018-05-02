@@ -11,7 +11,7 @@ export default class NpkToTDS extends React.Component {
             p: 4,
             k: 2,
             mlPerL: 1,
-            sg: 1.0
+            sg: 1.0,
         };
     }
 

@@ -4,7 +4,7 @@ import {
     GenericInput,
     FixedUnitInput,
     GenericOutput,
-    FixedUnitOutput
+    FixedUnitOutput,
 } from "app/calculators/components/io";
 import ConversionFactors from "app/utils/conversion_factors";
 import { defaultRound } from "app/utils/math";
@@ -21,7 +21,7 @@ export default class CapsuleCalculator extends React.Component {
             testDelta8THC: 0.03,
             testCBD: 2.5,
             testCBN: 5,
-            testCBG: 0.11
+            testCBG: 0.11,
         };
     }
 
@@ -48,7 +48,7 @@ export default class CapsuleCalculator extends React.Component {
             mlDelta8THCInExtract * capsulePercentOfTotalMix,
             mlCBDInExtract * capsulePercentOfTotalMix,
             mlCBNInExtract * capsulePercentOfTotalMix,
-            mlCBGInExtract * capsulePercentOfTotalMix
+            mlCBGInExtract * capsulePercentOfTotalMix,
         ];
     }
 

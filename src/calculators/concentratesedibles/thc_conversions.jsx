@@ -7,7 +7,7 @@ export class PercentageToMG extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            percent: 19
+            percent: 19,
         };
     }
 
@@ -46,7 +46,7 @@ export class MGToPercentage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            mg: 19
+            mg: 19,
         };
     }
 
@@ -85,7 +85,7 @@ export class Density extends React.Component {
         this.state = {
             totalVolume: 10,
             totalTHC: 2500,
-            density: 1.04
+            density: 1.04,
         };
     }
 
@@ -159,7 +159,7 @@ export class FreeWeight extends React.Component {
         super(props);
         this.state = {
             totalWeight: 1.2,
-            totalTHC: 256
+            totalTHC: 256,
         };
     }
 

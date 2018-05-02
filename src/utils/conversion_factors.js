@@ -12,14 +12,14 @@ const ConversionFactors = {
             // to get X to grams from...
             g: grams => Number(grams),
             oz: grams => Number(grams) * 28.3495231,
-            lbs: grams => Number(grams) * 453.59237
+            lbs: grams => Number(grams) * 453.59237,
         },
         from: {
             // to get X from grams into...
             g: grams => Number(grams),
             "oz.": grams => Number(grams) / 28.3495,
-            mg: grams => Number(grams) * 1000
-        }
+            mg: grams => Number(grams) * 1000,
+        },
     },
 
     weight: {
@@ -30,7 +30,7 @@ const ConversionFactors = {
             oz: grams => Number(grams) * 28.3495231,
             lbs: grams => Number(grams) * 453.59237,
             kg: grams => Number(grams) * 1000,
-            st: grams => Number(grams) * 6350.29318
+            st: grams => Number(grams) * 6350.29318,
         },
         from: {
             // to get X from grams into...
@@ -39,8 +39,8 @@ const ConversionFactors = {
             "oz.": grams => Number(grams) / 28.3495,
             lbs: grams => Number(grams) / 453.5924,
             kg: grams => Number(grams) / 1000,
-            "st.": grams => Number(grams) / 6350.2932
-        }
+            "st.": grams => Number(grams) / 6350.2932,
+        },
     },
 
     temperature: {
@@ -48,14 +48,14 @@ const ConversionFactors = {
             // to get X to celsius from...
             "°C": celsius => Number(celsius),
             "°F": celsius => (Number(celsius) - 32) * (5 / 9),
-            K: celsius => Number(celsius) + 273.15
+            K: celsius => Number(celsius) + 273.15,
         },
         from: {
             // to get X from celsius into...
             "°C": celsius => Number(celsius),
             "°F": celsius => Number(celsius) * 1.8 + 32,
-            K: celsius => Number(celsius) - 273.15
-        }
+            K: celsius => Number(celsius) - 273.15,
+        },
     },
 
     speed: {
@@ -64,15 +64,15 @@ const ConversionFactors = {
             "m/s": ms => Number(ms),
             "ft/s": ms => Number(ms) * 0.3048,
             mph: ms => Number(ms) * 0.44704,
-            kph: ms => Number(ms) * 0.2778
+            kph: ms => Number(ms) * 0.2778,
         },
         from: {
             // to get X from m/s into...
             "m/s": ms => Number(ms),
             "ft/s": ms => Number(ms) / 0.3048,
             mph: ms => Number(ms) / 0.44704,
-            kph: ms => Number(ms) / 0.2778
-        }
+            kph: ms => Number(ms) / 0.2778,
+        },
     },
 
     basicDistance: {
@@ -80,14 +80,14 @@ const ConversionFactors = {
             // to get X to ft from...
             "ft.": m => Number(m),
             m: m => Number(m) * 3.2808,
-            "yd.": m => Number(m) * 3
+            "yd.": m => Number(m) * 3,
         },
         from: {
             // to get X from ft into...
             "ft.": m => Number(m),
             m: m => Number(m) / 3.2808,
-            "yd.": m => Number(m) / 3
-        }
+            "yd.": m => Number(m) / 3,
+        },
     },
 
     distance: {
@@ -100,7 +100,7 @@ const ConversionFactors = {
             "in.": m => Number(m) / 39.3701,
             "ft.": m => Number(m) / 3.2808,
             "yd.": m => Number(m) / 1.0936,
-            "mi.": m => Number(m) * 1609.344
+            "mi.": m => Number(m) * 1609.344,
         },
         from: {
             // to get X from meters into...
@@ -111,8 +111,8 @@ const ConversionFactors = {
             "in.": m => Number(m) * 39.3701,
             "ft.": m => Number(m) * 3.2808,
             "yd.": m => Number(m) * 1.0936,
-            "mi.": m => Number(m) / 1609.344
-        }
+            "mi.": m => Number(m) / 1609.344,
+        },
     },
 
     basicArea: {
@@ -120,14 +120,14 @@ const ConversionFactors = {
             // to get X to ft^2 from...
             "ft².": m => Number(m),
             "m²": m => Number(m) * 0.0929,
-            "yd².": m => Number(m) * 0.11111
+            "yd².": m => Number(m) * 0.11111,
         },
         from: {
             // to get X from ft^2 into...
             "ft².": m => Number(m),
             "m²": m => Number(m) / 10.7639,
-            "yd².": m => Number(m) / 1.196
-        }
+            "yd².": m => Number(m) / 1.196,
+        },
     },
 
     area: {
@@ -142,7 +142,7 @@ const ConversionFactors = {
             "yd².": m => Number(m) / 1.196,
             "mi².": m => Number(m) * 2589988.11,
             "hect.": m => Number(m) * 10000,
-            acre: m => Number(m) * 4046.8564
+            acre: m => Number(m) * 4046.8564,
         },
         from: {
             // to get m^2 from meters into...
@@ -155,8 +155,8 @@ const ConversionFactors = {
             "yd².": m => Number(m) * 1.196,
             "mi².": m => Number(m) / 2589988.11,
             "hect.": m => Number(m) / 10000,
-            acre: m => Number(m) / 4046.8564
-        }
+            acre: m => Number(m) / 4046.8564,
+        },
     },
 
     basicVolume: {
@@ -164,14 +164,14 @@ const ConversionFactors = {
             // to get X to ft^3 from...
             "ft³.": m => Number(m),
             "m³": m => Number(m) / 35.3147,
-            gal: m => Number(m) * 0.133680556
+            gal: m => Number(m) * 0.133680556,
         },
         from: {
             // to get X from ft^3 into...
             "ft³.": m => Number(m),
             "m³": m => Number(m) * 35.3147,
-            gal: m => Number(m) / 0.133680556
-        }
+            gal: m => Number(m) / 0.133680556,
+        },
     },
 
     cookingVolume: {
@@ -182,7 +182,7 @@ const ConversionFactors = {
             "tsp.": cups => Number(cups) / 48,
             "fl. oz.": cups => Number(cups) / 8,
             pint: cups => Number(cups) / 0.5,
-            quart: cups => Number(cups) / 0.25
+            quart: cups => Number(cups) / 0.25,
         },
         from: {
             // to get X from cups into...
@@ -191,8 +191,8 @@ const ConversionFactors = {
             "tsp.": cups => Number(cups) * 48,
             "fl. oz.": cups => Number(cups) * 8,
             pint: cups => Number(cups) * 0.5,
-            quart: cups => Number(cups) * 0.25
-        }
+            quart: cups => Number(cups) * 0.25,
+        },
     },
 
     volume: {
@@ -215,7 +215,7 @@ const ConversionFactors = {
             quart: m => Number(m) / 1056.6882,
             "tbsp.": m => Number(m) / 67628.0454,
             "tsp.": m => Number(m) / 202884.136,
-            "yd³.": m => Number(m) / 1.308
+            "yd³.": m => Number(m) / 1.308,
         },
         from: {
             // to get X from m^3 into...
@@ -236,8 +236,8 @@ const ConversionFactors = {
             quart: m => Number(m) * 1056.6882,
             "tbsp.": m => Number(m) * 67628.0454,
             "tsp.": m => Number(m) * 202884.136,
-            "yd³.": m => Number(m) * 1.308
-        }
+            "yd³.": m => Number(m) * 1.308,
+        },
     },
 
     tinyVolume: {
@@ -247,7 +247,7 @@ const ConversionFactors = {
             cc: m => Number(m),
             "cm³": m => Number(m),
             "tbsp.": m => Number(m) * 14.7867648,
-            "tsp.": m => Number(m) / 4.92892159
+            "tsp.": m => Number(m) / 4.92892159,
         },
         from: {
             // to get X from ml into...
@@ -255,8 +255,8 @@ const ConversionFactors = {
             cc: m => Number(m),
             "cm³": m => Number(m),
             "tbsp.": m => Number(m) * 14.7867648,
-            "tsp.": m => Number(m) / 4.92892159
-        }
+            "tsp.": m => Number(m) / 4.92892159,
+        },
     },
 
     flowRate: {
@@ -286,7 +286,7 @@ const ConversionFactors = {
             "liters/s": m => Number(m) / 1000 * SECONDS_IN_MINUTE,
             "liters/min": m => Number(m) / 1000,
             "liters/hr": m => Number(m) / 1000 / MINUTES_IN_HOUR,
-            "liters/day": m => Number(m) / 1000 / MINUTES_IN_DAY
+            "liters/day": m => Number(m) / 1000 / MINUTES_IN_DAY,
         },
         from: {
             // to get X from m^3/min into...
@@ -313,8 +313,8 @@ const ConversionFactors = {
             "liters/s": m => Number(m) * 1000 / SECONDS_IN_MINUTE,
             "liters/min": m => Number(m) * 1000,
             "liters/hr": m => Number(m) * 1000 * MINUTES_IN_HOUR,
-            "liters/day": m => Number(m) * 1000 * MINUTES_IN_DAY
-        }
+            "liters/day": m => Number(m) * 1000 * MINUTES_IN_DAY,
+        },
     },
 
     basicTime: {
@@ -326,7 +326,7 @@ const ConversionFactors = {
             minutes: hours => Number(hours) * MINUTES_IN_HOUR,
             days: hours => Number(hours) * HOURS_IN_DAY,
             weeks: hours => Number(hours) * DAYS_IN_WEEK * HOURS_IN_DAY,
-            months: hours => Number(hours) * DAYS_IN_MONTH * HOURS_IN_DAY
+            months: hours => Number(hours) * DAYS_IN_MONTH * HOURS_IN_DAY,
         },
         from: {
             // to get X from hours into...
@@ -336,8 +336,8 @@ const ConversionFactors = {
             minutes: hours => Number(hours) * MINUTES_IN_HOUR,
             days: hours => Number(hours) / HOURS_IN_DAY,
             weeks: hours => Number(hours) / HOURS_IN_DAY / DAYS_IN_WEEK,
-            months: hours => Number(hours) / HOURS_IN_DAY / DAYS_IN_MONTH
-        }
+            months: hours => Number(hours) / HOURS_IN_DAY / DAYS_IN_MONTH,
+        },
     },
 
     conductivity: {
@@ -347,7 +347,7 @@ const ConversionFactors = {
             "EC (EU)": ec => Number(ec) / 0.78125,
             "EC (AUS)": ec => Number(ec) / 0.714285714,
             CF: ec => Number(ec) / 10,
-            "PPM TDS": ec => Number(ec) / 500
+            "PPM TDS": ec => Number(ec) / 500,
         },
         from: {
             // to get X from EC (US) into...
@@ -355,9 +355,9 @@ const ConversionFactors = {
             "EC (EU)": ec => Number(ec) * 0.78125,
             "EC (AUS)": ec => Number(ec) * 0.714285714,
             CF: ec => Number(ec) * 10,
-            "PPM TDS": ec => Number(ec) * 500
-        }
-    }
+            "PPM TDS": ec => Number(ec) * 500,
+        },
+    },
 };
 
 export default ConversionFactors;

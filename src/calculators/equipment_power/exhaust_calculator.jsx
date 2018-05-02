@@ -3,7 +3,7 @@ import React from "react";
 import {
     GenericInput,
     FixedUnitInput,
-    FixedUnitOutput
+    FixedUnitOutput,
 } from "app/calculators/components/io";
 import ConversionFactors from "app/utils/conversion_factors";
 import { defaultRound } from "app/utils/math";
@@ -16,7 +16,7 @@ export default class ExhaustCalculator extends React.Component {
             growSpaceLengthFt: 10,
             growSpaceHeightFt: 8,
             fanCount: 2,
-            exchangeTime: 3
+            exchangeTime: 3,
         };
     }
 
@@ -58,7 +58,7 @@ export default class ExhaustCalculator extends React.Component {
                             inputLabel="Room Length"
                             onChange={val =>
                                 this.setState({
-                                    growSpaceLengthFt: Number(val)
+                                    growSpaceLengthFt: Number(val),
                                 })
                             }
                             conversionFactors={ConversionFactors.basicDistance}
@@ -68,7 +68,7 @@ export default class ExhaustCalculator extends React.Component {
                             inputLabel="Room Height"
                             onChange={val =>
                                 this.setState({
-                                    growSpaceHeightFt: Number(val)
+                                    growSpaceHeightFt: Number(val),
                                 })
                             }
                             conversionFactors={ConversionFactors.basicDistance}

@@ -8,7 +8,7 @@ export default class CylinderCalculator extends React.Component {
         super(props);
         this.state = {
             radius: 2,
-            height: 5
+            height: 5,
         };
     }
 

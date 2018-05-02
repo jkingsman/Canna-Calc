@@ -10,7 +10,7 @@ export default class WaterCalculator extends React.Component {
             gphPerPlant: 2,
             hoursOnPerDay: 1,
             waterCost: 0.13,
-            plantCount: 10
+            plantCount: 10,
         };
     }
 

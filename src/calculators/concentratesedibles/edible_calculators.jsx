@@ -4,7 +4,7 @@ import {
     FixedUnitInput,
     GenericInput,
     FixedUnitOutput,
-    GenericOutput
+    GenericOutput,
 } from "app/calculators/components/io";
 import ConversionFactors from "app/utils/conversion_factors";
 import { defaultRound } from "app/utils/math";
@@ -17,7 +17,7 @@ export class VariableServingPotency extends React.Component {
             productPotency: 25,
             infuserVolume: 10,
             bakedGoodOil: 1,
-            bakedGoodServings: 12
+            bakedGoodServings: 12,
         };
     }
 
@@ -89,7 +89,7 @@ export class VariableServingPotency extends React.Component {
                             inputLabel="Baked Good Servings"
                             onChange={val =>
                                 this.setState({
-                                    bakedGoodServings: Number(val)
+                                    bakedGoodServings: Number(val),
                                 })
                             }
                             number={this.state.bakedGoodServings}
@@ -130,7 +130,7 @@ export class EdiblePotency extends React.Component {
         this.state = {
             productWeight: 10,
             productPotency: 25,
-            servings: 25
+            servings: 25,
         };
     }
 
@@ -198,7 +198,7 @@ export class EdibleProduct extends React.Component {
         this.state = {
             productPotency: 25,
             servings: 25,
-            mgPerServing: 10
+            mgPerServing: 10,
         };
     }
 
@@ -267,7 +267,7 @@ export class EdibleServings extends React.Component {
         this.state = {
             productWeight: 10,
             productPotency: 25,
-            mgPerServing: 100
+            mgPerServing: 100,
         };
     }
 

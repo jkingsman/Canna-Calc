@@ -10,7 +10,7 @@ export default class LightingCalculator extends React.Component {
             lumensNeededSqFt: 8000,
             wattageNeededSqFt: 45,
             growSpaceWidthFt: 10,
-            growSpaceLengthFt: 8
+            growSpaceLengthFt: 8,
         };
     }
 
@@ -48,7 +48,7 @@ export default class LightingCalculator extends React.Component {
                             inputLabel="Watts"
                             onChange={val =>
                                 this.setState({
-                                    wattageNeededSqFt: Number(val)
+                                    wattageNeededSqFt: Number(val),
                                 })
                             }
                             conversionFactors={ConversionFactors.basicArea}
@@ -67,7 +67,7 @@ export default class LightingCalculator extends React.Component {
                             inputLabel="Grow Area Length"
                             onChange={val =>
                                 this.setState({
-                                    growSpaceLengthFt: Number(val)
+                                    growSpaceLengthFt: Number(val),
                                 })
                             }
                             conversionFactors={ConversionFactors.basicDistance}

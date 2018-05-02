@@ -8,7 +8,7 @@ export default class PercentConstituent extends React.Component {
         super(props);
         this.state = {
             start: 200,
-            percent: 5
+            percent: 5,
         };
     }
 

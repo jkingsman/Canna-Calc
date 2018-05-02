@@ -4,7 +4,7 @@ import {
     GenericInput,
     FixedUnitInput,
     GenericOutput,
-    FixedUnitOutput
+    FixedUnitOutput,
 } from "app/calculators/components/io";
 
 import ConversionFactors from "app/utils/conversion_factors";
@@ -16,7 +16,7 @@ export default class pHConverter extends React.Component {
             startpH: 8,
             startVolume: 10,
             additivepH: 6,
-            desiredpH: 7
+            desiredpH: 7,
         };
     }
 

@@ -7,7 +7,7 @@ export default class DecarbLoss extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            totalWeight: 25
+            totalWeight: 25,
         };
     }
 

@@ -3,7 +3,7 @@ import React from "react";
 import {
     FreeInput,
     FixedUnitInput,
-    FreeOutput
+    FreeOutput,
 } from "app/calculators/components/io";
 import dayjs from "dayjs";
 
@@ -17,7 +17,7 @@ export default class GrowthTimeline extends React.Component {
             flowering: 49,
             drying: 7,
             curing: 28,
-            processing: 0
+            processing: 0,
         };
     }
 

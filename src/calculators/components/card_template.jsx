@@ -82,8 +82,8 @@ CardTemplate.propTypes = {
     title: PropTypes.string,
     children: PropTypes.oneOfType([
         PropTypes.element,
-        PropTypes.arrayOf(PropTypes.element)
+        PropTypes.arrayOf(PropTypes.element),
     ]),
     keywords: PropTypes.string,
-    searchTerm: PropTypes.string
+    searchTerm: PropTypes.string,
 };

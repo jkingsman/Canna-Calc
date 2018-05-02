@@ -8,7 +8,7 @@ export class FreeInput extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            val: this.props.val
+            val: this.props.val,
         };
 
         this.handleNumberChange = this.handleNumberChange.bind(this);
@@ -19,7 +19,7 @@ export class FreeInput extends React.Component {
     handleNumberChange(ev) {
         this.setState(
             {
-                val: ev.target.value
+                val: ev.target.value,
             },
             this.props.onChange(ev.target.value)
         );
@@ -51,7 +51,7 @@ FreeInput.propTypes = {
     onChange: PropTypes.func.isRequired,
     val: PropTypes.any.isRequired,
     unit: PropTypes.any.isRequired,
-    noPadding: PropTypes.bool
+    noPadding: PropTypes.bool,
 };
 
 FreeInput.defaultProps = {
@@ -59,14 +59,14 @@ FreeInput.defaultProps = {
     onChange: () => null,
     val: "",
     unit: "",
-    noPadding: false
+    noPadding: false,
 };
 
 export class FixedUnitInput extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            number: this.props.number
+            number: this.props.number,
         };
 
         this.handleNumberChange = this.handleNumberChange.bind(this);
@@ -77,7 +77,7 @@ export class FixedUnitInput extends React.Component {
     handleNumberChange(ev) {
         this.setState(
             {
-                number: ev.target.value
+                number: ev.target.value,
             },
             this.props.onChange(ev.target.value)
         );
@@ -112,7 +112,7 @@ FixedUnitInput.propTypes = {
     number: PropTypes.number.isRequired,
     negative: PropTypes.bool,
     unit: PropTypes.string,
-    noPadding: PropTypes.bool
+    noPadding: PropTypes.bool,
 };
 
 FixedUnitInput.defaultProps = {
@@ -121,7 +121,7 @@ FixedUnitInput.defaultProps = {
     number: 0,
     negative: false,
     unit: "unit",
-    noPadding: false
+    noPadding: false,
 };
 
 export class FreeOutput extends React.Component {
@@ -154,7 +154,7 @@ FreeOutput.propTypes = {
     val: PropTypes.any.isRequired,
     unit: PropTypes.string,
     noColon: PropTypes.bool,
-    prefix: PropTypes.string
+    prefix: PropTypes.string,
 };
 
 FreeOutput.defaultProps = {
@@ -162,7 +162,7 @@ FreeOutput.defaultProps = {
     val: 0,
     unit: "",
     noColon: false,
-    prefix: ""
+    prefix: "",
 };
 
 export class FixedUnitOutput extends React.Component {
@@ -195,7 +195,7 @@ FixedUnitOutput.propTypes = {
     number: PropTypes.number.isRequired,
     unit: PropTypes.string,
     noColon: PropTypes.bool,
-    prefix: PropTypes.string
+    prefix: PropTypes.string,
 };
 
 FixedUnitOutput.defaultProps = {
@@ -203,7 +203,7 @@ FixedUnitOutput.defaultProps = {
     number: 0,
     unit: "units",
     noColon: false,
-    prefix: ""
+    prefix: "",
 };
 
 export class GenericInput extends React.Component {
@@ -212,7 +212,7 @@ export class GenericInput extends React.Component {
         this.state = {
             number: this.props.number,
             unit: Object.keys(this.props.conversionFactors.to)[0],
-            result: 0
+            result: 0,
         };
 
         this.handleNumberChange = this.handleNumberChange.bind(this);
@@ -228,7 +228,7 @@ export class GenericInput extends React.Component {
     handleNumberChange(ev) {
         this.setState(
             {
-                number: ev.target.value
+                number: ev.target.value,
             },
             this.convertToFinal
         );
@@ -237,7 +237,7 @@ export class GenericInput extends React.Component {
     handleUnitChange(ev) {
         this.setState(
             {
-                unit: ev.target.value
+                unit: ev.target.value,
             },
             this.convertToFinal
         );
@@ -252,7 +252,7 @@ export class GenericInput extends React.Component {
             this.state.number
         );
         this.setState({
-            result: result
+            result: result,
         });
 
         this.props.onChange(result);
@@ -319,7 +319,7 @@ GenericInput.propTypes = {
     number: PropTypes.number.isRequired,
     negative: PropTypes.bool,
     per: PropTypes.bool,
-    noPadding: PropTypes.bool
+    noPadding: PropTypes.bool,
 };
 
 GenericInput.defaultProps = {
@@ -329,7 +329,7 @@ GenericInput.defaultProps = {
     number: 0,
     negative: false,
     per: false,
-    noPadding: false
+    noPadding: false,
 };
 
 export class GenericOutput extends React.Component {
@@ -341,7 +341,7 @@ export class GenericOutput extends React.Component {
             conversionFactors: this.props.conversionFactors,
             unit: Object.keys(this.props.conversionFactors.from)[0],
             outputLabel: this.props.outputLabel,
-            splitFactor: 1
+            splitFactor: 1,
         };
 
         this.handleUnitChange = this.handleUnitChange.bind(this);
@@ -356,7 +356,7 @@ export class GenericOutput extends React.Component {
                 originalNumber: nextProps.number,
                 outputNumber: nextProps.number,
                 conversionFactors: nextProps.conversionFactors,
-                outputLabel: nextProps.outputLabel
+                outputLabel: nextProps.outputLabel,
             },
             this.generateFinalResult
         );
@@ -365,7 +365,7 @@ export class GenericOutput extends React.Component {
     handleUnitChange(ev) {
         this.setState(
             {
-                unit: ev.target.value
+                unit: ev.target.value,
             },
             this.generateFinalResult
         );
@@ -377,7 +377,7 @@ export class GenericOutput extends React.Component {
                 this.state.originalNumber
             ) / this.state.splitFactor;
         this.setState({
-            outputNumber: defaultRound(result)
+            outputNumber: defaultRound(result),
         });
 
         this.props.resultHandler(defaultRound(result), this.state.unit);
@@ -416,7 +416,7 @@ export class GenericOutput extends React.Component {
     updateSplitFactor(ev) {
         this.setState(
             {
-                splitFactor: Number(ev.target.value)
+                splitFactor: Number(ev.target.value),
             },
             this.generateFinalResult
         );
@@ -471,7 +471,7 @@ GenericOutput.propTypes = {
     resultHandler: PropTypes.func,
     per: PropTypes.bool,
     showSplitter: PropTypes.bool,
-    noPadding: PropTypes.bool
+    noPadding: PropTypes.bool,
 };
 
 GenericOutput.defaultProps = {
@@ -481,14 +481,14 @@ GenericOutput.defaultProps = {
     resultHandler: () => null,
     per: false,
     showSplitter: false,
-    noPadding: false
+    noPadding: false,
 };
 
 export default class GenericCalculator extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            number: 0
+            number: 0,
         };
 
         this.setNumber = this.setNumber.bind(this);
@@ -500,7 +500,7 @@ export default class GenericCalculator extends React.Component {
 
     setNumber(number) {
         this.setState({
-            number: number
+            number: number,
         });
     }
 
@@ -539,7 +539,7 @@ GenericCalculator.propTypes = {
     negative: PropTypes.bool,
     resultHandler: PropTypes.func,
     showSplitter: PropTypes.bool,
-    noPadding: PropTypes.bool
+    noPadding: PropTypes.bool,
 };
 
 GenericOutput.defaultProps = {
@@ -548,5 +548,5 @@ GenericOutput.defaultProps = {
     negative: false,
     resultHandler: () => null,
     showSplitter: true,
-    noPadding: false
+    noPadding: false,
 };

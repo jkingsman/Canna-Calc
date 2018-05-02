@@ -3,7 +3,7 @@ import React from "react";
 import {
     FixedUnitInput,
     GenericInput,
-    GenericOutput
+    GenericOutput,
 } from "app/calculators/components/io";
 import ConversionFactors from "app/utils/conversion_factors";
 
@@ -15,7 +15,7 @@ export default class YieldDryWetCalculator extends React.Component {
             avgOz: 2.25,
             maxOz: 3.5,
             plantCount: 10,
-            dryingLossPercentage: 65
+            dryingLossPercentage: 65,
         };
     }
 
@@ -29,7 +29,7 @@ export default class YieldDryWetCalculator extends React.Component {
                 (1 - this.state.dryingLossPercentage / 100),
             this.state.maxOz *
                 this.state.plantCount *
-                (1 - this.state.dryingLossPercentage / 100)
+                (1 - this.state.dryingLossPercentage / 100),
         ];
     }
 
@@ -78,7 +78,7 @@ export default class YieldDryWetCalculator extends React.Component {
                             inputLabel="Drying Loss*"
                             onChange={val =>
                                 this.setState({
-                                    dryingLossPercentage: Number(val)
+                                    dryingLossPercentage: Number(val),
                                 })
                             }
                             number={this.state.dryingLossPercentage}

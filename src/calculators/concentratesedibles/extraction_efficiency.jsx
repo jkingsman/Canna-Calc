@@ -4,7 +4,7 @@ import {
     FixedUnitInput,
     GenericInput,
     FixedUnitOutput,
-    GenericOutput
+    GenericOutput,
 } from "app/calculators/components/io";
 import ConversionFactors from "app/utils/conversion_factors";
 import { defaultRound } from "app/utils/math";
@@ -16,7 +16,7 @@ export default class ExtractionEfficiency extends React.Component {
             feedWeight: 500,
             feedTHCPercentage: 25,
             extractWeight: 96,
-            extractTHCPercentage: 85
+            extractTHCPercentage: 85,
         };
     }
 
@@ -66,7 +66,7 @@ export default class ExtractionEfficiency extends React.Component {
                             inputLabel="Feedstock THC Content"
                             onChange={val =>
                                 this.setState({
-                                    feedTHCPercentage: Number(val)
+                                    feedTHCPercentage: Number(val),
                                 })
                             }
                             number={this.state.feedTHCPercentage}
@@ -84,7 +84,7 @@ export default class ExtractionEfficiency extends React.Component {
                             inputLabel="Extract THC Content"
                             onChange={val =>
                                 this.setState({
-                                    extractTHCPercentage: Number(val)
+                                    extractTHCPercentage: Number(val),
                                 })
                             }
                             number={this.state.extractTHCPercentage}

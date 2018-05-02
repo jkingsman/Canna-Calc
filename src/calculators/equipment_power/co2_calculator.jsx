@@ -3,7 +3,7 @@ import React from "react";
 import {
     GenericInput,
     FixedUnitInput,
-    FixedUnitOutput
+    FixedUnitOutput,
 } from "app/calculators/components/io";
 import ConversionFactors from "app/utils/conversion_factors";
 import { defaultRound } from "app/utils/math";
@@ -18,7 +18,7 @@ export default class CO2Calculator extends React.Component {
             volumeReductionFt3: 0,
             ambientPPM: 400,
             desiredPPM: 1500,
-            minutesOn: 15
+            minutesOn: 15,
         };
     }
 
@@ -69,7 +69,7 @@ export default class CO2Calculator extends React.Component {
                             inputLabel="Room Length"
                             onChange={val =>
                                 this.setState({
-                                    growSpaceLengthFt: Number(val)
+                                    growSpaceLengthFt: Number(val),
                                 })
                             }
                             conversionFactors={ConversionFactors.basicDistance}
@@ -79,7 +79,7 @@ export default class CO2Calculator extends React.Component {
                             inputLabel="Room Height"
                             onChange={val =>
                                 this.setState({
-                                    growSpaceHeightFt: Number(val)
+                                    growSpaceHeightFt: Number(val),
                                 })
                             }
                             conversionFactors={ConversionFactors.basicDistance}
@@ -113,7 +113,7 @@ export default class CO2Calculator extends React.Component {
                             inputLabel="Volume Compensation*"
                             onChange={val =>
                                 this.setState({
-                                    volumeReductionFt3: Number(val)
+                                    volumeReductionFt3: Number(val),
                                 })
                             }
                             conversionFactors={ConversionFactors.basicVolume}
