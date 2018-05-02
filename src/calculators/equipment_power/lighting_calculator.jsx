@@ -1,10 +1,7 @@
-import React from 'react';
+import React from "react";
 
-import {
-    GenericInput,
-    FixedUnitOutput
-} from 'app/calculators/components/io';
-import ConversionFactors from 'app/utils/conversion_factors';
+import { GenericInput, FixedUnitOutput } from "app/calculators/components/io";
+import ConversionFactors from "app/utils/conversion_factors";
 
 export default class LightingCalculator extends React.Component {
     constructor(props) {
@@ -13,7 +10,7 @@ export default class LightingCalculator extends React.Component {
             lumensNeededSqFt: 8000,
             wattageNeededSqFt: 45,
             growSpaceWidthFt: 10,
-            growSpaceLengthFt: 8,
+            growSpaceLengthFt: 8
         };
     }
 
@@ -38,16 +35,62 @@ export default class LightingCalculator extends React.Component {
                 <hr />
                 <div className="row">
                     <div className="col-sm">
-                        <GenericInput inputLabel="Lumens*" onChange={(val) => this.setState({lumensNeededSqFt: Number(val)})} conversionFactors={ConversionFactors.basicArea} number={this.state.lumensNeededSqFt} per/>
-                        <GenericInput inputLabel="Watts" onChange={(val) => this.setState({wattageNeededSqFt: Number(val)})} conversionFactors={ConversionFactors.basicArea} number={this.state.wattageNeededSqFt} per/>
-                        <GenericInput inputLabel="Grow Area Width" onChange={(val) => this.setState({growSpaceWidthFt: Number(val)})} conversionFactors={ConversionFactors.basicDistance} number={this.state.growSpaceWidthFt}/>
-                        <GenericInput inputLabel="Grow Area Length" onChange={(val) => this.setState({growSpaceLengthFt: Number(val)})} conversionFactors={ConversionFactors.basicDistance} number={this.state.growSpaceLengthFt}/>
+                        <GenericInput
+                            inputLabel="Lumens*"
+                            onChange={val =>
+                                this.setState({ lumensNeededSqFt: Number(val) })
+                            }
+                            conversionFactors={ConversionFactors.basicArea}
+                            number={this.state.lumensNeededSqFt}
+                            per
+                        />
+                        <GenericInput
+                            inputLabel="Watts"
+                            onChange={val =>
+                                this.setState({
+                                    wattageNeededSqFt: Number(val)
+                                })
+                            }
+                            conversionFactors={ConversionFactors.basicArea}
+                            number={this.state.wattageNeededSqFt}
+                            per
+                        />
+                        <GenericInput
+                            inputLabel="Grow Area Width"
+                            onChange={val =>
+                                this.setState({ growSpaceWidthFt: Number(val) })
+                            }
+                            conversionFactors={ConversionFactors.basicDistance}
+                            number={this.state.growSpaceWidthFt}
+                        />
+                        <GenericInput
+                            inputLabel="Grow Area Length"
+                            onChange={val =>
+                                this.setState({
+                                    growSpaceLengthFt: Number(val)
+                                })
+                            }
+                            conversionFactors={ConversionFactors.basicDistance}
+                            number={this.state.growSpaceLengthFt}
+                        />
                     </div>
                     <div className="col-sm">
-                        <FixedUnitOutput outputLabel="Illumination Needed" number={this.getLumensNeeded()} unit="lumens"/>
-                        <FixedUnitOutput outputLabel="Watts Needed" number={this.getWattsNeeded()} unit="watts"/>
+                        <FixedUnitOutput
+                            outputLabel="Illumination Needed"
+                            number={this.getLumensNeeded()}
+                            unit="lumens"
+                        />
+                        <FixedUnitOutput
+                            outputLabel="Watts Needed"
+                            number={this.getWattsNeeded()}
+                            unit="watts"
+                        />
                     </div>
-                    <i>*Although lumens are a more precise measure of actual light ouput, watts have become a de facto standard -- when in doubt, use watts and disregard lumens.</i>
+                    <i>
+                        *Although lumens are a more precise measure of actual
+                        light ouput, watts have become a de facto standard --
+                        when in doubt, use watts and disregard lumens.
+                    </i>
                 </div>
             </div>
         );

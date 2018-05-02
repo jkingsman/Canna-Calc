@@ -1,18 +1,13 @@
-import React from 'react';
+import React from "react";
 
-import {
-    FixedUnitInput,
-    FixedUnitOutput
-} from 'app/calculators/components/io';
-import {
-    defaultRound
-} from 'app/utils/math';
+import { FixedUnitInput, FixedUnitOutput } from "app/calculators/components/io";
+import { defaultRound } from "app/utils/math";
 
 export class PercentageToMG extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            percent: 19,
+            percent: 19
         };
     }
 
@@ -25,10 +20,21 @@ export class PercentageToMG extends React.Component {
             <div className="container">
                 <div className="row">
                     <div className="col-sm">
-                        <FixedUnitInput inputLabel="Percentage THC" onChange={(val) => this.setState({percent: Number(val)})} number={this.state.percent} unit="%"/>
+                        <FixedUnitInput
+                            inputLabel="Percentage THC"
+                            onChange={val =>
+                                this.setState({ percent: Number(val) })
+                            }
+                            number={this.state.percent}
+                            unit="%"
+                        />
                     </div>
                     <div className="col-sm">
-                        <FixedUnitOutput outputLabel="mg THC per Gram" number={defaultRound(this.getMG())} unit="mg/g"/>
+                        <FixedUnitOutput
+                            outputLabel="mg THC per Gram"
+                            number={defaultRound(this.getMG())}
+                            unit="mg/g"
+                        />
                     </div>
                 </div>
             </div>
@@ -40,7 +46,7 @@ export class MGToPercentage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            mg: 19,
+            mg: 19
         };
     }
 
@@ -53,10 +59,19 @@ export class MGToPercentage extends React.Component {
             <div className="container">
                 <div className="row">
                     <div className="col-sm">
-                        <FixedUnitInput inputLabel="mg THC/gram" onChange={(val) => this.setState({mg: Number(val)})} number={this.state.mg} unit="mg/g"/>
+                        <FixedUnitInput
+                            inputLabel="mg THC/gram"
+                            onChange={val => this.setState({ mg: Number(val) })}
+                            number={this.state.mg}
+                            unit="mg/g"
+                        />
                     </div>
                     <div className="col-sm">
-                        <FixedUnitOutput outputLabel="PercentageTHC" number={defaultRound(this.getPercentage())} unit="%"/>
+                        <FixedUnitOutput
+                            outputLabel="PercentageTHC"
+                            number={defaultRound(this.getPercentage())}
+                            unit="%"
+                        />
                     </div>
                 </div>
             </div>
@@ -64,14 +79,13 @@ export class MGToPercentage extends React.Component {
     }
 }
 
-
 export class Density extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             totalVolume: 10,
             totalTHC: 2500,
-            density: 1.04,
+            density: 1.04
         };
     }
 
@@ -92,14 +106,47 @@ export class Density extends React.Component {
             <div className="container">
                 <div className="row">
                     <div className="col-sm">
-                        <FixedUnitInput inputLabel="Product Volume" onChange={(val) => this.setState({totalVolume: Number(val)})} number={this.state.totalVolume} unit="mL"/>
-                        <FixedUnitInput inputLabel="Product Density" onChange={(val) => this.setState({density: Number(val)})} number={this.state.density} unit="g/mL"/>
-                        <FixedUnitInput inputLabel="Total THC" onChange={(val) => this.setState({totalTHC: Number(val)})} number={this.state.totalTHC} unit="mg"/>
+                        <FixedUnitInput
+                            inputLabel="Product Volume"
+                            onChange={val =>
+                                this.setState({ totalVolume: Number(val) })
+                            }
+                            number={this.state.totalVolume}
+                            unit="mL"
+                        />
+                        <FixedUnitInput
+                            inputLabel="Product Density"
+                            onChange={val =>
+                                this.setState({ density: Number(val) })
+                            }
+                            number={this.state.density}
+                            unit="g/mL"
+                        />
+                        <FixedUnitInput
+                            inputLabel="Total THC"
+                            onChange={val =>
+                                this.setState({ totalTHC: Number(val) })
+                            }
+                            number={this.state.totalTHC}
+                            unit="mg"
+                        />
                     </div>
                     <div className="col-sm">
-                        <FixedUnitOutput outputLabel="mg/mL THC" number={defaultRound(this.getMGperML())} unit="mg/mL"/>
-                        <FixedUnitOutput outputLabel="mg/g THC" number={defaultRound(this.getMGperG())} unit="mg/g"/>
-                        <FixedUnitOutput outputLabel="THC Percentage" number={defaultRound(this.getPercentage())} unit="%"/>
+                        <FixedUnitOutput
+                            outputLabel="mg/mL THC"
+                            number={defaultRound(this.getMGperML())}
+                            unit="mg/mL"
+                        />
+                        <FixedUnitOutput
+                            outputLabel="mg/g THC"
+                            number={defaultRound(this.getMGperG())}
+                            unit="mg/g"
+                        />
+                        <FixedUnitOutput
+                            outputLabel="THC Percentage"
+                            number={defaultRound(this.getPercentage())}
+                            unit="%"
+                        />
                     </div>
                 </div>
             </div>
@@ -129,12 +176,34 @@ export class FreeWeight extends React.Component {
             <div className="container">
                 <div className="row">
                     <div className="col-sm">
-                        <FixedUnitInput inputLabel="Product Weight" onChange={(val) => this.setState({totalWeight: Number(val)})} number={this.state.totalWeight} unit="g"/>
-                        <FixedUnitInput inputLabel="Total THC" onChange={(val) => this.setState({totalTHC: Number(val)})} number={this.state.totalTHC} unit="mg"/>
+                        <FixedUnitInput
+                            inputLabel="Product Weight"
+                            onChange={val =>
+                                this.setState({ totalWeight: Number(val) })
+                            }
+                            number={this.state.totalWeight}
+                            unit="g"
+                        />
+                        <FixedUnitInput
+                            inputLabel="Total THC"
+                            onChange={val =>
+                                this.setState({ totalTHC: Number(val) })
+                            }
+                            number={this.state.totalTHC}
+                            unit="mg"
+                        />
                     </div>
                     <div className="col-sm">
-                        <FixedUnitOutput outputLabel="mg THC per Gram" number={defaultRound(this.getMG())} unit="mg/g"/>
-                        <FixedUnitOutput outputLabel="THC Percentage" number={defaultRound(this.getPercentage())} unit="%"/>
+                        <FixedUnitOutput
+                            outputLabel="mg THC per Gram"
+                            number={defaultRound(this.getMG())}
+                            unit="mg/g"
+                        />
+                        <FixedUnitOutput
+                            outputLabel="THC Percentage"
+                            number={defaultRound(this.getPercentage())}
+                            unit="%"
+                        />
                     </div>
                 </div>
             </div>

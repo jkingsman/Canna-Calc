@@ -1,10 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import GenericCalculator from 'app/calculators/components/io';
-import {
-    defaultRound
-} from 'app/utils/math';
+import GenericCalculator from "app/calculators/components/io";
+import { defaultRound } from "app/utils/math";
 
 export default class GeneralCalculatorTemplate extends React.Component {
     constructor(props) {
@@ -12,8 +10,8 @@ export default class GeneralCalculatorTemplate extends React.Component {
         this.state = {
             splitFactor: 1,
             resultNumber: 0,
-            resultUnit: ''
-        }
+            resultUnit: ""
+        };
 
         this.resultHandler = this.resultHandler.bind(this);
         this.updateSplitFactor = this.updateSplitFactor.bind(this);
@@ -33,21 +31,35 @@ export default class GeneralCalculatorTemplate extends React.Component {
     }
 
     getSplitResult() {
-        const splitResult = (this.state.resultNumber / this.state.splitFactor);
-        const roundedResultWithUnit = `${defaultRound(splitResult).toString()} ${this.state.resultUnit}`;
+        const splitResult = this.state.resultNumber / this.state.splitFactor;
+        const roundedResultWithUnit = `${defaultRound(
+            splitResult
+        ).toString()} ${this.state.resultUnit}`;
         return roundedResultWithUnit;
     }
 
     render() {
         let message = null;
         if (this.props.message) {
-            message = <span><p>{this.props.message}</p><hr /></span>;
+            message = (
+                <span>
+                    <p>{this.props.message}</p>
+                    <hr />
+                </span>
+            );
         }
 
         return (
             <div>
                 {message}
-                <GenericCalculator conversionFactors={this.props.conversionFactors} labelSuffix={this.props.labelSuffix} negative={this.props.negative} resultHandler={this.resultHandler} showSplitter={!this.props.hideSplitter} noPadding/>
+                <GenericCalculator
+                    conversionFactors={this.props.conversionFactors}
+                    labelSuffix={this.props.labelSuffix}
+                    negative={this.props.negative}
+                    resultHandler={this.resultHandler}
+                    showSplitter={!this.props.hideSplitter}
+                    noPadding
+                />
             </div>
         );
     }
