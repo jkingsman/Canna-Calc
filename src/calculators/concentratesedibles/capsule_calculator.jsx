@@ -21,21 +21,21 @@ export default class CapsuleCalculator extends React.Component {
     }
 
     getCannabinoids() {
-        const mlTHC = (this.state.testTHC / 100) * this.state.concentrateVol;
-        const mlTHCa = (this.state.testTHCa / 100) * this.state.concentrateVol;
-        const mlDelta8THC = (this.state.testDelta8THC / 100) * this.state.concentrateVol;
-        const mlCBD = (this.state.testCBD / 100) * this.state.concentrateVol;
-        const mlCBN = (this.state.testCBN / 100) * this.state.concentrateVol;
-        const mlCBG = (this.state.testCBG / 100) * this.state.concentrateVol;
+        const mlTHCInExtract = (this.state.testTHC / 100) * this.state.concentrateVol;
+        const mlTHCaInExtract = (this.state.testTHCa / 100) * this.state.concentrateVol;
+        const mlDelta8THCInExtract = (this.state.testDelta8THC / 100) * this.state.concentrateVol;
+        const mlCBDInExtract = (this.state.testCBD / 100) * this.state.concentrateVol;
+        const mlCBNInExtract = (this.state.testCBN / 100) * this.state.concentrateVol;
+        const mlCBGInExtract = (this.state.testCBG / 100) * this.state.concentrateVol;
 
         const capsulePercentOfTotalMix = this.state.containerVol / (this.state.fillerVol + this.state.concentrateVol);
         return [
-            mlTHC * capsulePercentOfTotalMix,
-            mlTHCa * capsulePercentOfTotalMix,
-            mlDelta8THC * capsulePercentOfTotalMix,
-            mlCBD * capsulePercentOfTotalMix,
-            mlCBN * capsulePercentOfTotalMix,
-            mlCBG * capsulePercentOfTotalMix
+            mlTHCInExtract * capsulePercentOfTotalMix,
+            mlTHCaInExtract * capsulePercentOfTotalMix,
+            mlDelta8THCInExtract * capsulePercentOfTotalMix,
+            mlCBDInExtract * capsulePercentOfTotalMix,
+            mlCBNInExtract * capsulePercentOfTotalMix,
+            mlCBGInExtract * capsulePercentOfTotalMix
         ];
     }
 
