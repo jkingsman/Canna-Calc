@@ -21,6 +21,7 @@ import SoilCalculator from 'app/calculators/plants_consumables/soil_calculator';
 import PHCalculator from 'app/calculators/plants_consumables/ph_solution';
 import NpkToTDS from 'app/calculators/plants_consumables/npkToTDS';
 import TDStoNPK from 'app/calculators/plants_consumables/tdsToNPK';
+import TDSDilution from 'app/calculators/plants_consumables/tds_dilution';
 import YieldCalculator from 'app/calculators/plants_consumables/yield_calculator';
 import YieldDryWetCalculator from 'app/calculators/plants_consumables/yielddrywet_calculator';
 import PlantCount from 'app/calculators/plants_consumables/plantcount_calculator';
@@ -188,6 +189,10 @@ export default class CalculatorContainer extends React.Component {
 
             <CardTemplate id="TDStoNPK" keywords="npk tds ppm potassium nitrogen phosphorus specific gravity" searchTerm={this.state.searchTerm} title="PPM TDS to NPM" parentID="mainAccordion">
                 <TDStoNPK/>
+            </CardTemplate>
+
+            <CardTemplate id="TDSDilution" keywords="tds dilution water ppm" searchTerm={this.state.searchTerm} title="Dilution to TDS Target" parentID="mainAccordion">
+                <TDSDilution/>
             </CardTemplate>
 
             <CardTemplate id="yieldCalculator" keywords="yield plants ounces oz grams pounds lbs harvest projection projected" searchTerm={this.state.searchTerm} title="General Crop Yield" parentID="mainAccordion">
