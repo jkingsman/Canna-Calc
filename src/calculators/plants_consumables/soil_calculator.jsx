@@ -34,7 +34,6 @@ export default class SoilCalculator extends React.Component {
     render() {
         return (
             <div className="container">
-                <hr/>
                 <div className="row">
                     <div className="col-sm">
                         <FreeInput inputLabel="Soil 1 Name" onChange={(val) => this.setState({medium1: val})} val={this.state.medium1} unit=""/>
