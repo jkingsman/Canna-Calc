@@ -5,6 +5,7 @@ import GeneralCalculatorTemplate from 'app/calculators/general/general_calculato
 
 import PercentChange from 'app/calculators/general/percentchange_calculator';
 import CylinderCalculator from 'app/calculators/general/cylinder_calculator';
+import PercentConstituent from 'app/calculators/general/percent_constituent';
 import DateCalculator from 'app/calculators/general/date_calculator';
 import ConversionFactors from 'app/utils/conversion_factors';
 
@@ -118,6 +119,10 @@ export default class CalculatorContainer extends React.Component {
 
             <CardTemplate id="percentChange" keywords="% percent change after" searchTerm={this.state.searchTerm} title="Percent Change" parentID="mainAccordion">
                 <PercentChange/>
+            </CardTemplate>
+
+            <CardTemplate id="percentConstituent" keywords="% percent additive terpense after" searchTerm={this.state.searchTerm} title="Max Percent Constituent (Terpene Addition)" parentID="mainAccordion">
+                <PercentConstituent/>
             </CardTemplate>
 
             <CardTemplate id="cylinderVolume" keywords="cylinder fan exhaust ducting volume" searchTerm={this.state.searchTerm} title="Cylinder (Ducting) Volume" parentID="mainAccordion">
