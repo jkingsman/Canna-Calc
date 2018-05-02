@@ -46,8 +46,8 @@ input[disabled] {
     min-width: 180px;
 }
 
-.text-muted {
-    color: #333e48 !important;
+.footer-text {
+    color: #333e48;
 }
 
 .card-header {

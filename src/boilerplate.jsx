@@ -17,7 +17,7 @@ export default class Boilerplate extends React.Component {
 
                 <footer className="footer">
                     <div className="container">
-                        <span className="text-muted">
+                        <span className="footer-text">
                             This project is open source and not for profit! Contribute, comment, or
                             ask questions at{" "}
                             <a
@@ -29,7 +29,7 @@ export default class Boilerplate extends React.Component {
                             </a>.
                         </span>
                         <br />
-                        <small className="text-muted">
+                        <small className="footer-text">
                             Usage of this service constitutes agreement to the{" "}
                             <a
                                 rel="noopener noreferrer"
