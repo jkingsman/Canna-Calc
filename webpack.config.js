@@ -47,6 +47,10 @@ module.exports = {
         new CopyWebpackPlugin([{
             from: 'src/favicon',
             to: 'favicon'
+        }]),
+        new CopyWebpackPlugin([{
+            from: 'src/static',
+            to: 'static'
         }])
     ],
     devtool: 'source-map',

@@ -28,6 +28,10 @@ module.exports = {
       from: 'src/favicon',
       to: 'favicon'
     }]),
+    new CopyWebpackPlugin([{
+        from: 'src/static',
+        to: 'static'
+    }])
   ],
   resolve: {
     extensions: ['*', '.js', '.jsx'],
