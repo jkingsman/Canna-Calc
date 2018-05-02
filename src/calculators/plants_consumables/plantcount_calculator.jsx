@@ -15,19 +15,11 @@ export default class PlantCount extends React.Component {
     }
 
     getPlantLayout() {
-        const stdWCount = Math.floor(
-            this.state.growSpaceWidthFt / this.state.plantWidthFt
-        );
-        const stdLCount = Math.floor(
-            this.state.growSpaceLengthFt / this.state.plantLengthFt
-        );
+        const stdWCount = Math.floor(this.state.growSpaceWidthFt / this.state.plantWidthFt);
+        const stdLCount = Math.floor(this.state.growSpaceLengthFt / this.state.plantLengthFt);
 
-        const swapWCount = Math.floor(
-            this.state.growSpaceWidthFt / this.state.plantLengthFt
-        );
-        const swapLCount = Math.floor(
-            this.state.growSpaceLengthFt / this.state.plantWidthFt
-        );
+        const swapWCount = Math.floor(this.state.growSpaceWidthFt / this.state.plantLengthFt);
+        const swapLCount = Math.floor(this.state.growSpaceLengthFt / this.state.plantWidthFt);
 
         if (stdWCount * stdLCount > swapWCount * swapLCount) {
             return [stdWCount, stdLCount];
@@ -41,8 +33,7 @@ export default class PlantCount extends React.Component {
             this.getPlantLayout()[0] *
             this.getPlantLayout()[1] *
             (this.state.plantWidthFt * this.state.plantLengthFt);
-        const totalSpace =
-            this.state.growSpaceLengthFt * this.state.growSpaceWidthFt;
+        const totalSpace = this.state.growSpaceLengthFt * this.state.growSpaceWidthFt;
         return totalSpace - usedSpace;
     }
 
@@ -50,18 +41,16 @@ export default class PlantCount extends React.Component {
         return (
             <div>
                 <p>
-                    This calculator provides best layouts for square or
-                    near-square plants. For non-square plants, it may be
-                    possible to place additional plants in the leftover space.
+                    This calculator provides best layouts for square or near-square plants. For
+                    non-square plants, it may be possible to place additional plants in the leftover
+                    space.
                 </p>
                 <hr />
                 <div className="row">
                     <div className="col-sm">
                         <GenericInput
                             inputLabel="Grow Space Width"
-                            onChange={val =>
-                                this.setState({ growSpaceWidthFt: Number(val) })
-                            }
+                            onChange={val => this.setState({ growSpaceWidthFt: Number(val) })}
                             conversionFactors={ConversionFactors.basicDistance}
                             number={this.state.growSpaceWidthFt}
                         />
@@ -77,17 +66,13 @@ export default class PlantCount extends React.Component {
                         />
                         <GenericInput
                             inputLabel="Plant Width*"
-                            onChange={val =>
-                                this.setState({ plantLengthFt: Number(val) })
-                            }
+                            onChange={val => this.setState({ plantLengthFt: Number(val) })}
                             conversionFactors={ConversionFactors.basicDistance}
                             number={this.state.plantLengthFt}
                         />
                         <GenericInput
                             inputLabel="Plant Length*"
-                            onChange={val =>
-                                this.setState({ plantWidthFt: Number(val) })
-                            }
+                            onChange={val => this.setState({ plantWidthFt: Number(val) })}
                             conversionFactors={ConversionFactors.basicDistance}
                             number={this.state.plantWidthFt}
                         />
@@ -95,18 +80,12 @@ export default class PlantCount extends React.Component {
                     <div className="col-sm">
                         <FixedUnitOutput
                             outputLabel="Total Area"
-                            number={
-                                this.state.growSpaceLengthFt *
-                                this.state.growSpaceWidthFt
-                            }
+                            number={this.state.growSpaceLengthFt * this.state.growSpaceWidthFt}
                             unit="ft²"
                         />
                         <FixedUnitOutput
                             outputLabel="Total Plants"
-                            number={
-                                this.getPlantLayout()[0] *
-                                this.getPlantLayout()[1]
-                            }
+                            number={this.getPlantLayout()[0] * this.getPlantLayout()[1]}
                             unit="plants"
                         />
                         <FixedUnitOutput
@@ -127,8 +106,8 @@ export default class PlantCount extends React.Component {
                     </div>
                 </div>
                 <i>
-                    *Remember to add the appropriate spacing between plants,
-                    which is counted as part of its size
+                    *Remember to add the appropriate spacing between plants, which is counted as
+                    part of its size
                 </i>
             </div>
         );

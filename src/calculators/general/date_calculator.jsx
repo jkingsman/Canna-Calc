@@ -30,11 +30,7 @@ export default class DateCalculator extends React.Component {
             return "❌";
         }
 
-        if (
-            components[0].length != 4 ||
-            components[1].length != 2 ||
-            components[2].length != 2
-        ) {
+        if (components[0].length != 4 || components[1].length != 2 || components[2].length != 2) {
             return "❌";
         }
 
@@ -52,11 +48,7 @@ export default class DateCalculator extends React.Component {
             return "❌";
         }
 
-        if (
-            components.some(
-                component => isNaN(component) || component.length !== 2
-            )
-        ) {
+        if (components.some(component => isNaN(component) || component.length !== 2)) {
             return "❌";
         }
 
@@ -72,9 +64,7 @@ export default class DateCalculator extends React.Component {
     }
 
     getFinalDateISO() {
-        const original = dayjs(
-            this.state.startDateStr + "T" + this.state.startTimeStr + "Z"
-        );
+        const original = dayjs(this.state.startDateStr + "T" + this.state.startTimeStr + "Z");
         let adjusted;
 
         if (this.state.action === "add") {
@@ -142,9 +132,7 @@ export default class DateCalculator extends React.Component {
                                 name="addSubRadioGroup"
                                 value="add"
                                 checked={this.state.action === "add"}
-                                onChange={() =>
-                                    this.setState({ action: "add" })
-                                }
+                                onChange={() => this.setState({ action: "add" })}
                             />
                             <label htmlFor="addRadio">Add</label>
                             <br />
@@ -154,65 +142,45 @@ export default class DateCalculator extends React.Component {
                                 name="addSubRadioGroup"
                                 value="sub"
                                 checked={this.state.action === "sub"}
-                                onChange={() =>
-                                    this.setState({ action: "sub" })
-                                }
+                                onChange={() => this.setState({ action: "sub" })}
                             />
                             <label htmlFor="subRadio">Subtract</label>
                         </div>
 
                         <FreeInput
                             inputLabel="Years"
-                            onChange={val =>
-                                this.setState({ years: Number(val) })
-                            }
+                            onChange={val => this.setState({ years: Number(val) })}
                             val={this.state.years}
                         />
                         <FreeInput
                             inputLabel="Months"
-                            onChange={val =>
-                                this.setState({ months: Number(val) })
-                            }
+                            onChange={val => this.setState({ months: Number(val) })}
                             val={this.state.months}
                         />
                         <FreeInput
                             inputLabel="Days"
-                            onChange={val =>
-                                this.setState({ days: Number(val) })
-                            }
+                            onChange={val => this.setState({ days: Number(val) })}
                             val={this.state.days}
                         />
                         <FreeInput
                             inputLabel="Hours"
-                            onChange={val =>
-                                this.setState({ hours: Number(val) })
-                            }
+                            onChange={val => this.setState({ hours: Number(val) })}
                             val={this.state.hours}
                         />
                         <FreeInput
                             inputLabel="Minutes"
-                            onChange={val =>
-                                this.setState({ minutes: Number(val) })
-                            }
+                            onChange={val => this.setState({ minutes: Number(val) })}
                             val={this.state.minutes}
                         />
                         <FreeInput
                             inputLabel="Seconds"
-                            onChange={val =>
-                                this.setState({ seconds: Number(val) })
-                            }
+                            onChange={val => this.setState({ seconds: Number(val) })}
                             val={this.state.seconds}
                         />
                     </div>
                     <div className="col-sm">
-                        <FreeOutput
-                            outputLabel="Adjusted Date"
-                            val={this.getFinalDate()}
-                        />
-                        <FreeOutput
-                            outputLabel="Adjusted Time"
-                            val={this.getFinalTime()}
-                        />
+                        <FreeOutput outputLabel="Adjusted Date" val={this.getFinalDate()} />
+                        <FreeOutput outputLabel="Adjusted Time" val={this.getFinalTime()} />
                     </div>
                 </div>
             </div>

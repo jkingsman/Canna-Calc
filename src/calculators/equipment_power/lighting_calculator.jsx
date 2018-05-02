@@ -37,9 +37,7 @@ export default class LightingCalculator extends React.Component {
                     <div className="col-sm">
                         <GenericInput
                             inputLabel="Lumens*"
-                            onChange={val =>
-                                this.setState({ lumensNeededSqFt: Number(val) })
-                            }
+                            onChange={val => this.setState({ lumensNeededSqFt: Number(val) })}
                             conversionFactors={ConversionFactors.basicArea}
                             number={this.state.lumensNeededSqFt}
                             per
@@ -57,9 +55,7 @@ export default class LightingCalculator extends React.Component {
                         />
                         <GenericInput
                             inputLabel="Grow Area Width"
-                            onChange={val =>
-                                this.setState({ growSpaceWidthFt: Number(val) })
-                            }
+                            onChange={val => this.setState({ growSpaceWidthFt: Number(val) })}
                             conversionFactors={ConversionFactors.basicDistance}
                             number={this.state.growSpaceWidthFt}
                         />
@@ -87,9 +83,9 @@ export default class LightingCalculator extends React.Component {
                         />
                     </div>
                     <i>
-                        *Although lumens are a more precise measure of actual
-                        light ouput, watts have become a de facto standard --
-                        when in doubt, use watts and disregard lumens.
+                        *Although lumens are a more precise measure of actual light ouput, watts
+                        have become a de facto standard -- when in doubt, use watts and disregard
+                        lumens.
                     </i>
                 </div>
             </div>

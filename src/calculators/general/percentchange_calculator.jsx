@@ -23,17 +23,13 @@ export default class PercentChange extends React.Component {
                     <div className="col-sm">
                         <FixedUnitInput
                             inputLabel="Before"
-                            onChange={val =>
-                                this.setState({ before: Number(val) })
-                            }
+                            onChange={val => this.setState({ before: Number(val) })}
                             number={this.state.before}
                             unit="units"
                         />
                         <FixedUnitInput
                             inputLabel="After"
-                            onChange={val =>
-                                this.setState({ after: Number(val) })
-                            }
+                            onChange={val => this.setState({ after: Number(val) })}
                             number={this.state.after}
                             unit="units"
                         />

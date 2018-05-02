@@ -22,9 +22,7 @@ export class PercentageToMG extends React.Component {
                     <div className="col-sm">
                         <FixedUnitInput
                             inputLabel="Percentage THC"
-                            onChange={val =>
-                                this.setState({ percent: Number(val) })
-                            }
+                            onChange={val => this.setState({ percent: Number(val) })}
                             number={this.state.percent}
                             unit="%"
                         />
@@ -108,25 +106,19 @@ export class Density extends React.Component {
                     <div className="col-sm">
                         <FixedUnitInput
                             inputLabel="Product Volume"
-                            onChange={val =>
-                                this.setState({ totalVolume: Number(val) })
-                            }
+                            onChange={val => this.setState({ totalVolume: Number(val) })}
                             number={this.state.totalVolume}
                             unit="mL"
                         />
                         <FixedUnitInput
                             inputLabel="Product Density"
-                            onChange={val =>
-                                this.setState({ density: Number(val) })
-                            }
+                            onChange={val => this.setState({ density: Number(val) })}
                             number={this.state.density}
                             unit="g/mL"
                         />
                         <FixedUnitInput
                             inputLabel="Total THC"
-                            onChange={val =>
-                                this.setState({ totalTHC: Number(val) })
-                            }
+                            onChange={val => this.setState({ totalTHC: Number(val) })}
                             number={this.state.totalTHC}
                             unit="mg"
                         />
@@ -178,17 +170,13 @@ export class FreeWeight extends React.Component {
                     <div className="col-sm">
                         <FixedUnitInput
                             inputLabel="Product Weight"
-                            onChange={val =>
-                                this.setState({ totalWeight: Number(val) })
-                            }
+                            onChange={val => this.setState({ totalWeight: Number(val) })}
                             number={this.state.totalWeight}
                             unit="g"
                         />
                         <FixedUnitInput
                             inputLabel="Total THC"
-                            onChange={val =>
-                                this.setState({ totalTHC: Number(val) })
-                            }
+                            onChange={val => this.setState({ totalTHC: Number(val) })}
                             number={this.state.totalTHC}
                             unit="mg"
                         />

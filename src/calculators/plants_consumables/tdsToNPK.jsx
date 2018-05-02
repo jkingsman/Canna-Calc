@@ -58,9 +58,7 @@ export default class NpkToTDS extends React.Component {
                         <FixedUnitInput
                             inputLabel="Added Amount"
                             number={this.state.mlPerL}
-                            onChange={val =>
-                                this.setState({ mlPerL: Number(val) })
-                            }
+                            onChange={val => this.setState({ mlPerL: Number(val) })}
                             unit="ml/liter"
                         />
                     </div>

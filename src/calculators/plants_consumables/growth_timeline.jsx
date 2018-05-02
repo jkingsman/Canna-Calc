@@ -1,10 +1,6 @@
 import React from "react";
 
-import {
-    FreeInput,
-    FixedUnitInput,
-    FreeOutput,
-} from "app/calculators/components/io";
+import { FreeInput, FixedUnitInput, FreeOutput } from "app/calculators/components/io";
 import dayjs from "dayjs";
 
 export default class GrowthTimeline extends React.Component {
@@ -32,11 +28,7 @@ export default class GrowthTimeline extends React.Component {
             return "❌";
         }
 
-        if (
-            components[0].length != 4 ||
-            components[1].length != 2 ||
-            components[2].length != 2
-        ) {
+        if (components[0].length != 4 || components[1].length != 2 || components[2].length != 2) {
             return "❌";
         }
 
@@ -62,66 +54,49 @@ export default class GrowthTimeline extends React.Component {
     render() {
         return (
             <div className="container">
-                <p>
-                    Determine calendar dates for important times in your
-                    plants&#39; lives
-                </p>
+                <p>Determine calendar dates for important times in your plants&#39; lives</p>
                 <hr />
                 <div className="row">
                     <div className="col-sm">
                         <FreeInput
                             inputLabel="Plant Date (YYYY-MM-DD)"
-                            onChange={val =>
-                                this.setState({ startDateStr: Number(val) })
-                            }
+                            onChange={val => this.setState({ startDateStr: Number(val) })}
                             val={this.state.startDateStr}
                             unit={this.isDateValid()}
                         />
                         <FixedUnitInput
                             inputLabel="Days to Sprout"
-                            onChange={val =>
-                                this.setState({ sprout: Number(val) })
-                            }
+                            onChange={val => this.setState({ sprout: Number(val) })}
                             number={this.state.sprout}
                             unit="days"
                         />
                         <FixedUnitInput
                             inputLabel="Days Vegetative"
-                            onChange={val =>
-                                this.setState({ vegetative: Number(val) })
-                            }
+                            onChange={val => this.setState({ vegetative: Number(val) })}
                             number={this.state.vegetative}
                             unit="days"
                         />
                         <FixedUnitInput
                             inputLabel="Days Flowering"
-                            onChange={val =>
-                                this.setState({ flowering: Number(val) })
-                            }
+                            onChange={val => this.setState({ flowering: Number(val) })}
                             number={this.state.flowering}
                             unit="days"
                         />
                         <FixedUnitInput
                             inputLabel="Days Drying"
-                            onChange={val =>
-                                this.setState({ drying: Number(val) })
-                            }
+                            onChange={val => this.setState({ drying: Number(val) })}
                             number={this.state.drying}
                             unit="days"
                         />
                         <FixedUnitInput
                             inputLabel="Days Curing"
-                            onChange={val =>
-                                this.setState({ curing: Number(val) })
-                            }
+                            onChange={val => this.setState({ curing: Number(val) })}
                             number={this.state.curing}
                             unit="days"
                         />
                         <FixedUnitInput
                             inputLabel="Days Processing"
-                            onChange={val =>
-                                this.setState({ processing: Number(val) })
-                            }
+                            onChange={val => this.setState({ processing: Number(val) })}
                             number={this.state.processing}
                             unit="days"
                         />
@@ -135,16 +110,12 @@ export default class GrowthTimeline extends React.Component {
                         />
                         <FreeOutput
                             outputLabel="Flowering Begins"
-                            val={this.getFinalDateISO(
-                                this.state.sprout + this.state.vegetative
-                            )}
+                            val={this.getFinalDateISO(this.state.sprout + this.state.vegetative)}
                         />
                         <FreeOutput
                             outputLabel="Harvest"
                             val={this.getFinalDateISO(
-                                this.state.sprout +
-                                    this.state.vegetative +
-                                    this.state.flowering
+                                this.state.sprout + this.state.vegetative + this.state.flowering
                             )}
                         />
                         <FreeOutput

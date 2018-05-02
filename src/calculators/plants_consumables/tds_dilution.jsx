@@ -1,10 +1,6 @@
 import React from "react";
 
-import {
-    FixedUnitInput,
-    GenericInput,
-    GenericOutput,
-} from "app/calculators/components/io";
+import { FixedUnitInput, GenericInput, GenericOutput } from "app/calculators/components/io";
 
 import ConversionFactors from "app/utils/conversion_factors";
 
@@ -34,42 +30,33 @@ export default class TDSDilution extends React.Component {
         return (
             <div>
                 <p>
-                    Compute needed dilution to achieve target dissolved solids.
-                    For dilution with pure distilled water, use Additive TDS =
-                    0.00.
+                    Compute needed dilution to achieve target dissolved solids. For dilution with
+                    pure distilled water, use Additive TDS = 0.00.
                 </p>
                 <div className="row">
                     <div className="col-sm">
                         <FixedUnitInput
                             inputLabel="Current TDS"
                             number={this.state.currentTDS}
-                            onChange={val =>
-                                this.setState({ currentTDS: Number(val) })
-                            }
+                            onChange={val => this.setState({ currentTDS: Number(val) })}
                             unit="ppm TDS"
                         />
                         <GenericInput
                             inputLabel="Current Volume"
-                            onChange={val =>
-                                this.setState({ currentVol: Number(val) })
-                            }
+                            onChange={val => this.setState({ currentVol: Number(val) })}
                             conversionFactors={ConversionFactors.volume}
                             number={this.state.currentVol}
                         />
                         <FixedUnitInput
                             inputLabel="Target TDS"
                             number={this.state.targetTDS}
-                            onChange={val =>
-                                this.setState({ targetTDS: Number(val) })
-                            }
+                            onChange={val => this.setState({ targetTDS: Number(val) })}
                             unit="ppm TDS"
                         />
                         <FixedUnitInput
                             inputLabel="Additive TDS"
                             number={this.state.additiveTDS}
-                            onChange={val =>
-                                this.setState({ additiveTDS: Number(val) })
-                            }
+                            onChange={val => this.setState({ additiveTDS: Number(val) })}
                             unit="ppm TDS"
                         />
                     </div>

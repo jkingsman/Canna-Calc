@@ -1,10 +1,6 @@
 import React from "react";
 
-import {
-    FixedUnitInput,
-    GenericInput,
-    GenericOutput,
-} from "app/calculators/components/io";
+import { FixedUnitInput, GenericInput, GenericOutput } from "app/calculators/components/io";
 import ConversionFactors from "app/utils/conversion_factors";
 
 export default class YieldDryWetCalculator extends React.Component {
@@ -21,15 +17,9 @@ export default class YieldDryWetCalculator extends React.Component {
 
     getYield() {
         return [
-            this.state.minOz *
-                this.state.plantCount *
-                (1 - this.state.dryingLossPercentage / 100),
-            this.state.avgOz *
-                this.state.plantCount *
-                (1 - this.state.dryingLossPercentage / 100),
-            this.state.maxOz *
-                this.state.plantCount *
-                (1 - this.state.dryingLossPercentage / 100),
+            this.state.minOz * this.state.plantCount * (1 - this.state.dryingLossPercentage / 100),
+            this.state.avgOz * this.state.plantCount * (1 - this.state.dryingLossPercentage / 100),
+            this.state.maxOz * this.state.plantCount * (1 - this.state.dryingLossPercentage / 100),
         ];
     }
 
@@ -37,40 +27,32 @@ export default class YieldDryWetCalculator extends React.Component {
         return (
             <div className="container">
                 <p>
-                    Compute min, avg., and max theoretical yields given a number
-                    of plants based on harvest-time weights.
+                    Compute min, avg., and max theoretical yields given a number of plants based on
+                    harvest-time weights.
                 </p>
                 <div className="row">
                     <div className="col-sm">
                         <GenericInput
                             inputLabel="Min Wet Yield/Plant"
-                            onChange={val =>
-                                this.setState({ minOz: Number(val) })
-                            }
+                            onChange={val => this.setState({ minOz: Number(val) })}
                             conversionFactors={ConversionFactors.basicWeight}
                             number={this.state.minOz}
                         />
                         <GenericInput
                             inputLabel="Avg Wet Yield/Plant"
-                            onChange={val =>
-                                this.setState({ avgOz: Number(val) })
-                            }
+                            onChange={val => this.setState({ avgOz: Number(val) })}
                             conversionFactors={ConversionFactors.basicWeight}
                             number={this.state.avgOz}
                         />
                         <GenericInput
                             inputLabel="Max Wet Yield/Plant"
-                            onChange={val =>
-                                this.setState({ maxOz: Number(val) })
-                            }
+                            onChange={val => this.setState({ maxOz: Number(val) })}
                             conversionFactors={ConversionFactors.basicWeight}
                             number={this.state.maxOz}
                         />
                         <FixedUnitInput
                             inputLabel="Plant Count"
-                            onChange={val =>
-                                this.setState({ plantCount: Number(val) })
-                            }
+                            onChange={val => this.setState({ plantCount: Number(val) })}
                             number={this.state.plantCount}
                             unit="plants"
                         />
@@ -107,10 +89,9 @@ export default class YieldDryWetCalculator extends React.Component {
                     </div>
                 </div>
                 <i>
-                    *This percentage is the amount of dry plant matter compared
-                    to wet -- e.g. 30 grams dry from 100 grams wet would mean a
-                    70% Drying Loss. Use our Percentage Change calculator to
-                    input expected dry and wet values to arrive at this number
+                    *This percentage is the amount of dry plant matter compared to wet -- e.g. 30
+                    grams dry from 100 grams wet would mean a 70% Drying Loss. Use our Percentage
+                    Change calculator to input expected dry and wet values to arrive at this number
                 </i>
             </div>
         );

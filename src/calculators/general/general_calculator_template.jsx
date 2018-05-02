@@ -32,9 +32,9 @@ export default class GeneralCalculatorTemplate extends React.Component {
 
     getSplitResult() {
         const splitResult = this.state.resultNumber / this.state.splitFactor;
-        const roundedResultWithUnit = `${defaultRound(
-            splitResult
-        ).toString()} ${this.state.resultUnit}`;
+        const roundedResultWithUnit = `${defaultRound(splitResult).toString()} ${
+            this.state.resultUnit
+        }`;
         return roundedResultWithUnit;
     }
 

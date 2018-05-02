@@ -23,9 +23,7 @@ export default class NpkToTDS extends React.Component {
     getP() {
         const percent = this.state.mlPerL * 10;
         const elementalPhosphorusInP2O5 = 0.43641;
-        return (
-            this.state.p * elementalPhosphorusInP2O5 * percent * this.state.sg
-        );
+        return this.state.p * elementalPhosphorusInP2O5 * percent * this.state.sg;
     }
 
     getK() {
@@ -38,9 +36,8 @@ export default class NpkToTDS extends React.Component {
         return (
             <div>
                 <p>
-                    Assumes elementals present as N, P₂O₅ and K₂O. For true
-                    elemental P & K, multiply by 2.2914 and 1.2046 respectively
-                    to correct.
+                    Assumes elementals present as N, P₂O₅ and K₂O. For true elemental P & K,
+                    multiply by 2.2914 and 1.2046 respectively to correct.
                 </p>
                 <div className="row">
                     <div className="col-sm">
@@ -65,9 +62,7 @@ export default class NpkToTDS extends React.Component {
                         <FixedUnitInput
                             inputLabel="Added Amount"
                             number={this.state.mlPerL}
-                            onChange={val =>
-                                this.setState({ mlPerL: Number(val) })
-                            }
+                            onChange={val => this.setState({ mlPerL: Number(val) })}
                             unit="ml/liter"
                         />
                         <FixedUnitInput
@@ -95,16 +90,14 @@ export default class NpkToTDS extends React.Component {
                         />
                         <FixedUnitOutput
                             outputLabel="Total"
-                            number={defaultRound(
-                                this.getN() + this.getP() + this.getK()
-                            )}
+                            number={defaultRound(this.getN() + this.getP() + this.getK())}
                             unit="PPM TDS"
                         />
                     </div>
                 </div>
                 <i>
-                    *In cases of a %w/v solution, enter the specific gravity of
-                    the fertilizer to correct for non-1.0 S.G. conversions.
+                    *In cases of a %w/v solution, enter the specific gravity of the fertilizer to
+                    correct for non-1.0 S.G. conversions.
                 </i>
             </div>
         );

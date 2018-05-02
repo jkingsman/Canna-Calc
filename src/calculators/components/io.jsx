@@ -248,9 +248,7 @@ export class GenericInput extends React.Component {
             return;
         }
 
-        const result = this.props.conversionFactors.to[this.state.unit](
-            this.state.number
-        );
+        const result = this.props.conversionFactors.to[this.state.unit](this.state.number);
         this.setState({
             result: result,
         });
@@ -269,13 +267,11 @@ export class GenericInput extends React.Component {
             return null;
         }
 
-        let selectOptions = Object.keys(this.props.conversionFactors.to).map(
-            unit => (
-                <option value={unit} key={"unitSelect" + newId()}>
-                    {unit}
-                </option>
-            )
-        );
+        let selectOptions = Object.keys(this.props.conversionFactors.to).map(unit => (
+            <option value={unit} key={"unitSelect" + newId()}>
+                {unit}
+            </option>
+        ));
 
         return (
             <select
@@ -373,9 +369,8 @@ export class GenericOutput extends React.Component {
 
     generateFinalResult() {
         const result =
-            this.state.conversionFactors.from[this.state.unit](
-                this.state.originalNumber
-            ) / this.state.splitFactor;
+            this.state.conversionFactors.from[this.state.unit](this.state.originalNumber) /
+            this.state.splitFactor;
         this.setState({
             outputNumber: defaultRound(result),
         });
@@ -394,13 +389,11 @@ export class GenericOutput extends React.Component {
             return null;
         }
 
-        let selectOptions = Object.keys(this.state.conversionFactors.from).map(
-            unit => (
-                <option value={unit} key={"unitSelect" + newId()}>
-                    {unit}
-                </option>
-            )
-        );
+        let selectOptions = Object.keys(this.state.conversionFactors.from).map(unit => (
+            <option value={unit} key={"unitSelect" + newId()}>
+                {unit}
+            </option>
+        ));
 
         return (
             <select

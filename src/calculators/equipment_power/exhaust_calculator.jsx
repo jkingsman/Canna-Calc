@@ -1,10 +1,6 @@
 import React from "react";
 
-import {
-    GenericInput,
-    FixedUnitInput,
-    FixedUnitOutput,
-} from "app/calculators/components/io";
+import { GenericInput, FixedUnitInput, FixedUnitOutput } from "app/calculators/components/io";
 import ConversionFactors from "app/utils/conversion_factors";
 import { defaultRound } from "app/utils/math";
 
@@ -40,17 +36,14 @@ export default class ExhaustCalculator extends React.Component {
         return (
             <div className="container">
                 <p>
-                    Note that this is for pure airflow; this does not account
-                    for pressure lost due to bends in ducting, dust, etc. which
-                    is highly duct- and layout-specific.
+                    Note that this is for pure airflow; this does not account for pressure lost due
+                    to bends in ducting, dust, etc. which is highly duct- and layout-specific.
                 </p>
                 <div className="row">
                     <div className="col-sm">
                         <GenericInput
                             inputLabel="Room Width"
-                            onChange={val =>
-                                this.setState({ growSpaceWidthFt: Number(val) })
-                            }
+                            onChange={val => this.setState({ growSpaceWidthFt: Number(val) })}
                             conversionFactors={ConversionFactors.basicDistance}
                             number={this.state.growSpaceWidthFt}
                         />
@@ -76,17 +69,13 @@ export default class ExhaustCalculator extends React.Component {
                         />
                         <FixedUnitInput
                             inputLabel="Fan Count"
-                            onChange={val =>
-                                this.setState({ fanCount: Number(val) })
-                            }
+                            onChange={val => this.setState({ fanCount: Number(val) })}
                             number={this.state.fanCount}
                             unit="fans"
                         />
                         <FixedUnitInput
                             inputLabel="Exchange Time"
-                            onChange={val =>
-                                this.setState({ exchangeTime: Number(val) })
-                            }
+                            onChange={val => this.setState({ exchangeTime: Number(val) })}
                             number={this.state.exchangeTime}
                             unit="minutes to total air flush"
                         />

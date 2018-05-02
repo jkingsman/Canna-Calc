@@ -15,11 +15,7 @@ export default class WaterCalculator extends React.Component {
     }
 
     getGallonsPerDay() {
-        return (
-            this.state.gphPerPlant *
-            this.state.hoursOnPerDay *
-            this.state.plantCount
-        );
+        return this.state.gphPerPlant * this.state.hoursOnPerDay * this.state.plantCount;
     }
 
     getCubicFeetPerDay() {
@@ -33,42 +29,31 @@ export default class WaterCalculator extends React.Component {
     render() {
         return (
             <div className="container">
-                <p>
-                    Determine water usage and cost for a given number of plants
-                    and flow rate
-                </p>
+                <p>Determine water usage and cost for a given number of plants and flow rate</p>
                 <hr />
                 <div className="row">
                     <div className="col-sm">
                         <FixedUnitInput
                             inputLabel="Water Rate per Plant"
-                            onChange={val =>
-                                this.setState({ gphPerPlant: Number(val) })
-                            }
+                            onChange={val => this.setState({ gphPerPlant: Number(val) })}
                             number={this.state.gphPerPlant}
                             unit="gal/hr (GPH)"
                         />
                         <FixedUnitInput
                             inputLabel="Hours On per Day"
-                            onChange={val =>
-                                this.setState({ hoursOnPerDay: Number(val) })
-                            }
+                            onChange={val => this.setState({ hoursOnPerDay: Number(val) })}
                             number={this.state.hoursOnPerDay}
                             unit="hours"
                         />
                         <FixedUnitInput
                             inputLabel="Plant Count"
-                            onChange={val =>
-                                this.setState({ plantCount: Number(val) })
-                            }
+                            onChange={val => this.setState({ plantCount: Number(val) })}
                             number={this.state.plantCount}
                             unit="plants"
                         />
                         <FixedUnitInput
                             inputLabel="Water Cost"
-                            onChange={val =>
-                                this.setState({ waterCost: Number(val) })
-                            }
+                            onChange={val => this.setState({ waterCost: Number(val) })}
                             number={this.state.waterCost}
                             unit="dollars per ft³"
                         />

@@ -40,25 +40,21 @@ export default class ExtractionEfficiency extends React.Component {
         return (
             <div className="container">
                 <p>
-                    When making extracts, the efficiency of the process (how
-                    much extract is produced per unit of feedstock) is
-                    important, but far overshadowed by extraction efficiency --
-                    how much of the THC present in the feedstock makes it into
-                    the extract. For example, a process may produce less extract
-                    but contain a higher concentration of THC than a different
-                    process since it pulls more THC and less waste (chlorophyll,
-                    etc.) from the plant. Extraction efficiency determines the
-                    percentage of THC extracted, producing a more reliable
-                    metric for evaluating extraction processes.
+                    When making extracts, the efficiency of the process (how much extract is
+                    produced per unit of feedstock) is important, but far overshadowed by extraction
+                    efficiency -- how much of the THC present in the feedstock makes it into the
+                    extract. For example, a process may produce less extract but contain a higher
+                    concentration of THC than a different process since it pulls more THC and less
+                    waste (chlorophyll, etc.) from the plant. Extraction efficiency determines the
+                    percentage of THC extracted, producing a more reliable metric for evaluating
+                    extraction processes.
                 </p>
                 <hr />
                 <div className="row">
                     <div className="col-sm">
                         <GenericInput
                             inputLabel="Feedstock Weight"
-                            onChange={val =>
-                                this.setState({ feedWeight: Number(val) })
-                            }
+                            onChange={val => this.setState({ feedWeight: Number(val) })}
                             conversionFactors={ConversionFactors.weight}
                             number={this.state.feedWeight}
                         />
@@ -74,9 +70,7 @@ export default class ExtractionEfficiency extends React.Component {
                         />
                         <GenericInput
                             inputLabel="Extract Quantity"
-                            onChange={val =>
-                                this.setState({ extractWeight: Number(val) })
-                            }
+                            onChange={val => this.setState({ extractWeight: Number(val) })}
                             conversionFactors={ConversionFactors.weight}
                             number={this.state.extractWeight}
                         />

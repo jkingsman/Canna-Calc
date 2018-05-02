@@ -36,8 +36,8 @@ export default class pHConverter extends React.Component {
         return (
             <div>
                 <p>
-                    Adjust pH of solution up or down with a known additive pH.
-                    Some common additive pHs:
+                    Adjust pH of solution up or down with a known additive pH. Some common additive
+                    pHs:
                 </p>
                 <table>
                     <thead>
@@ -71,56 +71,42 @@ export default class pHConverter extends React.Component {
                         <FixedUnitInput
                             inputLabel="Start pH"
                             number={this.state.startpH}
-                            onChange={val =>
-                                this.setState({ startpH: Number(val) })
-                            }
+                            onChange={val => this.setState({ startpH: Number(val) })}
                             unit=""
                         />
                         <GenericInput
                             inputLabel="Start Volume"
-                            onChange={val =>
-                                this.setState({ startVolume: Number(val) })
-                            }
+                            onChange={val => this.setState({ startVolume: Number(val) })}
                             conversionFactors={ConversionFactors.volume}
                             number={this.state.startVolume}
                         />
                         <FixedUnitInput
                             inputLabel="Desired pH"
                             number={this.state.desiredpH}
-                            onChange={val =>
-                                this.setState({ desiredpH: Number(val) })
-                            }
+                            onChange={val => this.setState({ desiredpH: Number(val) })}
                             unit=""
                         />
                         <FixedUnitInput
                             inputLabel="Adjuster pH"
                             number={this.state.additivepH}
-                            onChange={val =>
-                                this.setState({ additivepH: Number(val) })
-                            }
+                            onChange={val => this.setState({ additivepH: Number(val) })}
                             unit=""
                         />
                     </div>
                     <div className="col-sm">
                         <FixedUnitOutput
                             outputLabel="Start Mol."
-                            number={
-                                Math.pow(10, this.state.startpH * -1) / 1e-6
-                            }
+                            number={Math.pow(10, this.state.startpH * -1) / 1e-6}
                             unit="µmol"
                         />
                         <FixedUnitOutput
                             outputLabel="Additive Mol."
-                            number={
-                                Math.pow(10, this.state.additivepH * -1) / 1e-6
-                            }
+                            number={Math.pow(10, this.state.additivepH * -1) / 1e-6}
                             unit="µmol"
                         />
                         <FixedUnitOutput
                             outputLabel="Desire Mol."
-                            number={
-                                Math.pow(10, this.state.desiredpH * -1) / 1e-6
-                            }
+                            number={Math.pow(10, this.state.desiredpH * -1) / 1e-6}
                             unit="µmol"
                         />
                         <GenericOutput

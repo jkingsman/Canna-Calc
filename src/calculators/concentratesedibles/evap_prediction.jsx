@@ -35,17 +35,14 @@ export default class EvapPrediction extends React.Component {
         return (
             <div className="container">
                 <p>
-                    To use this calculator, measure the weight of the solvent
-                    you are using before introducing it to the cannabis. After a
-                    time, weigh it again and note the new weight. Estimate the
-                    rough yield of product you expect as a correction factor (or
-                    measure the weight of the solvent before and after cannabis
-                    contact for a more precise value), and then this calculator
-                    will predict (assuming a linear evaporation rate) the rough
-                    amount of time it will take for the remaining solvent to
-                    evaporate. Please not that this is very imprecise and should
-                    only be used for vauge estimages; true solvent evaporation
-                    is not always linear
+                    To use this calculator, measure the weight of the solvent you are using before
+                    introducing it to the cannabis. After a time, weigh it again and note the new
+                    weight. Estimate the rough yield of product you expect as a correction factor
+                    (or measure the weight of the solvent before and after cannabis contact for a
+                    more precise value), and then this calculator will predict (assuming a linear
+                    evaporation rate) the rough amount of time it will take for the remaining
+                    solvent to evaporate. Please not that this is very imprecise and should only be
+                    used for vauge estimages; true solvent evaporation is not always linear
                 </p>
                 <hr />
                 <div className="row">
@@ -62,25 +59,19 @@ export default class EvapPrediction extends React.Component {
                         />
                         <GenericInput
                             inputLabel="Current Solvent Weight"
-                            onChange={val =>
-                                this.setState({ weightAfterTime: Number(val) })
-                            }
+                            onChange={val => this.setState({ weightAfterTime: Number(val) })}
                             conversionFactors={ConversionFactors.basicWeight}
                             number={this.state.weightAfterTime}
                         />
                         <GenericInput
                             inputLabel="Time Since Start"
-                            onChange={val =>
-                                this.setState({ time: Number(val) })
-                            }
+                            onChange={val => this.setState({ time: Number(val) })}
                             conversionFactors={ConversionFactors.basicTime}
                             number={this.state.time}
                         />
                         <GenericInput
                             inputLabel="Estimated Yield"
-                            onChange={val =>
-                                this.setState({ expectedYield: Number(val) })
-                            }
+                            onChange={val => this.setState({ expectedYield: Number(val) })}
                             conversionFactors={ConversionFactors.basicWeight}
                             number={this.state.expectedYield}
                         />

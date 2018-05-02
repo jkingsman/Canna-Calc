@@ -39,7 +39,7 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(),
         new ManifestPlugin(),
         new PrettierPlugin({
-            printWidth: 80,
+            printWidth: 100,
             tabWidth: 4,
             trailingComma: 'es5',
             extensions: [".js", ".jsx"],

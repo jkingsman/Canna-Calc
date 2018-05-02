@@ -21,12 +21,7 @@ export default class AmperageCalculator extends React.Component {
     }
 
     getKWhPerDay() {
-        return (
-            this.state.watts *
-            this.state.hoursOnPerDay *
-            this.state.lightCount /
-            1000
-        );
+        return this.state.watts * this.state.hoursOnPerDay * this.state.lightCount / 1000;
     }
 
     getCostPerDay() {
@@ -38,14 +33,12 @@ export default class AmperageCalculator extends React.Component {
             <div className="container">
                 <p>
                     <strong>Important note: </strong>
-                    the wattage referred to here is not the light output wattage
-                    (i.e. how bright the lights are). This is wattage in the
-                    true sense of power consumed by the lights. This information
-                    can usually be found in the datasheet for your lights. If no
-                    wattage is found, you can calculate it by multiplying the
-                    amperage the lights consume by the voltage (usually 120 in
-                    the US). For example, a light consuming 5 amps of power
-                    would consume 600 watts (5 amps * 120 volts).
+                    the wattage referred to here is not the light output wattage (i.e. how bright
+                    the lights are). This is wattage in the true sense of power consumed by the
+                    lights. This information can usually be found in the datasheet for your lights.
+                    If no wattage is found, you can calculate it by multiplying the amperage the
+                    lights consume by the voltage (usually 120 in the US). For example, a light
+                    consuming 5 amps of power would consume 600 watts (5 amps * 120 volts).
                 </p>
                 <p>Month assumes 31 days.</p>
                 <hr />
@@ -53,41 +46,31 @@ export default class AmperageCalculator extends React.Component {
                     <div className="col-sm">
                         <FixedUnitInput
                             inputLabel="Single Light Wattage"
-                            onChange={val =>
-                                this.setState({ watts: Number(val) })
-                            }
+                            onChange={val => this.setState({ watts: Number(val) })}
                             number={this.state.watts}
                             unit="watts"
                         />
                         <FixedUnitInput
                             inputLabel="Voltage"
-                            onChange={val =>
-                                this.setState({ voltage: Number(val) })
-                            }
+                            onChange={val => this.setState({ voltage: Number(val) })}
                             number={this.state.voltage}
                             unit="volts"
                         />
                         <FixedUnitInput
                             inputLabel="Dollar Cost per kWh"
-                            onChange={val =>
-                                this.setState({ kWhCost: Number(val) })
-                            }
+                            onChange={val => this.setState({ kWhCost: Number(val) })}
                             number={this.state.kWhCost}
                             unit="dollars"
                         />
                         <FixedUnitInput
                             inputLabel="Hours On per Day"
-                            onChange={val =>
-                                this.setState({ hoursOnPerDay: Number(val) })
-                            }
+                            onChange={val => this.setState({ hoursOnPerDay: Number(val) })}
                             number={this.state.hoursOnPerDay}
                             unit="hours"
                         />
                         <FixedUnitInput
                             inputLabel="Light Count"
-                            onChange={val =>
-                                this.setState({ lightCount: Number(val) })
-                            }
+                            onChange={val => this.setState({ lightCount: Number(val) })}
                             number={this.state.lightCount}
                             unit="plants"
                         />

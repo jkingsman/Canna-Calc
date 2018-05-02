@@ -51,9 +51,7 @@ export default class SoilCalculator extends React.Component {
                         />
                         <GenericInput
                             inputLabel="Soil 1 Amt./Pot"
-                            onChange={val =>
-                                this.setState({ medium1Amt: Number(val) })
-                            }
+                            onChange={val => this.setState({ medium1Amt: Number(val) })}
                             conversionFactors={ConversionFactors.basicVolume}
                             number={this.state.medium1Amt}
                         />
@@ -65,9 +63,7 @@ export default class SoilCalculator extends React.Component {
                         />
                         <GenericInput
                             inputLabel="Soil 2 Amt./Pot"
-                            onChange={val =>
-                                this.setState({ medium2Amt: Number(val) })
-                            }
+                            onChange={val => this.setState({ medium2Amt: Number(val) })}
                             conversionFactors={ConversionFactors.basicVolume}
                             number={this.state.medium2Amt}
                         />
@@ -79,9 +75,7 @@ export default class SoilCalculator extends React.Component {
                         />
                         <GenericInput
                             inputLabel="Soil 3 Amt./Pot"
-                            onChange={val =>
-                                this.setState({ medium3Amt: Number(val) })
-                            }
+                            onChange={val => this.setState({ medium3Amt: Number(val) })}
                             conversionFactors={ConversionFactors.basicVolume}
                             number={this.state.medium3Amt}
                         />
@@ -93,9 +87,7 @@ export default class SoilCalculator extends React.Component {
                         />
                         <GenericInput
                             inputLabel="Soil 4 Amt./Pot"
-                            onChange={val =>
-                                this.setState({ medium4Amt: Number(val) })
-                            }
+                            onChange={val => this.setState({ medium4Amt: Number(val) })}
                             conversionFactors={ConversionFactors.basicVolume}
                             number={this.state.medium4Amt}
                         />
@@ -107,17 +99,13 @@ export default class SoilCalculator extends React.Component {
                         />
                         <GenericInput
                             inputLabel="Soil 5 Amt./Pot"
-                            onChange={val =>
-                                this.setState({ medium5Amt: Number(val) })
-                            }
+                            onChange={val => this.setState({ medium5Amt: Number(val) })}
                             conversionFactors={ConversionFactors.basicVolume}
                             number={this.state.medium5Amt}
                         />
                         <FixedUnitInput
                             inputLabel="Pot Count"
-                            onChange={val =>
-                                this.setState({ potCount: Number(val) })
-                            }
+                            onChange={val => this.setState({ potCount: Number(val) })}
                             number={this.state.potCount}
                             unit="pots"
                         />

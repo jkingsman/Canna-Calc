@@ -237,9 +237,7 @@ export default class CalculatorContainer extends React.Component {
                 {this.isSearching() ? (
                     ""
                 ) : (
-                    <h5 className="group-header">
-                        Growing (Equipment &amp; Power)
-                    </h5>
+                    <h5 className="group-header">Growing (Equipment &amp; Power)</h5>
                 )}
                 <CardTemplate
                     id="lighting"
@@ -298,9 +296,7 @@ export default class CalculatorContainer extends React.Component {
                 {this.isSearching() ? (
                     ""
                 ) : (
-                    <h5 className="group-header">
-                        Growing (Plants &amp; Consumables)
-                    </h5>
+                    <h5 className="group-header">Growing (Plants &amp; Consumables)</h5>
                 )}
                 <CardTemplate
                     id="growthTimeline"
@@ -383,11 +379,7 @@ export default class CalculatorContainer extends React.Component {
                 >
                     <YieldDryWetCalculator />
                 </CardTemplate>
-                {this.isSearching() ? (
-                    ""
-                ) : (
-                    <h5 className="group-header">Edibles & Concentrates</h5>
-                )}
+                {this.isSearching() ? "" : <h5 className="group-header">Edibles & Concentrates</h5>}
                 <CardTemplate
                     id="ediblePotency"
                     keywords="thc potency mg milligrams grams ml ejuice vape vaporizer liquid wax oil concentrate extract baking cannaoil cannabutter servings size medibles"
@@ -396,13 +388,11 @@ export default class CalculatorContainer extends React.Component {
                     parentID="mainAccordion"
                 >
                     <p>
-                        Note that these calculators do not take into account
-                        THCa to THC weight loss; to correct for this, use our
-                        Decarboxylation Loss calculator to adjust Product Weight
-                        or multiply your potency by .877. This assumes perfect
-                        yield (e.g. all THC is removed from plant material) and
-                        is therefore most accurate for oils baked into the
-                        goods.
+                        Note that these calculators do not take into account THCa to THC weight
+                        loss; to correct for this, use our Decarboxylation Loss calculator to adjust
+                        Product Weight or multiply your potency by .877. This assumes perfect yield
+                        (e.g. all THC is removed from plant material) and is therefore most accurate
+                        for oils baked into the goods.
                     </p>
                     <hr />
                     <VariableServingPotency />
@@ -421,10 +411,9 @@ export default class CalculatorContainer extends React.Component {
                     parentID="mainAccordion"
                 >
                     <p>
-                        Choose the appropriate calculator section for your
-                        units. mg and g are used as standard analyte units; if
-                        your starting values are in a different unit, use our
-                        Weight Conversion calculator.
+                        Choose the appropriate calculator section for your units. mg and g are used
+                        as standard analyte units; if your starting values are in a different unit,
+                        use our Weight Conversion calculator.
                     </p>
                     <hr />
                     <PercentageToMG />

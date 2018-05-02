@@ -26,22 +26,15 @@ export default class CapsuleCalculator extends React.Component {
     }
 
     getCannabinoids() {
-        const mlTHCInExtract =
-            this.state.testTHC / 100 * this.state.concentrateVol;
-        const mlTHCaInExtract =
-            this.state.testTHCa / 100 * this.state.concentrateVol;
-        const mlDelta8THCInExtract =
-            this.state.testDelta8THC / 100 * this.state.concentrateVol;
-        const mlCBDInExtract =
-            this.state.testCBD / 100 * this.state.concentrateVol;
-        const mlCBNInExtract =
-            this.state.testCBN / 100 * this.state.concentrateVol;
-        const mlCBGInExtract =
-            this.state.testCBG / 100 * this.state.concentrateVol;
+        const mlTHCInExtract = this.state.testTHC / 100 * this.state.concentrateVol;
+        const mlTHCaInExtract = this.state.testTHCa / 100 * this.state.concentrateVol;
+        const mlDelta8THCInExtract = this.state.testDelta8THC / 100 * this.state.concentrateVol;
+        const mlCBDInExtract = this.state.testCBD / 100 * this.state.concentrateVol;
+        const mlCBNInExtract = this.state.testCBN / 100 * this.state.concentrateVol;
+        const mlCBGInExtract = this.state.testCBG / 100 * this.state.concentrateVol;
 
         const capsulePercentOfTotalMix =
-            this.state.containerVol /
-            (this.state.fillerVol + this.state.concentrateVol);
+            this.state.containerVol / (this.state.fillerVol + this.state.concentrateVol);
         return [
             mlTHCInExtract * capsulePercentOfTotalMix,
             mlTHCaInExtract * capsulePercentOfTotalMix,
@@ -55,83 +48,62 @@ export default class CapsuleCalculator extends React.Component {
     render() {
         return (
             <div className="container">
-                <p>
-                    Calculate capsule or cartridge cannabinoid based on
-                    laboratory analysis.
-                </p>
+                <p>Calculate capsule or cartridge cannabinoid based on laboratory analysis.</p>
                 <hr />
                 <div className="row">
                     <div className="col-sm">
                         <GenericInput
                             inputLabel="Concentrate Vol.*"
-                            onChange={val =>
-                                this.setState({ concentrateVol: Number(val) })
-                            }
+                            onChange={val => this.setState({ concentrateVol: Number(val) })}
                             conversionFactors={ConversionFactors.tinyVolume}
                             number={this.state.concentrateVol}
                         />
                         <GenericInput
                             inputLabel="Filler Vol."
-                            onChange={val =>
-                                this.setState({ fillerVol: Number(val) })
-                            }
+                            onChange={val => this.setState({ fillerVol: Number(val) })}
                             conversionFactors={ConversionFactors.tinyVolume}
                             number={this.state.fillerVol}
                         />
                         <GenericInput
                             inputLabel="Capsule/Cartridge Vol."
-                            onChange={val =>
-                                this.setState({ containerVol: Number(val) })
-                            }
+                            onChange={val => this.setState({ containerVol: Number(val) })}
                             conversionFactors={ConversionFactors.tinyVolume}
                             number={this.state.containerVol}
                         />
                         <h5>Extract Test Results</h5>
                         <FixedUnitInput
                             inputLabel="THC"
-                            onChange={val =>
-                                this.setState({ testTHC: Number(val) })
-                            }
+                            onChange={val => this.setState({ testTHC: Number(val) })}
                             number={this.state.testTHC}
                             unit="%"
                         />
                         <FixedUnitInput
                             inputLabel="THCa"
-                            onChange={val =>
-                                this.setState({ testTHCa: Number(val) })
-                            }
+                            onChange={val => this.setState({ testTHCa: Number(val) })}
                             number={this.state.testTHCa}
                             unit="%"
                         />
                         <FixedUnitInput
                             inputLabel="Δ-8 THC"
-                            onChange={val =>
-                                this.setState({ testDelta8THC: Number(val) })
-                            }
+                            onChange={val => this.setState({ testDelta8THC: Number(val) })}
                             number={this.state.testDelta8THC}
                             unit="%"
                         />
                         <FixedUnitInput
                             inputLabel="CBD"
-                            onChange={val =>
-                                this.setState({ testCBD: Number(val) })
-                            }
+                            onChange={val => this.setState({ testCBD: Number(val) })}
                             number={this.state.testCBD}
                             unit="%"
                         />
                         <FixedUnitInput
                             inputLabel="CBN"
-                            onChange={val =>
-                                this.setState({ testCBN: Number(val) })
-                            }
+                            onChange={val => this.setState({ testCBN: Number(val) })}
                             number={this.state.testCBN}
                             unit="%"
                         />
                         <FixedUnitInput
                             inputLabel="CBG"
-                            onChange={val =>
-                                this.setState({ testCBG: Number(val) })
-                            }
+                            onChange={val => this.setState({ testCBG: Number(val) })}
                             number={this.state.testCBG}
                             unit="%"
                         />
@@ -177,8 +149,7 @@ export default class CapsuleCalculator extends React.Component {
                             outputLabel="Cap/Cart Cannabinoids*"
                             number={defaultRound(
                                 this.getCannabinoids().reduce(
-                                    (accumulator, currentValue) =>
-                                        accumulator + currentValue
+                                    (accumulator, currentValue) => accumulator + currentValue
                                 )
                             )}
                             conversionFactors={ConversionFactors.tinyVolume}
@@ -187,16 +158,15 @@ export default class CapsuleCalculator extends React.Component {
                         <FixedUnitOutput
                             outputLabel="Caps/Carts Made"
                             number={defaultRound(
-                                (this.state.concentrateVol +
-                                    this.state.fillerVol) /
+                                (this.state.concentrateVol + this.state.fillerVol) /
                                     this.state.containerVol
                             )}
                             units="units"
                         />
                     </div>
                     <i>
-                        *1 mL ≈ 1 g for water, which can be used as an
-                        approximate conversion if exact volume is not known.
+                        *1 mL ≈ 1 g for water, which can be used as an approximate conversion if
+                        exact volume is not known.
                     </i>
                 </div>
             </div>

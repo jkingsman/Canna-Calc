@@ -15,10 +15,7 @@ export default class CardTemplate extends React.Component {
     }
 
     toggleHash() {
-        if (
-            window.location.hash.length < 1 ||
-            window.location.hash != `#${this.props.id}`
-        ) {
+        if (window.location.hash.length < 1 || window.location.hash != `#${this.props.id}`) {
             window.location.hash = this.props.id;
         } else {
             history.pushState(
@@ -37,9 +34,7 @@ export default class CardTemplate extends React.Component {
         return this.props.searchTerm
             .trim()
             .split(" ")
-            .every(singleTerm =>
-                this.props.keywords.includes(singleTerm.toLowerCase())
-            );
+            .every(singleTerm => this.props.keywords.includes(singleTerm.toLowerCase()));
     }
 
     render() {
@@ -61,9 +56,7 @@ export default class CardTemplate extends React.Component {
 
                     <div
                         id={"cardCollapse" + this.uniqueID}
-                        className={
-                            this.shouldShow() ? "collapse show" : "collapse"
-                        }
+                        className={this.shouldShow() ? "collapse show" : "collapse"}
                         aria-labelledby={"card" + this.uniqueID}
                         data-parent={`#${this.props.parentID}`}
                     >
@@ -80,10 +73,7 @@ CardTemplate.propTypes = {
     id: PropTypes.string,
     parentID: PropTypes.string,
     title: PropTypes.string,
-    children: PropTypes.oneOfType([
-        PropTypes.element,
-        PropTypes.arrayOf(PropTypes.element),
-    ]),
+    children: PropTypes.oneOfType([PropTypes.element, PropTypes.arrayOf(PropTypes.element)]),
     keywords: PropTypes.string,
     searchTerm: PropTypes.string,
 };

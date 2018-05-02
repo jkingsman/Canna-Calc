@@ -23,17 +23,13 @@ export default class CylinderCalculator extends React.Component {
                     <div className="col-sm">
                         <FixedUnitInput
                             inputLabel="Radius"
-                            onChange={val =>
-                                this.setState({ radius: Number(val) })
-                            }
+                            onChange={val => this.setState({ radius: Number(val) })}
                             number={this.state.radius}
                             unit="units"
                         />
                         <FixedUnitInput
                             inputLabel="Height*"
-                            onChange={val =>
-                                this.setState({ height: Number(val) })
-                            }
+                            onChange={val => this.setState({ height: Number(val) })}
                             number={this.state.height}
                             unit="units"
                         />
@@ -47,9 +43,9 @@ export default class CylinderCalculator extends React.Component {
                     </div>
                 </div>
                 <i>
-                    *When using cylinder volume to determine total ducting
-                    volume, use the total ducting length as the Height. For more
-                    in-depth ducting assistance, use our Ducting Calculator
+                    *When using cylinder volume to determine total ducting volume, use the total
+                    ducting length as the Height. For more in-depth ducting assistance, use our
+                    Ducting Calculator
                 </i>
             </div>
         );
