@@ -6,7 +6,7 @@
     "scripts": {
         "watch": "webpack-dev-server --config ./webpack.config.js --mode development",
         "build": "webpack-cli --config ./webpack.production.config.js",
-        "lint": "prettier --write --print-width 100 --tab-width 4 --trailing-comma es5 'src/**/*.{js,jsx}'",
+        "lint": "prettier --write 'src/**/*.{js,jsx}' '!src/static/**'",
         "test": "echo \"No test specified\" && exit 0"
     },
     "keywords": [],
