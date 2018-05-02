@@ -8,7 +8,7 @@ export default class CapsuleCalculator extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            concentrateVol: 5700,
+            concentrateVol: 5.7,
             fillerVol: 150,
             containerVol: 30,
             testTHC: 50,
@@ -64,7 +64,7 @@ export default class CapsuleCalculator extends React.Component {
                     <GenericOutput outputLabel="Cap/Cart Cannabinoids*" number={defaultRound(this.getCannabinoids().reduce((accumulator, currentValue) => accumulator + currentValue))} conversionFactors={ConversionFactors.tinyVolume} showSplitter={false}/>
                     <FixedUnitOutput outputLabel="Caps/Carts Made" number={defaultRound((this.state.concentrateVol + this.state.fillerVol) / this.state.containerVol)} units="units"/>
                 </div>
-                <i>*1 mL = 1 mg = .001 g for water, which can be used as an approximate conversion if exact volume is not known.</i>
+                <i>*1 mL ≈ 1 g for water, which can be used as an approximate conversion if exact volume is not known.</i>
             </div>
         </div>);
     }
