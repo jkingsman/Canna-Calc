@@ -340,14 +340,20 @@ const ConversionFactors = {
 
     conductivity: {
         to: {
-            // to get X to PPM TDS from...
-            'PPM TDS': (tds) => Number(tds),
-            'EC': (tds) => Number(tds) * 0.00156,
+            // to get X to EC (US) from...
+            'EC (US)': (ec) => Number(ec),
+            'EC (EU)': (ec) => Number(ec) / 0.78125,
+            'EC (AUS)': (ec) => Number(ec) / 0.714285714,
+            'CF': (ec) => Number(ec) / 10,
+            'PPM TDS': (ec) => Number(ec) / 500,
         },
         from: {
-            // to get X from PPM TDS into...
-            'PPM TDS': (tds) => Number(tds),
-            'EC': (tds) => Number(tds) * 0.00156,
+            // to get X from EC (US) into...
+            'EC (US)': (ec) => Number(ec),
+            'EC (EU)': (ec) => Number(ec) * 0.78125,
+            'EC (AUS)': (ec) => Number(ec) * 0.714285714,
+            'CF': (ec) => Number(ec) * 10,
+            'PPM TDS': (ec) => Number(ec) * 500,
         },
     },
 };
