@@ -171,7 +171,7 @@ export default class CalculatorContainer extends React.Component {
                 <SoilCalculator/>
             </CardTemplate>
 
-            <CardTemplate id="phCalculator" keywords="ph acid base buffer" searchTerm={this.state.searchTerm} title="pH Adjustment" parentID="mainAccordion">
+            <CardTemplate id="phCalculator" keywords="ph acid base buffer" searchTerm={this.state.searchTerm} title="pH/Water Adjustment" parentID="mainAccordion">
                 <PHCalculator/>
             </CardTemplate>
 
