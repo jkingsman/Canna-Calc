@@ -1,6 +1,9 @@
 import React from 'react';
 
-import {FreeInput, FreeOutput} from 'app/calculators/components/io';
+import {
+    FreeInput,
+    FreeOutput
+} from 'app/calculators/components/io';
 import dayjs from 'dayjs';
 
 export default class DateCalculator extends React.Component {
@@ -63,7 +66,7 @@ export default class DateCalculator extends React.Component {
         const original = dayjs(this.state.startDateStr + 'T' + this.state.startTimeStr + 'Z');
         let adjusted;
 
-        if(this.state.action === 'add'){
+        if (this.state.action === 'add') {
             adjusted = original.add(this.state.years, 'year').add(this.state.months, 'month').add(this.state.days, 'day').add(this.state.hours, 'hour').add(this.state.minutes, 'minute').add(this.state.seconds, 'second');
         } else {
             adjusted = original.subtract(this.state.years, 'year').subtract(this.state.months, 'month').subtract(this.state.days, 'day').subtract(this.state.hours, 'hour').subtract(this.state.minutes, 'minute').subtract(this.state.seconds, 'second');

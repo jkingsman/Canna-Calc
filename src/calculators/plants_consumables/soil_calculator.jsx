@@ -1,6 +1,11 @@
 import React from 'react';
 
-import {FreeInput, FixedUnitInput, GenericInput, GenericOutput} from 'app/calculators/components/io';
+import {
+    FreeInput,
+    FixedUnitInput,
+    GenericInput,
+    GenericOutput
+} from 'app/calculators/components/io';
 import ConversionFactors from 'app/utils/conversion_factors';
 
 export default class SoilCalculator extends React.Component {

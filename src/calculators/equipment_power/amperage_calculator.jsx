@@ -1,7 +1,13 @@
 import React from 'react';
 
-import {FixedUnitInput, FixedUnitOutput} from 'app/calculators/components/io';
-import {defaultRound, round} from 'app/utils/math';
+import {
+    FixedUnitInput,
+    FixedUnitOutput
+} from 'app/calculators/components/io';
+import {
+    defaultRound,
+    round
+} from 'app/utils/math';
 
 export default class AmperageCalculator extends React.Component {
     constructor(props) {

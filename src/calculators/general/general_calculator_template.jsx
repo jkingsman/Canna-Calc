@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import GenericCalculator from 'app/calculators/components/io';
-import {defaultRound} from 'app/utils/math';
+import {
+    defaultRound
+} from 'app/utils/math';
 
 export default class GeneralCalculatorTemplate extends React.Component {
     constructor(props) {
@@ -18,7 +20,10 @@ export default class GeneralCalculatorTemplate extends React.Component {
     }
 
     resultHandler(number, unit) {
-        this.setState({resultNumber: number, resultUnit: unit});
+        this.setState({
+            resultNumber: number,
+            resultUnit: unit
+        });
     }
 
     updateSplitFactor(ev) {

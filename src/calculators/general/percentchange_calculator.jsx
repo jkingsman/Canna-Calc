@@ -1,7 +1,12 @@
 import React from 'react';
 
-import {FixedUnitInput, FixedUnitOutput} from 'app/calculators/components/io';
-import {defaultRound} from 'app/utils/math';
+import {
+    FixedUnitInput,
+    FixedUnitOutput
+} from 'app/calculators/components/io';
+import {
+    defaultRound
+} from 'app/utils/math';
 
 export default class PercentChange extends React.Component {
     constructor(props) {

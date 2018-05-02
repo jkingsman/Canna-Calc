@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import newId from 'app/utils/unique_key';
-import {defaultRound} from 'app/utils/math';
+import {
+    defaultRound
+} from 'app/utils/math';
 
 export class FreeInput extends React.Component {
     constructor(props) {
@@ -199,7 +201,9 @@ export class GenericInput extends React.Component {
         }
 
         const result = this.props.conversionFactors.to[this.state.unit](this.state.number);
-        this.setState({result: result});
+        this.setState({
+            result: result
+        });
 
         this.props.onChange(result);
     }
@@ -291,7 +295,9 @@ export class GenericOutput extends React.Component {
 
     generateFinalResult() {
         const result = this.state.conversionFactors.from[this.state.unit](this.state.originalNumber) / this.state.splitFactor;
-        this.setState({outputNumber: defaultRound(result)});
+        this.setState({
+            outputNumber: defaultRound(result)
+        });
 
         this.props.resultHandler(defaultRound(result), this.state.unit);
     }
@@ -381,7 +387,9 @@ export default class GenericCalculator extends React.Component {
     }
 
     setNumber(number) {
-        this.setState({number: number});
+        this.setState({
+            number: number
+        });
     }
 
     render() {

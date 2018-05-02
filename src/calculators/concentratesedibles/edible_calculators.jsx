@@ -1,8 +1,15 @@
 import React from 'react';
 
-import {FixedUnitInput, GenericInput, FixedUnitOutput, GenericOutput} from 'app/calculators/components/io';
+import {
+    FixedUnitInput,
+    GenericInput,
+    FixedUnitOutput,
+    GenericOutput
+} from 'app/calculators/components/io';
 import ConversionFactors from 'app/utils/conversion_factors';
-import {defaultRound} from 'app/utils/math';
+import {
+    defaultRound
+} from 'app/utils/math';
 
 export class VariableServingPotency extends React.Component {
     constructor(props) {

@@ -1,6 +1,9 @@
 import React from 'react';
 
-import {GenericInput, FixedUnitOutput} from 'app/calculators/components/io';
+import {
+    GenericInput,
+    FixedUnitOutput
+} from 'app/calculators/components/io';
 import ConversionFactors from 'app/utils/conversion_factors';
 
 export default class LightingCalculator extends React.Component {

@@ -1,6 +1,10 @@
 import React from 'react';
 
-import {FreeInput, FixedUnitInput, FreeOutput} from 'app/calculators/components/io';
+import {
+    FreeInput,
+    FixedUnitInput,
+    FreeOutput
+} from 'app/calculators/components/io';
 import dayjs from 'dayjs';
 
 export default class GrowthTimeline extends React.Component {

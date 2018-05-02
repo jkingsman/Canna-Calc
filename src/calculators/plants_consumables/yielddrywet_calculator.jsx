@@ -1,6 +1,10 @@
 import React from 'react';
 
-import {FixedUnitInput, GenericInput, GenericOutput} from 'app/calculators/components/io';
+import {
+    FixedUnitInput,
+    GenericInput,
+    GenericOutput
+} from 'app/calculators/components/io';
 import ConversionFactors from 'app/utils/conversion_factors';
 
 export default class YieldDryWetCalculator extends React.Component {

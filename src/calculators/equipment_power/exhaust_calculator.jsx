@@ -1,8 +1,14 @@
 import React from 'react';
 
-import {GenericInput, FixedUnitInput, FixedUnitOutput} from 'app/calculators/components/io';
+import {
+    GenericInput,
+    FixedUnitInput,
+    FixedUnitOutput
+} from 'app/calculators/components/io';
 import ConversionFactors from 'app/utils/conversion_factors';
-import {defaultRound} from 'app/utils/math';
+import {
+    defaultRound
+} from 'app/utils/math';
 
 export default class ExhaustCalculator extends React.Component {
     constructor(props) {
