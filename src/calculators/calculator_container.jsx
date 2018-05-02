@@ -19,7 +19,7 @@ import WaterCalculator from 'app/calculators/equipment_power/water_calculator';
 import GrowthTimeline from 'app/calculators/plants_consumables/growth_timeline';
 import SoilCalculator from 'app/calculators/plants_consumables/soil_calculator';
 import PHCalculator from 'app/calculators/plants_consumables/ph_solution';
-import {NpkToTDSVol, NpkToTDSWeight} from 'app/calculators/plants_consumables/npkToTDS';
+import NpkToTDS from 'app/calculators/plants_consumables/npkToTDS';
 import YieldCalculator from 'app/calculators/plants_consumables/yield_calculator';
 import YieldDryWetCalculator from 'app/calculators/plants_consumables/yielddrywet_calculator';
 import PlantCount from 'app/calculators/plants_consumables/plantcount_calculator';
@@ -181,12 +181,8 @@ export default class CalculatorContainer extends React.Component {
                 <PHCalculator/>
             </CardTemplate>
 
-            <CardTemplate id="NPKtoTDSVol" keywords="npk tds ppm potassium nitrogen phosphorus" searchTerm={this.state.searchTerm} title="NPK to PPM TDS (%w/v)" parentID="mainAccordion">
-                <NpkToTDSVol/>
-            </CardTemplate>
-
-            <CardTemplate id="NPKtoTDSWeight" keywords="npk tds ppm potassium nitrogen phosphorus" searchTerm={this.state.searchTerm} title="NPK to PPM TDS (%w/w)" parentID="mainAccordion">
-                <NpkToTDSWeight/>
+            <CardTemplate id="NPKtoTDS" keywords="npk tds ppm potassium nitrogen phosphorus specific gravity" searchTerm={this.state.searchTerm} title="NPK to PPM TDS" parentID="mainAccordion">
+                <NpkToTDS/>
             </CardTemplate>
 
             <CardTemplate id="yieldCalculator" keywords="yield plants ounces oz grams pounds lbs harvest projection projected" searchTerm={this.state.searchTerm} title="General Crop Yield" parentID="mainAccordion">
