@@ -46,6 +46,10 @@ input[disabled] {
     min-width: 180px;
 }
 
+.text-muted {
+    color: #333e48 !important;
+}
+
 .card-header {
     padding: .5rem .75rem !important;
     cursor: pointer;
