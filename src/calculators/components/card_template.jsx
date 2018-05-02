@@ -1,8 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import debounce from "lodash/debounce";
-
 import newId from "app/utils/unique_key";
 
 export default class CardTemplate extends React.Component {
@@ -44,7 +42,7 @@ export default class CardTemplate extends React.Component {
                     <a name={this.props.id} />
                     <h6
                         className="card-header mb-0"
-                        onClick={debounce(this.toggleHash, 250)}
+                        onClick={this.toggleHash}
                         id={`card${this.uniqueID}`}
                         data-target={`#cardCollapse${this.uniqueID}`}
                         aria-controls={`cardCollapse${this.uniqueID}`}
