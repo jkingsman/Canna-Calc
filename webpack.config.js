@@ -51,6 +51,10 @@ module.exports = {
         new CopyWebpackPlugin([{
             from: 'src/static',
             to: 'static'
+        }]),
+        new CopyWebpackPlugin([{
+            from: 'src/index.html',
+            to: 'index.html'
         }])
     ],
     devtool: 'source-map',

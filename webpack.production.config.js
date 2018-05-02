@@ -33,12 +33,11 @@ module.exports = {
             from: 'src/static',
             to: 'static'
         }]),
-        new OfflinePlugin({
-            externals: [
-                '/',
-                '/index.html'
-            ]
-        })
+        new CopyWebpackPlugin([{
+            from: 'src/index.html',
+            to: 'index.html'
+        }]),
+        new OfflinePlugin()
     ],
     resolve: {
         extensions: ['*', '.js', '.jsx'],
