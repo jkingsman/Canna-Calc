@@ -20,6 +20,10 @@ a {
     padding: 0;
 }
 
+.pell-button {
+    width: 40px !important;
+}
+
 input[disabled] {
     background-color: #D3D3D3;
 }

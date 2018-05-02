@@ -3,6 +3,7 @@ import React from "react";
 import CardTemplate from "app/calculators/components/card_template";
 import GeneralCalculatorTemplate from "app/calculators/general/general_calculator_template";
 
+import Notes from "app/calculators/general/notes";
 import PercentChange from "app/calculators/general/percentchange_calculator";
 import CylinderCalculator from "app/calculators/general/cylinder_calculator";
 import PercentConstituent from "app/calculators/general/percent_constituent";
@@ -84,6 +85,15 @@ export default class CalculatorContainer extends React.Component {
                     id="searchBar"
                 />{" "}
                 {this.isSearching() ? "" : <h5>General Conversions & Math</h5>}
+                <CardTemplate
+                    id="notes"
+                    keywords="notes text save"
+                    searchTerm={this.state.searchTerm}
+                    title="Freeform Notes"
+                    parentID="mainAccordion"
+                >
+                    <Notes />
+                </CardTemplate>
                 <CardTemplate
                     id="weightConversion"
                     keywords="weight mass grams ounces oz pounds lbs milligrams mg stone st kilograms kilos kg"
