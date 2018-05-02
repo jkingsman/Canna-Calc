@@ -34,7 +34,7 @@ export default class CardTemplate extends React.Component {
         if (this.matchesKeyword()) {
             return (
                 <div className="card pad-left" ref={this.domRef}>
-                    <a name={this.props.id} />
+                    <a name={this.props.id}/>
                     <h6 className="card-header mb-0" onClick={debounce(this.toggleHash, 250)} id={`card${this.uniqueID}`} data-target={`#cardCollapse${this.uniqueID}`} aria-controls={`cardCollapse${this.uniqueID}`} data-toggle="collapse" aria-expanded="false">
                         {this.props.title}
                     </h6>

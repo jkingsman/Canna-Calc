@@ -8,16 +8,17 @@ import CylinderCalculator from 'app/calculators/general/cylinder_calculator';
 import DateCalculator from 'app/calculators/general/date_calculator';
 import ConversionFactors from 'app/utils/conversion_factors';
 
-import GrowthTimeline from 'app/calculators/growing/growth_timeline';
-import SoilCalculator from 'app/calculators/growing/soil_calculator';
-import LightingCalculator from 'app/calculators/growing/lighting_calculator';
-import CO2Calculator from 'app/calculators/growing/co2_calculator';
-import ExhaustCalculator from 'app/calculators/growing/exhaust_calculator';
-import AmperageCalculator from 'app/calculators/growing/amperage_calculator';
-import YieldCalculator from 'app/calculators/growing/yield_calculator';
-import YieldDryWetCalculator from 'app/calculators/growing/yielddrywet_calculator';
-import WaterCalculator from 'app/calculators/growing/water_calculator';
-import PlantCount from 'app/calculators/growing/plantcount_calculator';
+import LightingCalculator from 'app/calculators/equipment_power/lighting_calculator';
+import CO2Calculator from 'app/calculators/equipment_power/co2_calculator';
+import ExhaustCalculator from 'app/calculators/equipment_power/exhaust_calculator';
+import AmperageCalculator from 'app/calculators/equipment_power/amperage_calculator';
+import WaterCalculator from 'app/calculators/equipment_power/water_calculator';
+
+import GrowthTimeline from 'app/calculators/plants_consumables/growth_timeline';
+import SoilCalculator from 'app/calculators/plants_consumables/soil_calculator';
+import YieldCalculator from 'app/calculators/plants_consumables/yield_calculator';
+import YieldDryWetCalculator from 'app/calculators/plants_consumables/yielddrywet_calculator';
+import PlantCount from 'app/calculators/plants_consumables/plantcount_calculator';
 
 import {PercentageToMG, MGToPercentage, Density, FreeWeight} from 'app/calculators/concentratesedibles/thc_conversions';
 import DecarbLoss from 'app/calculators/concentratesedibles/decarb_loss';
@@ -33,6 +34,13 @@ export default class CalculatorContainer extends React.Component {
         }
 
         this.setSearchTerm = this.setSearchTerm.bind(this);
+    }
+
+    componentDidMount() {
+        // hacky way to make anchor links work even though page "load" is complete from browser's perspective
+        setTimeout(() => {
+            window.location = window.location
+        }, 200);
     }
 
     isSearching() {
@@ -96,19 +104,7 @@ export default class CalculatorContainer extends React.Component {
 
                 {this.isSearching()
                     ? ""
-                    : <h5 className="group-header">Growing &amp; Plant Production</h5>}
-
-                <CardTemplate id="growthTimeline" keywords="growing growth calculator timeline planning years yrs months days projection projected" searchTerm={this.state.searchTerm} title="Projected Growth Timeline/Calendar" parentID="mainAccordion">
-                    <GrowthTimeline/>
-                </CardTemplate>
-
-                <CardTemplate id="plantCountCalculator" keywords="growing layout grid space sqft square footage feet width length size" searchTerm={this.state.searchTerm} title="Plant Layout" parentID="mainAccordion">
-                    <PlantCount/>
-                </CardTemplate>
-
-                <CardTemplate id="SoilCalculator" keywords="soil dirt loam peat worm casings bat guano bone meal kelp dirt potting" searchTerm={this.state.searchTerm} title="Soil Proportions" parentID="mainAccordion">
-                    <SoilCalculator/>
-                </CardTemplate>
+                    : <h5 className="group-header">Growing (Equipment &amp; Power)</h5>}
 
                 <CardTemplate id="lighting" keywords="lighting lights led hid wattage power watts lumens" searchTerm={this.state.searchTerm} title="Light Wattage" parentID="mainAccordion">
                     <LightingCalculator/>
@@ -128,6 +124,22 @@ export default class CalculatorContainer extends React.Component {
 
                 <CardTemplate id="waterCalculator" keywords="water usage cost gallon gal cubic foot unit" searchTerm={this.state.searchTerm} title="Water Usage/Drip Tip Flow &amp; Cost" parentID="mainAccordion">
                     <WaterCalculator/>
+                </CardTemplate>
+
+                {this.isSearching()
+                    ? ""
+                    : <h5 className="group-header">Growing (Plants &amp; Consumables)</h5>}
+
+                <CardTemplate id="growthTimeline" keywords="growing growth calculator timeline planning years yrs months days projection projected" searchTerm={this.state.searchTerm} title="Projected Growth Timeline/Calendar" parentID="mainAccordion">
+                    <GrowthTimeline/>
+                </CardTemplate>
+
+                <CardTemplate id="plantCountCalculator" keywords="growing layout grid space sqft square footage feet width length size" searchTerm={this.state.searchTerm} title="Plant Layout" parentID="mainAccordion">
+                    <PlantCount/>
+                </CardTemplate>
+
+                <CardTemplate id="SoilCalculator" keywords="soil dirt loam peat worm casings bat guano bone meal kelp dirt potting" searchTerm={this.state.searchTerm} title="Soil Proportions" parentID="mainAccordion">
+                    <SoilCalculator/>
                 </CardTemplate>
 
                 <CardTemplate id="yieldCalculator" keywords="yield plants ounces oz grams pounds lbs harvest projection projected" searchTerm={this.state.searchTerm} title="General Crop Yield" parentID="mainAccordion">
