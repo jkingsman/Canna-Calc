@@ -35,6 +35,7 @@ import {
 import DecarbLoss from 'app/calculators/concentratesedibles/decarb_loss';
 import ExtractionEfficiency from 'app/calculators/concentratesedibles/extraction_efficiency';
 import EvapPrediction from 'app/calculators/concentratesedibles/evap_prediction';
+import CapsuleCalculator from 'app/calculators/concentratesedibles/capsule_calculator';
 import {
     EdiblePotency,
     EdibleProduct,
@@ -243,6 +244,10 @@ export default class CalculatorContainer extends React.Component {
 
             <CardTemplate id="evapPrediction" keywords="solvent evaporation concentrate extract wax oil shatter bho" searchTerm={this.state.searchTerm} title="Solvent Evaporation Time Estimate" parentID="mainAccordion">
                 <EvapPrediction/>
+            </CardTemplate>
+
+            <CardTemplate id="capsuleCalculator" keywords="capsule coconut oil filler thca cbda extract cartridge" searchTerm={this.state.searchTerm} title="Concentrate to Capsule THC Breakdown" parentID="mainAccordion">
+                <CapsuleCalculator/>
             </CardTemplate>
 
             {
