@@ -16,20 +16,27 @@ export default class NpkToTDS extends React.Component {
     }
 
     getN() {
-        const percent = this.state.mlPerL * 10;
-        return this.state.n * percent * this.state.sg;
+        const percentMixture = this.state.mlPerL / 1000; // 0.00 - 1.00
+        const elementalNinN = 1;
+        const finalPercent = percentMixture * this.state.n; // 0 - 100
+        const finalPPM = finalPercent * 10000; // ppm conversion
+        return finalPPM * elementalNinN * this.state.sg; // apply elemental and S.G. correction
     }
 
     getP() {
-        const percent = this.state.mlPerL * 10;
+        const percentMixture = this.state.mlPerL / 1000; // 0.00 - 1.00
         const elementalPhosphorusInP2O5 = 0.43641;
-        return this.state.p * elementalPhosphorusInP2O5 * percent * this.state.sg;
+        const finalPercent = percentMixture * this.state.p; // 0 - 100
+        const finalPPM = finalPercent * 10000; // ppm conversion
+        return finalPPM * elementalPhosphorusInP2O5 * this.state.sg; // apply elemental and S.G. correction
     }
 
     getK() {
-        const percent = this.state.mlPerL * 10;
+        const percentMixture = this.state.mlPerL / 1000; // 0.00 - 1.00
         const elementalPotassiumInK20 = 0.83014;
-        return this.state.k * elementalPotassiumInK20 * percent * this.state.sg;
+        const finalPercent = percentMixture * this.state.k; // 0 - 100
+        const finalPPM = finalPercent * 10000; // ppm conversion
+        return finalPPM * elementalPotassiumInK20 * this.state.sg; // apply elemental and S.G. correction
     }
 
     render() {
@@ -74,22 +81,22 @@ export default class NpkToTDS extends React.Component {
                     </div>
                     <div className="col-sm">
                         <FixedUnitOutput
-                            outputLabel="Final N"
+                            outputLabel="Diluted N"
                             number={defaultRound(this.getN())}
                             unit="PPM TDS"
                         />
                         <FixedUnitOutput
-                            outputLabel="Final P"
+                            outputLabel="Diluted P"
                             number={defaultRound(this.getP())}
                             unit="PPM TDS"
                         />
                         <FixedUnitOutput
-                            outputLabel="Final K"
+                            outputLabel="Diluted K"
                             number={defaultRound(this.getK())}
                             unit="PPM TDS"
                         />
                         <FixedUnitOutput
-                            outputLabel="Total"
+                            outputLabel="Total Diluted"
                             number={defaultRound(this.getN() + this.getP() + this.getK())}
                             unit="PPM TDS"
                         />
