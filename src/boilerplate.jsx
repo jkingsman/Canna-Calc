@@ -8,9 +8,48 @@ export default class Boilerplate extends React.Component {
                 <div className="container">
                     <div className="alert alert-success" role="alert">
                         <h4 className="text-center">
-                            Canna-Calc has the calculators you need for growing, concentrates,
-                            yield, and more! Click the header to open a calculator.
+                            Canna-Calc{" "}
+                            <span className="tagline">
+                                has cannabis growing calculators, concentrate calculators, CO2 and
+                                BTU math, and more!
+                            </span>
                         </h4>
+                        <p className="text-center tagline">
+                            Click a header to get started, or support us by sharing on social media!
+                        </p>
+                        <p id="share-buttons" className="text-center">
+                            <a
+                                href="http://www.facebook.com/sharer.php?u=https://canna-calc.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <img src="static/img/facebook.png" alt="Facebook" />
+                            </a>
+
+                            <a
+                                href="http://reddit.com/submit?url=https://canna-calc.com&amp;title=Cannabis Growing and Concentrate Calculators"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <img src="static/img/reddit.png" alt="Reddit" />
+                            </a>
+
+                            <a
+                                href="https://twitter.com/share?url=https://canna-calc.com&amp;text=Cannabis%20Growing%20and%20Concentrate%20Calculators"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <img src="static/img/twitter.png" alt="Twitter" />
+                            </a>
+
+                            <a
+                                href="https://plus.google.com/share?url=https://canna-calc.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <img src="static/img/google.png" alt="Google+" />
+                            </a>
+                        </p>
                     </div>
                     <CalculatorContainer />
                 </div>
