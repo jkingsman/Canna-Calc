@@ -2,12 +2,12 @@
 
 Install
 
-```npm install```
+```yarn```
 
 Serve for dev (hot reload, etc.)
 
-```npm run watch```
+```yarn watch```
 
 Package for delivery
 
-```npm run build```
+```yarn build```
