@@ -12,7 +12,7 @@ export default class PercentConstituent extends React.Component {
         };
     }
 
-    getAdditive() {
+    getTotal() {
         return this.state.start / (1 - this.state.percent / 100);
     }
 
@@ -43,7 +43,12 @@ export default class PercentConstituent extends React.Component {
                     <div className="col-sm">
                         <FixedUnitOutput
                             outputLabel="Additive Amt."
-                            number={defaultRound(this.getAdditive())}
+                            number={defaultRound(this.state.start - this.getTotal())}
+                            unit="units"
+                        />
+                        <FixedUnitOutput
+                            outputLabel="Total Amt."
+                            number={defaultRound(this.getTotal())}
                             unit="units"
                         />
                     </div>
