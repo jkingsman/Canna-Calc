@@ -70,8 +70,8 @@ export default class CalculatorContainer extends React.Component {
                         0,
                         window.location.href.length - 2
                     );
-                }, 200);
-            }, 200);
+                }, 1000);
+            }, 500);
         }
     }
 
