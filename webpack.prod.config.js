@@ -45,7 +45,10 @@ module.exports = {
             from: 'src/sitemap.xml',
             to: 'sitemap.xml'
         }]),
-        new OfflinePlugin()
+        new OfflinePlugin({
+            autoUpdate: true,
+            minify: true,
+        })
     ],
     resolve: {
         extensions: ['*', '.js', '.jsx'],
