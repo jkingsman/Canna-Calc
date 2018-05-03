@@ -46,6 +46,7 @@ module.exports = {
             to: 'sitemap.xml'
         }]),
         new OfflinePlugin({
+            responseStrategy: 'network-first',
             autoUpdate: true,
             minify: true,
         })
