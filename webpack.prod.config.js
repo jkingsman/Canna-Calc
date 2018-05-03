@@ -37,6 +37,14 @@ module.exports = {
             from: 'src/index.html',
             to: 'index.html'
         }]),
+        new CopyWebpackPlugin([{
+            from: 'src/robots.txt',
+            to: 'robots.txt'
+        }]),
+        new CopyWebpackPlugin([{
+            from: 'src/sitemap.xml',
+            to: 'sitemap.xml'
+        }]),
         new OfflinePlugin()
     ],
     resolve: {
