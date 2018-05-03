@@ -65,11 +65,7 @@ export default class Boilerplate extends React.Component {
                                 href="https://github.com/jkingsman/Canna-Calc"
                             >
                                 Github
-                            </a>.
-                        </span>
-                        <br />
-                        <small className="footer-text">
-                            Usage of this service constitutes agreement to the{" "}
+                            </a>. Usage of this service constitutes agreement to the{" "}
                             <a
                                 rel="noopener noreferrer"
                                 target="_blank"
@@ -77,7 +73,7 @@ export default class Boilerplate extends React.Component {
                             >
                                 MIT License
                             </a>, which this work is licensed under.
-                        </small>
+                        </span>
                     </div>
                 </footer>
             </div>
