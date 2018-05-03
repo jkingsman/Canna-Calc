@@ -49,6 +49,7 @@ export default class CalculatorContainer extends React.Component {
         super(props);
         this.state = {
             searchTerm: "",
+            hasLoaded: false,
         };
 
         this.setSearchTerm = this.setSearchTerm.bind(this);
@@ -56,10 +57,20 @@ export default class CalculatorContainer extends React.Component {
 
     componentDidMount() {
         // hacky way to make anchor links work even though page "load" is complete from browser's perspective
+        // only does it on first load since the anchors are ids with a `_a` attached to them
+        // we load the page, wait for render, set the hash to actually match the anchor, then flip it back again
+        // this prevents opening accordions from scrolling the page to them (since it sets the anchor and then the page jumps)
+        // this makes page usage much smoother
         if (window.location.hash.length > 1) {
             // don't do this on bare URL lest you redirect loop
             setTimeout(() => {
-                window.location = window.location;
+                window.location = `${window.location.href}_a`;
+                setTimeout(() => {
+                    window.location = window.location.href.substr(
+                        0,
+                        window.location.href.length - 2
+                    );
+                }, 200);
             }, 200);
         }
     }

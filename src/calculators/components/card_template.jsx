@@ -38,7 +38,7 @@ export default class CardTemplate extends React.Component {
         if (this.matchesKeyword()) {
             return (
                 <div className="card pad-left">
-                    <a name={this.props.id} />
+                    <a name={`${this.props.id}_a`} />
                     <h6
                         className="card-header mb-0"
                         onClick={this.toggleHash}
