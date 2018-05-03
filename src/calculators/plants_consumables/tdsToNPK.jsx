@@ -8,33 +8,33 @@ export default class NpkToTDS extends React.Component {
         super(props);
         this.state = {
             nPPM: 250000,
+            nMP: 1,
             pPPM: 17500,
+            pMP: 0.43641,
             kPPM: 16600,
+            kMP: 0.83014,
         };
     }
 
     getN() {
         const naivePercentage = this.state.nPPM / 10000; // 1 - 100
-        const elementalNinN = 1;
-        return naivePercentage / elementalNinN;
+        return naivePercentage / this.state.nMP;
     }
 
     getP() {
         const naivePercentage = this.state.pPPM / 10000; // 1 - 100
-        const elementalPhosphorusInP2O5 = 0.43641;
-        return naivePercentage / elementalPhosphorusInP2O5;
+        return naivePercentage / this.state.pMP;
     }
 
     getK() {
         const naivePercentage = this.state.kPPM / 10000; // 1 - 100
-        const elementalPotassiumInK20 = 0.83014;
-        return naivePercentage / elementalPotassiumInK20;
+        return naivePercentage / this.state.kMP;
     }
 
     render() {
         return (
             <div>
-                <p>Assumes elementals present as N, P₂O₅ and K₂O.</p>
+                <p>Given mass percentages assume elementals present as N, P₂O₅ and K₂O.</p>
                 <div className="row">
                     <div className="col-sm">
                         <FixedUnitInput
@@ -53,6 +53,30 @@ export default class NpkToTDS extends React.Component {
                             inputLabel="Fert. PPM K"
                             number={this.state.kPPM}
                             onChange={val => this.setState({ kPPM: Number(val) })}
+                            unit=""
+                        />
+                        <hr />
+                        <i>
+                            Mass percentage composition of elemental NPK in molecular NPK delivery
+                            substance; percentage given 0.00 - 1.00 inclusive. If you don&#39;t know
+                            what this means, don&#39;t touch it.
+                        </i>
+                        <FixedUnitInput
+                            inputLabel="N Mass Percent"
+                            number={this.state.nMP}
+                            onChange={val => this.setState({ nMP: Number(val) })}
+                            unit=""
+                        />
+                        <FixedUnitInput
+                            inputLabel="P Mass Percent"
+                            number={this.state.pMP}
+                            onChange={val => this.setState({ pMP: Number(val) })}
+                            unit=""
+                        />
+                        <FixedUnitInput
+                            inputLabel="K Mass Percent"
+                            number={this.state.kMP}
+                            onChange={val => this.setState({ kMP: Number(val) })}
                             unit=""
                         />
                     </div>

@@ -8,8 +8,11 @@ export default class NpkToTDS extends React.Component {
         super(props);
         this.state = {
             n: 25,
+            nMP: 1,
             p: 4,
+            pMP: 0.43641,
             k: 2,
+            kMP: 0.83014,
             mlPerL: 1,
             sg: 1.0,
         };
@@ -17,35 +20,30 @@ export default class NpkToTDS extends React.Component {
 
     getN() {
         const percentMixture = this.state.mlPerL / 1000; // 0.00 - 1.00
-        const elementalNinN = 1;
         const finalPercent = percentMixture * this.state.n; // 0 - 100
         const finalPPM = finalPercent * 10000; // ppm conversion
-        return finalPPM * elementalNinN * this.state.sg; // apply elemental and S.G. correction
+        return finalPPM * this.state.nMP * this.state.sg; // apply elemental and S.G. correction
     }
 
     getP() {
         const percentMixture = this.state.mlPerL / 1000; // 0.00 - 1.00
-        const elementalPhosphorusInP2O5 = 0.43641;
         const finalPercent = percentMixture * this.state.p; // 0 - 100
         const finalPPM = finalPercent * 10000; // ppm conversion
-        return finalPPM * elementalPhosphorusInP2O5 * this.state.sg; // apply elemental and S.G. correction
+        return finalPPM * this.state.pMP * this.state.sg; // apply elemental and S.G. correction
     }
 
     getK() {
         const percentMixture = this.state.mlPerL / 1000; // 0.00 - 1.00
-        const elementalPotassiumInK20 = 0.83014;
         const finalPercent = percentMixture * this.state.k; // 0 - 100
         const finalPPM = finalPercent * 10000; // ppm conversion
-        return finalPPM * elementalPotassiumInK20 * this.state.sg; // apply elemental and S.G. correction
+        return finalPPM * this.state.kMP * this.state.sg; // apply elemental and S.G. correction
     }
 
     render() {
         return (
             <div>
-                <p>
-                    Assumes elementals present as N, P₂O₅ and K₂O. For true elemental P & K,
-                    multiply by 2.2914 and 1.2046 respectively to correct.
-                </p>
+                <p>Given mass percentages assume elementals present as N, P₂O₅ and K₂O.</p>
+                <hr />
                 <div className="row">
                     <div className="col-sm">
                         <FixedUnitInput
@@ -61,7 +59,7 @@ export default class NpkToTDS extends React.Component {
                             unit=""
                         />
                         <FixedUnitInput
-                            inputLabel="Fertilizer K"
+                            inputLabel="K"
                             number={this.state.k}
                             onChange={val => this.setState({ k: Number(val) })}
                             unit=""
@@ -76,6 +74,30 @@ export default class NpkToTDS extends React.Component {
                             inputLabel="S.G. Override*"
                             number={this.state.sg}
                             onChange={val => this.setState({ sg: Number(val) })}
+                            unit=""
+                        />
+                        <hr />
+                        <i>
+                            Mass percentage composition of elemental NPK in molecular NPK delivery
+                            substance; percentage given 0.00 - 1.00 inclusive. If you don&#39;t know
+                            what this means, don&#39;t touch it.
+                        </i>
+                        <FixedUnitInput
+                            inputLabel="N Mass Percent"
+                            number={this.state.nMP}
+                            onChange={val => this.setState({ nMP: Number(val) })}
+                            unit=""
+                        />
+                        <FixedUnitInput
+                            inputLabel="P Mass Percent"
+                            number={this.state.pMP}
+                            onChange={val => this.setState({ pMP: Number(val) })}
+                            unit=""
+                        />
+                        <FixedUnitInput
+                            inputLabel="K Mass Percent"
+                            number={this.state.kMP}
+                            onChange={val => this.setState({ kMP: Number(val) })}
                             unit=""
                         />
                     </div>
