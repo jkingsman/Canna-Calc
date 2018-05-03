@@ -95,7 +95,7 @@ export default class CalculatorContainer extends React.Component {
                     placeholder="Enter a keyword or term to search for a calculator..."
                     id="searchBar"
                 />{" "}
-                {this.isSearching() ? "" : <h5>General Conversions & Math</h5>}
+                {this.isSearching() ? "" : <h5>General Cannabis Conversions &amp; Math</h5>}
                 <CardTemplate
                     id="notes"
                     keywords="notes text save"
@@ -258,7 +258,9 @@ export default class CalculatorContainer extends React.Component {
                 {this.isSearching() ? (
                     ""
                 ) : (
-                    <h5 className="group-header">Growing (Equipment &amp; Power)</h5>
+                    <h5 className="group-header">
+                        Cannabis Growing Calculators (Equipment &amp; Power)
+                    </h5>
                 )}
                 <CardTemplate
                     id="lighting"
@@ -317,7 +319,9 @@ export default class CalculatorContainer extends React.Component {
                 {this.isSearching() ? (
                     ""
                 ) : (
-                    <h5 className="group-header">Growing (Plants &amp; Consumables)</h5>
+                    <h5 className="group-header">
+                        Cannabis Growing (Consumables &amp; Nutrient Calculators)
+                    </h5>
                 )}
                 <CardTemplate
                     id="growthTimeline"
@@ -400,7 +404,11 @@ export default class CalculatorContainer extends React.Component {
                 >
                     <YieldDryWetCalculator />
                 </CardTemplate>
-                {this.isSearching() ? "" : <h5 className="group-header">Edibles & Concentrates</h5>}
+                {this.isSearching() ? (
+                    ""
+                ) : (
+                    <h5 className="group-header">Edible Calculators & Cannabis Concentrate Help</h5>
+                )}
                 <CardTemplate
                     id="ediblePotency"
                     keywords="thc potency mg milligrams grams ml ejuice vape vaporizer liquid wax oil concentrate extract baking cannaoil cannabutter servings size medibles"
