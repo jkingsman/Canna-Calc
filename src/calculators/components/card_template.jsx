@@ -9,7 +9,6 @@ export default class CardTemplate extends React.Component {
         this.uniqueID = newId();
 
         this.toggleHash = this.toggleHash.bind(this);
-        this.domRef = React.createRef();
     }
 
     toggleHash() {
@@ -38,7 +37,7 @@ export default class CardTemplate extends React.Component {
     render() {
         if (this.matchesKeyword()) {
             return (
-                <div className="card pad-left" ref={this.domRef}>
+                <div className="card pad-left">
                     <a name={this.props.id} />
                     <h6
                         className="card-header mb-0"
