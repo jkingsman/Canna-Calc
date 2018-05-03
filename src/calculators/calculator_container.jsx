@@ -259,7 +259,7 @@ export default class CalculatorContainer extends React.Component {
                     ""
                 ) : (
                     <h5 className="group-header">
-                        Cannabis Growing Calculators (Equipment &amp; Power)
+                        Cannabis Growing (Equipment &amp; Power Calculators)
                     </h5>
                 )}
                 <CardTemplate
