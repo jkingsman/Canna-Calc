@@ -92,7 +92,7 @@ export default class CalculatorContainer extends React.Component {
                     aria-label="search for calculators"
                     value={this.state.searchTerm}
                     onChange={this.setSearchTerm}
-                    placeholder="Enter a keyword or term to search for a calculator..."
+                    placeholder="Enter a keyword to search..."
                     id="searchBar"
                 />{" "}
                 {this.isSearching() ? "" : <h5>General Cannabis Conversions &amp; Math</h5>}
