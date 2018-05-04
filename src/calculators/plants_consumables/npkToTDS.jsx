@@ -42,7 +42,11 @@ export default class NpkToTDS extends React.Component {
     render() {
         return (
             <div>
-                <p>Given mass percentages assume elementals present as N, P₂O₅ and K₂O.</p>
+                <p>
+                    Convert from delivery-molecule-bound nitrogen, phosphorus, and potassium
+                    percentages (&quot;NPK&quot; values on fertilizer) to PPM TDS at a given
+                    dilution ration.
+                </p>
                 <hr />
                 <div className="row">
                     <div className="col-sm">
@@ -76,11 +80,16 @@ export default class NpkToTDS extends React.Component {
                             onChange={val => this.setState({ sg: Number(val) })}
                             unit=""
                         />
+                        <i>
+                            *In cases of a %w/v solution, enter the specific gravity of the
+                            fertilizer to correct for non-1.0 S.G. conversions.
+                        </i>
                         <hr />
                         <i>
                             Mass percentage composition of elemental NPK in molecular NPK delivery
-                            substance; percentage given 0.00 - 1.00 inclusive. If you don&#39;t know
-                            what this means, don&#39;t touch it.
+                            substance; percentage given 0.00 - 1.00 inclusive. Presets assume
+                            elementals present as N, P₂O₅ and K₂O. If you don&#39;t know what this
+                            means, don&#39;t touch it.
                         </i>
                         <FixedUnitInput
                             inputLabel="N Mass Percent"
@@ -124,10 +133,6 @@ export default class NpkToTDS extends React.Component {
                         />
                     </div>
                 </div>
-                <i>
-                    *In cases of a %w/v solution, enter the specific gravity of the fertilizer to
-                    correct for non-1.0 S.G. conversions.
-                </i>
             </div>
         );
     }

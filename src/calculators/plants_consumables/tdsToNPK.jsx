@@ -34,50 +34,55 @@ export default class NpkToTDS extends React.Component {
     render() {
         return (
             <div>
-                <p>Given mass percentages assume elementals present as N, P₂O₅ and K₂O.</p>
+                <p>
+                    Convert from nitrogen, phosphorus, and potassium as elemental PPM of a solution
+                    to delivery-molecule-bound mass percentages (&npk;NPK&npk; numbers on
+                    fertilizer).
+                </p>
                 <div className="row">
                     <div className="col-sm">
                         <FixedUnitInput
                             inputLabel="Fert. PPM N"
                             number={this.state.nPPM}
                             onChange={val => this.setState({ nPPM: Number(val) })}
-                            unit=""
+                            unit="PPM"
                         />
                         <FixedUnitInput
                             inputLabel="Fert. PPM P"
                             number={this.state.pPPM}
                             onChange={val => this.setState({ pPPM: Number(val) })}
-                            unit=""
+                            unit="PPM"
                         />
                         <FixedUnitInput
                             inputLabel="Fert. PPM K"
                             number={this.state.kPPM}
                             onChange={val => this.setState({ kPPM: Number(val) })}
-                            unit=""
+                            unit="PPM"
                         />
                         <hr />
                         <i>
                             Mass percentage composition of elemental NPK in molecular NPK delivery
-                            substance; percentage given 0.00 - 1.00 inclusive. If you don&#39;t know
-                            what this means, don&#39;t touch it.
+                            substance; percentage given 0.00 - 1.00 inclusive. Presets assume
+                            elementals present as N, P₂O₅ and K₂O. If you don&#39;t know what this
+                            means, don&#39;t touch it.
                         </i>
                         <FixedUnitInput
                             inputLabel="N Mass Percent"
                             number={this.state.nMP}
                             onChange={val => this.setState({ nMP: Number(val) })}
-                            unit=""
+                            unit="%"
                         />
                         <FixedUnitInput
                             inputLabel="P Mass Percent"
                             number={this.state.pMP}
                             onChange={val => this.setState({ pMP: Number(val) })}
-                            unit=""
+                            unit="%"
                         />
                         <FixedUnitInput
                             inputLabel="K Mass Percent"
                             number={this.state.kMP}
                             onChange={val => this.setState({ kMP: Number(val) })}
-                            unit=""
+                            unit="%"
                         />
                     </div>
                     <div className="col-sm">
