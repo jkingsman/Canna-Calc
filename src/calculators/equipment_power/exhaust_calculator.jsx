@@ -13,15 +13,23 @@ export default class ExhaustCalculator extends React.Component {
             growSpaceHeightFt: 8,
             fanCount: 2,
             exchangeTime: 3,
+            carbonFactor: 20,
+            carbonCount: 0,
+            hidLights1kWFactor: 10,
+            hidLightsCount: 0,
         };
     }
 
     getRoomVolume() {
-        return (
+        const trueVolume =
             this.state.growSpaceWidthFt *
             this.state.growSpaceLengthFt *
-            this.state.growSpaceHeightFt
-        );
+            this.state.growSpaceHeightFt;
+        const correctionFactor =
+            this.state.carbonFactor * this.state.carbonCount +
+            this.state.hidLights1kWFactor * this.state.hidLightsCount;
+        const correctionFactorMultiplied = correctionFactor / 100 + 1;
+        return trueVolume * correctionFactorMultiplied;
     }
 
     getFlowRate() {
@@ -78,6 +86,38 @@ export default class ExhaustCalculator extends React.Component {
                             onChange={val => this.setState({ exchangeTime: Number(val) })}
                             number={this.state.exchangeTime}
                             unit="minutes to total air flush"
+                        />
+                        <hr />
+                        <i>
+                            Some sites recommend adding a compensation factor for high-heat or
+                            airflow-resistant sources such as HID lights and carbon filters. You can
+                            specify the correction and the number of such devices here, if desired;
+                            the room volume will be adjusted by the given percentage for each
+                            device. Common factors have been provided.
+                        </i>
+                        <FixedUnitInput
+                            inputLabel="Carbon Filter Count"
+                            onChange={val => this.setState({ carbonCount: Number(val) })}
+                            number={this.state.carbonCount}
+                            unit="filters"
+                        />
+                        <FixedUnitInput
+                            inputLabel="Carbon Filter Correction"
+                            onChange={val => this.setState({ carbonFactor: Number(val) })}
+                            number={this.state.carbonFactor}
+                            unit="%"
+                        />
+                        <FixedUnitInput
+                            inputLabel="1kW HID Light Count"
+                            onChange={val => this.setState({ hidLightsCount: Number(val) })}
+                            number={this.state.hidLightsCount}
+                            unit="lights"
+                        />
+                        <FixedUnitInput
+                            inputLabel="1kW HID Light Correction"
+                            onChange={val => this.setState({ hidLights1kWFactor: Number(val) })}
+                            number={this.state.hidLights1kWFactor}
+                            unit="%"
                         />
                     </div>
                     <div className="col-sm">
