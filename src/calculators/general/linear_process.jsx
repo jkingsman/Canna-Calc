@@ -4,7 +4,7 @@ import { GenericInput, GenericOutput } from "app/calculators/components/io";
 import ConversionFactors from "app/utils/conversion_factors";
 import { defaultRound } from "app/utils/math";
 
-export default class EvapPrediction extends React.Component {
+export default class LinearProcess extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -42,7 +42,7 @@ export default class EvapPrediction extends React.Component {
                     more precise value), and then this calculator will predict (assuming a linear
                     evaporation rate) the rough amount of time it will take for the remaining
                     solvent to evaporate. Please not that this is very imprecise and should only be
-                    used for vauge estimages; true solvent evaporation is not always linear.
+                    used for vauge estimages; true solvent evaporation is not always linear
                 </p>
                 <hr />
                 <div className="row">
