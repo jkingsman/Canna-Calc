@@ -94,6 +94,7 @@ export default class CalculatorContainer extends React.Component {
                     onChange={this.setSearchTerm}
                     placeholder="Enter a keyword to search..."
                     id="searchBar"
+                    type="search"
                 />{" "}
                 {this.isSearching() ? "" : <h5>General Cannabis Conversions &amp; Math</h5>}
                 <CardTemplate
