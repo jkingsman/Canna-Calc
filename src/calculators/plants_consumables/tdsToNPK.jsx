@@ -36,7 +36,7 @@ export default class NpkToTDS extends React.Component {
             <div>
                 <p>
                     Convert from nitrogen, phosphorus, and potassium as elemental PPM of a solution
-                    to delivery-molecule-bound mass percentages (&npk;NPK&npk; numbers on
+                    to delivery-molecule-bound mass percentages (&quot;NPK&quot; numbers on
                     fertilizer).
                 </p>
                 <div className="row">
