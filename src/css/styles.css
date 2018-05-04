@@ -8,6 +8,20 @@ body {
     /* Margin bottom by footer height */
 }
 
+@media print {
+    @page {
+        margin: 1in;
+    }
+
+    .container {
+        max-width: 100% !important;
+    }
+
+    .footer {
+        display: none !important;
+    }
+}
+
 #share-buttons img {
     width: 35px;
     padding: 5px;
@@ -16,7 +30,6 @@ body {
     display: inline;
 }
 
-
 @media (max-width: 845px) {
     .tagline {
         display: none;
@@ -24,13 +37,13 @@ body {
     }
 }
 
-
 a {
     color: #0065b1 !important;
 }
 
 .card {
     margin-top: 2px;
+    break-inside: avoid;
 }
 
 .card-header {
