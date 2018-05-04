@@ -1,6 +1,11 @@
 import React from "react";
 
-import { GenericInput, FixedUnitInput, FixedUnitOutput } from "app/calculators/components/io";
+import {
+    GenericInput,
+    FixedUnitInput,
+    FixedUnitOutput,
+    GenericOutput,
+} from "app/calculators/components/io";
 import ConversionFactors from "app/utils/conversion_factors";
 import { defaultRound } from "app/utils/math";
 
@@ -32,7 +37,7 @@ export default class LinearProcess extends React.Component {
                                 })
                             }
                             number={this.state.amountCompleted}
-                            unit=""
+                            unit="units"
                         />
                         <GenericInput
                             inputLabel="Time Taken So Far"
@@ -48,19 +53,23 @@ export default class LinearProcess extends React.Component {
                                 })
                             }
                             number={this.state.amountLeft}
-                            unit=""
+                            unit="units"
                         />
                     </div>
                     <div className="col-sm">
                         <FixedUnitOutput
                             outputLabel="Work Pace"
-                            number={defaultRound(this.state.amountCompleted / this.state.TimeTaken)}
+                            number={defaultRound(this.state.amountCompleted / this.state.timeTaken)}
                             unit="units/hr"
                         />
-                        <FixedUnitOutput
-                            outputLabel="Work Pace"
-                            number={defaultRound(this.state.amountCompleted / this.state.TimeTaken)}
-                            unit="units/hr"
+                        <GenericOutput
+                            outputLabel="Time to Completion"
+                            number={defaultRound(
+                                this.state.amountLeft /
+                                    (this.state.amountCompleted / this.state.timeTaken)
+                            )}
+                            conversionFactors={ConversionFactors.basicTime}
+                            showSplitter={false}
                         />
                     </div>
                 </div>

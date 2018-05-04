@@ -321,8 +321,8 @@ const ConversionFactors = {
         to: {
             // to get X to hours from...
             hours: hours => Number(hours),
-            seconds: hours => Number(hours) * SECONDS_IN_MINUTE * MINUTES_IN_HOUR,
-            minutes: hours => Number(hours) * MINUTES_IN_HOUR,
+            seconds: hours => Number(hours) / SECONDS_IN_MINUTE / MINUTES_IN_HOUR,
+            minutes: hours => Number(hours) / MINUTES_IN_HOUR,
             days: hours => Number(hours) * HOURS_IN_DAY,
             weeks: hours => Number(hours) * DAYS_IN_WEEK * HOURS_IN_DAY,
             months: hours => Number(hours) * DAYS_IN_MONTH * HOURS_IN_DAY,
