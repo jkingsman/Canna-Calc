@@ -7,9 +7,9 @@ export default class YieldCalculator extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            minOz: 1.5,
-            avgOz: 2.25,
-            maxOz: 3.5,
+            minOz: 40,
+            avgOz: 55,
+            maxOz: 80,
             plantCount: 10,
         };
     }
