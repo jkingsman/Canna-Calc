@@ -7,6 +7,7 @@ import Notes from "app/calculators/general/notes";
 import PercentChange from "app/calculators/general/percentchange_calculator";
 import CylinderCalculator from "app/calculators/general/cylinder_calculator";
 import PercentConstituent from "app/calculators/general/percent_constituent";
+import LinearProcess from "app/calculators/general/linear_process";
 import DateCalculator from "app/calculators/general/date_calculator";
 import ConversionFactors from "app/utils/conversion_factors";
 
@@ -228,6 +229,15 @@ export default class CalculatorContainer extends React.Component {
                         conversionFactors={ConversionFactors.flowRate}
                         message="If your volume isn't already in cubic meters (m³), convert to cubic meters via the Volume converter, then enter it here to convert."
                     />
+                </CardTemplate>
+                <CardTemplate
+                    id="linearProcess"
+                    keywords="% percent linear process days hours minutes time solvent evaporation drying trimming"
+                    searchTerm={this.state.searchTerm}
+                    title="Trimming Time Prediction Calculator"
+                    parentID="mainAccordion"
+                >
+                    <LinearProcess />
                 </CardTemplate>
                 <CardTemplate
                     id="percentChange"
