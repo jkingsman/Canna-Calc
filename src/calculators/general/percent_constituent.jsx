@@ -1,6 +1,6 @@
 import React from "react";
 
-import { FixedUnitInput, FixedUnitOutput } from "app/calculators/components/io";
+import { FixedUnitInput, FixedUnitOutput, EquationBlock } from "app/calculators/components/io";
 import { defaultRound } from "app/utils/math";
 
 export default class PercentConstituent extends React.Component {
@@ -25,6 +25,11 @@ export default class PercentConstituent extends React.Component {
                     recommend no more than 5% final consitituency of the mixture; given 200g of
                     concentrate, you can therefore add 10.526g of terpenes).
                 </p>
+                <EquationBlock equations={[
+                    "Total Amt. = Start Amount / (100 - Final % of Additive)",
+                    "Additive Amt. = Total Amt. - Start Amt.",
+                ]} />
+                <hr />
                 <div className="row">
                     <div className="col-sm">
                         <FixedUnitInput
@@ -43,7 +48,7 @@ export default class PercentConstituent extends React.Component {
                     <div className="col-sm">
                         <FixedUnitOutput
                             outputLabel="Additive Amt."
-                            number={defaultRound(this.state.start - this.getTotal())}
+                            number={defaultRound(this.getTotal() - this.state.start)}
                             unit="units"
                         />
                         <FixedUnitOutput
