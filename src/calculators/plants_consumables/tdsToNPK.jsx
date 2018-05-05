@@ -1,6 +1,6 @@
 import React from "react";
 
-import { FixedUnitInput, FixedUnitOutput } from "app/calculators/components/io";
+import { FixedUnitInput, FixedUnitOutput, EquationBlock } from "app/calculators/components/io";
 import { defaultRound } from "app/utils/math";
 
 export default class NpkToTDS extends React.Component {
@@ -39,6 +39,10 @@ export default class NpkToTDS extends React.Component {
                     to delivery-molecule-bound mass percentages (&quot;NPK&quot; numbers on
                     fertilizer).
                 </p>
+                <EquationBlock equations={[
+                    "Element Percentage = (PPM / 10000) / Mass Percent"
+                ]} />
+                <hr />
                 <div className="row">
                     <div className="col-sm">
                         <FixedUnitInput
