@@ -12,11 +12,9 @@ body {
     @page {
         margin: 1in;
     }
-
     .container {
         max-width: 100% !important;
     }
-
     .footer {
         display: none !important;
     }
@@ -35,8 +33,6 @@ body {
         display: none;
         margin-bottom: 0px;
     }
-
-
     #share-buttons img {
         width: 35px;
         padding: 5px;
@@ -44,7 +40,6 @@ body {
         box-shadow: 0;
         display: inline;
     }
-
     .alert {
         padding: 0 0 1em !important;
     }
@@ -120,4 +115,35 @@ input[type="radio"] {
     min-height: 60px;
     background-color: #d4edda;
     border-color: #c3e6cb;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.customTooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.customTooltip .customTooltipText {
+    visibility: hidden;
+    min-width: 150px;
+    max-width: 250px;
+    background-color: #006f14;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 50%;
+    margin-left: -60px;
+}
+
+.customTooltip:hover .customTooltipText {
+    visibility: visible;
 }
