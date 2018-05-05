@@ -63,7 +63,7 @@ export default class NpkToTDS extends React.Component {
                             unit=""
                         />
                         <FixedUnitInput
-                            inputLabel="K"
+                            inputLabel="Fertilizer K"
                             number={this.state.k}
                             onChange={val => this.setState({ k: Number(val) })}
                             unit=""
