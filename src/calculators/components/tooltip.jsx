@@ -21,7 +21,7 @@ export default class HoverTooltip extends React.Component {
 
 HoverTooltip.propTypes = {
     indicatorChar: PropTypes.string,
-    message: PropTypes.string.isRequired,
+    message: PropTypes.node,
 };
 
 HoverTooltip.defaultProps = {

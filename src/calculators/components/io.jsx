@@ -159,7 +159,7 @@ FreeOutput.propTypes = {
     unit: PropTypes.string,
     noColon: PropTypes.bool,
     prefix: PropTypes.string,
-    tooltip: PropTypes.string,
+    tooltip: PropTypes.node,
 };
 
 FreeOutput.defaultProps = {
@@ -205,7 +205,7 @@ FixedUnitOutput.propTypes = {
     unit: PropTypes.string,
     noColon: PropTypes.bool,
     prefix: PropTypes.string,
-    tooltip: PropTypes.string,
+    tooltip: PropTypes.node,
 };
 
 FixedUnitOutput.defaultProps = {
@@ -486,7 +486,7 @@ GenericOutput.propTypes = {
     resultHandler: PropTypes.func,
     per: PropTypes.bool,
     showSplitter: PropTypes.bool,
-    tooltip: PropTypes.string,
+    tooltip: PropTypes.node,
     noPadding: PropTypes.bool,
 };
 
