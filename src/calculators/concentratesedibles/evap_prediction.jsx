@@ -45,7 +45,7 @@ export default class EvapPrediction extends React.Component {
                     used for vauge estimages; true solvent evaporation is not always linear.
                 </p>
                 <EquationBlock equations={[
-                    "(Corrected Current Solvent Weight = Current Solvent Weight - Estimated Yield)",
+                    "[Corrected Current Solvent Weight = Current Solvent Weight - Estimated Yield]",
                     "Evaporated Solvent = Pre-cannabis Solvent Weight - Corrected Current Solvent Weight",
                     "Solvent Loss per Hour = Evaporated Solvent / Time Since Start",
                     "Time to Total Evaporation = Corrected Current Solvent Weight / Solvent Loss per Hour",

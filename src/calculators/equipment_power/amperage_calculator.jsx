@@ -1,6 +1,6 @@
 import React from "react";
 
-import { FixedUnitInput, FixedUnitOutput } from "app/calculators/components/io";
+import { FixedUnitInput, FixedUnitOutput, EquationBlock } from "app/calculators/components/io";
 import { defaultRound, round } from "app/utils/math";
 
 export default class AmperageCalculator extends React.Component {
@@ -41,6 +41,13 @@ export default class AmperageCalculator extends React.Component {
                     consuming 5 amps of power would consume 600 watts (5 amps * 120 volts).
                 </p>
                 <p>Month assumes 31 days.</p>
+                <EquationBlock equations={[
+                    "Total Amperage = Single Light Wattage / Voltage * Light Count",
+                    "Power per Day (kW) = Single Light Wattage * Hours on Per Day * Light Count / 1000",
+                    "Cost per Day = Power per Day * Dollar Cost per kWh",
+                    "Power per Month = Power per Day * 31",
+                    "Cost per Month = Power per Month * Dollar Cost per kWh",
+                ]} />
                 <hr />
                 <div className="row">
                     <div className="col-sm">

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { GenericInput, FixedUnitInput, FixedUnitOutput } from "app/calculators/components/io";
+import { GenericInput, FixedUnitInput, FixedUnitOutput, EquationBlock } from "app/calculators/components/io";
 import ConversionFactors from "app/utils/conversion_factors";
 import { defaultRound } from "app/utils/math";
 
@@ -50,6 +50,12 @@ export default class CO2Calculator extends React.Component {
                     Determine CO₂ flow rate necessary for CO₂ supplementation to desired
                     concentation.
                 </p>
+                <EquationBlock equations={[
+                    "Room Volume = Width * Length * Height - Volume Compensation",
+                    "Desired Addtl. CO₂ = Desired CO₂ - Ambient CO₂",
+                    "(Fixed CO₂ Flow Rate = Desired Addtl. CO₂ * Room Volume * 1e-6)",
+                    "CO₂ Flow Rate = Fixed CO₂ Flow Rate / (Minutes On / 60)",
+                ]} />
                 <hr />
                 <div className="row">
                     <div className="col-sm">

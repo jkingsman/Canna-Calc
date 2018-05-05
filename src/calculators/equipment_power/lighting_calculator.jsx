@@ -1,6 +1,6 @@
 import React from "react";
 
-import { GenericInput, FixedUnitOutput } from "app/calculators/components/io";
+import { GenericInput, FixedUnitOutput, EquationBlock } from "app/calculators/components/io";
 import ConversionFactors from "app/utils/conversion_factors";
 
 export default class LightingCalculator extends React.Component {
@@ -32,18 +32,22 @@ export default class LightingCalculator extends React.Component {
         return (
             <div className="container">
                 <p>Determine necessary illumination for a given area</p>
+                <EquationBlock equations={[
+                    "Illumination Needed = Grow Area Width * Grow Area Length * Desired Lumens",
+                    "Watts Needed = Grow Area Width * Grow Area Length * Desired Wattage",
+                ]} />
                 <hr />
                 <div className="row">
                     <div className="col-sm">
                         <GenericInput
-                            inputLabel="Lumens*"
+                            inputLabel="Desired Lumens*"
                             onChange={val => this.setState({ lumensNeededSqFt: Number(val) })}
                             conversionFactors={ConversionFactors.basicArea}
                             number={this.state.lumensNeededSqFt}
                             per
                         />
                         <GenericInput
-                            inputLabel="Watts"
+                            inputLabel="Desired Watts"
                             onChange={val =>
                                 this.setState({
                                     wattageNeededSqFt: Number(val),

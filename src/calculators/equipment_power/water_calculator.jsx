@@ -1,6 +1,6 @@
 import React from "react";
 
-import { FixedUnitInput, FixedUnitOutput } from "app/calculators/components/io";
+import { FixedUnitInput, FixedUnitOutput, EquationBlock } from "app/calculators/components/io";
 import { defaultRound, round } from "app/utils/math";
 
 export default class WaterCalculator extends React.Component {
@@ -30,6 +30,12 @@ export default class WaterCalculator extends React.Component {
         return (
             <div className="container">
                 <p>Determine water usage and cost for a given number of plants and flow rate</p>
+                <EquationBlock equations={[
+                    "Water Used per Day = Water Rate per Plant * Hours on per Day * Plant Count",
+                    "Cost per Day = Water Used per Day * Water Cost",
+                    "Water Used per Month = Water Used per Day * 31",
+                    "Cost per Month = Water Used per Month * Water Cost",
+                ]} />
                 <hr />
                 <div className="row">
                     <div className="col-sm">
