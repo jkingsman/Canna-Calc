@@ -1,5 +1,4 @@
 const webpack = require('webpack');
-const PrettierPlugin = require("prettier-webpack-plugin");
 const ManifestPlugin = require('webpack-manifest-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
@@ -38,12 +37,6 @@ module.exports = {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new ManifestPlugin(),
-        new PrettierPlugin({
-            printWidth: 100,
-            tabWidth: 4,
-            trailingComma: 'es5',
-            extensions: [".js", ".jsx"],
-        }),
         new CopyWebpackPlugin([{
             from: 'src/favicon',
             to: 'favicon'
