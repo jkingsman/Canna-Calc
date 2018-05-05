@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import newId from "app/utils/unique_key";
-import HoverTooltip from "app/calculators/components/tooltip";
 import { defaultRound } from "app/utils/math";
 
 export class FreeInput extends React.Component {
@@ -136,7 +135,6 @@ export class FreeOutput extends React.Component {
             <div className="form-group">
                 <label htmlFor={"output" + this.inputID} className="text-label">
                     {this.props.outputLabel}
-                    {this.props.tooltip ? <HoverTooltip message={this.state.tooltip} /> : null}
                     {this.props.noColon ? "" : ":"}&nbsp;
                 </label>
                 <input
@@ -157,7 +155,6 @@ FreeOutput.propTypes = {
     unit: PropTypes.string,
     noColon: PropTypes.bool,
     prefix: PropTypes.string,
-    tooltip: PropTypes.node,
 };
 
 FreeOutput.defaultProps = {
@@ -166,7 +163,6 @@ FreeOutput.defaultProps = {
     unit: "",
     noColon: false,
     prefix: "",
-    tooltip: "",
 };
 
 export class FixedUnitOutput extends React.Component {
@@ -180,7 +176,6 @@ export class FixedUnitOutput extends React.Component {
             <div className="form-group">
                 <label htmlFor={"output" + this.inputID} className="text-label">
                     {this.props.outputLabel}
-                    {this.props.tooltip ? <HoverTooltip message={this.props.tooltip} /> : null}
                     {this.props.noColon ? "" : ":"}&nbsp;
                 </label>
                 <input
@@ -201,7 +196,6 @@ FixedUnitOutput.propTypes = {
     unit: PropTypes.string,
     noColon: PropTypes.bool,
     prefix: PropTypes.string,
-    tooltip: PropTypes.node,
 };
 
 FixedUnitOutput.defaultProps = {
@@ -210,7 +204,6 @@ FixedUnitOutput.defaultProps = {
     unit: "units",
     noColon: false,
     prefix: "",
-    tooltip: "",
 };
 
 export class GenericInput extends React.Component {
@@ -361,7 +354,6 @@ export class GenericOutput extends React.Component {
                 outputNumber: nextProps.number,
                 conversionFactors: nextProps.conversionFactors,
                 outputLabel: nextProps.outputLabel,
-                tooltip: nextProps.tooltip,
             },
             this.generateFinalResult
         );
@@ -444,14 +436,6 @@ export class GenericOutput extends React.Component {
         }
     }
 
-    renderTooltip() {
-        if (this.props.tooltip) {
-            return <HoverTooltip message={this.props.tooltip} />;
-        }
-
-        return null;
-    }
-
     render() {
         return (
             <div className="form-group">
@@ -459,8 +443,7 @@ export class GenericOutput extends React.Component {
                     htmlFor={"input" + this.inputID}
                     className={this.props.noPadding ? "" : "text-label"}
                 >
-                    {this.state.outputLabel}
-                    {this.renderTooltip()}:&nbsp;
+                    {this.state.outputLabel}:&nbsp;
                 </label>
                 <input
                     type="number"
@@ -482,7 +465,6 @@ GenericOutput.propTypes = {
     resultHandler: PropTypes.func,
     per: PropTypes.bool,
     showSplitter: PropTypes.bool,
-    tooltip: PropTypes.node,
     noPadding: PropTypes.bool,
 };
 
@@ -493,7 +475,6 @@ GenericOutput.defaultProps = {
     resultHandler: () => null,
     per: false,
     showSplitter: false,
-    tooltip: "",
     noPadding: false,
 };
 
@@ -562,4 +543,43 @@ GenericOutput.defaultProps = {
     resultHandler: () => null,
     showSplitter: true,
     noPadding: false,
+};
+
+export class EquationBlock extends React.Component {
+    constructor(props) {
+        super(props);
+        this.uniqueID = newId();
+        this.state = { show: false };
+
+        this.toggleShow = this.toggleShow.bind(this);
+    }
+
+    toggleShow() {
+        this.setState({ show: !this.state.show });
+    }
+
+    renderEquations() {
+        if (this.state.show) {
+        return (<pre>{this.props.equations.join("\n")}</pre>);
+        }
+
+        return null;
+    }
+
+    render() {
+        return (
+            <span>
+                <a onClick={this.toggleShow}>{this.state.show ? "Hide" : "Show"} Equations</a>.
+                {this.renderEquations()}
+            </span>
+        );
+    }
+}
+
+EquationBlock.propTypes = {
+    equations: PropTypes.arrayOf(PropTypes.string),
+};
+
+EquationBlock.defaultProps = {
+    equations: "<no equations provided>",
 };

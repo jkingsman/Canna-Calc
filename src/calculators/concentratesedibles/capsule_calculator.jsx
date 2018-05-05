@@ -5,6 +5,7 @@ import {
     FixedUnitInput,
     GenericOutput,
     FixedUnitOutput,
+    EquationBlock,
 } from "app/calculators/components/io";
 import ConversionFactors from "app/utils/conversion_factors";
 import { defaultRound } from "app/utils/math";
@@ -48,7 +49,18 @@ export default class CapsuleCalculator extends React.Component {
     render() {
         return (
             <div className="container">
-                <p>Calculate capsule or cartridge cannabinoid based on laboratory analysis.</p>
+                <div>
+                    Calculate capsule or cartridge cannabinoid based on laboratory analysis.{" "}
+                    <EquationBlock equations={[
+                        "mL Cannabinoid in Extract = Test Percentage * Concentrate Volume",
+                        "Capsule Percentage of Total Mix = Container Volume / (Filler Volume + Concentrate Volume)",
+                        "Cannabinoid per Cap/Cart = mL Cannabinoid in Extract * Capsule Percentage of Total Mix",
+                        "",
+                        "Cap/Cart Cannabinoids = Sum of All Cannabinoids per Cap/Cart",
+                        "",
+                        "Caps/Carts Made = (Filler Volume + Concentrate Volume) / Container Volume"
+                    ]} />
+                </div>
                 <hr />
                 <div className="row">
                     <div className="col-sm">
@@ -159,7 +171,7 @@ export default class CapsuleCalculator extends React.Component {
                             outputLabel="Caps/Carts Made"
                             number={defaultRound(
                                 (this.state.concentrateVol + this.state.fillerVol) /
-                                    this.state.containerVol
+                                this.state.containerVol
                             )}
                             units="units"
                         />
