@@ -1,6 +1,11 @@
 import React from "react";
 
-import { FixedUnitInput, GenericInput, GenericOutput, EquationBlock } from "app/calculators/components/io";
+import {
+    FixedUnitInput,
+    GenericInput,
+    GenericOutput,
+    EquationBlock,
+} from "app/calculators/components/io";
 
 import ConversionFactors from "app/utils/conversion_factors";
 
@@ -20,8 +25,8 @@ export default class TDSDilution extends React.Component {
     getVolume() {
         //C1V1 + C2V2 = C3(V1 + V2)
         const additiveVolume =
-            ((this.state.targetTDS - this.state.currentTDS) *
-            this.state.currentVol) /
+            (this.state.targetTDS - this.state.currentTDS) *
+            this.state.currentVol /
             (this.state.additiveTDS - this.state.targetTDS);
         return additiveVolume;
     }
@@ -33,10 +38,12 @@ export default class TDSDilution extends React.Component {
                     Compute needed dilution to achieve target dissolved solids. For dilution with
                     pure distilled water, use Additive TDS = 0.00.
                 </p>
-                <EquationBlock equations={[
-                    "Additive Volume = ((Target TDS - Current TDS) * Current Volume) / (Additive TDS - Target TDS)",
-                    "                   [Reformatted C₁V₁ + C₂V₂ = M₃V₃ = C₃(V₁ + V₂)]"
-                ]} />
+                <EquationBlock
+                    equations={[
+                        "Additive Volume = ((Target TDS - Current TDS) * Current Volume) / (Additive TDS - Target TDS)",
+                        "                   [Reformatted C₁V₁ + C₂V₂ = M₃V₃ = C₃(V₁ + V₂)]",
+                    ]}
+                />
                 <hr />
                 <div className="row">
                     <div className="col-sm">

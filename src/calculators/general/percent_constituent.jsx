@@ -25,10 +25,12 @@ export default class PercentConstituent extends React.Component {
                     recommend no more than 5% final constituency of the mixture; given 200g of
                     concentrate, you can therefore add 10.526g of terpenes).
                 </p>
-                <EquationBlock equations={[
-                    "Total Amt. = Start Amount / (100 - Final % of Additive)",
-                    "Additive Amt. = Total Amt. - Start Amt.",
-                ]} />
+                <EquationBlock
+                    equations={[
+                        "Total Amt. = Start Amount / (100 - Final % of Additive)",
+                        "Additive Amt. = Total Amt. - Start Amt.",
+                    ]}
+                />
                 <hr />
                 <div className="row">
                     <div className="col-sm">

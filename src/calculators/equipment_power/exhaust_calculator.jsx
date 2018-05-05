@@ -1,6 +1,11 @@
 import React from "react";
 
-import { GenericInput, FixedUnitInput, FixedUnitOutput, EquationBlock } from "app/calculators/components/io";
+import {
+    GenericInput,
+    FixedUnitInput,
+    FixedUnitOutput,
+    EquationBlock,
+} from "app/calculators/components/io";
 import ConversionFactors from "app/utils/conversion_factors";
 import { defaultRound } from "app/utils/math";
 
@@ -47,11 +52,13 @@ export default class ExhaustCalculator extends React.Component {
                     Note that this is for pure airflow; this does not account for pressure lost due
                     to bends in ducting, dust, etc. which is highly duct- and layout-specific.
                 </p>
-                <EquationBlock equations={[
-                    "Room Volume = (Width * Length * Height) + (Carbon Filter Count * Carbon Filter Correction) + (HID Light Count * HID Light Correction)",
-                    "Min. Total Flow = Room Volume / Exchange Time",
-                    "Min. Fan Flow Each = Min. Total Flow / Fan Count"
-                ]} />
+                <EquationBlock
+                    equations={[
+                        "Room Volume = (Width * Length * Height) + (Carbon Filter Count * Carbon Filter Correction) + (HID Light Count * HID Light Correction)",
+                        "Min. Total Flow = Room Volume / Exchange Time",
+                        "Min. Fan Flow Each = Min. Total Flow / Fan Count",
+                    ]}
+                />
                 <hr />
                 <div className="row">
                     <div className="col-sm">

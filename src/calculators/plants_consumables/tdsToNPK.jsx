@@ -39,9 +39,7 @@ export default class NpkToTDS extends React.Component {
                     to delivery-molecule-bound mass percentages (&quot;NPK&quot; numbers on
                     fertilizer).
                 </p>
-                <EquationBlock equations={[
-                    "Element Percentage = (PPM / 10000) / Mass Percent"
-                ]} />
+                <EquationBlock equations={["Element Percentage = (PPM / 10000) / Mass Percent"]} />
                 <hr />
                 <div className="row">
                     <div className="col-sm">

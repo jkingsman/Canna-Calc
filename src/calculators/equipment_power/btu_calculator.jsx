@@ -39,13 +39,15 @@ export default class BTUCalculator extends React.Component {
                     consuming 5 amps of power would consume 600 watts (5 amps * 120 volts).
                 </p>
                 <p>BTU calculations assume 3.412 BTUs/Watt</p>
-                <EquationBlock equations={[
-                    "[BTUs per Watt = 3.4.12]",
-                    "[Total Light Wattage = Single Light Wattage * Light Count]",
-                    "[Total CO₂ BTUs = CO₂ Generator BTUs * CO₂ Generator Count]",
-                    "[Total Dehumidifier Wattage = Dehumidifier Wattage * Dehumidifier Count]",
-                    "BTUs per Hour = (Total Light Wattage + Total Dehumidifier Wattage) * BTUs per Watt + Total CO₂ BTUs",
-                ]} />
+                <EquationBlock
+                    equations={[
+                        "[BTUs per Watt = 3.4.12]",
+                        "[Total Light Wattage = Single Light Wattage * Light Count]",
+                        "[Total CO₂ BTUs = CO₂ Generator BTUs * CO₂ Generator Count]",
+                        "[Total Dehumidifier Wattage = Dehumidifier Wattage * Dehumidifier Count]",
+                        "BTUs per Hour = (Total Light Wattage + Total Dehumidifier Wattage) * BTUs per Watt + Total CO₂ BTUs",
+                    ]}
+                />
                 <hr />
                 <div className="row">
                     <div className="col-sm">

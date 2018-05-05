@@ -428,11 +428,11 @@ export default class CalculatorContainer extends React.Component {
                     parentID="mainAccordion"
                 >
                     <p>
-                        Note that these calculators do not consider THCa to THC weight
-                        loss; to correct for this, use our Decarboxylation Loss calculator to adjust
-                        Product Weight or multiply your potency by .877. This assumes perfect yield
-                        (e.g. all THC is removed from plant material) and is therefore most accurate
-                        for oils baked into the goods.
+                        Note that these calculators do not consider THCa to THC weight loss; to
+                        correct for this, use our Decarboxylation Loss calculator to adjust Product
+                        Weight or multiply your potency by .877. This assumes perfect yield (e.g.
+                        all THC is removed from plant material) and is therefore most accurate for
+                        oils baked into the goods.
                     </p>
                     <hr />
                     <VariableServingPotency />

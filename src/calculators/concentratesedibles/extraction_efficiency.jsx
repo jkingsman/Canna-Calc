@@ -50,12 +50,14 @@ export default class ExtractionEfficiency extends React.Component {
                     percentage of THC extracted, producing a more reliable metric for evaluating
                     extraction processes.
                 </p>
-                <EquationBlock equations={[
-                    "Weight Yield = Extract Weight / Feedstock Weight",
-                    "Total Feedstock THC = Feedstock THC Content * Feedstock Weight",
-                    "Total Extract THC = Extract THC Content * Extract Weight",
-                    "Extraction Efficiency = Total Extract THC / Total Feedstock THC",
-                ]} />
+                <EquationBlock
+                    equations={[
+                        "Weight Yield = Extract Weight / Feedstock Weight",
+                        "Total Feedstock THC = Feedstock THC Content * Feedstock Weight",
+                        "Total Extract THC = Extract THC Content * Extract Weight",
+                        "Extraction Efficiency = Total Extract THC / Total Feedstock THC",
+                    ]}
+                />
                 <hr />
                 <div className="row">
                     <div className="col-sm">

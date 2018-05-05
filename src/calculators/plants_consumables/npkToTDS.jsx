@@ -47,12 +47,14 @@ export default class NpkToTDS extends React.Component {
                     percentages (&quot;NPK&quot; values on fertilizer) to PPM TDS at a given
                     dilution ration.
                 </p>
-                <EquationBlock equations={[
-                    "[Percent Mixture = Added Amount / 1000]",
-                    "[Final Percent = Percent Mixture * Fertilizer N]",
-                    "[Final PPM = Final Percent * 10000]",
-                    "Diluted Element = Final PPM * Mass Percent * S.G. Override"
-                ]} />
+                <EquationBlock
+                    equations={[
+                        "[Percent Mixture = Added Amount / 1000]",
+                        "[Final Percent = Percent Mixture * Fertilizer N]",
+                        "[Final PPM = Final Percent * 10000]",
+                        "Diluted Element = Final PPM * Mass Percent * S.G. Override",
+                    ]}
+                />
                 <hr />
                 <div className="row">
                     <div className="col-sm">

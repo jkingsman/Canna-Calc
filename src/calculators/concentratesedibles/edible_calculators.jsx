@@ -47,12 +47,14 @@ export class VariableServingPotency extends React.Component {
                     Determine serving and potency breakdown of an oil or butter prepared
                     specifically for a recipe assuming 100% THC extraction.
                 </p>
-                <EquationBlock equations={[
-                    "Oil/Butter Total THC = Product Amount * Potency",
-                    "Oil/Butter THC/tbsp = Oil/Butter Total THC / Oil/Butter Infused",
-                    "Baked Good Total THC = Oil/Butter THC/tbsp * Baked Good Oil Amt. (in tbsp.)",
-                    "THC/Serving = Baked Good Total THC / Servings"
-                ]} />
+                <EquationBlock
+                    equations={[
+                        "Oil/Butter Total THC = Product Amount * Potency",
+                        "Oil/Butter THC/tbsp = Oil/Butter Total THC / Oil/Butter Infused",
+                        "Baked Good Total THC = Oil/Butter THC/tbsp * Baked Good Oil Amt. (in tbsp.)",
+                        "THC/Serving = Baked Good Total THC / Servings",
+                    ]}
+                />
                 <hr />
                 <h5>Complete Recipe</h5>
                 <div className="row">
@@ -147,9 +149,9 @@ export class EdiblePotency extends React.Component {
                     Determine serving potency given product/potency used assuming 100% THC
                     extraction.
                 </p>
-                <EquationBlock equations={[
-                    "mg THC/serving = (Product Amount * Product Potency) / Servings"
-                ]} />
+                <EquationBlock
+                    equations={["mg THC/serving = (Product Amount * Product Potency) / Servings"]}
+                />
                 <hr />
                 <div className="row">
                     <div className="col-sm">
@@ -209,10 +211,12 @@ export class EdibleProduct extends React.Component {
             <div className="container">
                 <h5>Product Amount</h5>
                 <p>Determine needed product for given potency assuming 100% THC extraction.</p>
-                <EquationBlock equations={[
-                    "THC Needed = Servings * mg Per Serving",
-                    "Product Needed = THC Needed / Product Potency"
-                ]} />
+                <EquationBlock
+                    equations={[
+                        "THC Needed = Servings * mg Per Serving",
+                        "Product Needed = THC Needed / Product Potency",
+                    ]}
+                />
                 <hr />
                 <div className="row">
                     <div className="col-sm">
@@ -276,9 +280,9 @@ export class EdibleServings extends React.Component {
                     Determine serving count given desired serving potency and product amount/potency
                     assuming 100% THC extraction.
                 </p>
-                <EquationBlock equations={[
-                    "Servings = (Product Amount * Potency) / mg THC per Serving"
-                ]} />
+                <EquationBlock
+                    equations={["Servings = (Product Amount * Potency) / mg THC per Serving"]}
+                />
                 <hr />
                 <div className="row">
                     <div className="col-sm">

@@ -27,10 +27,12 @@ export default class LinearProcess extends React.Component {
                     This calculator generalizes to any linear task (i.e. if it takes you one hour to
                     do two, it will take two hours for four and three hours for six, etc.).
                 </p>
-                <EquationBlock equations={[
-                    "Work Pace = Amount Completed / Time Taken So Far",
-                    "Time to Completion = Amount Left / Work Pace"
-                ]} />
+                <EquationBlock
+                    equations={[
+                        "Work Pace = Amount Completed / Time Taken So Far",
+                        "Time to Completion = Amount Left / Work Pace",
+                    ]}
+                />
                 <hr />
                 <div className="row">
                     <div className="col-sm">

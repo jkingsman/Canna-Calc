@@ -27,8 +27,8 @@ export default class pHConverter extends React.Component {
         const desiredMolarity = Math.pow(10, this.state.desiredpH * -1);
 
         const additiveVolume =
-            ((desiredMolarity - startMolarity) *
-                this.state.startVolume) /
+            (desiredMolarity - startMolarity) *
+            this.state.startVolume /
             (additiveMolarity - startMolarity);
         return additiveVolume;
     }
@@ -66,13 +66,15 @@ export default class pHConverter extends React.Component {
                         </tr>
                     </tbody>
                 </table>
-                <EquationBlock equations={[
-                    "Start Mol. = 10e-[Start pH] / 1e-6",
-                    "Additive Mol. = 10e-[Additive pH] / 1e-6",
-                    "Desired Mol. = 10e-[Desired pH] / 1e-6",
-                    "Additive Vol. = ((Desired Mol. - Start Mol.) * Start Volume) / (Additive Mol. - Start Mol.)",
-                    "                [Reformatted M₁V₁ + M₂V₂ = M₃V₃ = M₃(V₁ + V₂)]"
-                ]} />
+                <EquationBlock
+                    equations={[
+                        "Start Mol. = 10e-[Start pH] / 1e-6",
+                        "Additive Mol. = 10e-[Additive pH] / 1e-6",
+                        "Desired Mol. = 10e-[Desired pH] / 1e-6",
+                        "Additive Vol. = ((Desired Mol. - Start Mol.) * Start Volume) / (Additive Mol. - Start Mol.)",
+                        "                [Reformatted M₁V₁ + M₂V₂ = M₃V₃ = M₃(V₁ + V₂)]",
+                    ]}
+                />
                 <hr />
                 <div className="row">
                     <div className="col-sm">

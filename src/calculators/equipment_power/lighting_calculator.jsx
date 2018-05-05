@@ -32,10 +32,12 @@ export default class LightingCalculator extends React.Component {
         return (
             <div className="container">
                 <p>Determine necessary illumination for a given area</p>
-                <EquationBlock equations={[
-                    "Illumination Needed = Grow Area Width * Grow Area Length * Desired Lumens",
-                    "Watts Needed = Grow Area Width * Grow Area Length * Desired Wattage",
-                ]} />
+                <EquationBlock
+                    equations={[
+                        "Illumination Needed = Grow Area Width * Grow Area Length * Desired Lumens",
+                        "Watts Needed = Grow Area Width * Grow Area Length * Desired Wattage",
+                    ]}
+                />
                 <hr />
                 <div className="row">
                     <div className="col-sm">

@@ -560,7 +560,7 @@ export class EquationBlock extends React.Component {
 
     renderEquations() {
         if (this.state.show) {
-        return (<pre>{this.props.equations.join("\n")}</pre>);
+            return <pre>{this.props.equations.join("\n")}</pre>;
         }
 
         return null;
