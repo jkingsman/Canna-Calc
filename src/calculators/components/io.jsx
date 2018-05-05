@@ -136,9 +136,7 @@ export class FreeOutput extends React.Component {
             <div className="form-group">
                 <label htmlFor={"output" + this.inputID} className="text-label">
                     {this.props.outputLabel}
-                    {this.props.tooltip && this.props.tooltip.length > 1 ? (
-                        <HoverTooltip message={this.state.tooltip} />
-                    ) : null}
+                    {this.props.tooltip ? <HoverTooltip message={this.state.tooltip} /> : null}
                     {this.props.noColon ? "" : ":"}&nbsp;
                 </label>
                 <input
@@ -182,9 +180,7 @@ export class FixedUnitOutput extends React.Component {
             <div className="form-group">
                 <label htmlFor={"output" + this.inputID} className="text-label">
                     {this.props.outputLabel}
-                    {this.props.tooltip && this.props.tooltip.length > 1 ? (
-                        <HoverTooltip message={this.props.tooltip} />
-                    ) : null}
+                    {this.props.tooltip ? <HoverTooltip message={this.props.tooltip} /> : null}
                     {this.props.noColon ? "" : ":"}&nbsp;
                 </label>
                 <input
@@ -449,7 +445,7 @@ export class GenericOutput extends React.Component {
     }
 
     renderTooltip() {
-        if (this.props.tooltip && this.props.tooltip.length > 1) {
+        if (this.props.tooltip) {
             return <HoverTooltip message={this.props.tooltip} />;
         }
 
