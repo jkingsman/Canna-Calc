@@ -1,6 +1,6 @@
 import React from "react";
 
-import { FixedUnitInput, FixedUnitOutput } from "app/calculators/components/io";
+import { FixedUnitInput, FixedUnitOutput, EquationBlock } from "app/calculators/components/io";
 import { defaultRound } from "app/utils/math";
 
 export default class DecarbLoss extends React.Component {
@@ -27,6 +27,9 @@ export default class DecarbLoss extends React.Component {
                     44.0233 g/mol loss (~12.22% loss)). This calculator allows you to determine the
                     remaining THC after decarboxylation given pre-decarb THCa levels.
                 </p>
+                <EquationBlock equations={[
+                        "Post-Decard THC Content = Product THCa Content * (314.45 / 358.4733)"
+                    ]} />
                 <hr />
                 <div className="row">
                     <div className="col-sm">

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { GenericInput, GenericOutput } from "app/calculators/components/io";
+import { GenericInput, GenericOutput, EquationBlock } from "app/calculators/components/io";
 import ConversionFactors from "app/utils/conversion_factors";
 import { defaultRound } from "app/utils/math";
 
@@ -44,6 +44,12 @@ export default class EvapPrediction extends React.Component {
                     solvent to evaporate. Please not that this is very imprecise and should only be
                     used for vauge estimages; true solvent evaporation is not always linear.
                 </p>
+                <EquationBlock equations={[
+                    "(Corrected Current Solvent Weight = Current Solvent Weight - Estimated Yield)",
+                    "Evaporated Solvent = Pre-cannabis Solvent Weight - Corrected Current Solvent Weight",
+                    "Solvent Loss per Hour = Evaporated Solvent / Time Since Start",
+                    "Time to Total Evaporation = Corrected Current Solvent Weight / Solvent Loss per Hour",
+                ]} />
                 <hr />
                 <div className="row">
                     <div className="col-sm">

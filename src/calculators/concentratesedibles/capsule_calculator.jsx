@@ -49,9 +49,10 @@ export default class CapsuleCalculator extends React.Component {
     render() {
         return (
             <div className="container">
-                <div>
-                    Calculate capsule or cartridge cannabinoid based on laboratory analysis.{" "}
-                    <EquationBlock equations={[
+                <p>
+                    Calculate capsule or cartridge cannabinoid based on laboratory analysis.
+                </p>
+                <EquationBlock equations={[
                         "mL Cannabinoid in Extract = Test Percentage * Concentrate Volume",
                         "Capsule Percentage of Total Mix = Container Volume / (Filler Volume + Concentrate Volume)",
                         "Cannabinoid per Cap/Cart = mL Cannabinoid in Extract * Capsule Percentage of Total Mix",
@@ -60,7 +61,6 @@ export default class CapsuleCalculator extends React.Component {
                         "",
                         "Caps/Carts Made = (Filler Volume + Concentrate Volume) / Container Volume"
                     ]} />
-                </div>
                 <hr />
                 <div className="row">
                     <div className="col-sm">
