@@ -48,7 +48,7 @@ export default class CO2Calculator extends React.Component {
             <div className="container">
                 <p>
                     Determine CO₂ flow rate necessary for CO₂ supplementation to desired
-                    concentation.
+                    concentration.
                 </p>
                 <EquationBlock equations={[
                     "Room Volume = Width * Length * Height - Volume Compensation",

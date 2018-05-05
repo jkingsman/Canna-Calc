@@ -513,7 +513,7 @@ export default class GenericCalculator extends React.Component {
                     </div>
                     <div className="col-sm">
                         <GenericOutput
-                            outputLabel={`Ouput ${this.props.labelSuffix}`}
+                            outputLabel={`Output ${this.props.labelSuffix}`}
                             resultHandler={this.props.resultHandler}
                             number={this.state.number}
                             conversionFactors={this.props.conversionFactors}

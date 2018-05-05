@@ -66,7 +66,7 @@ export class MGToPercentage extends React.Component {
                     </div>
                     <div className="col-sm">
                         <FixedUnitOutput
-                            outputLabel="PercentageTHC"
+                            outputLabel="Percentage THC"
                             number={defaultRound(this.getPercentage())}
                             unit="%"
                         />

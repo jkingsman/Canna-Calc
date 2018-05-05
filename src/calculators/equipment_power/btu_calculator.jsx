@@ -38,7 +38,7 @@ export default class BTUCalculator extends React.Component {
                     lights consume by the voltage (usually 120 in the US). For example, a light
                     consuming 5 amps of power would consume 600 watts (5 amps * 120 volts).
                 </p>
-                <p>BTU calculations assum 3.412 BTUs/Watt</p>
+                <p>BTU calculations assume 3.412 BTUs/Watt</p>
                 <EquationBlock equations={[
                     "[BTUs per Watt = 3.4.12]",
                     "[Total Light Wattage = Single Light Wattage * Light Count]",

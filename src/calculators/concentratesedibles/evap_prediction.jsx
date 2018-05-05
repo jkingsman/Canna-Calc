@@ -42,7 +42,7 @@ export default class EvapPrediction extends React.Component {
                     more precise value), and then this calculator will predict (assuming a linear
                     evaporation rate) the rough amount of time it will take for the remaining
                     solvent to evaporate. Please not that this is very imprecise and should only be
-                    used for vauge estimages; true solvent evaporation is not always linear.
+                    used for vague estimates; true solvent evaporation is not always linear.
                 </p>
                 <EquationBlock equations={[
                     "[Corrected Current Solvent Weight = Current Solvent Weight - Estimated Yield]",

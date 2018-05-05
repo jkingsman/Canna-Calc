@@ -87,7 +87,7 @@ export default class LightingCalculator extends React.Component {
                         />
                     </div>
                     <i>
-                        *Although lumens are a more precise measure of actual light ouput, watts
+                        *Although lumens are a more precise measure of actual light output, watts
                         have become a de facto standard -- when in doubt, use watts and disregard
                         lumens.
                     </i>

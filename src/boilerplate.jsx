@@ -15,7 +15,7 @@ export default class Boilerplate extends React.Component {
                             </span>
                         </h4>
                         <p className="text-center tagline">
-                            Click a header to get started, or support us by sharing on social media!
+                            Click a header to get started or support us by sharing on social media!
                         </p>
                         <div id="share-buttons" className="text-center">
                             <a
@@ -64,7 +64,7 @@ export default class Boilerplate extends React.Component {
                                 target="_blank"
                                 href="https://github.com/jkingsman/Canna-Calc"
                             >
-                                Github
+                                GitHub
                             </a>. Usage of this service constitutes agreement to the{" "}
                             <a
                                 rel="noopener noreferrer"

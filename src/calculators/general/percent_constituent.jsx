@@ -22,7 +22,7 @@ export default class PercentConstituent extends React.Component {
                 <p>
                     This solves for additive amount in cases where the additive can be, at a
                     maximum, a given percentage of final constituency (e.g. many terpene additives
-                    recommend no more than 5% final consitituency of the mixture; given 200g of
+                    recommend no more than 5% final constituency of the mixture; given 200g of
                     concentrate, you can therefore add 10.526g of terpenes).
                 </p>
                 <EquationBlock equations={[

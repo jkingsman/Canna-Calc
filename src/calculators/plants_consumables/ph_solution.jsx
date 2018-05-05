@@ -71,7 +71,7 @@ export default class pHConverter extends React.Component {
                     "Additive Mol. = 10e-[Additive pH] / 1e-6",
                     "Desired Mol. = 10e-[Desired pH] / 1e-6",
                     "Additive Vol. = ((Desired Mol. - Start Mol.) * Start Volume) / (Additive Mol. - Start Mol.)",
-                    "                [Reformated M₁V₁ + M₂V₂ = M₃V₃ = M₃(V₁ + V₂)]"
+                    "                [Reformatted M₁V₁ + M₂V₂ = M₃V₃ = M₃(V₁ + V₂)]"
                 ]} />
                 <hr />
                 <div className="row">
