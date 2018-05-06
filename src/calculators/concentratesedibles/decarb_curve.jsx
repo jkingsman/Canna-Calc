@@ -29,7 +29,7 @@ export default class DecarbCurve extends React.Component {
                 <EquationBlock
                     equations={[
                         "Log best-fit curve determined from following sources' (identified by DOI and author) datapoints:",
-                        "10.1016/j.forsciint.2015.07.019 (Taschwer et. al., 2016)",
+                        "10.1016/j.forsciint.2015.07.019 (Taschwer et. al.)",
                         "   180min @ 100°C",
                         "   60min @ 150°C",
                         "10.1055/s-0031-1298334 (Eichler, et. al.)",
