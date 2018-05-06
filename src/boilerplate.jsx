@@ -18,7 +18,7 @@ export default class Boilerplate extends React.Component {
                         <p className="text-center tagline">
                             Click a header to get started or support us by sharing on social media!
                         </p>
-                        {/* <div id="share-buttons" className="text-center">
+                        <div id="share-buttons" className="text-center">
                             <a
                                 href="http://www.facebook.com/sharer.php?u=https://canna-calc.com"
                                 target="_blank"
@@ -117,7 +117,7 @@ export default class Boilerplate extends React.Component {
                                     />
                                 </svg>
                             </a>
-                        </div> */}
+                        </div>
                     </div>
                     <CalculatorContainer />
                 </div>
