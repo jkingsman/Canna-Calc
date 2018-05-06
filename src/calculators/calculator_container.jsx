@@ -35,6 +35,7 @@ import {
     FreeWeight,
 } from "app/calculators/concentratesedibles/thc_conversions";
 import DecarbLoss from "app/calculators/concentratesedibles/decarb_loss";
+import DecarbCurve from "app/calculators/concentratesedibles/decarb_curve";
 import ExtractionEfficiency from "app/calculators/concentratesedibles/extraction_efficiency";
 import EvapPrediction from "app/calculators/concentratesedibles/evap_prediction";
 import CapsuleCalculator from "app/calculators/concentratesedibles/capsule_calculator";
@@ -472,6 +473,15 @@ export default class CalculatorContainer extends React.Component {
                     parentID="mainAccordion"
                 >
                     <DecarbLoss />
+                </CardTemplate>
+                <CardTemplate
+                    id="decarbLoss"
+                    keywords="decarboxylation thca time temperature"
+                    searchTerm={this.state.searchTerm}
+                    title="Decarboxylation Curve Prediction"
+                    parentID="mainAccordion"
+                >
+                    <DecarbCurve />
                 </CardTemplate>
                 <CardTemplate
                     id="extractionEfficiency"
