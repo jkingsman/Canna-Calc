@@ -25,7 +25,9 @@ export default class DecarbLoss extends React.Component {
                     chemical that is psychoactive. Decarboxylation results in the loss of a carbon
                     dioxide, causing a drop in molecular weight (358.4733 g/mol - 314.45 g/mol =
                     44.0233 g/mol loss (~12.22% loss)). This calculator allows you to determine the
-                    remaining THC after decarboxylation given pre-decarb THCa levels.
+                    remaining THC after decarboxylation given pre-decarb THCa levels. Note that it
+                    does not take into account the molar weight loss due to CBDA to CBD, CBGA to
+                    CBG, etc. which are less typically accurately known for flower samples.
                 </p>
                 <EquationBlock
                     equations={[
