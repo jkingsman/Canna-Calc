@@ -569,7 +569,7 @@ export class EquationBlock extends React.Component {
     render() {
         return (
             <span>
-                <a onClick={this.toggleShow}>{this.state.show ? "Hide" : "Show"} Equations</a>.
+                <a onClick={this.toggleShow}>{this.state.show ? "Hide" : "Show"} Equations</a>
                 {this.renderEquations()}
             </span>
         );
