@@ -162,6 +162,10 @@ input[disabled] {
     padding-top: 25px;
 }
 
+.equationTrigger {
+    cursor: pointer;
+}
+
 #searchBar {
     width: 100%;
     margin-bottom: 25px;
