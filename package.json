@@ -42,6 +42,7 @@
         "webpack-manifest-plugin": "^2.0.2"
     },
     "devDependencies": {
+        "file-loader": "^1.1.11",
         "offline-plugin": "^5.0.2",
         "prettier": "^1.12.1",
         "uglifyjs-webpack-plugin": "^1.2.5"
