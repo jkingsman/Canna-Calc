@@ -39,7 +39,7 @@ export default class CardTemplate extends React.Component {
             return (
                 <div className="card pad-left">
                     <a name={`${this.props.id}_a`} />
-                    <h6
+                    <h3
                         className="card-header mb-0"
                         onClick={this.toggleHash}
                         id={`card${this.uniqueID}`}
@@ -49,7 +49,7 @@ export default class CardTemplate extends React.Component {
                         aria-expanded="false"
                     >
                         {this.props.title}
-                    </h6>
+                    </h3>
 
                     <div
                         id={"cardCollapse" + this.uniqueID}

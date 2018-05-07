@@ -59,6 +59,19 @@ h6 {
     font-family: "Roboto", sans-serif !important;
 }
 
+h1, .h1 {
+    font-size: 1.5rem !important;
+}
+
+h2, .h2 {
+    font-size: 1.25rem !important;
+}
+
+h3, .h3 {
+    font-size: 1rem !important;
+}
+
+
 @media print {
     @page {
         margin: 1in;

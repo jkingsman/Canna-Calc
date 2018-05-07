@@ -8,13 +8,15 @@ export default class Boilerplate extends React.Component {
             <div>
                 <div className="container">
                     <div className="alert alert-success" role="alert">
-                        <h4 className="text-center">
-                            Canna-Calc{" "}
-                            <span className="tagline">
-                                has cannabis growing calculators, concentrate calculators, CO2 and
-                                BTU math, and more!
-                            </span>
-                        </h4>
+                        <header>
+                            <h1 className="text-center">
+                                Canna-Calc{" "}
+                                <span className="tagline">
+                                    has cannabis growing calculators, concentrate calculators, CO2
+                                    and BTU math, and more!
+                                </span>
+                            </h1>
+                        </header>
                         <p className="text-center tagline">
                             Click a header to get started or support us by sharing on social media!
                         </p>

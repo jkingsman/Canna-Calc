@@ -98,7 +98,7 @@ export default class CalculatorContainer extends React.Component {
                     id="searchBar"
                     type="search"
                 />{" "}
-                {this.isSearching() ? "" : <h5>General Cannabis Conversions &amp; Math</h5>}
+                {this.isSearching() ? "" : <h2>General Cannabis Conversions &amp; Math</h2>}
                 <CardTemplate
                     id="notes"
                     keywords="notes text save"
@@ -270,9 +270,9 @@ export default class CalculatorContainer extends React.Component {
                 {this.isSearching() ? (
                     ""
                 ) : (
-                    <h5 className="group-header">
+                    <h2 className="group-header">
                         Cannabis Growing (Equipment &amp; Power Calculators)
-                    </h5>
+                    </h2>
                 )}
                 <CardTemplate
                     id="lighting"
@@ -331,9 +331,9 @@ export default class CalculatorContainer extends React.Component {
                 {this.isSearching() ? (
                     ""
                 ) : (
-                    <h5 className="group-header">
+                    <h2 className="group-header">
                         Cannabis Growing (Consumables &amp; Nutrient Calculators)
-                    </h5>
+                    </h2>
                 )}
                 <CardTemplate
                     id="growthTimeline"
@@ -419,7 +419,7 @@ export default class CalculatorContainer extends React.Component {
                 {this.isSearching() ? (
                     ""
                 ) : (
-                    <h5 className="group-header">Edible Calculators & Cannabis Concentrate Help</h5>
+                    <h2 className="group-header">Edible Calculators & Cannabis Concentrate Help</h2>
                 )}
                 <CardTemplate
                     id="ediblePotency"
@@ -513,10 +513,10 @@ export default class CalculatorContainer extends React.Component {
                 {!this.isSearching() ? (
                     ""
                 ) : (
-                    <h5 className="text-center">
+                    <h2 className="text-center">
                         <br />
                         <br />End of Results
-                    </h5>
+                    </h2>
                 )}
             </div>
         );
