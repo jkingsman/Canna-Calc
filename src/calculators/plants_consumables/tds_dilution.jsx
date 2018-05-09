@@ -41,7 +41,7 @@ export default class TDSDilution extends React.Component {
                 <EquationBlock
                     equations={[
                         "Additive Volume = ((Target TDS - Current TDS) * Current Volume) / (Additive TDS - Target TDS)",
-                        "                   [Reformatted C₁V₁ + C₂V₂ = M₃V₃ = C₃(V₁ + V₂)]",
+                        "                   [Reformatted C₁V₁ + C₂V₂ = C₃V₃ = C₃(V₁ + V₂)]",
                     ]}
                 />
                 <hr />
