@@ -44,8 +44,7 @@ export default class CylinderCalculator extends React.Component {
                 </div>
                 <i>
                     *When using cylinder volume to determine total ducting volume, use the total
-                    ducting length as the Height. For more in-depth ducting assistance, use our
-                    Ducting Calculator
+                    ducting length as the Height.
                 </i>
             </div>
         );
