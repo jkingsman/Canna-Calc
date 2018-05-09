@@ -18,7 +18,6 @@ export default class GrowthTimeline extends React.Component {
     }
 
     isDateValid() {
-        console.log(this.state.startDateStr)
         const components = this.state.startDateStr.split("-");
 
         if (components.length !== 3) {
