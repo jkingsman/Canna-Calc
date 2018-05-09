@@ -18,6 +18,7 @@ export default class GrowthTimeline extends React.Component {
     }
 
     isDateValid() {
+        console.log(this.state.startDateStr)
         const components = this.state.startDateStr.split("-");
 
         if (components.length !== 3) {
@@ -60,7 +61,7 @@ export default class GrowthTimeline extends React.Component {
                     <div className="col-sm">
                         <FreeInput
                             inputLabel="Plant Date (YYYY-MM-DD)"
-                            onChange={val => this.setState({ startDateStr: Number(val) })}
+                            onChange={val => this.setState({ startDateStr: val })}
                             val={this.state.startDateStr}
                             unit={this.isDateValid()}
                         />

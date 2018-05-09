@@ -115,13 +115,13 @@ export default class DateCalculator extends React.Component {
                     <div className="col-sm">
                         <FreeInput
                             inputLabel="Start Date (YYYY-MM-DD)"
-                            onChange={val => this.setState({ radius: val })}
+                            onChange={val => this.setState({ startDateStr: val })}
                             val={this.state.startDateStr}
                             unit={this.isDateValid()}
                         />
                         <FreeInput
                             inputLabel="Start Time (HH:MM:SS)"
-                            onChange={val => this.setState({ radius: val })}
+                            onChange={val => this.setState({ startTimeStr: val })}
                             val={this.state.startTimeStr}
                             unit={this.isTimeValid()}
                         />
