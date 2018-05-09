@@ -31,7 +31,7 @@ export default class LightingCalculator extends React.Component {
     render() {
         return (
             <div className="container">
-                <p>Determine necessary illumination for a given area</p>
+                <p>Determine necessary illumination for a given area.</p>
                 <EquationBlock
                     equations={[
                         "Illumination Needed = Grow Area Width * Grow Area Length * Desired Lumens",
