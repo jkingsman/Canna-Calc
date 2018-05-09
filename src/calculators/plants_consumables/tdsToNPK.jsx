@@ -72,19 +72,19 @@ export default class NpkToTDS extends React.Component {
                             inputLabel="N Mass Fraction"
                             number={this.state.nMP}
                             onChange={val => this.setState({ nMP: Number(val) })}
-                            unit="%"
+                            unit=""
                         />
                         <FixedUnitInput
                             inputLabel="P Mass Fraction"
                             number={this.state.pMP}
                             onChange={val => this.setState({ pMP: Number(val) })}
-                            unit="%"
+                            unit=""
                         />
                         <FixedUnitInput
                             inputLabel="K Mass Fraction"
                             number={this.state.kMP}
                             onChange={val => this.setState({ kMP: Number(val) })}
-                            unit="%"
+                            unit=""
                         />
                     </div>
                     <div className="col-sm">
