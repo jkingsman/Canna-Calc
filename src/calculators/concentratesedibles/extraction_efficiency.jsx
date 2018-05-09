@@ -78,7 +78,7 @@ export default class ExtractionEfficiency extends React.Component {
                             unit="%"
                         />
                         <GenericInput
-                            inputLabel="Extract Quantity"
+                            inputLabel="Extract Weight"
                             onChange={val => this.setState({ extractWeight: Number(val) })}
                             conversionFactors={ConversionFactors.weight}
                             number={this.state.extractWeight}
