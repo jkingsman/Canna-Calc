@@ -53,7 +53,11 @@ export default class CO2Calculator extends React.Component {
             <div className="container">
                 <p>
                     Determine CO₂ flow rate necessary for CO₂ supplementation to desired
-                    concentration.
+                    concentration.{" "}
+                    <strong>
+                        CO₂ is an asphyxiant and can kill. Always practice proper safety when
+                        utilizing CO₂ and CO₂ generating equipment.
+                    </strong>
                 </p>
                 <EquationBlock
                     equations={[
