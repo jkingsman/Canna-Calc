@@ -49,7 +49,7 @@ export default class CapsuleCalculator extends React.Component {
     render() {
         return (
             <div className="container">
-                <p>Calculate capsule or cartridge cannabinoid based on laboratory analysis.</p>
+                <p>Calculate capsule or cartridge cannabinoid content based on laboratory analysis.</p>
                 <EquationBlock
                     equations={[
                         "mL Cannabinoid in Extract = Test Percentage * Concentrate Volume",
