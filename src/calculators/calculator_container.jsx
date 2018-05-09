@@ -130,6 +130,7 @@ export default class CalculatorContainer extends React.Component {
                     <GeneralCalculatorTemplate
                         labelSuffix="Conductivity"
                         conversionFactors={ConversionFactors.conductivity}
+                        hideSplitter
                     />
                 </CardTemplate>
                 <CardTemplate
