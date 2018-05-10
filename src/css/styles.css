@@ -143,10 +143,10 @@ input[disabled] {
     .pad-left {
         margin-left: 25px;
     }
-}
 
-.text-label {
-    min-width: 180px;
+    .text-label {
+        min-width: 180px;
+    }
 }
 
 .footer-text {
