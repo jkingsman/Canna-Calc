@@ -54,7 +54,14 @@ export default class CalculatorContainer extends React.Component {
             hasLoaded: false,
         };
 
+        window.addEventListener("hashchange", this.trackHashChange, false);
         this.setSearchTerm = this.setSearchTerm.bind(this);
+    }
+
+    trackHashChange() {
+        /* eslint-disable no-undef */
+        ga('send', 'event', "calcView", window.location.hash)
+        /* eslint-enable no-undef */
     }
 
     componentDidMount() {
