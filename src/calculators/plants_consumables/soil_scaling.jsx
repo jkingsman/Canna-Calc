@@ -29,8 +29,13 @@ export default class SoilRatioScaling extends React.Component {
     }
 
     getPercentage() {
-        const totalAmount = this.state.medium1Amt + this.state.medium2Amt + this.state.medium3Amt + this.state.medium4Amt + this.state.medium5Amt;
-        
+        const totalAmount =
+            this.state.medium1Amt +
+            this.state.medium2Amt +
+            this.state.medium3Amt +
+            this.state.medium4Amt +
+            this.state.medium5Amt;
+
         return [
             this.state.medium1Amt / totalAmount,
             this.state.medium2Amt / totalAmount,
@@ -52,7 +57,8 @@ export default class SoilRatioScaling extends React.Component {
                     number of pots (whatever the total of given constituents is will be considered
                     the full blend). For example, you can enter your amounts for a three gallon pot
                     and be provided with the amounts needed to fill the number of new pot sizes with
-                    the given proportions.
+                    the given proportions. Just enter zero for any soil settings you don&#39;t need
+                    to use.
                 </p>
                 <EquationBlock
                     equations={[

@@ -40,12 +40,8 @@ export default class SoilCalculator extends React.Component {
     render() {
         return (
             <div className="container">
-                <p>Determine soil and soil amendment amounts.</p>
-                <EquationBlock
-                    equations={[
-                        "Total = Amt. per Pot * Pot Count",
-                    ]}
-                />
+                <p>Determine soil and soil amendment amounts, scaled up per-pot.</p>
+                <EquationBlock equations={["Total = Amt. per Pot * Pot Count"]} />
                 <hr />
                 <div className="row">
                     <div className="col-sm">
