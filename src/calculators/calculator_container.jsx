@@ -60,7 +60,7 @@ export default class CalculatorContainer extends React.Component {
 
     trackHashChange() {
         /* eslint-disable no-undef */
-        ga('send', 'event', "calcView", window.location.hash)
+        gtag('event', window.location.hash);
         /* eslint-enable no-undef */
     }
 
