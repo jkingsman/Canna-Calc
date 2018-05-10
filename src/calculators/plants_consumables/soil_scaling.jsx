@@ -62,7 +62,7 @@ export default class SoilRatioScaling extends React.Component {
                 </p>
                 <EquationBlock
                     equations={[
-                        "Total = (Amt. per Pot / Sum(Amts. per Pots)) * (Pot Count * Pot Size)",
+                        "Total = (Amt. / Sum(Amts.)) * (Pot Count * Pot Size)",
                     ]}
                 />
                 <hr />
@@ -75,7 +75,7 @@ export default class SoilRatioScaling extends React.Component {
                             unit=""
                         />
                         <GenericInput
-                            inputLabel="Soil 1 Amt./Pot"
+                            inputLabel="Soil 1 Amt."
                             onChange={val => this.setState({ medium1Amt: Number(val) })}
                             conversionFactors={ConversionFactors.basicVolume}
                             number={this.state.medium1Amt}
@@ -87,7 +87,7 @@ export default class SoilRatioScaling extends React.Component {
                             unit=""
                         />
                         <GenericInput
-                            inputLabel="Soil 2 Amt./Pot"
+                            inputLabel="Soil 2 Amt."
                             onChange={val => this.setState({ medium2Amt: Number(val) })}
                             conversionFactors={ConversionFactors.basicVolume}
                             number={this.state.medium2Amt}
@@ -99,7 +99,7 @@ export default class SoilRatioScaling extends React.Component {
                             unit=""
                         />
                         <GenericInput
-                            inputLabel="Soil 3 Amt./Pot"
+                            inputLabel="Soil 3 Amt."
                             onChange={val => this.setState({ medium3Amt: Number(val) })}
                             conversionFactors={ConversionFactors.basicVolume}
                             number={this.state.medium3Amt}
@@ -111,7 +111,7 @@ export default class SoilRatioScaling extends React.Component {
                             unit=""
                         />
                         <GenericInput
-                            inputLabel="Soil 4 Amt./Pot"
+                            inputLabel="Soil 4 Amt."
                             onChange={val => this.setState({ medium4Amt: Number(val) })}
                             conversionFactors={ConversionFactors.basicVolume}
                             number={this.state.medium4Amt}
@@ -123,7 +123,7 @@ export default class SoilRatioScaling extends React.Component {
                             unit=""
                         />
                         <GenericInput
-                            inputLabel="Soil 5 Amt./Pot"
+                            inputLabel="Soil 5 Amt."
                             onChange={val => this.setState({ medium5Amt: Number(val) })}
                             conversionFactors={ConversionFactors.basicVolume}
                             number={this.state.medium5Amt}
