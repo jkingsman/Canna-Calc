@@ -45,7 +45,7 @@ export default class NpkToTDS extends React.Component {
                 <p>
                     Convert from delivery-molecule-bound nitrogen, phosphorus, and potassium
                     percentages (&quot;NPK&quot; values on fertilizer) to PPM TDS at a given
-                    dilution ration.
+                    dilution ratio.
                 </p>
                 <EquationBlock
                     equations={[
