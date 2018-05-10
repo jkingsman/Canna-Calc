@@ -9,7 +9,7 @@ import {
 } from "app/calculators/components/io";
 import ConversionFactors from "app/utils/conversion_factors";
 
-export default class SoilCalculator extends React.Component {
+export default class SoilRatioScaling extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -24,26 +24,39 @@ export default class SoilCalculator extends React.Component {
             medium5: "Bone Meal",
             medium5Amt: 0.1,
             potCount: 25,
+            potSize: 3,
         };
     }
 
-    getAmounts() {
+    getPercentage() {
+        const totalAmount = this.state.medium1Amt + this.state.medium2Amt + this.state.medium3Amt + this.state.medium4Amt + this.state.medium5Amt;
+        
         return [
-            this.state.medium1Amt * this.state.potCount,
-            this.state.medium2Amt * this.state.potCount,
-            this.state.medium3Amt * this.state.potCount,
-            this.state.medium4Amt * this.state.potCount,
-            this.state.medium5Amt * this.state.potCount,
+            this.state.medium1Amt / totalAmount,
+            this.state.medium2Amt / totalAmount,
+            this.state.medium3Amt / totalAmount,
+            this.state.medium4Amt / totalAmount,
+            this.state.medium5Amt / totalAmount,
         ];
+    }
+
+    getTotalSoil() {
+        return this.state.potCount * this.state.potSize;
     }
 
     render() {
         return (
             <div className="container">
-                <p>Determine soil and soil amendment amounts.</p>
+                <p>
+                    Given certain ratios of soil mix, scale up to provide total amounts for the
+                    number of pots (whatever the total of given constituents is will be considered
+                    the full blend). For example, you can enter your amounts for a three gallon pot
+                    and be provided with the amounts needed to fill the number of new pot sizes with
+                    the given proportions.
+                </p>
                 <EquationBlock
                     equations={[
-                        "Total = Amt. per Pot * Pot Count",
+                        "Total = (Amt. per Pot / Sum(Amts. per Pots)) * (Pot Count * Pot Size)",
                     ]}
                 />
                 <hr />
@@ -115,35 +128,41 @@ export default class SoilCalculator extends React.Component {
                             number={this.state.potCount}
                             unit="pots"
                         />
+                        <GenericInput
+                            inputLabel="Pot Size"
+                            onChange={val => this.setState({ potSize: Number(val) })}
+                            conversionFactors={ConversionFactors.basicVolume}
+                            number={this.state.potSize}
+                        />
                     </div>
                     <div className="col-sm">
                         <GenericOutput
                             outputLabel={`Total ${this.state.medium1}`}
-                            number={this.getAmounts()[0]}
+                            number={this.getPercentage()[0] * this.getTotalSoil()}
                             conversionFactors={ConversionFactors.basicVolume}
                             showSplitter={false}
                         />
                         <GenericOutput
                             outputLabel={`Total ${this.state.medium2}`}
-                            number={this.getAmounts()[1]}
+                            number={this.getPercentage()[1] * this.getTotalSoil()}
                             conversionFactors={ConversionFactors.basicVolume}
                             showSplitter={false}
                         />
                         <GenericOutput
                             outputLabel={`Total ${this.state.medium3}`}
-                            number={this.getAmounts()[2]}
+                            number={this.getPercentage()[2] * this.getTotalSoil()}
                             conversionFactors={ConversionFactors.basicVolume}
                             showSplitter={false}
                         />
                         <GenericOutput
                             outputLabel={`Total ${this.state.medium4}`}
-                            number={this.getAmounts()[3]}
+                            number={this.getPercentage()[3] * this.getTotalSoil()}
                             conversionFactors={ConversionFactors.basicVolume}
                             showSplitter={false}
                         />
                         <GenericOutput
                             outputLabel={`Total ${this.state.medium5}`}
-                            number={this.getAmounts()[4]}
+                            number={this.getPercentage()[4] * this.getTotalSoil()}
                             conversionFactors={ConversionFactors.basicVolume}
                             showSplitter={false}
                         />

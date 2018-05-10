@@ -20,6 +20,7 @@ import WaterCalculator from "app/calculators/equipment_power/water_calculator";
 
 import GrowthTimeline from "app/calculators/plants_consumables/growth_timeline";
 import SoilCalculator from "app/calculators/plants_consumables/soil_calculator";
+import SoilRatioScaling from "app/calculators/plants_consumables/soil_scaling";
 import PHCalculator from "app/calculators/plants_consumables/ph_solution";
 import NpkToTDS from "app/calculators/plants_consumables/npkToTDS";
 import TDStoNPK from "app/calculators/plants_consumables/tdsToNPK";
@@ -60,7 +61,7 @@ export default class CalculatorContainer extends React.Component {
 
     trackHashChange() {
         /* eslint-disable no-undef */
-        gtag('event', window.location.hash);
+        gtag("event", window.location.hash);
         /* eslint-enable no-undef */
     }
 
@@ -365,10 +366,19 @@ export default class CalculatorContainer extends React.Component {
                     id="soilCalculator"
                     keywords="soil dirt loam peat worm casings bat guano bone meal kelp dirt potting"
                     searchTerm={this.state.searchTerm}
-                    title="Soil Proportions"
+                    title="Soil Amount to Total"
                     parentID="mainAccordion"
                 >
                     <SoilCalculator />
+                </CardTemplate>
+                <CardTemplate
+                    id="soilRatio"
+                    keywords="soil dirt loam peat worm casings bat guano bone meal kelp dirt potting"
+                    searchTerm={this.state.searchTerm}
+                    title="Soil Ratio to Total"
+                    parentID="mainAccordion"
+                >
+                    <SoilRatioScaling />
                 </CardTemplate>
                 <CardTemplate
                     id="phCalculator"
