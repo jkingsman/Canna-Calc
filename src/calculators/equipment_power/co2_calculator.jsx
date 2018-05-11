@@ -155,7 +155,7 @@ export default class CO2Calculator extends React.Component {
                 </div>
                 <i>
                     *Room volume does not account for space taken by ducting, fans, plant holders,
-                    etc. -- enter approximate volume consumed by objects in room here increase
+                    etc. -- enter approximate volume consumed by objects in room here to increase
                     volume accuracy. For ducting, use the Cylinder Volume calculator with length of
                     ducting as cylinder height.
                 </i>
