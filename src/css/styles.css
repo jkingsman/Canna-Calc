@@ -4,7 +4,7 @@ html {
 }
 
 body {
-    padding-bottom: 150px;
+    padding-bottom: 250px;
     /* Margin bottom by footer height */
 }
 
@@ -93,7 +93,7 @@ h3, .h3 {
     display: inline;
 }
 
-@media (max-width: 845px) {
+@media (max-width: 768px) {
     .tagline {
         display: none;
         margin-bottom: 0px;
@@ -107,6 +107,20 @@ h3, .h3 {
     }
     .alert {
         padding: 0 !important;
+    }
+
+    body {
+        padding-bottom: 350px !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .pad-left {
+        margin-left: 25px;
+    }
+
+    .text-label {
+        min-width: 180px;
     }
 }
 
@@ -139,18 +153,9 @@ input[disabled] {
     width: 30px;
 }
 
-@media (min-width: 845px) {
-    .pad-left {
-        margin-left: 25px;
-    }
-
-    .text-label {
-        min-width: 180px;
-    }
-}
-
 .footer-text {
     color: #333e48;
+    text-align: center;
 }
 
 .card-header {
