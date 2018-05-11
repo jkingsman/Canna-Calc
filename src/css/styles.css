@@ -158,9 +158,10 @@ input[disabled] {
     text-align: center;
 }
 
-.card-header {
+.card-header, .card-header:focus {
     padding: .5rem .75rem !important;
     cursor: pointer;
+    outline: 0;
 }
 
 .group-header {
