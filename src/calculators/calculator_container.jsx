@@ -44,7 +44,8 @@ import {
     EdiblePotency,
     EdibleProduct,
     EdibleServings,
-    VariableServingPotency,
+    VariableServingPotencyWeight,
+    VariableServingPotencyVolume,
 } from "app/calculators/concentratesedibles/edible_calculators";
 
 export default class CalculatorContainer extends React.Component {
@@ -129,19 +130,6 @@ export default class CalculatorContainer extends React.Component {
                     />
                 </CardTemplate>
                 <CardTemplate
-                    id="ecVConversion"
-                    keywords="conductivity tds ppm tds"
-                    searchTerm={this.state.searchTerm}
-                    title="EC/TDS Conversion"
-                    parentID="mainAccordion"
-                >
-                    <GeneralCalculatorTemplate
-                        labelSuffix="Conductivity"
-                        conversionFactors={ConversionFactors.conductivity}
-                        hideSplitter
-                    />
-                </CardTemplate>
-                <CardTemplate
                     id="temperatureConversion"
                     keywords="temperature heat celsius centigrade farenheit kelvin"
                     searchTerm={this.state.searchTerm}
@@ -181,28 +169,6 @@ export default class CalculatorContainer extends React.Component {
                     />
                 </CardTemplate>
                 <CardTemplate
-                    id="timeConversion"
-                    keywords="time hours hrs minutes mins seconds secs days weeks wks months"
-                    searchTerm={this.state.searchTerm}
-                    title="Time Conversion"
-                    parentID="mainAccordion"
-                >
-                    <GeneralCalculatorTemplate
-                        labelSuffix="Time"
-                        conversionFactors={ConversionFactors.basicTime}
-                        hideSplitter
-                    />
-                </CardTemplate>
-                <CardTemplate
-                    id="dateCalculator"
-                    keywords="add subtract datetime years yrs hours hrs minutes mins seconds secs days weeks wks months"
-                    searchTerm={this.state.searchTerm}
-                    title="Add/Subtract to Date/Time"
-                    parentID="mainAccordion"
-                >
-                    <DateCalculator />
-                </CardTemplate>
-                <CardTemplate
                     id="areaConversion"
                     keywords="area squared sqft ^2 kilometers km^2 m^2 millimeters mm^2 centimeters cm^2 inches in^2 feet ft^2 yards yd^2 miles mi^2 hectares acres"
                     searchTerm={this.state.searchTerm}
@@ -238,6 +204,41 @@ export default class CalculatorContainer extends React.Component {
                         labelSuffix="Flow Rate"
                         conversionFactors={ConversionFactors.flowRate}
                         message="If your volume isn't already in cubic meters (m³), convert to cubic meters via the Volume converter, then enter it here to convert."
+                    />
+                </CardTemplate>
+                <CardTemplate
+                    id="timeConversion"
+                    keywords="time hours hrs minutes mins seconds secs days weeks wks months"
+                    searchTerm={this.state.searchTerm}
+                    title="Time Conversion"
+                    parentID="mainAccordion"
+                >
+                    <GeneralCalculatorTemplate
+                        labelSuffix="Time"
+                        conversionFactors={ConversionFactors.basicTime}
+                        hideSplitter
+                    />
+                </CardTemplate>
+                <CardTemplate
+                    id="dateCalculator"
+                    keywords="add subtract datetime years yrs hours hrs minutes mins seconds secs days weeks wks months"
+                    searchTerm={this.state.searchTerm}
+                    title="Add/Subtract to Date/Time"
+                    parentID="mainAccordion"
+                >
+                    <DateCalculator />
+                </CardTemplate>
+                <CardTemplate
+                    id="ecVConversion"
+                    keywords="conductivity tds ppm tds"
+                    searchTerm={this.state.searchTerm}
+                    title="EC/TDS Conversion"
+                    parentID="mainAccordion"
+                >
+                    <GeneralCalculatorTemplate
+                        labelSuffix="Conductivity"
+                        conversionFactors={ConversionFactors.conductivity}
+                        hideSplitter
                     />
                 </CardTemplate>
                 <CardTemplate
@@ -454,7 +455,9 @@ export default class CalculatorContainer extends React.Component {
                         oils baked into the goods.
                     </p>
                     <hr />
-                    <VariableServingPotency />
+                    <VariableServingPotencyVolume />
+                    <hr />
+                    <VariableServingPotencyWeight />
                     <hr />
                     <EdiblePotency />
                     <hr />
