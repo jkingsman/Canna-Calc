@@ -127,8 +127,8 @@ export default class Boilerplate extends React.Component {
                 <footer className="footer">
                     <div className="container">
                         <div className="footer-text">
-                            A very special thank-you to to the following sites for promoting
-                            Canna-Calc!<br />
+                            A very special thank-you to to the following sites for helping get the
+                            word out about Canna-Calc!<br />
                             <a
                                 rel="noopener noreferrer"
                                 target="_blank"
