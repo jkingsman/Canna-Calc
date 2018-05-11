@@ -86,7 +86,7 @@ h3, .h3 {
 
 #share-buttons img,
 #share-buttons svg {
-    width: 35px;
+    width: 45px;
     padding: 5px;
     border: 0;
     box-shadow: 0;
@@ -98,8 +98,9 @@ h3, .h3 {
         display: none;
         margin-bottom: 0px;
     }
-    #share-buttons img {
-        width: 25px;
+    #share-buttons img,
+    #share-buttons svg {
+        width: 35px;
         padding: 5px;
         border: 0;
         box-shadow: 0;
