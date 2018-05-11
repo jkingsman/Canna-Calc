@@ -69,6 +69,10 @@ module.exports = {
         new CopyWebpackPlugin([{
             from: 'src/sitemap.xml',
             to: 'sitemap.xml'
+        }]),
+        new CopyWebpackPlugin([{
+            from: 'src/_redirects',
+            to: 'redirects'
         }])
     ],
     devtool: 'source-map',

@@ -59,6 +59,10 @@ module.exports = {
             from: 'src/sitemap.xml',
             to: 'sitemap.xml'
         }]),
+        new CopyWebpackPlugin([{
+            from: 'src/_redirects',
+            to: 'redirects'
+        }]),
         new UglifyJsPlugin(),
         new OfflinePlugin({
             responseStrategy: 'network-first',
