@@ -38,7 +38,11 @@ export default class CardTemplate extends React.Component {
         if (this.matchesKeyword()) {
             return (
                 <div className="card pad-left">
-                    <a aria-hidden="true" name={`${this.props.id}_a`} />
+                    <a
+                        aria-hidden="true"
+                        aria-label="Anchor for navigation -- not seen; this is just here for ARIA compliance"
+                        name={`${this.props.id}_a`}
+                    />
                     <h3
                         className="card-header mb-0"
                         onClick={this.toggleHash}
