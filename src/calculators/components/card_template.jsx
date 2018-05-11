@@ -51,6 +51,8 @@ export default class CardTemplate extends React.Component {
                         aria-controls={`cardCollapse${this.uniqueID}`}
                         data-toggle="collapse"
                         aria-expanded="false"
+                        area-role="button"
+                        tabIndex="0"
                     >
                         {this.props.title}
                     </h3>
