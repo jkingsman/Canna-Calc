@@ -61,9 +61,7 @@ export default class SoilRatioScaling extends React.Component {
                     to use.
                 </p>
                 <EquationBlock
-                    equations={[
-                        "Total = (Amt. / Sum(Amts.)) * (Pot Count * Pot Size)",
-                    ]}
+                    equations={["Total = (Amt. / Sum(Amts.)) * (Pot Count * Pot Size)"]}
                 />
                 <hr />
                 <div className="row">
