@@ -569,7 +569,7 @@ export class EquationBlock extends React.Component {
     render() {
         return (
             <span>
-                <a className="equationTrigger" onClick={this.toggleShow}>
+                <a className="equationTrigger" onClick={this.toggleShow} aria-label="Expand or Collapse Equation Block">
                     {this.state.show ? "Hide" : "Show"} Equations {this.state.show ? "▴" : "▾"}
                 </a>
                 {this.renderEquations()}
