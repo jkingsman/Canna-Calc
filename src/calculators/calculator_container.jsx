@@ -111,6 +111,7 @@ export default class CalculatorContainer extends React.Component {
             <div id="mainAccordion">
                 <input
                     aria-label="search for calculators"
+                    role="search"
                     value={this.state.searchTerm}
                     onChange={this.setSearchTerm}
                     placeholder="Enter a keyword to search..."
