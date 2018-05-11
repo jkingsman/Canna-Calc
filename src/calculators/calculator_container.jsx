@@ -94,13 +94,15 @@ export default class CalculatorContainer extends React.Component {
         this.setState({
             searchTerm: ev.target.value,
         });
-    
+
         clearTimeout(this.searchReportDebouncer);
 
         this.searchReportDebouncer = setTimeout(() => {
-            /* eslint-disable no-undef */
-            gtag("event", "searching; term: " + this.state.searchTerm);
-            /* eslint-enable no-undef */
+            if (this.state.searchTerm.length > 0) {
+                /* eslint-disable no-undef */
+                gtag("event", "searching; term: " + this.state.searchTerm);
+                /* eslint-enable no-undef */
+            }
         }, 500);
     }
 
