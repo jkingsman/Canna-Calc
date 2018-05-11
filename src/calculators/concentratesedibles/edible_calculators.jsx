@@ -10,7 +10,117 @@ import {
 import ConversionFactors from "app/utils/conversion_factors";
 import { defaultRound } from "app/utils/math";
 
-export class VariableServingPotency extends React.Component {
+export class VariableServingPotencyWeight extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            productWeight: 10,
+            productPotency: 25,
+            infuserWeight: 100,
+            bakedGoodOil: 25,
+            bakedGoodServings: 12,
+        };
+    }
+
+    getTotalTHC() {
+        return this.state.productWeight * (this.state.productPotency / 100) * 1000;
+    }
+
+    getTHCperG() {
+        return this.getTotalTHC() / this.state.infuserWeight;
+    }
+
+    getTHCinBakedGood() {
+        return this.getTHCperG() * this.state.bakedGoodOil;
+    }
+
+    getTHCperServing() {
+        return this.getTHCinBakedGood() / this.state.bakedGoodServings;
+    }
+
+    render() {
+        return (
+            <div className="container">
+                <p>
+                    Determine serving and potency breakdown of an oil or butter prepared
+                    specifically for a recipe assuming 100% THC extraction.
+                </p>
+                <EquationBlock
+                    equations={[
+                        "Oil Total THC = Product Amount * Potency",
+                        "Oil THC per g = Oil Total THC / Oil Infused",
+                        "Baked Good Total THC = Oil THC per g * Baked Good Oil Amt. (in tbsp.)",
+                        "THC per Serving = Baked Good Total THC / Servings",
+                    ]}
+                />
+                <hr />
+                <h5>Complete Recipe (Weight)</h5>
+                <div className="row">
+                    <div className="col-sm">
+                        <GenericInput
+                            inputLabel="Product Amount"
+                            onChange={val => this.setState({ productWeight: Number(val) })}
+                            conversionFactors={ConversionFactors.basicWeight}
+                            number={this.state.productWeight}
+                        />
+                        <FixedUnitInput
+                            inputLabel="Product Potency"
+                            onChange={val => this.setState({ productPotency: Number(val) })}
+                            number={this.state.productPotency}
+                            unit="% THC"
+                        />
+                        <GenericInput
+                            inputLabel="Oil/Butter Infused"
+                            onChange={val => this.setState({ infuserWeight: Number(val) })}
+                            conversionFactors={ConversionFactors.basicWeight}
+                            number={this.state.infuserWeight}
+                        />
+                        <GenericInput
+                            inputLabel="Baked Good Oil Amt."
+                            onChange={val => this.setState({ bakedGoodOil: Number(val) })}
+                            conversionFactors={ConversionFactors.basicWeight}
+                            number={this.state.bakedGoodOil}
+                        />
+                        <FixedUnitInput
+                            inputLabel="Baked Good Servings"
+                            onChange={val =>
+                                this.setState({
+                                    bakedGoodServings: Number(val),
+                                })
+                            }
+                            number={this.state.bakedGoodServings}
+                            unit="servings"
+                        />
+                    </div>
+                    <div className="col-sm">
+                        <FixedUnitOutput
+                            outputLabel="Oil/Butter Total THC"
+                            number={defaultRound(this.getTotalTHC())}
+                            unit="mg"
+                        />
+                        <FixedUnitOutput
+                            outputLabel="Oil/Butter THC/gram"
+                            number={defaultRound(this.getTHCperG())}
+                            unit="mg/g"
+                        />
+                        <FixedUnitOutput
+                            outputLabel="Baked Good Total THC"
+                            number={defaultRound(this.getTHCinBakedGood())}
+                            unit="mg"
+                        />
+                        <FixedUnitOutput
+                            outputLabel="THC/Serving"
+                            number={defaultRound(this.getTHCperServing())}
+                            unit="mg/serving"
+                        />
+                    </div>
+                </div>
+            </div>
+        );
+    }
+}
+
+export class VariableServingPotencyVolume extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -49,14 +159,14 @@ export class VariableServingPotency extends React.Component {
                 </p>
                 <EquationBlock
                     equations={[
-                        "Oil/Butter Total THC = Product Amount * Potency",
-                        "Oil/Butter THC/tbsp = Oil/Butter Total THC / Oil/Butter Infused",
-                        "Baked Good Total THC = Oil/Butter THC/tbsp * Baked Good Oil Amt. (in tbsp.)",
-                        "THC/Serving = Baked Good Total THC / Servings",
+                        "Oil Total THC = Product Amount * Potency",
+                        "Oil THC per tbsp = Oil Total THC / Oil Infused",
+                        "Baked Good Total THC = Oil THC per tbsp * Baked Good Oil Amt. (in tbsp.)",
+                        "THC per Serving = Baked Good Total THC / Servings",
                     ]}
                 />
                 <hr />
-                <h5>Complete Recipe</h5>
+                <h5>Complete Recipe (Volume)</h5>
                 <div className="row">
                     <div className="col-sm">
                         <GenericInput
