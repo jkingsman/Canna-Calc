@@ -81,7 +81,7 @@ export default class AmperageCalculator extends React.Component {
                             inputLabel="Light Count"
                             onChange={val => this.setState({ lightCount: Number(val) })}
                             number={this.state.lightCount}
-                            unit="plants"
+                            unit="lights"
                         />
                     </div>
                     <div className="col-sm">
