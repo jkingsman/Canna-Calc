@@ -1,6 +1,11 @@
 import React from "react";
 
-import { GenericInput, FixedUnitInput, FixedUnitOutput, EquationBlock } from "app/calculators/components/io";
+import {
+    GenericInput,
+    FixedUnitInput,
+    FixedUnitOutput,
+    EquationBlock,
+} from "app/calculators/components/io";
 import ConversionFactors from "app/utils/conversion_factors";
 import { defaultRound } from "app/utils/math";
 
@@ -21,7 +26,12 @@ export default class DeliveredLightingCalculator extends React.Component {
     }
 
     getTotalIllumination() {
-        return (this.state.light1Count * this.state.light1Lumens) + (this.state.light2Count * this.state.light2Lumens) + (this.state.light3Count * this.state.light3Lumens) + (this.state.light4Count * this.state.light4Lumens);
+        return (
+            this.state.light1Count * this.state.light1Lumens +
+            this.state.light2Count * this.state.light2Lumens +
+            this.state.light3Count * this.state.light3Lumens +
+            this.state.light4Count * this.state.light4Lumens
+        );
     }
 
     getAreaIllumination() {

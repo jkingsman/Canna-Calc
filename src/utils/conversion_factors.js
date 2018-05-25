@@ -12,13 +12,15 @@ const ConversionFactors = {
             // to get X to grams from...
             g: grams => Number(grams),
             oz: grams => Number(grams) * 28.3495231,
+            mg: grams => Number(grams) / 1000,
             lbs: grams => Number(grams) * 453.59237,
         },
         from: {
             // to get X from grams into...
             g: grams => Number(grams),
-            "oz": grams => Number(grams) / 28.3495,
+            oz: grams => Number(grams) / 28.3495,
             mg: grams => Number(grams) * 1000,
+            lbs: grams => Number(grams) / 453.59237,
         },
     },
 
@@ -36,10 +38,10 @@ const ConversionFactors = {
             // to get X from grams into...
             g: grams => Number(grams),
             mg: grams => Number(grams) * 1000,
-            "oz": grams => Number(grams) / 28.3495,
+            oz: grams => Number(grams) / 28.3495,
             lbs: grams => Number(grams) / 453.5924,
             kg: grams => Number(grams) / 1000,
-            "st": grams => Number(grams) / 6350.2932,
+            st: grams => Number(grams) / 6350.2932,
         },
     },
 
@@ -78,15 +80,15 @@ const ConversionFactors = {
     basicDistance: {
         to: {
             // to get X to ft from...
-            "ft": m => Number(m),
+            ft: m => Number(m),
             m: m => Number(m) * 3.2808,
-            "yd": m => Number(m) * 3,
+            yd: m => Number(m) * 3,
         },
         from: {
             // to get X from ft into...
-            "ft": m => Number(m),
+            ft: m => Number(m),
             m: m => Number(m) / 3.2808,
-            "yd": m => Number(m) / 3,
+            yd: m => Number(m) / 3,
         },
     },
 
@@ -97,10 +99,10 @@ const ConversionFactors = {
             mm: m => Number(m) / 1000,
             cm: m => Number(m) / 100,
             km: m => Number(m) * 1000,
-            "in": m => Number(m) / 39.3701,
-            "ft": m => Number(m) / 3.2808,
-            "yd": m => Number(m) / 1.0936,
-            "mi": m => Number(m) * 1609.344,
+            in: m => Number(m) / 39.3701,
+            ft: m => Number(m) / 3.2808,
+            yd: m => Number(m) / 1.0936,
+            mi: m => Number(m) * 1609.344,
         },
         from: {
             // to get X from meters into...
@@ -108,10 +110,10 @@ const ConversionFactors = {
             mm: m => Number(m) * 1000,
             cm: m => Number(m) * 100,
             km: m => Number(m) / 1000,
-            "in": m => Number(m) * 39.3701,
-            "ft": m => Number(m) * 3.2808,
-            "yd": m => Number(m) * 1.0936,
-            "mi": m => Number(m) / 1609.344,
+            in: m => Number(m) * 39.3701,
+            ft: m => Number(m) * 3.2808,
+            yd: m => Number(m) * 1.0936,
+            mi: m => Number(m) / 1609.344,
         },
     },
 
@@ -141,7 +143,7 @@ const ConversionFactors = {
             "ft²": m => Number(m) / 10.7639,
             "yd²": m => Number(m) / 1.196,
             "mi²": m => Number(m) * 2589988.11,
-            "hect": m => Number(m) * 10000,
+            hect: m => Number(m) * 10000,
             acre: m => Number(m) * 4046.8564,
         },
         from: {
@@ -154,7 +156,7 @@ const ConversionFactors = {
             "ft²": m => Number(m) * 10.7639,
             "yd²": m => Number(m) * 1.196,
             "mi²": m => Number(m) / 2589988.11,
-            "hect": m => Number(m) / 10000,
+            hect: m => Number(m) / 10000,
             acre: m => Number(m) / 4046.8564,
         },
     },
@@ -180,8 +182,8 @@ const ConversionFactors = {
         to: {
             // to get X to cups from...
             cups: cups => Number(cups),
-            "tbsp": cups => Number(cups) / 16,
-            "tsp": cups => Number(cups) / 48,
+            tbsp: cups => Number(cups) / 16,
+            tsp: cups => Number(cups) / 48,
             "fl. oz": cups => Number(cups) / 8,
             pint: cups => Number(cups) / 0.5,
             quart: cups => Number(cups) / 0.25,
@@ -189,8 +191,8 @@ const ConversionFactors = {
         from: {
             // to get X from cups into...
             cups: cups => Number(cups),
-            "tbsp": cups => Number(cups) * 16,
-            "tsp": cups => Number(cups) * 48,
+            tbsp: cups => Number(cups) * 16,
+            tsp: cups => Number(cups) * 48,
             "fl. oz": cups => Number(cups) * 8,
             pint: cups => Number(cups) * 0.5,
             quart: cups => Number(cups) * 0.25,
@@ -215,8 +217,8 @@ const ConversionFactors = {
             "mm³": m => Number(m) / 1000000000,
             pint: m => Number(m) / 2113.3764,
             quart: m => Number(m) / 1056.6882,
-            "tbsp": m => Number(m) / 67628.0454,
-            "tsp": m => Number(m) / 202884.136,
+            tbsp: m => Number(m) / 67628.0454,
+            tsp: m => Number(m) / 202884.136,
             "yd³": m => Number(m) / 1.308,
         },
         from: {
@@ -236,8 +238,8 @@ const ConversionFactors = {
             "mm³": m => Number(m) * 1000000000,
             pint: m => Number(m) * 2113.3764,
             quart: m => Number(m) * 1056.6882,
-            "tbsp": m => Number(m) * 67628.0454,
-            "tsp": m => Number(m) * 202884.136,
+            tbsp: m => Number(m) * 67628.0454,
+            tsp: m => Number(m) * 202884.136,
             "yd³": m => Number(m) * 1.308,
         },
     },
@@ -248,16 +250,16 @@ const ConversionFactors = {
             ml: m => Number(m),
             cc: m => Number(m),
             "cm³": m => Number(m),
-            "tbsp": m => Number(m) * 14.7867648,
-            "tsp": m => Number(m) / 4.92892159,
+            tbsp: m => Number(m) * 14.7867648,
+            tsp: m => Number(m) / 4.92892159,
         },
         from: {
             // to get X from ml into...
             ml: m => Number(m),
             cc: m => Number(m),
             "cm³": m => Number(m),
-            "tbsp": m => Number(m) * 14.7867648,
-            "tsp": m => Number(m) / 4.92892159,
+            tbsp: m => Number(m) * 14.7867648,
+            tsp: m => Number(m) / 4.92892159,
         },
     },
 
