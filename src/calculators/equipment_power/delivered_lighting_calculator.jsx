@@ -41,7 +41,7 @@ export default class DeliveredLightingCalculator extends React.Component {
     render() {
         return (
             <div className="container">
-                <p>Determine the lumnens per area for given lights</p>
+                <p>Determine the lumnens per area delivered by given lights.</p>
                 <EquationBlock
                     equations={[
                         "Total Illumination = sum(Light X Count * Light X Lumens)",
