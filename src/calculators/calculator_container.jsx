@@ -12,6 +12,7 @@ import DateCalculator from "app/calculators/general/date_calculator";
 import ConversionFactors from "app/utils/conversion_factors";
 
 import LightingCalculator from "app/calculators/equipment_power/lighting_calculator";
+import DeliveredLightingCalculator from "app/calculators/equipment_power/delivered_lighting_calculator";
 import CO2Calculator from "app/calculators/equipment_power/co2_calculator";
 import BTUCalculator from "app/calculators/equipment_power/btu_calculator";
 import ExhaustCalculator from "app/calculators/equipment_power/exhaust_calculator";
@@ -297,12 +298,21 @@ export default class CalculatorContainer extends React.Component {
                 )}
                 <CardTemplate
                     id="lighting"
-                    keywords="lighting lights led hid wattage power watts lumens"
+                    keywords="lighting lights led hid cfl wattage power watts lumens bulb"
                     searchTerm={this.state.searchTerm}
-                    title="Light Wattage"
+                    title="Light Wattage/Lumens"
                     parentID="mainAccordion"
                 >
                     <LightingCalculator />
+                </CardTemplate>
+                <CardTemplate
+                    id="deliveredLighting"
+                    keywords="delivered lighting lights led hid cfl wattage power watts lumens bulb"
+                    searchTerm={this.state.searchTerm}
+                    title="Delivered Lumens"
+                    parentID="mainAccordion"
+                >
+                    <DeliveredLightingCalculator />
                 </CardTemplate>
                 <CardTemplate
                     id="btus"
