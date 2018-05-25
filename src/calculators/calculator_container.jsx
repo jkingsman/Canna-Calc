@@ -18,6 +18,7 @@ import BTUCalculator from "app/calculators/equipment_power/btu_calculator";
 import ExhaustCalculator from "app/calculators/equipment_power/exhaust_calculator";
 import AmperageCalculator from "app/calculators/equipment_power/amperage_calculator";
 import WaterCalculator from "app/calculators/equipment_power/water_calculator";
+import {TimeLapseCalculator, TimeLapseSizeLimit} from "app/calculators/equipment_power/time_lapse_calculator";
 
 import GrowthTimeline from "app/calculators/plants_consumables/growth_timeline";
 import SoilCalculator from "app/calculators/plants_consumables/soil_calculator";
@@ -358,6 +359,17 @@ export default class CalculatorContainer extends React.Component {
                     parentID="mainAccordion"
                 >
                     <WaterCalculator />
+                </CardTemplate>
+                <CardTemplate
+                    id="timeLapse"
+                    keywords="time lapse storage mb gb megabytes mebibytes gigabytes gibibytes"
+                    searchTerm={this.state.searchTerm}
+                    title="Time Lapse Image Size"
+                    parentID="mainAccordion"
+                >
+                    <TimeLapseCalculator />
+                    <hr />
+                    <TimeLapseSizeLimit />
                 </CardTemplate>
                 {this.isSearching() ? (
                     ""

@@ -360,6 +360,19 @@ const ConversionFactors = {
             "PPM TDS": ec => Number(ec) * 500,
         },
     },
+
+    basicData: {
+        to: {
+            // to get X to MB from...
+            MB: mb => Number(mb),
+            GB: mb => Number(mb) * 1000,
+        },
+        from: {
+            // to get X from MB into...
+            MB: mb => Number(mb),
+            GB: mb => Number(mb) / 1000,
+        },
+    },
 };
 
 export default ConversionFactors;
