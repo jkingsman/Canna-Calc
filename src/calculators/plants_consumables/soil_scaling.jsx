@@ -126,6 +126,7 @@ export default class SoilRatioScaling extends React.Component {
                             conversionFactors={ConversionFactors.basicVolume}
                             number={this.state.medium5Amt}
                         />
+                        <hr />
                         <FixedUnitInput
                             inputLabel="Pot Count"
                             onChange={val => this.setState({ potCount: Number(val) })}
