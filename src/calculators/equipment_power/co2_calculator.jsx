@@ -63,7 +63,7 @@ export default class CO2Calculator extends React.Component {
                     equations={[
                         "Room Volume = Width * Length * Height - Volume Compensation",
                         "Desired Addtl. CO₂ = Desired CO₂ - Ambient CO₂",
-                        "Fixed Addtl. CO₂ = Desired Addtl. CO₂ * Room Volume * 1e-6)",
+                        "Fixed Addtl. CO₂ = (Desired Addtl. CO₂ * 1e-6) * Room Volume",
                         "CO₂ Flow Rate = Fixed CO₂ Flow Rate / (Minutes On / 60)",
                     ]}
                 />
