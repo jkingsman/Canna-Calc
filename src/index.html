@@ -67,6 +67,7 @@
     <script src="/static/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-118455438-1"></script>
     <script>
+        // GA
         window.dataLayer = window.dataLayer || [];
         
         function gtag() {
@@ -78,6 +79,17 @@
             'anonymize_ip': true,
         });
         gtag('require', 'linkid');
+
+        // IMG deferral 
+        document.addEventListener('DOMContentLoaded', function () {
+            var imgDefer = document.getElementsByTagName('img');
+            for (var i = 0; i < imgDefer.length; i++) {
+                if (imgDefer[i].getAttribute('data-src')) {
+                    imgDefer[i].setAttribute('src', imgDefer[i].getAttribute('data-src'));
+                    imgDefer[i].removeAttribute('data-src');
+                }
+            }
+        }, false);
     </script>
 </body>
 

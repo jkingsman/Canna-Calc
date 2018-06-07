@@ -235,6 +235,12 @@ input[disabled] {
     border-color: #c3e6cb;
 }
 
+.footerLogo[data-src] {
+    /* don't display defered images until loaded */
+    display: none;
+}
+
 .footerLogo {
     margin-top: 10px;
+    max-width: 200px;
 }
