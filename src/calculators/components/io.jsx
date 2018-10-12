@@ -248,7 +248,13 @@ export class GenericInput extends React.Component {
             return;
         }
 
-        const result = this.props.conversionFactors.to[this.state.unit](this.state.number);
+        let result;
+        if (this.props.invert) {
+            result = this.props.conversionFactors.from[this.state.unit](this.state.number);
+        } else {
+            result = this.props.conversionFactors.to[this.state.unit](this.state.number);
+        }
+
         this.setState({
             result: result,
         });
@@ -316,6 +322,7 @@ GenericInput.propTypes = {
     negative: PropTypes.bool,
     per: PropTypes.bool,
     noPadding: PropTypes.bool,
+    invert: PropTypes.bool,
 };
 
 GenericInput.defaultProps = {
@@ -326,6 +333,7 @@ GenericInput.defaultProps = {
     negative: false,
     per: false,
     noPadding: false,
+    invert: false,
 };
 
 export class GenericOutput extends React.Component {

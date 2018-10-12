@@ -1,11 +1,6 @@
 import React from "react";
 
-import {
-    GenericInput,
-    FixedUnitInput,
-    FixedUnitOutput,
-    EquationBlock,
-} from "app/calculators/components/io";
+import { GenericInput, FixedUnitOutput, EquationBlock } from "app/calculators/components/io";
 import ConversionFactors from "app/utils/conversion_factors";
 
 export default class LightingCalculator extends React.Component {
@@ -20,6 +15,7 @@ export default class LightingCalculator extends React.Component {
     }
 
     getArea() {
+        console.log(this.state.lumensNeededSqFt);
         return this.state.growSpaceWidthFt * this.state.growSpaceLengthFt;
     }
 
@@ -46,17 +42,25 @@ export default class LightingCalculator extends React.Component {
                 <hr />
                 <div className="row">
                     <div className="col-sm">
-                        <FixedUnitInput
-                            inputLabel="Desired Lumens"
+                        <GenericInput
+                            inputLabel="Desired Lumens*"
                             onChange={val => this.setState({ lumensNeededSqFt: Number(val) })}
+                            conversionFactors={ConversionFactors.basicArea}
                             number={this.state.lumensNeededSqFt}
-                            unit="per ft²"
+                            per
+                            invert
                         />
-                        <FixedUnitInput
+                        <GenericInput
                             inputLabel="Desired Watts"
-                            onChange={val => this.setState({ wattageNeededSqFt: Number(val) })}
+                            onChange={val =>
+                                this.setState({
+                                    wattageNeededSqFt: Number(val),
+                                })
+                            }
+                            conversionFactors={ConversionFactors.basicArea}
                             number={this.state.wattageNeededSqFt}
-                            unit="per ft²"
+                            per
+                            invert
                         />
                         <GenericInput
                             inputLabel="Grow Area Width"
