@@ -1,10 +1,6 @@
 import React from "react";
 
-import {
-    FixedUnitInput,
-    GenericOutput,
-    FixedUnitOutput,
-} from "app/calculators/components/io";
+import { FixedUnitInput, GenericOutput, FixedUnitOutput } from "app/calculators/components/io";
 import ConversionFactors from "app/utils/conversion_factors";
 import { defaultRound } from "app/utils/math";
 
@@ -27,7 +23,10 @@ export class TimeLapseCalculator extends React.Component {
         return (
             <div className="container">
                 <h5>Image Frequency to Size</h5>
-                <p>Determine the storage space needed for a given image rate. Month assumes 31 days.</p>
+                <p>
+                    Determine the storage space needed for a given image rate. Month assumes 31
+                    days.
+                </p>
                 <hr />
                 <div className="row">
                     <div className="col-sm">
@@ -87,7 +86,7 @@ export class TimeLapseSizeLimit extends React.Component {
     }
 
     getInterval() {
-        const totalImages = (this.state.storageSpace * 1000) / this.state.imageSizeMB;
+        const totalImages = this.state.storageSpace * 1000 / this.state.imageSizeMB;
         const lapseTimeMinutes = this.state.lapseTime * 1440;
         return lapseTimeMinutes / totalImages;
     }
@@ -96,7 +95,9 @@ export class TimeLapseSizeLimit extends React.Component {
         return (
             <div className="container">
                 <h5>Capture Interval from Space Restriction</h5>
-                <p>Determine the fastest capture interval possible given a limited storage space.</p>
+                <p>
+                    Determine the fastest capture interval possible given a limited storage space.
+                </p>
                 <hr />
                 <div className="row">
                     <div className="col-sm">
