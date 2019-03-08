@@ -33,7 +33,7 @@ import TDSDilution from "app/calculators/plants_consumables/tds_dilution";
 import YieldCalculator from "app/calculators/plants_consumables/yield_calculator";
 import YieldDryWetCalculator from "app/calculators/plants_consumables/yielddrywet_calculator";
 import PlantCount from "app/calculators/plants_consumables/plantcount_calculator";
-import DewFrostPoint from "app/calculators/plants_consumables/dew_frost_point";
+import DewPoint from "app/calculators/plants_consumables/dew_point";
 
 import {
     PercentageToMG,
@@ -383,13 +383,13 @@ export default class CalculatorContainer extends React.Component {
                     </h2>
                 )}
                 <CardTemplate
-                    id="dewFrostPoint"
-                    keywords="weather temperature dew point frost f c"
+                    id="dewPoint"
+                    keywords="weather temperature dew point humidity f c"
                     searchTerm={this.state.searchTerm}
-                    title="Dew/Frost Point"
+                    title="Dew Point"
                     parentID="mainAccordion"
                 >
-                    <DewFrostPoint />
+                    <DewPoint />
                 </CardTemplate>
                 <CardTemplate
                     id="growthTimeline"

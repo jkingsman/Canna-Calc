@@ -15,7 +15,6 @@ export default class LightingCalculator extends React.Component {
     }
 
     getArea() {
-        console.log(this.state.lumensNeededSqFt);
         return this.state.growSpaceWidthFt * this.state.growSpaceLengthFt;
     }
 
