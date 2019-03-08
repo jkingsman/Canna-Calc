@@ -33,6 +33,7 @@ import TDSDilution from "app/calculators/plants_consumables/tds_dilution";
 import YieldCalculator from "app/calculators/plants_consumables/yield_calculator";
 import YieldDryWetCalculator from "app/calculators/plants_consumables/yielddrywet_calculator";
 import PlantCount from "app/calculators/plants_consumables/plantcount_calculator";
+import DewFrostPoint from "app/calculators/plants_consumables/dew_frost_point";
 
 import {
     PercentageToMG,
@@ -381,6 +382,15 @@ export default class CalculatorContainer extends React.Component {
                         Cannabis Growing (Consumables &amp; Nutrient Calculators)
                     </h2>
                 )}
+                <CardTemplate
+                    id="dewFrostPoint"
+                    keywords="weather temperature dew point frost f c"
+                    searchTerm={this.state.searchTerm}
+                    title="Dew/Frost Point"
+                    parentID="mainAccordion"
+                >
+                    <DewFrostPoint />
+                </CardTemplate>
                 <CardTemplate
                     id="growthTimeline"
                     keywords="growing growth calculator timeline planning years yrs months days projection projected"
