@@ -42,7 +42,7 @@
         "webpack-manifest-plugin": "^2.0.2"
     },
     "devDependencies": {
-        "bootstrap": "^4.1.1",
+        "bootstrap": "^4.3.1",
         "file-loader": "^1.1.11",
         "node-sass": "^4.9.0",
         "offline-plugin": "^5.0.2",
