@@ -65,7 +65,7 @@ export default class NpkToTDS extends React.Component {
                         <i>
                             Mass percentage composition of elemental NPK in molecular NPK delivery
                             substance; percentage given 0.00 - 1.00 inclusive. Presets assume
-                            elementals present as N, P₂O₅ and K₂O. If you don&#39;t know what this
+                            elementals present as N, P₂O₅, and K₂O. If you don&#39;t know what this
                             means, don&#39;t touch it.
                         </i>
                         <FixedUnitInput
