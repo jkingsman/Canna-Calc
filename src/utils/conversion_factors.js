@@ -199,6 +199,25 @@ const ConversionFactors = {
         },
     },
 
+    drinkVolume: {
+        to: {
+            // to get X to floz from...
+            "fl. oz": m => Number(m),
+            gal: m => Number(m) * 128,
+            liter: m => Number(m) * 33.814,
+            ml: m => Number(m) / 29.5735,
+            pint: m => Number(m) / 473.176,
+        },
+        from: {
+            // to get X from fl oz into...
+            "fl. oz": m => Number(m),
+            gal: m => Number(m) / 128,
+            liter: m => Number(m) / 33.814,
+            ml: m => Number(m) * 29.5735,
+            pint: m => Number(m) * 473.176,
+        },
+    },
+
     volume: {
         to: {
             // to get X to m^3 from...

@@ -3,6 +3,8 @@ import React from "react";
 import CardTemplate from "app/calculators/components/card_template";
 import GeneralCalculatorTemplate from "app/calculators/general/general_calculator_template";
 
+import TestingCalculator from "app/calculators/general/testing";
+
 import Notes from "app/calculators/general/notes";
 import PercentChange from "app/calculators/general/percentchange_calculator";
 import CylinderCalculator from "app/calculators/general/cylinder_calculator";
@@ -112,6 +114,24 @@ export default class CalculatorContainer extends React.Component {
         }, 500);
     }
 
+    renderTestingCalc() {
+        if (window.location.search.substr(1).startsWith("test")) {
+            return (
+                <CardTemplate
+                    id="testing"
+                    keywords="testing"
+                    searchTerm={this.state.searchTerm}
+                    title="Testing"
+                    parentID="mainAccordion"
+                >
+                    <TestingCalculator />
+                </CardTemplate>
+            );
+        }
+
+        return null;
+    }
+
     render() {
         return (
             <div id="mainAccordion">
@@ -125,6 +145,7 @@ export default class CalculatorContainer extends React.Component {
                     type="search"
                 />{" "}
                 {this.isSearching() ? "" : <h2>General Cannabis Conversions &amp; Math</h2>}
+                {this.renderTestingCalc()}
                 <CardTemplate
                     id="notes"
                     keywords="notes text save"
