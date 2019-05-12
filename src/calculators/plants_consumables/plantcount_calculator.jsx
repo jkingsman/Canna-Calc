@@ -30,7 +30,7 @@ export default class PlantCount extends React.Component {
 
     getPlantLayout() {
         /* Okay, this is a bit of a dumpster fire because
-         * I wrote it at 35kft and jetlagged BUT hopefully
+         * I wrote it jetlagged and hungover BUT hopefully
          * some liberal commenting will help you make some
          * sense of this.
          */
@@ -135,9 +135,7 @@ export default class PlantCount extends React.Component {
         return (
             <div>
                 <p>
-                    This calculator provides best layouts for square or near-square plants. For
-                    non-square plants, it may be possible to place additional plants in the leftover
-                    space.
+                    This calculator provides near-optimal layouts for rectangular plants.
                 </p>
                 <hr />
                 <div className="row">
