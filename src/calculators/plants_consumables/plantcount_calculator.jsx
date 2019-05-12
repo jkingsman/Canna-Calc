@@ -38,7 +38,7 @@ export default class PlantCount extends React.Component {
          * inb4 "someone already wrote a paper on this"
          */
 
-         /* To start with, we do a naive block layout. 'std'
+        /* To start with, we do a naive block layout. 'std'
           * is where grow space width value is aligned with
           * plant width value and vice versa for length.
           * That relationship is inverted for 'swap'.
@@ -52,7 +52,7 @@ export default class PlantCount extends React.Component {
           * We'll compile the results of the std + crackfilling
          * and swap + crackfilling, then pick the best at the end.
          */
-         
+
         // compile std
         const resultsStd = {
             plantsLong: Math.floor(this.state.growSpaceLengthFt / this.state.plantLengthFt),
@@ -69,7 +69,7 @@ export default class PlantCount extends React.Component {
         const crackFillCandidateStdWide = this.simpleMaxLayout(
             // Hint: The edge space's dimensions will be the leftover space * how long that edge is
             //       Here, we check the "wide" leftover space.
-            (this.state.growSpaceWidthFt - (this.state.plantWidthFt * resultsStd.plantsWide)),
+            this.state.growSpaceWidthFt - this.state.plantWidthFt * resultsStd.plantsWide,
             this.state.growSpaceLengthFt,
             this.state.plantWidthFt,
             this.state.plantLengthFt
@@ -78,7 +78,7 @@ export default class PlantCount extends React.Component {
         const crackFillCandidateStdLong = this.simpleMaxLayout(
             // ...and here the "long" leftover space
             this.state.growSpaceWidthFt,
-            (this.state.growSpaceLengthFt - (this.state.plantLengthFt * resultsStd.plantsLong )),
+            this.state.growSpaceLengthFt - this.state.plantLengthFt * resultsStd.plantsLong,
             this.state.plantWidthFt,
             this.state.plantLengthFt
         );
@@ -101,7 +101,7 @@ export default class PlantCount extends React.Component {
         };
 
         const crackFillCandidateSwapWide = this.simpleMaxLayout(
-            (this.state.growSpaceWidthFt - (this.state.plantLengthFt * resultsSwap.plantsWide)),
+            this.state.growSpaceWidthFt - this.state.plantLengthFt * resultsSwap.plantsWide,
             this.state.growSpaceLengthFt,
             this.state.plantWidthFt,
             this.state.plantLengthFt
@@ -109,7 +109,7 @@ export default class PlantCount extends React.Component {
 
         const crackFillCandidateSwapLong = this.simpleMaxLayout(
             this.state.growSpaceWidthFt,
-            (this.state.growSpaceLengthFt - (this.state.plantWidthFt * resultsSwap.plantsLong )),
+            this.state.growSpaceLengthFt - this.state.plantWidthFt * resultsSwap.plantsLong,
             this.state.plantWidthFt,
             this.state.plantLengthFt
         );
@@ -122,8 +122,10 @@ export default class PlantCount extends React.Component {
          */
 
         // idiot filter; if there's no room return all zero
-        if (resultsStd.plantsLong * resultsStd.plantsWide == 0 &&
-            resultsSwap.plantsLong * resultsSwap.plantsWide == 0){
+        if (
+            resultsStd.plantsLong * resultsStd.plantsWide == 0 &&
+            resultsSwap.plantsLong * resultsSwap.plantsWide == 0
+        ) {
             return {
                 plantsLong: 0,
                 plantsWide: 0,
@@ -132,15 +134,19 @@ export default class PlantCount extends React.Component {
         }
 
         // now choose the optimal result
-        if ((resultsStd.plantsLong * resultsStd.plantsWide + resultsStd.crackFill) > 
-           (resultsSwap.plantsLong * resultsSwap.plantsWide + resultsSwap.crackFill)){
+        if (
+            resultsStd.plantsLong * resultsStd.plantsWide + resultsStd.crackFill >
+            resultsSwap.plantsLong * resultsSwap.plantsWide + resultsSwap.crackFill
+        ) {
             return resultsStd;
-        } else if ((resultsSwap.plantsLong * resultsSwap.plantsWide + resultsSwap.crackFill) > 
-          (resultsStd.plantsLong * resultsStd.plantsWide + resultsStd.crackFill)){
+        } else if (
+            resultsSwap.plantsLong * resultsSwap.plantsWide + resultsSwap.crackFill >
+            resultsStd.plantsLong * resultsStd.plantsWide + resultsStd.crackFill
+        ) {
             return resultsSwap;
         } else {
             // prioritize minimum crackfilling if they're equal
-            if (resultsStd.crackFill < resultsSwap.crackFill){
+            if (resultsStd.crackFill < resultsSwap.crackFill) {
                 return resultsStd;
             } else {
                 return resultsSwap;
@@ -150,8 +156,10 @@ export default class PlantCount extends React.Component {
 
     getUsedSpace() {
         let layout = this.getPlantLayout();
-        return (layout.plantsLong * layout.plantsWide + layout.crackFill) *
-            (this.state.plantWidthFt * this.state.plantLengthFt);
+        return (
+            (layout.plantsLong * layout.plantsWide + layout.crackFill) *
+            (this.state.plantWidthFt * this.state.plantLengthFt)
+        );
     }
 
     getWastedSpace() {
@@ -162,9 +170,7 @@ export default class PlantCount extends React.Component {
     render() {
         return (
             <div>
-                <p>
-                    This calculator provides near-optimal layouts for rectangular plants.
-                </p>
+                <p>This calculator provides near-optimal layouts for rectangular plants.</p>
                 <hr />
                 <div className="row">
                     <div className="col-sm">
@@ -221,7 +227,9 @@ export default class PlantCount extends React.Component {
                         />
                         <FixedUnitOutput
                             outputLabel="Total Plants"
-                            number={this.getPlantLayout().plantsLong * this.getPlantLayout().plantsWide}
+                            number={
+                                this.getPlantLayout().plantsLong * this.getPlantLayout().plantsWide
+                            }
                             unit="plants"
                         />
                         <FixedUnitOutput
@@ -231,7 +239,12 @@ export default class PlantCount extends React.Component {
                         />
                         <FixedUnitOutput
                             outputLabel="Space Efficiency"
-                            number={round(this.getUsedSpace() / (this.state.growSpaceLengthFt * this.state.growSpaceWidthFt) * 100, 2)}
+                            number={round(
+                                this.getUsedSpace() /
+                                    (this.state.growSpaceLengthFt * this.state.growSpaceWidthFt) *
+                                    100,
+                                2
+                            )}
                             unit="%"
                         />
                     </div>

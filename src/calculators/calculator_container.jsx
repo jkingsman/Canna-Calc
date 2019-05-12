@@ -61,7 +61,6 @@ export default class CalculatorContainer extends React.Component {
         super(props);
         this.state = {
             searchTerm: "",
-            hasLoaded: false,
         };
 
         window.addEventListener("hashchange", this.trackHashChange, false);
@@ -144,7 +143,7 @@ export default class CalculatorContainer extends React.Component {
                     id="searchBar"
                     type="search"
                 />{" "}
-                {this.isSearching() ? "" : <h2>General Cannabis Conversions &amp; Math</h2>}
+                {this.isSearching() ? "" : <h2>General Cannabis Growing Calculators &amp; Conversions</h2>}
                 {this.renderTestingCalc()}
                 <CardTemplate
                     id="notes"
@@ -236,12 +235,10 @@ export default class CalculatorContainer extends React.Component {
                     searchTerm={this.state.searchTerm}
                     title="Flow Rate Conversion"
                     parentID="mainAccordion"
-                    hideSplitter="hideSplitter"
                 >
                     <GeneralCalculatorTemplate
                         labelSuffix="Flow Rate"
                         conversionFactors={ConversionFactors.flowRate}
-                        message="If your volume isn't already in cubic meters (m³), convert to cubic meters via the Volume converter, then enter it here to convert."
                     />
                 </CardTemplate>
                 <CardTemplate
@@ -319,7 +316,7 @@ export default class CalculatorContainer extends React.Component {
                     ""
                 ) : (
                     <h2 className="group-header">
-                        Cannabis Growing (Equipment &amp; Power Calculators)
+                        Cannabis Lighting/Power/Water Calculators
                     </h2>
                 )}
                 <CardTemplate
@@ -400,7 +397,7 @@ export default class CalculatorContainer extends React.Component {
                     ""
                 ) : (
                     <h2 className="group-header">
-                        Cannabis Growing (Consumables &amp; Nutrient Calculators)
+                        Cannabis Growing/Fertilizer/Agriculture Calculators
                     </h2>
                 )}
                 <CardTemplate

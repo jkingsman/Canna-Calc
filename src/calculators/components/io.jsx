@@ -595,5 +595,5 @@ EquationBlock.propTypes = {
 };
 
 EquationBlock.defaultProps = {
-    equations: "<no equations provided>",
+    equations: ["<no equations provided>"],
 };
