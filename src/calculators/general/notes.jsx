@@ -4,10 +4,6 @@ import Editor from "react-pell";
 export default class Notes extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            before: 110,
-            after: 20,
-        };
 
         this.handleChange = this.handleChange.bind(this);
     }
