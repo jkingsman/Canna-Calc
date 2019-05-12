@@ -41,9 +41,9 @@ export default class DewPoint extends React.Component {
                 <EquationBlock
                     equations={[
                         "Magnus formula:",
-                        "VaporPressureHelperValue = ln(RelHum. / 100) + ((b * Temp) / (c + Temp))",
+                        "Dew Point Constants are a = 6.112 mb, b = 17.67, c = 243.5 °C (Bolton/Monthly Weather)",
+                        "[VaporPressureHelperValue = ln(RelHum. / 100) + ((b * Temp) / (c + Temp))]",
                         "Dew/Frost Point = (c * VaporPressureHelperValue) / (b - VaporPressureHelperValue)",
-                        "Dew Point Constants: a = 6.112 mb, b = 17.67, c = 243.5 °C (Bolton/Monthly Weather)",
                     ]}
                 />
                 <hr />
