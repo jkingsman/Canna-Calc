@@ -47,12 +47,7 @@
       "name": "Canna-Calc",
       "applicationCategory": "Agriculture",
       "operatingSystem": "Browser",
-      "about": "Your digital toolbox for cannabis growers -- Canna-Calc.com has calculators for cannabis growing, marijuana math, grow room CO2 calculators, BTUs, and more!",
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "USD",
-        "price": "0.00"
-      }
+      "about": "Your digital toolbox for cannabis growers -- Canna-Calc.com has cannabis growing calculators, marijuana math, grow room CO2 calculators, BTUs, and more!",
     }
     </script>
     <meta name="google-site-verification" content="FEI3XAXo9kquhoyb6v2N2QrGM0Q_3TMPiqOkNy_usIg" />
@@ -63,8 +58,8 @@
     <noscript>JS is required to use this site.</noscript>
     <div id="app"></div>
     <script src="bundle.js"></script>
-    <script src="/static/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"></script>
-    <script src="/static/bootstrap.min.js" integrity="sha384-2bUee+3iLWteT0m+P+UMrUUNXkREioroaTo5IQ/Oc3rGx9zRfHxEQyClubXC5amk"></script>
+    <script src="/static/jquery-3.3.1.slim.min.js"></script>
+    <script src="/static/bootstrap.min.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-118455438-1"></script>
     <script>
         // GA
@@ -82,13 +77,15 @@
 
         // IMG deferral
         document.addEventListener('DOMContentLoaded', function () {
-            var imgDefer = document.getElementsByTagName('img');
-            for (var i = 0; i < imgDefer.length; i++) {
-                if (imgDefer[i].getAttribute('data-src')) {
-                    imgDefer[i].setAttribute('src', imgDefer[i].getAttribute('data-src'));
-                    imgDefer[i].removeAttribute('data-src');
+            setTimeout(function(){
+                var imgDefer = document.getElementsByTagName('img');
+                for (var i = 0; i < imgDefer.length; i++) {
+                    if (imgDefer[i].getAttribute('data-src')) {
+                        imgDefer[i].setAttribute('src', imgDefer[i].getAttribute('data-src'));
+                        imgDefer[i].removeAttribute('data-src');
+                    }
                 }
-            }
+            }, 1500)
         }, false);
     </script>
 </body>
