@@ -87,9 +87,9 @@ export default class PlantCount extends React.Component {
          * a non-zero result for both means we can fill both cracks
          * and that changes the whole game. HOWEVER, my mental/
          * back of the napkin proof (too drunken to post here)
-         * and also some brute force testing would seem to 
+         * and also some brute force testing would seem to
          * indicate that isn't possible.
-         * 
+         *
          * Prove me wrong and I'll buy you a beer.
          */
         resultsStd.crackFill = Math.max(crackFillCandidateStdWide, crackFillCandidateStdLong);
@@ -219,18 +219,25 @@ export default class PlantCount extends React.Component {
                             number={this.getPlantLayout().crackFill}
                             unit="plants in remaining space"
                         />
+                        <FixedUnitOutput
+                            outputLabel="Total Plants"
+                            number={
+                                this.getPlantLayout().plantsLong *
+                                    this.getPlantLayout().plantsWide +
+                                this.getPlantLayout().crackFill
+                            }
+                            unit="plants"
+                        />
                         <hr />
                         <FixedUnitOutput
-                            outputLabel="Total Area"
+                            outputLabel="Room Area"
                             number={this.state.growSpaceLengthFt * this.state.growSpaceWidthFt}
                             unit="ft²"
                         />
                         <FixedUnitOutput
-                            outputLabel="Total Plants"
-                            number={
-                                this.getPlantLayout().plantsLong * this.getPlantLayout().plantsWide
-                            }
-                            unit="plants"
+                            outputLabel="Used Area"
+                            number={this.getUsedSpace()}
+                            unit="ft²"
                         />
                         <FixedUnitOutput
                             outputLabel="Wasted Space"

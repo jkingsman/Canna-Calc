@@ -143,7 +143,11 @@ export default class CalculatorContainer extends React.Component {
                     id="searchBar"
                     type="search"
                 />{" "}
-                {this.isSearching() ? "" : <h2>General Cannabis Growing Calculators &amp; Conversions</h2>}
+                {this.isSearching() ? (
+                    ""
+                ) : (
+                    <h2>General Cannabis Growing Calculators &amp; Conversions</h2>
+                )}
                 {this.renderTestingCalc()}
                 <CardTemplate
                     id="notes"
@@ -315,9 +319,7 @@ export default class CalculatorContainer extends React.Component {
                 {this.isSearching() ? (
                     ""
                 ) : (
-                    <h2 className="group-header">
-                        Cannabis Lighting/Power/Water Calculators
-                    </h2>
+                    <h2 className="group-header">Cannabis Lighting/Power/Water Calculators</h2>
                 )}
                 <CardTemplate
                     id="lighting"
