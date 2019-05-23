@@ -11,7 +11,6 @@ export default class CardTemplate extends React.Component {
             hasShownFirst: false,
         };
         this.uniqueID = newId();
-
         this.toggleVisibility = this.toggleVisibility.bind(this);
     }
 
@@ -39,6 +38,15 @@ export default class CardTemplate extends React.Component {
             .every(singleTerm => this.props.keywords.includes(singleTerm.toLowerCase()));
     }
 
+    componentDidMount() {
+        // expand when the hash matches. this should be done by refs but I couldn't get it to work. I know, it's gross.
+        if (window.location.hash === `#${this.props.id}`) {
+            setTimeout(function(){
+                document.querySelector(`#card${this.uniqueID}`).click()
+            }.bind(this), 100);
+        }
+    }
+
     render() {
         if (this.matchesKeyword()) {
             return (
@@ -64,7 +72,7 @@ export default class CardTemplate extends React.Component {
 
                     <div
                         id={"cardCollapse" + this.uniqueID}
-                        className={"collapse"}
+                        className="collapse"
                         aria-labelledby={"card" + this.uniqueID}
                     >
                         <div className="card-body">{this.state.hasShownFirst ? this.props.children : null}</div>
