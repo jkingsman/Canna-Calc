@@ -7,7 +7,8 @@ export default class CardTemplate extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showCard: false
+            showCard: false,
+            hasShownFirst: false,
         };
         this.uniqueID = newId();
 
@@ -15,7 +16,7 @@ export default class CardTemplate extends React.Component {
     }
 
     toggleVisibility() {
-        this.setState({showCard: !this.state.showCard}, this.setHash)
+        this.setState({showCard: !this.state.showCard, hasShownFirst: true}, this.setHash)
     }
 
     setHash() {
@@ -66,7 +67,7 @@ export default class CardTemplate extends React.Component {
                         className={"collapse"}
                         aria-labelledby={"card" + this.uniqueID}
                     >
-                        <div className="card-body">{this.state.showCard ? this.props.children : null}</div>
+                        <div className="card-body">{this.state.hasShownFirst ? this.props.children : null}</div>
                     </div>
                 </div>
             );
