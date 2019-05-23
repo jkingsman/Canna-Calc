@@ -7,7 +7,8 @@ export default class CardTemplate extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showCard: false
+            showCard: false,
+            childCalc: this.props.children
         };
         this.uniqueID = newId();
 
@@ -65,9 +66,8 @@ export default class CardTemplate extends React.Component {
                         id={"cardCollapse" + this.uniqueID}
                         className={"collapse"}
                         aria-labelledby={"card" + this.uniqueID}
-                        data-parent={`#${this.props.parentID}`}
                     >
-                        <div className="card-body">{this.state.showCard ? this.props.children : null}</div>
+                        <div className="card-body">{this.state.showCard ? this.state.childCalc : null}</div>
                     </div>
                 </div>
             );
@@ -78,7 +78,6 @@ export default class CardTemplate extends React.Component {
 
 CardTemplate.propTypes = {
     id: PropTypes.string,
-    parentID: PropTypes.string,
     title: PropTypes.string,
     children: PropTypes.oneOfType([PropTypes.element, PropTypes.arrayOf(PropTypes.element)]),
     keywords: PropTypes.string,

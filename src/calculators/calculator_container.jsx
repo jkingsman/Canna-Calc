@@ -101,7 +101,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="testing"
                     searchTerm={this.state.searchTerm}
                     title="Testing"
-                    parentID="mainAccordion"
                 >
                     <TestingCalculator />
                 </CardTemplate>
@@ -134,7 +133,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="notes text save"
                     searchTerm={this.state.searchTerm}
                     title="Freeform Notes"
-                    parentID="mainAccordion"
                 >
                     <Notes />
                 </CardTemplate>
@@ -143,7 +141,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="weight mass grams ounces oz pounds lbs milligrams mg stone st kilograms kilos kg"
                     searchTerm={this.state.searchTerm}
                     title="Weight Conversion"
-                    parentID="mainAccordion"
                 >
                     <GeneralCalculatorTemplate
                         labelSuffix="Weight"
@@ -155,7 +152,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="temperature heat celsius centigrade farenheit kelvin"
                     searchTerm={this.state.searchTerm}
                     title="Temperature Conversion"
-                    parentID="mainAccordion"
                 >
                     <GeneralCalculatorTemplate
                         labelSuffix="Temperature"
@@ -169,7 +165,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="distance length height width meters millimeters mm centimeters cm kilometers km inches feet ft yards yd miles"
                     searchTerm={this.state.searchTerm}
                     title="Distance Conversion"
-                    parentID="mainAccordion"
                 >
                     <GeneralCalculatorTemplate
                         labelSuffix="Distance"
@@ -181,7 +176,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="speed velocity pace meters miles feet ft per second hour mph kph m/s"
                     searchTerm={this.state.searchTerm}
                     title="Speed Conversion"
-                    parentID="mainAccordion"
                 >
                     <GeneralCalculatorTemplate
                         labelSuffix="Speed"
@@ -194,7 +188,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="area squared sqft ^2 kilometers km^2 m^2 millimeters mm^2 centimeters cm^2 inches in^2 feet ft^2 yards yd^2 miles mi^2 hectares acres"
                     searchTerm={this.state.searchTerm}
                     title="Area Conversion"
-                    parentID="mainAccordion"
                 >
                     <GeneralCalculatorTemplate
                         labelSuffix="Area"
@@ -206,7 +199,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="volume amount cubic ^3 meters m^3 cc centimeters cm^2 cups fluid ounces fl oz floz feet ft^3 gallons in^3 inches kilometers km^3 liters milliliters ml miles mi^3 millimeters mm^3 pints quarts qts tablespoons tbsp teaspoons tsp yards yd^3"
                     searchTerm={this.state.searchTerm}
                     title="Volume Conversion"
-                    parentID="mainAccordion"
                 >
                     <GeneralCalculatorTemplate
                         labelSuffix="Volume"
@@ -218,7 +210,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="flow rate speed volume cubic standard ^3 per minute second hour hr day centimeters cm minutes gallons gpm inches liters scfm scfh"
                     searchTerm={this.state.searchTerm}
                     title="Flow Rate Conversion"
-                    parentID="mainAccordion"
                 >
                     <GeneralCalculatorTemplate
                         labelSuffix="Flow Rate"
@@ -230,7 +221,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="time hours hrs minutes mins seconds secs days weeks wks months"
                     searchTerm={this.state.searchTerm}
                     title="Time Conversion"
-                    parentID="mainAccordion"
                 >
                     <GeneralCalculatorTemplate
                         labelSuffix="Time"
@@ -243,7 +233,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="add subtract datetime years yrs hours hrs minutes mins seconds secs days weeks wks months"
                     searchTerm={this.state.searchTerm}
                     title="Add/Subtract to Date/Time"
-                    parentID="mainAccordion"
                 >
                     <DateCalculator />
                 </CardTemplate>
@@ -252,7 +241,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="conductivity tds ppm tds"
                     searchTerm={this.state.searchTerm}
                     title="EC/TDS Conversion"
-                    parentID="mainAccordion"
                 >
                     <GeneralCalculatorTemplate
                         labelSuffix="Conductivity"
@@ -265,7 +253,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="% percent linear process days hours minutes time solvent evaporation drying trimming"
                     searchTerm={this.state.searchTerm}
                     title="Trimming Time Prediction Calculator"
-                    parentID="mainAccordion"
                 >
                     <LinearProcess />
                 </CardTemplate>
@@ -274,7 +261,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="% percent change after"
                     searchTerm={this.state.searchTerm}
                     title="Percent Change"
-                    parentID="mainAccordion"
                 >
                     <PercentChange />
                 </CardTemplate>
@@ -283,7 +269,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="% percent additive terpense after"
                     searchTerm={this.state.searchTerm}
                     title="Max Percent Constituent (Terpene Addition)"
-                    parentID="mainAccordion"
                 >
                     <PercentConstituent />
                 </CardTemplate>
@@ -292,7 +277,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="cylinder fan exhaust ducting volume"
                     searchTerm={this.state.searchTerm}
                     title="Cylinder (Ducting) Volume"
-                    parentID="mainAccordion"
                 >
                     <CylinderCalculator />
                 </CardTemplate>
@@ -306,7 +290,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="lighting lights led hid cfl wattage power watts lumens bulb"
                     searchTerm={this.state.searchTerm}
                     title="Light Wattage/Lumens"
-                    parentID="mainAccordion"
                 >
                     <LightingCalculator />
                 </CardTemplate>
@@ -315,7 +298,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="delivered lighting lights led hid cfl wattage power watts lumens bulb"
                     searchTerm={this.state.searchTerm}
                     title="Delivered Lumens"
-                    parentID="mainAccordion"
                 >
                     <DeliveredLightingCalculator />
                 </CardTemplate>
@@ -324,7 +306,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="btus thermal energy power temperature"
                     searchTerm={this.state.searchTerm}
                     title="BTU/AC Unit Calculator"
-                    parentID="mainAccordion"
                 >
                     <BTUCalculator />
                 </CardTemplate>
@@ -333,7 +314,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="co2 fan carbon dioxide ppm scfh scfm regulator gas"
                     searchTerm={this.state.searchTerm}
                     title="CO₂ Flow Rate"
-                    parentID="mainAccordion"
                 >
                     <CO2Calculator />
                 </CardTemplate>
@@ -342,7 +322,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="fan air flow exchange exhaust scfm power"
                     searchTerm={this.state.searchTerm}
                     title="Exhaust CFM Calculator"
-                    parentID="mainAccordion"
                 >
                     <ExhaustCalculator />
                 </CardTemplate>
@@ -351,7 +330,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="lighting lights led hid kwh power cost hours amps amperage electricity volts voltage"
                     searchTerm={this.state.searchTerm}
                     title="Light kWh &amp; Cost"
-                    parentID="mainAccordion"
                 >
                     <AmperageCalculator />
                 </CardTemplate>
@@ -360,7 +338,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="water usage cost gallon gal cubic foot unit"
                     searchTerm={this.state.searchTerm}
                     title="Water Usage/Drip Tip Flow &amp; Cost"
-                    parentID="mainAccordion"
                 >
                     <WaterCalculator />
                 </CardTemplate>
@@ -369,7 +346,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="time lapse storage mb gb megabytes mebibytes gigabytes gibibytes"
                     searchTerm={this.state.searchTerm}
                     title="Time Lapse Image Size"
-                    parentID="mainAccordion"
                 >
                     <TimeLapseCalculator />
                     <hr />
@@ -387,7 +363,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="weather temperature dew point humidity f c"
                     searchTerm={this.state.searchTerm}
                     title="Dew Point"
-                    parentID="mainAccordion"
                 >
                     <DewPoint />
                 </CardTemplate>
@@ -396,7 +371,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="growing growth calculator timeline planning years yrs months days projection projected"
                     searchTerm={this.state.searchTerm}
                     title="Projected Growth Timeline/Calendar"
-                    parentID="mainAccordion"
                 >
                     <GrowthTimeline />
                 </CardTemplate>
@@ -405,7 +379,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="growing layout grid space sqft square footage feet width length size"
                     searchTerm={this.state.searchTerm}
                     title="Plant Layout"
-                    parentID="mainAccordion"
                 >
                     <PlantCount />
                 </CardTemplate>
@@ -414,7 +387,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="soil dirt loam peat worm casings bat guano bone meal kelp dirt potting"
                     searchTerm={this.state.searchTerm}
                     title="Soil Amount to Total"
-                    parentID="mainAccordion"
                 >
                     <SoilCalculator />
                 </CardTemplate>
@@ -423,7 +395,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="soil dirt loam peat worm casings bat guano bone meal kelp dirt potting"
                     searchTerm={this.state.searchTerm}
                     title="Soil Ratio to Total"
-                    parentID="mainAccordion"
                 >
                     <SoilRatioScaling />
                 </CardTemplate>
@@ -432,7 +403,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="ph acid base buffer"
                     searchTerm={this.state.searchTerm}
                     title="pH/Water Adjustment"
-                    parentID="mainAccordion"
                 >
                     <PHCalculator />
                 </CardTemplate>
@@ -441,7 +411,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="npk tds ppm potassium nitrogen phosphorus specific gravity"
                     searchTerm={this.state.searchTerm}
                     title="NPK to PPM TDS"
-                    parentID="mainAccordion"
                 >
                     <NpkToTDS />
                 </CardTemplate>
@@ -450,7 +419,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="npk tds ppm potassium nitrogen phosphorus specific gravity"
                     searchTerm={this.state.searchTerm}
                     title="PPM TDS to NPM"
-                    parentID="mainAccordion"
                 >
                     <TDStoNPK />
                 </CardTemplate>
@@ -459,7 +427,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="tds dilution water ppm"
                     searchTerm={this.state.searchTerm}
                     title="Dilution to TDS Target"
-                    parentID="mainAccordion"
                 >
                     <TDSDilution />
                 </CardTemplate>
@@ -468,7 +435,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="yield plants ounces oz grams pounds lbs harvest projection projected"
                     searchTerm={this.state.searchTerm}
                     title="General Crop Yield"
-                    parentID="mainAccordion"
                 >
                     <YieldCalculator />
                 </CardTemplate>
@@ -477,7 +443,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="yield plants ounces oz grams pounds lbs harvest drying wet cure curing projection projected"
                     searchTerm={this.state.searchTerm}
                     title="Dry/Wet Yield"
-                    parentID="mainAccordion"
                 >
                     <YieldDryWetCalculator />
                 </CardTemplate>
@@ -491,7 +456,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="thc potency mg milligrams grams ml ejuice vape vaporizer liquid wax oil concentrate extract baking cannaoil cannabutter servings size medibles"
                     searchTerm={this.state.searchTerm}
                     title="Edible Potency"
-                    parentID="mainAccordion"
                 >
                     <p>
                         Note that these calculators do not consider THCa to THC weight loss; to
@@ -516,7 +480,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="medibles thc potency mg milligrams grams ml ejuice vape vaporizer liquid wax oil concentrate extract baking cannaoil cannabutter"
                     searchTerm={this.state.searchTerm}
                     title="THC/Potency Conversions"
-                    parentID="mainAccordion"
                 >
                     <p>
                         Choose the appropriate calculator section for your units. mg and g are used
@@ -537,7 +500,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="decarboxylation thca"
                     searchTerm={this.state.searchTerm}
                     title="Decarboxylation Loss"
-                    parentID="mainAccordion"
                 >
                     <DecarbLoss />
                 </CardTemplate>
@@ -546,7 +508,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="decarboxylation thca time temperature"
                     searchTerm={this.state.searchTerm}
                     title="Decarboxylation Curve Prediction"
-                    parentID="mainAccordion"
                 >
                     <DecarbCurve />
                 </CardTemplate>
@@ -555,7 +516,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="extract concentrate wax oil shatter bho efficiency feedstock"
                     searchTerm={this.state.searchTerm}
                     title="Extraction Efficiency"
-                    parentID="mainAccordion"
                 >
                     <ExtractionEfficiency />
                 </CardTemplate>
@@ -564,7 +524,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="solvent evaporation concentrate extract wax oil shatter bho"
                     searchTerm={this.state.searchTerm}
                     title="Solvent Evaporation Time Estimate"
-                    parentID="mainAccordion"
                 >
                     <EvapPrediction />
                 </CardTemplate>
@@ -573,7 +532,6 @@ export default class CalculatorContainer extends React.Component {
                     keywords="capsule coconut oil filler thca cbda extract cartridge"
                     searchTerm={this.state.searchTerm}
                     title="Concentrate to Capsule THC Breakdown"
-                    parentID="mainAccordion"
                 >
                     <CapsuleCalculator />
                 </CardTemplate>
