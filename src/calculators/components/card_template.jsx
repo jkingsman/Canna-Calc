@@ -15,19 +15,15 @@ export default class CardTemplate extends React.Component {
     }
 
     toggleVisibility() {
-        this.setState({showCard: !this.state.showCard, hasShownFirst: true}, this.setHash)
+        this.setState({ showCard: !this.state.showCard, hasShownFirst: true }, this.setHash);
     }
 
     setHash() {
         if (this.state.showCard) {
             window.location.hash = this.props.id;
         } else {
-            let noHashURL = window.location.href.replace(/#.*$/, '');
-            window.history.replaceState(
-                "",
-                document.title,
-                noHashURL
-            );
+            let noHashURL = window.location.href.replace(/#.*$/, "");
+            window.history.replaceState("", document.title, noHashURL);
         }
     }
 
@@ -41,9 +37,12 @@ export default class CardTemplate extends React.Component {
     componentDidMount() {
         // expand when the hash matches. this should be done by refs but I couldn't get it to work. I know, it's gross.
         if (window.location.hash === `#${this.props.id}`) {
-            setTimeout(function(){
-                document.querySelector(`#card${this.uniqueID}`).click()
-            }.bind(this), 100);
+            setTimeout(
+                function() {
+                    document.querySelector(`#card${this.uniqueID}`).click();
+                }.bind(this),
+                100
+            );
         }
     }
 
@@ -75,7 +74,9 @@ export default class CardTemplate extends React.Component {
                         className="collapse"
                         aria-labelledby={"card" + this.uniqueID}
                     >
-                        <div className="card-body">{this.state.hasShownFirst ? this.props.children : null}</div>
+                        <div className="card-body">
+                            {this.state.hasShownFirst ? this.props.children : null}
+                        </div>
                     </div>
                 </div>
             );
