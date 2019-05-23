@@ -7,8 +7,7 @@ export default class CardTemplate extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showCard: false,
-            childCalc: this.props.children
+            showCard: false
         };
         this.uniqueID = newId();
 
@@ -67,7 +66,7 @@ export default class CardTemplate extends React.Component {
                         className={"collapse"}
                         aria-labelledby={"card" + this.uniqueID}
                     >
-                        <div className="card-body">{this.state.showCard ? this.state.childCalc : null}</div>
+                        <div className="card-body">{this.state.showCard ? this.props.children : null}</div>
                     </div>
                 </div>
             );
