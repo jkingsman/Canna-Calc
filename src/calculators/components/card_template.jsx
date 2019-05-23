@@ -6,25 +6,29 @@ import newId from "app/utils/unique_key";
 export default class CardTemplate extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            showCard: false
+        };
         this.uniqueID = newId();
 
-        this.toggleHash = this.toggleHash.bind(this);
+        this.toggleVisibility = this.toggleVisibility.bind(this);
     }
 
-    toggleHash() {
-        if (window.location.hash.length < 1 || window.location.hash != `#${this.props.id}`) {
+    toggleVisibility() {
+        this.setState({showCard: !this.state.showCard}, this.setHash)
+    }
+
+    setHash() {
+        if (this.state.showCard) {
             window.location.hash = this.props.id;
         } else {
-            history.pushState(
+            let noHashURL = window.location.href.replace(/#.*$/, '');
+            window.history.replaceState(
                 "",
                 document.title,
-                window.location.pathname + window.location.search
+                noHashURL
             );
         }
-    }
-
-    shouldShow() {
-        return window.location.hash == `#${this.props.id}`;
     }
 
     matchesKeyword() {
@@ -45,7 +49,7 @@ export default class CardTemplate extends React.Component {
                     />
                     <h3
                         className="card-header mb-0"
-                        onClick={this.toggleHash}
+                        onClick={this.toggleVisibility}
                         id={`card${this.uniqueID}`}
                         data-target={`#cardCollapse${this.uniqueID}`}
                         aria-controls={`cardCollapse${this.uniqueID}`}
@@ -59,11 +63,11 @@ export default class CardTemplate extends React.Component {
 
                     <div
                         id={"cardCollapse" + this.uniqueID}
-                        className={this.shouldShow() ? "collapse show" : "collapse"}
+                        className={"collapse"}
                         aria-labelledby={"card" + this.uniqueID}
                         data-parent={`#${this.props.parentID}`}
                     >
-                        <div className="card-body">{this.props.children}</div>
+                        <div className="card-body">{this.state.showCard ? this.props.children : null}</div>
                     </div>
                 </div>
             );
