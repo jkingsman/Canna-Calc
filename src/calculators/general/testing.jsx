@@ -53,11 +53,11 @@ export default class TestingCalculator extends React.Component {
         let statusEmoji;
 
         if (bac >= 0.08) {
-            statusEmoji = "💀";
+            statusEmoji = "🚨";
         } else if (bac <= 0.08 && bac >= 0.06) {
             statusEmoji = "⚠️";
         } else {
-            statusEmoji = "✅";
+            statusEmoji = "👌";
         }
 
         return `%  ${statusEmoji}`;
