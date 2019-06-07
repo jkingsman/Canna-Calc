@@ -206,7 +206,7 @@ const ConversionFactors = {
             gal: m => Number(m) * 128,
             liter: m => Number(m) * 33.814,
             ml: m => Number(m) / 29.5735,
-            pint: m => Number(m) / 473.176,
+            pint: m => Number(m) * 19.2152,
         },
         from: {
             // to get X from fl oz into...
@@ -214,7 +214,7 @@ const ConversionFactors = {
             gal: m => Number(m) / 128,
             liter: m => Number(m) / 33.814,
             ml: m => Number(m) * 29.5735,
-            pint: m => Number(m) * 473.176,
+            pint: m => Number(m) / 19.2152,
         },
     },
 
