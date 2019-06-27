@@ -52,7 +52,9 @@ export default class TestingCalculator extends React.Component {
     getDriveStatusUnit(bac) {
         let statusEmoji;
 
-        if (bac >= 0.08) {
+        if (bac >= 0.25) {
+            statusEmoji = "🚨☠️☠️🚨";
+        } else if (bac <= 0.08 && bac >= 0.06) {
             statusEmoji = "🚨";
         } else if (bac <= 0.08 && bac >= 0.06) {
             statusEmoji = "⚠️";
