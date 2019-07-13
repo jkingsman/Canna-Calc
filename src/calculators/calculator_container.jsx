@@ -114,13 +114,13 @@ export default class CalculatorContainer extends React.Component {
     }
 
     renderTestingCalc() {
-        if (window.location.search.substr(1).startsWith("test")) {
+        if (window.location.search.substr(1).startsWith("bac")) {
             return (
                 <CardTemplate
-                    id="testing"
-                    keywords="testing"
+                    id="bac"
+                    keywords="bac"
                     searchTerm={this.state.searchTerm}
-                    title="Testing"
+                    title="Better BAC"
                 >
                     <TestingCalculator />
                 </CardTemplate>

@@ -15,8 +15,9 @@ export default class TestingCalculator extends React.Component {
         super(props);
         this.state = {
             abvIn: 40,
-            amtIn: 3,
+            amountIn: 3,
             numberConsumed: 1,
+            drinks: [],
             weight: 230,
             isMale: true,
         };
@@ -29,7 +30,11 @@ export default class TestingCalculator extends React.Component {
     }
 
     getEthanol() {
-        return this.state.amtIn * this.state.numberConsumed * (this.state.abvIn / 100);
+        if (this.state.drinks.length > 0) {
+            return this.state.drinks.map((drink) => drink.etoh).reduce((accumulator, currentValue) => accumulator + currentValue);
+        }
+
+        return 0;
     }
 
     _bacCalc(flOzEthanol, male, weightLbs, drinkingPeriodMins) {
@@ -71,9 +76,47 @@ export default class TestingCalculator extends React.Component {
             .format("HHmm");
     }
 
+    addDrink() {
+        const drinkList = this.state.drinks;
+        const drinkObj = {
+            abv: this.state.abvIn,
+            amount: this.state.amountIn,
+            number: this.state.numberConsumed,
+            etoh: this.state.amountIn * this.state.numberConsumed * (this.state.abvIn / 100),
+        }
+
+        drinkList.push(drinkObj)
+        this.setState({drinks: drinkList})
+    }
+
+    deleteDrink(i) {
+        let drinkList = this.state.drinks;
+        drinkList.splice(i, 1);
+        this.setState({drinks: drinkList});
+    }
+
+    renderDrinks() {
+        const drinkStrings = this.state.drinks.map((drink) => {
+            return `${drink.number}x ${defaultRound(drink.amount)} fl.oz. ${drink.abv}% (${defaultRound(drink.etoh)} fl.oz.EtOH)`
+        });
+
+        return (
+            <ul>
+                {drinkStrings.map((drink, i) => <li
+                    key={i}
+                    onClick={() => this.deleteDrink(i)}
+                >
+                    {drink}
+                </li>)
+                }
+            </ul>
+        )
+    }
+
     render() {
         return (
             <div className="container">
+                {this.renderDrinks()}
                 <hr />
                 <div className="row">
                     <div className="col-sm">
@@ -85,9 +128,9 @@ export default class TestingCalculator extends React.Component {
                         />
                         <GenericInput
                             inputLabel="Amount"
-                            onChange={val => this.setState({ amtIn: Number(val) })}
+                            onChange={val => this.setState({ amountIn: Number(val) })}
                             conversionFactors={ConversionFactors.drinkVolume}
-                            number={this.state.amtIn}
+                            number={this.state.amountIn}
                         />
                         <FixedUnitInput
                             inputLabel="Number Consumed"
@@ -95,6 +138,22 @@ export default class TestingCalculator extends React.Component {
                             number={this.state.numberConsumed}
                             unit="drinks"
                         />
+                        <button
+                            type="button"
+                            className="btn btn-primary"
+                            onClick={() => this.addDrink()}
+                        >
+                            Add
+                        </button>
+                        <hr />
+                        <h2>BAC Math</h2>
+                        <FixedUnitInput
+                            inputLabel="Weight"
+                            onChange={val => this.setState({ weight: Number(val) })}
+                            number={this.state.weight}
+                            unit="lbs"
+                        />
+
                         <div className="form-group">
                             <label>
                                 <input
@@ -120,14 +179,6 @@ export default class TestingCalculator extends React.Component {
                                 Female
                             </label>
                         </div>
-                        <hr />
-                        <h2>BAC Math</h2>
-                        <FixedUnitInput
-                            inputLabel="Weight"
-                            onChange={val => this.setState({ weight: Number(val) })}
-                            number={this.state.weight}
-                            unit="lbs"
-                        />
                     </div>
                     <div className="col-sm">
                         <GenericOutput
@@ -185,6 +236,26 @@ export default class TestingCalculator extends React.Component {
                             outputLabel={`+3.0 hour (${this.getMinsFromNow(180)})`}
                             number={defaultRound(this.getBAC(180))}
                             unit={this.getDriveStatusUnit(this.getBAC(180))}
+                        />
+                        <FixedUnitOutput
+                            outputLabel={`+3.5 hour (${this.getMinsFromNow(210)})`}
+                            number={defaultRound(this.getBAC(210))}
+                            unit={this.getDriveStatusUnit(this.getBAC(210))}
+                        />
+                        <FixedUnitOutput
+                            outputLabel={`+4.0 hour (${this.getMinsFromNow(240)})`}
+                            number={defaultRound(this.getBAC(240))}
+                            unit={this.getDriveStatusUnit(this.getBAC(240))}
+                        />
+                        <FixedUnitOutput
+                            outputLabel={`+4.5 hour (${this.getMinsFromNow(270)})`}
+                            number={defaultRound(this.getBAC(270))}
+                            unit={this.getDriveStatusUnit(this.getBAC(270))}
+                        />
+                        <FixedUnitOutput
+                            outputLabel={`+5.0 hour (${this.getMinsFromNow(300)})`}
+                            number={defaultRound(this.getBAC(300))}
+                            unit={this.getDriveStatusUnit(this.getBAC(300))}
                         />
                     </div>
                 </div>
