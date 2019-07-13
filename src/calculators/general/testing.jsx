@@ -13,11 +13,19 @@ import dayjs from "dayjs";
 export default class TestingCalculator extends React.Component {
     constructor(props) {
         super(props);
+
+        let storedDrinkVal = localStorage.getItem('bbac');
+        if (!storedDrinkVal) {
+            storedDrinkVal = [];
+        } else {
+            storedDrinkVal = JSON.parse(storedDrinkVal);
+        }
+
         this.state = {
             abvIn: 40,
             amountIn: 3,
             numberConsumed: 1,
-            drinks: [],
+            drinks: storedDrinkVal,
             weight: 230,
             isMale: true,
         };
@@ -96,6 +104,10 @@ export default class TestingCalculator extends React.Component {
     }
 
     renderDrinks() {
+        if (!this.state.drinks) {
+            return null;
+        }
+
         const drinkStrings = this.state.drinks.map((drink) => {
             return `${drink.number}x ${defaultRound(drink.amount)} fl.oz. ${drink.abv}% (${defaultRound(drink.etoh)} fl.oz.EtOH)`
         });
@@ -111,6 +123,15 @@ export default class TestingCalculator extends React.Component {
                 }
             </ul>
         )
+    }
+
+    componentDidUpdate() {
+        localStorage.setItem('bbac', JSON.stringify(this.state.drinks));
+    }
+
+    clearLocal() {
+        localStorage.setItem('bbac', JSON.stringify([]));
+        this.setState({drinks: []});
     }
 
     render() {
@@ -141,6 +162,13 @@ export default class TestingCalculator extends React.Component {
                         <button
                             type="button"
                             className="btn btn-primary"
+                            onClick={() => this.clearLocal()}
+                        >
+                            Clear
+                        </button>
+                        <button
+                            type="button"
+                            className="btn btn-primary float-right"
                             onClick={() => this.addDrink()}
                         >
                             Add
