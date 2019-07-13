@@ -1,6 +1,7 @@
 import React from "react";
 
 import {
+    FreeInput,
     FixedUnitInput,
     GenericInput,
     FixedUnitOutput,
@@ -14,21 +15,23 @@ export default class TestingCalculator extends React.Component {
     constructor(props) {
         super(props);
 
-        let storedDrinkVal = localStorage.getItem('bbac');
-        if (!storedDrinkVal) {
-            storedDrinkVal = [];
-        } else {
-            storedDrinkVal = JSON.parse(storedDrinkVal);
-        }
-
-        this.state = {
+        this.defaultState = {
             abvIn: 40,
             amountIn: 3,
             numberConsumed: 1,
-            drinks: storedDrinkVal,
+            drinks: [],
             weight: 230,
             isMale: true,
+            startTime: (new Date()).toLocaleTimeString(),
+            startDate: (new Date()).toLocaleDateString(),
         };
+
+        let storedState = localStorage.getItem("state");
+        if (!storedState) {
+            this.state = this.defaultState;
+        } else {
+            this.state = JSON.parse(storedState);
+        }
 
         this.alcoholPerDrink = {
             shot: 0.8, // 2fl oz * .4 abv
@@ -39,7 +42,9 @@ export default class TestingCalculator extends React.Component {
 
     getEthanol() {
         if (this.state.drinks.length > 0) {
-            return this.state.drinks.map((drink) => drink.etoh).reduce((accumulator, currentValue) => accumulator + currentValue);
+            return this.state.drinks
+                .map(drink => drink.etoh)
+                .reduce((accumulator, currentValue) => accumulator + currentValue);
         }
 
         return 0;
@@ -56,6 +61,7 @@ export default class TestingCalculator extends React.Component {
     }
 
     getBAC(drinkingPeriod) {
+        // let date = new Date(Date.parse((new Date()).toLocaleDateString() + ' ' + (new Date()).toLocaleTimeString()));
         return Math.max(
             this._bacCalc(this.getEthanol(), this.state.isMale, this.state.weight, drinkingPeriod),
             0
@@ -91,16 +97,16 @@ export default class TestingCalculator extends React.Component {
             amount: this.state.amountIn,
             number: this.state.numberConsumed,
             etoh: this.state.amountIn * this.state.numberConsumed * (this.state.abvIn / 100),
-        }
+        };
 
-        drinkList.push(drinkObj)
-        this.setState({drinks: drinkList})
+        drinkList.push(drinkObj);
+        this.setState({ drinks: drinkList });
     }
 
     deleteDrink(i) {
         let drinkList = this.state.drinks;
         drinkList.splice(i, 1);
-        this.setState({drinks: drinkList});
+        this.setState({ drinks: drinkList });
     }
 
     renderDrinks() {
@@ -108,30 +114,32 @@ export default class TestingCalculator extends React.Component {
             return null;
         }
 
-        const drinkStrings = this.state.drinks.map((drink) => {
-            return `${drink.number}x ${defaultRound(drink.amount)} fl.oz. ${drink.abv}% (${defaultRound(drink.etoh)} fl.oz.EtOH)`
+        const drinkStrings = this.state.drinks.map(drink => {
+            return `${drink.number}x ${defaultRound(drink.amount)} fl.oz. ${
+                drink.abv
+            }% (${defaultRound(drink.etoh)} fl.oz.EtOH)`;
         });
 
         return (
             <ul>
-                {drinkStrings.map((drink, i) => <li
-                    key={i}
-                    onClick={() => this.deleteDrink(i)}
-                >
-                    {drink}
-                </li>)
-                }
+                {drinkStrings.map((drink, i) => (
+                    <li key={i} onClick={() => this.deleteDrink(i)}>
+                        {drink}
+                    </li>
+                ))}
             </ul>
-        )
+        );
     }
 
     componentDidUpdate() {
-        localStorage.setItem('bbac', JSON.stringify(this.state.drinks));
+        localStorage.setItem("state", JSON.stringify(this.state));
     }
 
     clearLocal() {
-        localStorage.setItem('bbac', JSON.stringify([]));
-        this.setState({drinks: []});
+        localStorage.setItem("state", JSON.stringify(this.defaultState));
+        this.defaultState.startTime = (new Date()).toLocaleTimeString();
+        this.defaultState.startDate = (new Date()).toLocaleDateString();
+        this.setState(this.defaultState);
     }
 
     render() {
@@ -207,6 +215,16 @@ export default class TestingCalculator extends React.Component {
                                 Female
                             </label>
                         </div>
+                        <FreeInput
+                            inputLabel="Start Date"
+                            onChange={val => this.setState({ startDate: val })}
+                            val={this.state.startDate}
+                        />
+                        <FreeInput
+                            inputLabel="Start Time"
+                            onChange={val => this.setState({ startTime: val })}
+                            val={this.state.startTime}
+                        />
                     </div>
                     <div className="col-sm">
                         <GenericOutput
