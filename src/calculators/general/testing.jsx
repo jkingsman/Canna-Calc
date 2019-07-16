@@ -76,7 +76,7 @@ export default class TestingCalculator extends React.Component {
         } else if (bac <= 0.2 && bac > 0.07) {
             statusEmoji = "🚨";
         } else if (bac <= 0.07 && bac >= 0.05) {
-            statusEmoji = "⚠️";
+            statusEmoji = "❗";
         } else {
             statusEmoji = "👌";
         }
@@ -84,8 +84,8 @@ export default class TestingCalculator extends React.Component {
         return `%  ${statusEmoji}`;
     }
 
-    getMinsFromNow(mins) {
-        return dayjs()
+    getMinsFromStart(mins) {
+        return dayjs(this.state.startDate + ' ' + this.state.startTime)
             .add(mins, "minute")
             .format("HHmm");
     }
@@ -249,57 +249,57 @@ export default class TestingCalculator extends React.Component {
                             unit="wine bottles"
                         />
                         <FixedUnitOutput
-                            outputLabel={`Instantaneous (${this.getMinsFromNow(0)})`}
+                            outputLabel={`Instantaneous (${this.getMinsFromStart(0)})`}
                             number={defaultRound(this.getBAC(0))}
                             unit={this.getDriveStatusUnit(this.getBAC(0))}
                         />
                         <FixedUnitOutput
-                            outputLabel={`+30 minutes (${this.getMinsFromNow(30)})`}
+                            outputLabel={`+30 minutes (${this.getMinsFromStart(30)})`}
                             number={defaultRound(this.getBAC(30))}
                             unit={this.getDriveStatusUnit(this.getBAC(30))}
                         />
                         <FixedUnitOutput
-                            outputLabel={`+1.0 hour (${this.getMinsFromNow(60)})`}
+                            outputLabel={`+1.0 hour (${this.getMinsFromStart(60)})`}
                             number={defaultRound(this.getBAC(60))}
                             unit={this.getDriveStatusUnit(this.getBAC(60))}
                         />
                         <FixedUnitOutput
-                            outputLabel={`+1.5 hour (${this.getMinsFromNow(90)})`}
+                            outputLabel={`+1.5 hour (${this.getMinsFromStart(90)})`}
                             number={defaultRound(this.getBAC(90))}
                             unit={this.getDriveStatusUnit(this.getBAC(90))}
                         />
                         <FixedUnitOutput
-                            outputLabel={`+2.0 hour (${this.getMinsFromNow(120)})`}
+                            outputLabel={`+2.0 hour (${this.getMinsFromStart(120)})`}
                             number={defaultRound(this.getBAC(120))}
                             unit={this.getDriveStatusUnit(this.getBAC(120))}
                         />
                         <FixedUnitOutput
-                            outputLabel={`+2.5 hour (${this.getMinsFromNow(150)})`}
+                            outputLabel={`+2.5 hour (${this.getMinsFromStart(150)})`}
                             number={defaultRound(this.getBAC(150))}
                             unit={this.getDriveStatusUnit(this.getBAC(150))}
                         />
                         <FixedUnitOutput
-                            outputLabel={`+3.0 hour (${this.getMinsFromNow(180)})`}
+                            outputLabel={`+3.0 hour (${this.getMinsFromStart(180)})`}
                             number={defaultRound(this.getBAC(180))}
                             unit={this.getDriveStatusUnit(this.getBAC(180))}
                         />
                         <FixedUnitOutput
-                            outputLabel={`+3.5 hour (${this.getMinsFromNow(210)})`}
+                            outputLabel={`+3.5 hour (${this.getMinsFromStart(210)})`}
                             number={defaultRound(this.getBAC(210))}
                             unit={this.getDriveStatusUnit(this.getBAC(210))}
                         />
                         <FixedUnitOutput
-                            outputLabel={`+4.0 hour (${this.getMinsFromNow(240)})`}
+                            outputLabel={`+4.0 hour (${this.getMinsFromStart(240)})`}
                             number={defaultRound(this.getBAC(240))}
                             unit={this.getDriveStatusUnit(this.getBAC(240))}
                         />
                         <FixedUnitOutput
-                            outputLabel={`+4.5 hour (${this.getMinsFromNow(270)})`}
+                            outputLabel={`+4.5 hour (${this.getMinsFromStart(270)})`}
                             number={defaultRound(this.getBAC(270))}
                             unit={this.getDriveStatusUnit(this.getBAC(270))}
                         />
                         <FixedUnitOutput
-                            outputLabel={`+5.0 hour (${this.getMinsFromNow(300)})`}
+                            outputLabel={`+5.0 hour (${this.getMinsFromStart(300)})`}
                             number={defaultRound(this.getBAC(300))}
                             unit={this.getDriveStatusUnit(this.getBAC(300))}
                         />
