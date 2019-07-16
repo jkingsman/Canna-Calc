@@ -3,7 +3,7 @@ import React from "react";
 import CardTemplate from "app/calculators/components/card_template";
 import GeneralCalculatorTemplate from "app/calculators/general/general_calculator_template";
 
-import TestingCalculator from "app/calculators/general/testing";
+import BetterBAC from "app/calculators/general/betterbac";
 
 import Notes from "app/calculators/general/notes";
 import PercentChange from "app/calculators/general/percentchange_calculator";
@@ -113,7 +113,7 @@ export default class CalculatorContainer extends React.Component {
         }
     }
 
-    renderTestingCalc() {
+    renderBAC() {
         if (window.location.search.substr(1).startsWith("bac")) {
             return (
                 <CardTemplate
@@ -122,7 +122,7 @@ export default class CalculatorContainer extends React.Component {
                     searchTerm={this.state.searchTerm}
                     title="Better BAC"
                 >
-                    <TestingCalculator />
+                    <BetterBAC />
                 </CardTemplate>
             );
         }
@@ -147,7 +147,7 @@ export default class CalculatorContainer extends React.Component {
                 ) : (
                     <h2>General Cannabis Growing Calculators &amp; Conversions</h2>
                 )}
-                {this.renderTestingCalc()}
+                {this.renderBAC()}
                 <CardTemplate
                     id="notes"
                     keywords="notes text save"

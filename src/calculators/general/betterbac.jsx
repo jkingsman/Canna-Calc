@@ -11,7 +11,7 @@ import ConversionFactors from "app/utils/conversion_factors";
 import { defaultRound } from "app/utils/math";
 import dayjs from "dayjs";
 
-export default class TestingCalculator extends React.Component {
+export default class BetterBAC extends React.Component {
     constructor(props) {
         super(props);
 
