@@ -22,8 +22,8 @@ export default class TestingCalculator extends React.Component {
             drinks: [],
             weight: 230,
             isMale: true,
-            startTime: (new Date()).toLocaleTimeString(),
-            startDate: (new Date()).toLocaleDateString(),
+            startTime: new Date().toLocaleTimeString(),
+            startDate: new Date().toLocaleDateString(),
         };
 
         let storedState = localStorage.getItem("state");
@@ -85,7 +85,7 @@ export default class TestingCalculator extends React.Component {
     }
 
     getMinsFromStart(mins) {
-        return dayjs(this.state.startDate + ' ' + this.state.startTime)
+        return dayjs(this.state.startDate + " " + this.state.startTime)
             .add(mins, "minute")
             .format("HHmm");
     }
@@ -137,8 +137,8 @@ export default class TestingCalculator extends React.Component {
 
     clearLocal() {
         localStorage.setItem("state", JSON.stringify(this.defaultState));
-        this.defaultState.startTime = (new Date()).toLocaleTimeString();
-        this.defaultState.startDate = (new Date()).toLocaleDateString();
+        this.defaultState.startTime = new Date().toLocaleTimeString();
+        this.defaultState.startDate = new Date().toLocaleDateString();
         this.setState(this.defaultState);
     }
 

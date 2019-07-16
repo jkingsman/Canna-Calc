@@ -16,6 +16,15 @@ export class FreeInput extends React.Component {
         this.inputID = newId();
     }
 
+    static getDerivedStateFromProps(props, current_state) {
+        if (current_state.val !== props.val) {
+            return {
+                val: props.val,
+            };
+        }
+        return null;
+    }
+
     handleNumberChange(ev) {
         this.setState(
             {
