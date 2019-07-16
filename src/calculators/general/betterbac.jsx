@@ -28,7 +28,16 @@ export default class BetterBAC extends React.Component {
 
         let storedState = localStorage.getItem("state");
         if (!storedState) {
-            this.state = this.defaultState;
+            this.state = {
+                abvIn: 40,
+                amountIn: 3,
+                numberConsumed: 1,
+                drinks: [],
+                weight: 230,
+                isMale: true,
+                startTime: new Date().toLocaleTimeString(),
+                startDate: new Date().toLocaleDateString(),
+            };
         } else {
             this.state = JSON.parse(storedState);
         }
@@ -136,10 +145,12 @@ export default class BetterBAC extends React.Component {
     }
 
     clearLocal() {
-        localStorage.setItem("state", JSON.stringify(this.defaultState));
-        this.defaultState.startTime = new Date().toLocaleTimeString();
-        this.defaultState.startDate = new Date().toLocaleDateString();
-        this.setState(this.defaultState);
+        let newState = this.state;
+        newState.drinks = [];
+        newState.startTime = new Date().toLocaleTimeString();
+        newState.startDate = new Date().toLocaleDateString();
+        this.setState(newState);
+        localStorage.setItem("state", JSON.stringify(newState));
     }
 
     render() {
