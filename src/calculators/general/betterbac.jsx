@@ -80,7 +80,7 @@ export default class BetterBAC extends React.Component {
             dp = (time - this.getLastDrinkTime()) / 1000 / 60 / 60; // time in hours
         }
 
-        return Math.max(((alcoholGrams / (widmark * kilos)) - (mr * dp)) / 10, 0);
+        return Math.max(((alcoholGrams / (widmark * kilos))  / 10) - (mr * dp), 0);
     }
 
     getWidmarkDecayBAC(time) {
@@ -123,7 +123,7 @@ export default class BetterBAC extends React.Component {
         let lastVal = 0;
         for (let i = this.getFirstDrinkTime(); i <= time; i += 1000) {
             if (drinks.hasOwnProperty(i)) {
-                lastVal += (drinks[i] * 23.342386982) / (widmark * kilos);
+                lastVal += (drinks[i] * 23.342386982) / (widmark * kilos) / 10;
             } else {
                 lastVal -= metabolicDecay;
             }
