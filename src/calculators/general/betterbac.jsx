@@ -23,17 +23,15 @@ export default class BetterBAC extends React.Component {
             weight: 230,
             height: 76,
             isMale: true,
-            maleMetabolic: .015,
-            femaleMetabolic: .017,
+            maleMetabolic: 0.015,
+            femaleMetabolic: 0.017,
             drinkTime: new Date().toLocaleTimeString(),
             drinkDate: new Date().toLocaleDateString(),
         };
 
-        let drinkList = localStorage.getItem("drinks");
-        if (drinkList && JSON.parse(drinkList).length > 0) {
-            this.state.drinks = JSON.parse(drinkList);
-        } else {
-            this.state.drinks = [];
+        let state = localStorage.getItem("state");
+        if (state && JSON.parse(state).drinks.length > 0) {
+            this.state = JSON.parse(state);
         }
 
         this.alcoholPerDrink = {
@@ -80,7 +78,7 @@ export default class BetterBAC extends React.Component {
             dp = (time - this.getLastDrinkTime()) / 1000 / 60 / 60; // time in hours
         }
 
-        return Math.max(((alcoholGrams / (widmark * kilos))  / 10) - (mr * dp), 0);
+        return Math.max(alcoholGrams / (widmark * kilos) / 10 - mr * dp, 0);
     }
 
     getWidmarkDecayBAC(time) {
@@ -123,7 +121,7 @@ export default class BetterBAC extends React.Component {
         let lastVal = 0;
         for (let i = this.getFirstDrinkTime(); i <= time; i += 1000) {
             if (drinks.hasOwnProperty(i)) {
-                lastVal += (drinks[i] * 23.342386982) / (widmark * kilos) / 10;
+                lastVal += drinks[i] * 23.342386982 / (widmark * kilos) / 10;
             } else {
                 lastVal -= metabolicDecay;
             }
@@ -157,9 +155,7 @@ export default class BetterBAC extends React.Component {
     }
 
     getMetClearance() {
-        return this.state.isMale
-            ? this.state.maleMetabolic
-            : this.state.femaleMetabolic;
+        return this.state.isMale ? this.state.maleMetabolic : this.state.femaleMetabolic;
     }
 
     addDrink() {
@@ -256,16 +252,20 @@ export default class BetterBAC extends React.Component {
     }
 
     componentDidUpdate() {
-        localStorage.setItem("drinks", JSON.stringify(this.state.drinks));
+        localStorage.setItem("state", JSON.stringify(this.state));
     }
 
     clearLocal() {
-        this.setState({
-            drinks: [],
-            drinkTime: new Date().toLocaleTimeString(),
-            drinkDate: new Date().toLocaleDateString(),
-        });
-        localStorage.setItem("drinks", JSON.stringify([]));
+        this.setState(
+            {
+                drinks: [],
+                drinkTime: new Date().toLocaleTimeString(),
+                drinkDate: new Date().toLocaleDateString(),
+            },
+            function() {
+                localStorage.setItem("state", JSON.stringify(this.state));
+            }
+        );
     }
 
     render() {
