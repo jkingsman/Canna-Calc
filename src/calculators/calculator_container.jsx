@@ -111,6 +111,7 @@ export default class CalculatorContainer extends React.Component {
                 }, 250);
             }, 100);
         }
+        document.body.style.display = "block"
     }
 
     renderBAC() {
