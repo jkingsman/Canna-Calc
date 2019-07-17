@@ -21,6 +21,7 @@ export default class BetterBAC extends React.Component {
             numberConsumed: 1,
             drinks: [],
             weight: 230,
+            height: 76,
             isMale: true,
             drinkTime: new Date().toLocaleTimeString(),
             drinkDate: new Date().toLocaleDateString(),
@@ -50,14 +51,14 @@ export default class BetterBAC extends React.Component {
         return 0;
     }
 
-    getClassicBAC(time) {
+    getWidmarkBAC(time) {
         let sd = this.getEthanol() * 23.342386982 / 10; // 1 fl oz ethanol = 23.3... grams; divide by ten for standard drinks
         let bw = this.state.isMale ? 0.58 : 0.49; // body water constant
         let kilos = this.state.weight * 0.453592;
         let mr = this.state.isMale ? 0.015 : 0.017; // metabolism constant
 
         let dp = 0;
-        if (time > this.getLastDrinkTime()){
+        if (time > this.getLastDrinkTime()) {
             dp = (time - this.getLastDrinkTime()) / 1000 / 60 / 60; // time in hours
         }
 
@@ -66,18 +67,91 @@ export default class BetterBAC extends React.Component {
         return Math.max(bac, 0);
     }
 
+    getSmartRWidmarkBAC(time) {
+        const alcoholGrams = this.getEthanol() * 23.342386982; // 1 fl oz ethanol = 23.3... grams
+        const kilos = this.state.weight * 0.453592;
+        const widmark = this.getWidmarkR();
+        const mr = this.state.isMale ? 0.015 : 0.017; // metabolism constant
+
+        let dp = 0;
+        if (time > this.getLastDrinkTime()) {
+            dp = (time - this.getLastDrinkTime()) / 1000 / 60 / 60; // time in hours
+        }
+
+        return Math.max(alcoholGrams / (widmark * kilos) - (mr * dp) / 10, 0);
+    }
+
+    getWidmarkDecayBAC(time) {
+        if (time < this.getFirstDrinkTime()) {
+            return 0;
+        }
+
+        const metabolicDecay = (this.state.isMale ? 0.015 : 0.017) / 60 / 60; // hourly decay to seconds
+        const bw = this.state.isMale ? 0.58 : 0.49; // body water constant
+        const kilos = this.state.weight * 0.453592;
+
+        let drinks = {};
+        this.state.drinks.forEach(drink => (drinks[drink.time] = drink.etoh * drink.number));
+
+        let lastVal = 0;
+        for (let i = this.getFirstDrinkTime(); i <= time; i += 1000) {
+            if (drinks.hasOwnProperty(i)) {
+                const sd = drinks[i] * 23.342386982 / 10; // 1 fl oz ethanol = 23.3... grams; divide by ten for standard drinks
+                lastVal += 0.806 * sd * 1.2 / (bw * kilos);
+            } else {
+                lastVal -= metabolicDecay;
+            }
+        }
+
+        return Math.max(lastVal, 0);
+    }
+
+    getSmartRWidmarkDecayBAC(time) {
+        if (time < this.getFirstDrinkTime()) {
+            return 0;
+        }
+
+        const metabolicDecay = (this.state.isMale ? 0.015 : 0.017) / 60 / 60; // hourly decay to seconds
+        const kilos = this.state.weight * 0.453592;
+        const widmark = this.getWidmarkR();
+
+        let drinks = {};
+        this.state.drinks.forEach(drink => (drinks[drink.time] = drink.etoh * drink.number));
+
+        let lastVal = 0;
+        for (let i = this.getFirstDrinkTime(); i <= time; i += 1000) {
+            if (drinks.hasOwnProperty(i)) {
+                lastVal += (drinks[i] * 23.342386982) / (widmark * kilos);
+            } else {
+                lastVal -= metabolicDecay;
+            }
+        }
+
+        return Math.max(lastVal, 0);
+    }
+
     getFirstDrinkTime() {
-        return Math.min(...this.state.drinks.map((drink) => drink.time));
+        return Math.min(...this.state.drinks.map(drink => drink.time));
     }
 
     getLastDrinkTime() {
-        return Math.max(...this.state.drinks.map((drink) => drink.time));
+        return Math.max(...this.state.drinks.map(drink => drink.time));
     }
 
     getMinsFromStart(mins) {
         return dayjs(this.state.drinkDate + " " + this.state.drinkTime)
             .add(mins, "minute")
             .format("HHmm");
+    }
+
+    getBMI() {
+        return this.state.weight / Math.pow(this.state.height, 2) * 703;
+    }
+
+    getWidmarkR() {
+        return this.state.isMale
+            ? 1.0181 - 0.01213 * this.getBMI()
+            : 0.9367 - 0.0124 * this.getBMI();
     }
 
     addDrink() {
@@ -110,11 +184,13 @@ export default class BetterBAC extends React.Component {
             return null;
         }
 
-        const drinkStrings = this.state.drinks.sort((drink1, drink2) => drink1.time - drink2.time).map(drink => {
-            return `${drink.number}x ${defaultRound(drink.amount)} fl.oz. ${
-                drink.abv
-            }% (${new Date(drink.time).toLocaleTimeString()})`;
-        });
+        const drinkStrings = this.state.drinks
+            .sort((drink1, drink2) => drink1.time - drink2.time)
+            .map(drink => {
+                return `${drink.number}x ${defaultRound(drink.amount)} fl.oz. ${
+                    drink.abv
+                }% (${new Date(drink.time).toLocaleTimeString()})`;
+            });
 
         return (
             <ul>
@@ -128,26 +204,47 @@ export default class BetterBAC extends React.Component {
     }
 
     renderBACTable() {
+        if (this.state.drinks.length === 0) {
+            return null;
+        }
+
         let halfHourInMillis = 30 * 60 * 1000;
-        let results = []
+        let results = [];
         for (let i = 0; i <= 10; i++) {
-            let time = this.getFirstDrinkTime() + (i * halfHourInMillis);
+            let time = this.getFirstDrinkTime() + i * halfHourInMillis;
             results.push({
                 time: new Date(time).toLocaleTimeString(),
-                classicBAC: this.getClassicBAC(time)
+                widmarkBAC: this.getWidmarkBAC(time),
+                decayBAC: this.getWidmarkDecayBAC(time),
+                smartRWidmarkBAC: this.getSmartRWidmarkBAC(time),
+                smartRWidmarkDecayBAC: this.getSmartRWidmarkDecayBAC(time),
             });
         }
 
-        console.table(results)
         return (
-            <table>
-                <tr>
-                    <th>Time</th>
-                    <th>Classic BAC</th>
-                </tr>
-                {results.map((result, i) => <tr key={i}><td>{result.time}</td><td>{defaultRound(result.classicBAC)}</td></tr>)}
+            <table className="table">
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Widmark</th>
+                        <th>Smart-R Widmark</th>
+                        <th>Widmark Rolling Decay</th>
+                        <th>Smart-R Widmark Rolling Decay</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {results.map((result, i) => (
+                        <tr key={i}>
+                            <td>{result.time}</td>
+                            <td>{defaultRound(result.widmarkBAC)}</td>
+                            <td>{defaultRound(result.smartRWidmarkBAC)}</td>
+                            <td>{defaultRound(result.decayBAC)}</td>
+                            <td>{defaultRound(result.smartRWidmarkDecayBAC)}</td>
+                        </tr>
+                    ))}
+                </tbody>
             </table>
-        )
+        );
     }
 
     componentDidUpdate() {
@@ -155,16 +252,12 @@ export default class BetterBAC extends React.Component {
     }
 
     clearLocal() {
-        this.setState(
-            {
-                drinks: [],
-                drinkTime: new Date().toLocaleTimeString(),
-                drinkDate: new Date().toLocaleDateString(),
-            },
-            function() {
-                localStorage.setItem("drinks", JSON.stringify(this.state.drinks));
-            }
-        );
+        this.setState({
+            drinks: [],
+            drinkTime: new Date().toLocaleTimeString(),
+            drinkDate: new Date().toLocaleDateString(),
+        });
+        localStorage.setItem("drinks", JSON.stringify([]));
     }
 
     render() {
@@ -223,7 +316,22 @@ export default class BetterBAC extends React.Component {
                             number={this.state.weight}
                             unit="lbs"
                         />
-
+                        <FixedUnitInput
+                            inputLabel="Height"
+                            onChange={val => this.setState({ height: Number(val) })}
+                            number={this.state.height}
+                            unit="in"
+                        />
+                        <FixedUnitOutput
+                            outputLabel="BMI"
+                            number={defaultRound(this.getBMI())}
+                            unit=""
+                        />
+                        <FixedUnitOutput
+                            outputLabel="Widmark-R Value"
+                            number={defaultRound(this.getWidmarkR())}
+                            unit=""
+                        />
                         <div className="form-group">
                             <label>
                                 <input
@@ -272,8 +380,9 @@ export default class BetterBAC extends React.Component {
                             number={defaultRound(this.getEthanol() / this.alcoholPerDrink.wine)}
                             unit="wine bottles"
                         />
-                        {this.renderBACTable()}
                     </div>
+
+                    {this.renderBACTable()}
                 </div>
             </div>
         );
