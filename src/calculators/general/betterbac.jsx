@@ -59,22 +59,17 @@ export default class BetterBAC extends React.Component {
         return 0;
     }
 
-    _bacCalc(flOzEthanol, male, weightLbs, drinkingPeriodMins) {
-        let sd = flOzEthanol * 23.342386982 / 10; // 1 fl oz ethanol = 23.3... grams; divide by ten for standard drinks
-        let bw = male ? 0.58 : 0.49; // body water constant
-        let kilos = weightLbs * 0.453592;
-        let mr = male ? 0.015 : 0.017; // metabolism constant
-        let dp = drinkingPeriodMins / 60;
-
-        return 0.806 * sd * 1.2 / (bw * kilos) - mr * dp;
-    }
-
     getBAC(drinkingPeriod) {
         // let date = new Date(Date.parse((new Date()).toLocaleDateString() + ' ' + (new Date()).toLocaleTimeString()));
-        return Math.max(
-            this._bacCalc(this.getEthanol(), this.state.isMale, this.state.weight, drinkingPeriod),
-            0
-        );
+        let sd = this.getEthanol() * 23.342386982 / 10; // 1 fl oz ethanol = 23.3... grams; divide by ten for standard drinks
+        let bw = this.state.isMale ? 0.58 : 0.49; // body water constant
+        let kilos = this.state.weight * 0.453592;
+        let mr = this.state.isMale ? 0.015 : 0.017; // metabolism constant
+        let dp = drinkingPeriod / 60;
+
+        let bac = 0.806 * sd * 1.2 / (bw * kilos) - mr * dp;
+
+        return Math.max(bac, 0);
     }
 
     getDriveStatusUnit(bac) {
@@ -84,7 +79,7 @@ export default class BetterBAC extends React.Component {
             statusEmoji = "🚨☠️☠️🚨";
         } else if (bac <= 0.2 && bac > 0.07) {
             statusEmoji = "🚨";
-        } else if (bac <= 0.07 && bac >= 0.05) {
+        } else if (bac <= 0.07 && bac >= 0.06) {
             statusEmoji = "❗";
         } else {
             statusEmoji = "👌";
