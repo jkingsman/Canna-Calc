@@ -23,6 +23,8 @@ export default class BetterBAC extends React.Component {
             weight: 230,
             height: 76,
             isMale: true,
+            maleMetabolic: .015,
+            femaleMetabolic: .017,
             drinkTime: new Date().toLocaleTimeString(),
             drinkDate: new Date().toLocaleDateString(),
         };
@@ -55,7 +57,7 @@ export default class BetterBAC extends React.Component {
         let sd = this.getEthanol() * 23.342386982 / 10; // 1 fl oz ethanol = 23.3... grams; divide by ten for standard drinks
         let bw = this.state.isMale ? 0.58 : 0.49; // body water constant
         let kilos = this.state.weight * 0.453592;
-        let mr = this.state.isMale ? 0.015 : 0.017; // metabolism constant
+        let mr = this.getMetClearance(); // metabolism constant
 
         let dp = 0;
         if (time > this.getLastDrinkTime()) {
@@ -71,14 +73,14 @@ export default class BetterBAC extends React.Component {
         const alcoholGrams = this.getEthanol() * 23.342386982; // 1 fl oz ethanol = 23.3... grams
         const kilos = this.state.weight * 0.453592;
         const widmark = this.getWidmarkR();
-        const mr = this.state.isMale ? 0.015 : 0.017; // metabolism constant
+        const mr = this.getMetClearance(); // metabolism constant
 
         let dp = 0;
         if (time > this.getLastDrinkTime()) {
             dp = (time - this.getLastDrinkTime()) / 1000 / 60 / 60; // time in hours
         }
 
-        return Math.max(alcoholGrams / (widmark * kilos) - (mr * dp) / 10, 0);
+        return Math.max(((alcoholGrams / (widmark * kilos)) - (mr * dp)) / 10, 0);
     }
 
     getWidmarkDecayBAC(time) {
@@ -86,7 +88,7 @@ export default class BetterBAC extends React.Component {
             return 0;
         }
 
-        const metabolicDecay = (this.state.isMale ? 0.015 : 0.017) / 60 / 60; // hourly decay to seconds
+        const metabolicDecay = this.getMetClearance() / 60 / 60; // hourly decay to seconds
         const bw = this.state.isMale ? 0.58 : 0.49; // body water constant
         const kilos = this.state.weight * 0.453592;
 
@@ -111,7 +113,7 @@ export default class BetterBAC extends React.Component {
             return 0;
         }
 
-        const metabolicDecay = (this.state.isMale ? 0.015 : 0.017) / 60 / 60; // hourly decay to seconds
+        const metabolicDecay = this.getMetClearance() / 60 / 60; // hourly decay to seconds
         const kilos = this.state.weight * 0.453592;
         const widmark = this.getWidmarkR();
 
@@ -152,6 +154,12 @@ export default class BetterBAC extends React.Component {
         return this.state.isMale
             ? 1.0181 - 0.01213 * this.getBMI()
             : 0.9367 - 0.0124 * this.getBMI();
+    }
+
+    getMetClearance() {
+        return this.state.isMale
+            ? this.state.maleMetabolic
+            : this.state.femaleMetabolic;
     }
 
     addDrink() {
@@ -310,28 +318,6 @@ export default class BetterBAC extends React.Component {
                             Add
                         </button>
                         <hr />
-                        <FixedUnitInput
-                            inputLabel="Weight"
-                            onChange={val => this.setState({ weight: Number(val) })}
-                            number={this.state.weight}
-                            unit="lbs"
-                        />
-                        <FixedUnitInput
-                            inputLabel="Height"
-                            onChange={val => this.setState({ height: Number(val) })}
-                            number={this.state.height}
-                            unit="in"
-                        />
-                        <FixedUnitOutput
-                            outputLabel="BMI"
-                            number={defaultRound(this.getBMI())}
-                            unit=""
-                        />
-                        <FixedUnitOutput
-                            outputLabel="Widmark-R Value"
-                            number={defaultRound(this.getWidmarkR())}
-                            unit=""
-                        />
                         <div className="form-group">
                             <label>
                                 <input
@@ -357,6 +343,40 @@ export default class BetterBAC extends React.Component {
                                 Female
                             </label>
                         </div>
+                        <FixedUnitInput
+                            inputLabel="Weight"
+                            onChange={val => this.setState({ weight: Number(val) })}
+                            number={this.state.weight}
+                            unit="lbs"
+                        />
+                        <FixedUnitInput
+                            inputLabel="Height"
+                            onChange={val => this.setState({ height: Number(val) })}
+                            number={this.state.height}
+                            unit="in"
+                        />
+                        <FixedUnitInput
+                            inputLabel="Met. Clear. Rate (M)"
+                            onChange={val => this.setState({ maleMetabolic: Number(val) })}
+                            number={this.state.maleMetabolic}
+                            unit="mg/mL per hr"
+                        />
+                        <FixedUnitInput
+                            inputLabel="Met. Clear. Rate (F)"
+                            onChange={val => this.setState({ femaleMetabolic: Number(val) })}
+                            number={this.state.femaleMetabolic}
+                            unit="mg/mL per hr"
+                        />
+                        <FixedUnitOutput
+                            outputLabel="BMI"
+                            number={defaultRound(this.getBMI())}
+                            unit=""
+                        />
+                        <FixedUnitOutput
+                            outputLabel="Widmark-R Value"
+                            number={defaultRound(this.getWidmarkR())}
+                            unit=""
+                        />
                     </div>
                     <div className="col-sm">
                         <GenericOutput
