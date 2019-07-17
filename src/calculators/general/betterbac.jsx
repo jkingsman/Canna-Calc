@@ -15,31 +15,22 @@ export default class BetterBAC extends React.Component {
     constructor(props) {
         super(props);
 
-        this.defaultState = {
+        this.state = {
             abvIn: 40,
             amountIn: 3,
             numberConsumed: 1,
             drinks: [],
             weight: 230,
             isMale: true,
-            startTime: new Date().toLocaleTimeString(),
-            startDate: new Date().toLocaleDateString(),
+            drinkTime: new Date().toLocaleTimeString(),
+            drinkDate: new Date().toLocaleDateString(),
         };
 
-        let storedState = localStorage.getItem("state");
-        if (!storedState) {
-            this.state = {
-                abvIn: 40,
-                amountIn: 3,
-                numberConsumed: 1,
-                drinks: [],
-                weight: 230,
-                isMale: true,
-                startTime: new Date().toLocaleTimeString(),
-                startDate: new Date().toLocaleDateString(),
-            };
+        let drinkList = localStorage.getItem("drinks");
+        if (drinkList && JSON.parse(drinkList).length > 0) {
+            this.state.drinks = JSON.parse(drinkList);
         } else {
-            this.state = JSON.parse(storedState);
+            this.state.drinks = [];
         }
 
         this.alcoholPerDrink = {
@@ -59,37 +50,32 @@ export default class BetterBAC extends React.Component {
         return 0;
     }
 
-    getBAC(drinkingPeriod) {
-        // let date = new Date(Date.parse((new Date()).toLocaleDateString() + ' ' + (new Date()).toLocaleTimeString()));
+    getClassicBAC(time) {
         let sd = this.getEthanol() * 23.342386982 / 10; // 1 fl oz ethanol = 23.3... grams; divide by ten for standard drinks
         let bw = this.state.isMale ? 0.58 : 0.49; // body water constant
         let kilos = this.state.weight * 0.453592;
         let mr = this.state.isMale ? 0.015 : 0.017; // metabolism constant
-        let dp = drinkingPeriod / 60;
+
+        let dp = 0;
+        if (time > this.getLastDrinkTime()){
+            dp = (time - this.getLastDrinkTime()) / 1000 / 60 / 60; // time in hours
+        }
 
         let bac = 0.806 * sd * 1.2 / (bw * kilos) - mr * dp;
 
         return Math.max(bac, 0);
     }
 
-    getDriveStatusUnit(bac) {
-        let statusEmoji;
+    getFirstDrinkTime() {
+        return Math.min(...this.state.drinks.map((drink) => drink.time));
+    }
 
-        if (bac > 0.2) {
-            statusEmoji = "🚨☠️☠️🚨";
-        } else if (bac <= 0.2 && bac > 0.07) {
-            statusEmoji = "🚨";
-        } else if (bac <= 0.07 && bac >= 0.06) {
-            statusEmoji = "❗";
-        } else {
-            statusEmoji = "👌";
-        }
-
-        return `%  ${statusEmoji}`;
+    getLastDrinkTime() {
+        return Math.max(...this.state.drinks.map((drink) => drink.time));
     }
 
     getMinsFromStart(mins) {
-        return dayjs(this.state.startDate + " " + this.state.startTime)
+        return dayjs(this.state.drinkDate + " " + this.state.drinkTime)
             .add(mins, "minute")
             .format("HHmm");
     }
@@ -101,10 +87,15 @@ export default class BetterBAC extends React.Component {
             amount: this.state.amountIn,
             number: this.state.numberConsumed,
             etoh: this.state.amountIn * this.state.numberConsumed * (this.state.abvIn / 100),
+            time: Date.parse(this.state.drinkTime + " " + this.state.numberConsumed),
         };
 
         drinkList.push(drinkObj);
-        this.setState({ drinks: drinkList });
+        this.setState({
+            drinks: drinkList,
+            drinkTime: new Date().toLocaleTimeString(),
+            drinkDate: new Date().toLocaleDateString(),
+        });
     }
 
     deleteDrink(i) {
@@ -114,14 +105,15 @@ export default class BetterBAC extends React.Component {
     }
 
     renderDrinks() {
+        this.getFirstDrinkTime();
         if (!this.state.drinks) {
             return null;
         }
 
-        const drinkStrings = this.state.drinks.map(drink => {
+        const drinkStrings = this.state.drinks.sort((drink1, drink2) => drink1.time - drink2.time).map(drink => {
             return `${drink.number}x ${defaultRound(drink.amount)} fl.oz. ${
                 drink.abv
-            }% (${defaultRound(drink.etoh)} fl.oz.EtOH)`;
+            }% (${new Date(drink.time).toLocaleTimeString()})`;
         });
 
         return (
@@ -135,17 +127,44 @@ export default class BetterBAC extends React.Component {
         );
     }
 
+    renderBACTable() {
+        let halfHourInMillis = 30 * 60 * 1000;
+        let results = []
+        for (let i = 0; i <= 10; i++) {
+            let time = this.getFirstDrinkTime() + (i * halfHourInMillis);
+            results.push({
+                time: new Date(time).toLocaleTimeString(),
+                classicBAC: this.getClassicBAC(time)
+            });
+        }
+
+        console.table(results)
+        return (
+            <table>
+                <tr>
+                    <th>Time</th>
+                    <th>Classic BAC</th>
+                </tr>
+                {results.map((result, i) => <tr key={i}><td>{result.time}</td><td>{defaultRound(result.classicBAC)}</td></tr>)}
+            </table>
+        )
+    }
+
     componentDidUpdate() {
-        localStorage.setItem("state", JSON.stringify(this.state));
+        localStorage.setItem("drinks", JSON.stringify(this.state.drinks));
     }
 
     clearLocal() {
-        let newState = this.state;
-        newState.drinks = [];
-        newState.startTime = new Date().toLocaleTimeString();
-        newState.startDate = new Date().toLocaleDateString();
-        this.setState(newState);
-        localStorage.setItem("state", JSON.stringify(newState));
+        this.setState(
+            {
+                drinks: [],
+                drinkTime: new Date().toLocaleTimeString(),
+                drinkDate: new Date().toLocaleDateString(),
+            },
+            function() {
+                localStorage.setItem("drinks", JSON.stringify(this.state.drinks));
+            }
+        );
     }
 
     render() {
@@ -173,6 +192,16 @@ export default class BetterBAC extends React.Component {
                             number={this.state.numberConsumed}
                             unit="drinks"
                         />
+                        <FreeInput
+                            inputLabel="Date"
+                            onChange={val => this.setState({ drinkDate: val })}
+                            val={this.state.drinkDate}
+                        />
+                        <FreeInput
+                            inputLabel="Time"
+                            onChange={val => this.setState({ drinkTime: val })}
+                            val={this.state.drinkTime}
+                        />
                         <button
                             type="button"
                             className="btn btn-primary"
@@ -188,7 +217,6 @@ export default class BetterBAC extends React.Component {
                             Add
                         </button>
                         <hr />
-                        <h2>BAC Math</h2>
                         <FixedUnitInput
                             inputLabel="Weight"
                             onChange={val => this.setState({ weight: Number(val) })}
@@ -221,16 +249,6 @@ export default class BetterBAC extends React.Component {
                                 Female
                             </label>
                         </div>
-                        <FreeInput
-                            inputLabel="Start Date"
-                            onChange={val => this.setState({ startDate: val })}
-                            val={this.state.startDate}
-                        />
-                        <FreeInput
-                            inputLabel="Start Time"
-                            onChange={val => this.setState({ startTime: val })}
-                            val={this.state.startTime}
-                        />
                     </div>
                     <div className="col-sm">
                         <GenericOutput
@@ -254,61 +272,7 @@ export default class BetterBAC extends React.Component {
                             number={defaultRound(this.getEthanol() / this.alcoholPerDrink.wine)}
                             unit="wine bottles"
                         />
-                        <FixedUnitOutput
-                            outputLabel={`Instantaneous (${this.getMinsFromStart(0)})`}
-                            number={defaultRound(this.getBAC(0))}
-                            unit={this.getDriveStatusUnit(this.getBAC(0))}
-                        />
-                        <FixedUnitOutput
-                            outputLabel={`+30 minutes (${this.getMinsFromStart(30)})`}
-                            number={defaultRound(this.getBAC(30))}
-                            unit={this.getDriveStatusUnit(this.getBAC(30))}
-                        />
-                        <FixedUnitOutput
-                            outputLabel={`+1.0 hour (${this.getMinsFromStart(60)})`}
-                            number={defaultRound(this.getBAC(60))}
-                            unit={this.getDriveStatusUnit(this.getBAC(60))}
-                        />
-                        <FixedUnitOutput
-                            outputLabel={`+1.5 hour (${this.getMinsFromStart(90)})`}
-                            number={defaultRound(this.getBAC(90))}
-                            unit={this.getDriveStatusUnit(this.getBAC(90))}
-                        />
-                        <FixedUnitOutput
-                            outputLabel={`+2.0 hour (${this.getMinsFromStart(120)})`}
-                            number={defaultRound(this.getBAC(120))}
-                            unit={this.getDriveStatusUnit(this.getBAC(120))}
-                        />
-                        <FixedUnitOutput
-                            outputLabel={`+2.5 hour (${this.getMinsFromStart(150)})`}
-                            number={defaultRound(this.getBAC(150))}
-                            unit={this.getDriveStatusUnit(this.getBAC(150))}
-                        />
-                        <FixedUnitOutput
-                            outputLabel={`+3.0 hour (${this.getMinsFromStart(180)})`}
-                            number={defaultRound(this.getBAC(180))}
-                            unit={this.getDriveStatusUnit(this.getBAC(180))}
-                        />
-                        <FixedUnitOutput
-                            outputLabel={`+3.5 hour (${this.getMinsFromStart(210)})`}
-                            number={defaultRound(this.getBAC(210))}
-                            unit={this.getDriveStatusUnit(this.getBAC(210))}
-                        />
-                        <FixedUnitOutput
-                            outputLabel={`+4.0 hour (${this.getMinsFromStart(240)})`}
-                            number={defaultRound(this.getBAC(240))}
-                            unit={this.getDriveStatusUnit(this.getBAC(240))}
-                        />
-                        <FixedUnitOutput
-                            outputLabel={`+4.5 hour (${this.getMinsFromStart(270)})`}
-                            number={defaultRound(this.getBAC(270))}
-                            unit={this.getDriveStatusUnit(this.getBAC(270))}
-                        />
-                        <FixedUnitOutput
-                            outputLabel={`+5.0 hour (${this.getMinsFromStart(300)})`}
-                            number={defaultRound(this.getBAC(300))}
-                            unit={this.getDriveStatusUnit(this.getBAC(300))}
-                        />
+                        {this.renderBACTable()}
                     </div>
                 </div>
             </div>
