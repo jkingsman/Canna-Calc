@@ -606,3 +606,40 @@ EquationBlock.propTypes = {
 EquationBlock.defaultProps = {
     equations: ["<no equations provided>"],
 };
+
+export class CollapseBlock extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { show: false };
+
+        this.toggleShow = this.toggleShow.bind(this);
+    }
+
+    toggleShow() {
+        this.setState({ show: !this.state.show });
+    }
+
+    render() {
+        return (
+            <span>
+                <a
+                    className="equationTrigger"
+                    onClick={this.toggleShow}
+                    aria-label="Expand or Collapse Data"
+                >
+                    {this.state.show ? "Hide" : "Show"} {this.props.name} {this.state.show ? "▴" : "▾"}
+                </a>
+                {this.state.show ? this.props.children : null}
+            </span>
+        );
+    }
+}
+
+CollapseBlock.propTypes = {
+    children: PropTypes.node.isRequired,
+    name: PropTypes.string,
+};
+
+CollapseBlock.defaultProps = {
+    name: "",
+};

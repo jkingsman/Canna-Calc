@@ -6,9 +6,12 @@ import {
     GenericInput,
     FixedUnitOutput,
     GenericOutput,
+    CollapseBlock,
 } from "app/calculators/components/io";
 import ConversionFactors from "app/utils/conversion_factors";
 import { defaultRound } from "app/utils/math";
+
+import { Line } from "react-chartjs-2";
 import dayjs from "dayjs";
 
 export default class BetterBAC extends React.Component {
@@ -228,12 +231,13 @@ export default class BetterBAC extends React.Component {
             return null;
         }
 
-        let halfHourInMillis = 30 * 60 * 1000;
+        const halfHourInMillis = 30 * 60 * 1000;
         let results = [];
-        for (let i = 0; i <= 10; i++) {
+        for (let i = 0; i <= 15; i++) {
             let time = this.getFirstDrinkTime() + i * halfHourInMillis;
             results.push({
                 time: new Date(time).toLocaleTimeString(),
+                timeObj: new Date(time),
                 widmarkBAC: this.getWidmarkBAC(time),
                 decayBAC: this.getWidmarkDecayBAC(time),
                 smartRWidmarkBAC: this.getSmartRWidmarkBAC(time),
@@ -241,29 +245,100 @@ export default class BetterBAC extends React.Component {
             });
         }
 
+        const data = {
+            // Labels should be Date objects
+            labels: results.map(drink => drink.timeObj),
+            datasets: [
+                {
+                    fill: false,
+                    label: "Widmark",
+                    data: results.map(drink => drink.widmarkBAC),
+                    borderColor: "#fe8b36",
+                    backgroundColor: "#fe8b36",
+                },
+                {
+                    fill: false,
+                    label: "Widmark Decay",
+                    data: results.map(drink => drink.decayBAC),
+                    borderColor: "#66a1ff",
+                    backgroundColor: "#66a1ff",
+                },
+                {
+                    fill: false,
+                    label: "Smart-R Widmark",
+                    data: results.map(drink => drink.smartRWidmarkBAC),
+                    borderColor: "#c466ff",
+                    backgroundColor: "#c466ff",
+                },
+                {
+                    fill: false,
+                    label: "Smart-R Widmark Decay",
+                    data: results.map(drink => drink.smartRWidmarkDecayBAC),
+                    borderColor: "#66ffcf",
+                    backgroundColor: "#66ffcf",
+                },
+            ],
+        };
+
+        const options = {
+            scales: {
+                xAxes: [
+                    {
+                        type: "time",
+                        time: {
+                            displayFormats: {
+                                minute: "h:mm a",
+                            },
+                        },
+                    },
+                ],
+            },
+        };
+
         return (
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th>Time</th>
-                        <th>Widmark</th>
-                        <th>Smart-R Widmark</th>
-                        <th>Widmark Rolling Decay</th>
-                        <th>Smart-R Widmark Rolling Decay</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {results.map((result, i) => (
-                        <tr key={i}>
-                            <td>{result.time}</td>
-                            <td>{defaultRound(result.widmarkBAC)} {this.getDriveStatusUnit(result.widmarkBAC)}</td>
-                            <td>{defaultRound(result.smartRWidmarkBAC)} {this.getDriveStatusUnit(result.smartRWidmarkBAC)}</td>
-                            <td>{defaultRound(result.decayBAC)} {this.getDriveStatusUnit(result.decayBAC)}</td>
-                            <td>{defaultRound(result.smartRWidmarkDecayBAC)} {this.getDriveStatusUnit(result.smartRWidmarkDecayBAC)}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+            <div className="row">
+                <div className="col-sm">
+                    <hr />
+                    <Line data={data} options={options} />
+                    <CollapseBlock name="Data">
+                        <table className="table">
+                            <thead>
+                                <tr>
+                                    <th>Time</th>
+                                    <th>Widmark</th>
+                                    <th>Smart-R Widmark</th>
+                                    <th>Widmark Rolling Decay</th>
+                                    <th>Smart-R Widmark Rolling Decay</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {results.map((result, i) => (
+                                    <tr key={i}>
+                                        <td>{result.time}</td>
+                                        <td>
+                                            {defaultRound(result.widmarkBAC)}{" "}
+                                            {this.getDriveStatusUnit(result.widmarkBAC)}
+                                        </td>
+                                        <td>
+                                            {defaultRound(result.smartRWidmarkBAC)}{" "}
+                                            {this.getDriveStatusUnit(result.smartRWidmarkBAC)}
+                                        </td>
+                                        <td>
+                                            {defaultRound(result.decayBAC)}{" "}
+                                            {this.getDriveStatusUnit(result.decayBAC)}
+                                        </td>
+                                        <td>
+                                            {defaultRound(result.smartRWidmarkDecayBAC)}{" "}
+                                            {this.getDriveStatusUnit(result.smartRWidmarkDecayBAC)}
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                        <hr />
+                    </CollapseBlock>
+                </div>
+            </div>
         );
     }
 
@@ -288,7 +363,6 @@ export default class BetterBAC extends React.Component {
         return (
             <div className="container">
                 {this.renderDrinks()}
-                <hr />
                 <div className="row">
                     <div className="col-sm">
                         <FixedUnitInput
@@ -334,65 +408,67 @@ export default class BetterBAC extends React.Component {
                             Add
                         </button>
                         <hr />
-                        <div className="form-group">
-                            <label>
-                                <input
-                                    type="radio"
-                                    value="male"
-                                    checked={this.state.isMale}
-                                    onChange={ev =>
-                                        this.setState({ isMale: ev.target.value === "male" })
-                                    }
-                                />
-                                Male
-                            </label>
-                            &nbsp;&nbsp;
-                            <label>
-                                <input
-                                    type="radio"
-                                    value="female"
-                                    checked={!this.state.isMale}
-                                    onChange={ev =>
-                                        this.setState({ isMale: ev.target.value === "male" })
-                                    }
-                                />
-                                Female
-                            </label>
-                        </div>
-                        <FixedUnitInput
-                            inputLabel="Weight"
-                            onChange={val => this.setState({ weight: Number(val) })}
-                            number={this.state.weight}
-                            unit="lbs"
-                        />
-                        <FixedUnitInput
-                            inputLabel="Height"
-                            onChange={val => this.setState({ height: Number(val) })}
-                            number={this.state.height}
-                            unit="in"
-                        />
-                        <FixedUnitInput
-                            inputLabel="Met. Clear. Rate (M)"
-                            onChange={val => this.setState({ maleMetabolic: Number(val) })}
-                            number={this.state.maleMetabolic}
-                            unit="mg/mL per hr"
-                        />
-                        <FixedUnitInput
-                            inputLabel="Met. Clear. Rate (F)"
-                            onChange={val => this.setState({ femaleMetabolic: Number(val) })}
-                            number={this.state.femaleMetabolic}
-                            unit="mg/mL per hr"
-                        />
-                        <FixedUnitOutput
-                            outputLabel="BMI"
-                            number={defaultRound(this.getBMI())}
-                            unit=""
-                        />
-                        <FixedUnitOutput
-                            outputLabel="Widmark-R Value"
-                            number={defaultRound(this.getWidmarkR())}
-                            unit=""
-                        />
+                        <CollapseBlock name="Settings">
+                            <div className="form-group">
+                                <label>
+                                    <input
+                                        type="radio"
+                                        value="male"
+                                        checked={this.state.isMale}
+                                        onChange={ev =>
+                                            this.setState({ isMale: ev.target.value === "male" })
+                                        }
+                                    />
+                                    Male
+                                </label>
+                                &nbsp;&nbsp;
+                                <label>
+                                    <input
+                                        type="radio"
+                                        value="female"
+                                        checked={!this.state.isMale}
+                                        onChange={ev =>
+                                            this.setState({ isMale: ev.target.value === "male" })
+                                        }
+                                    />
+                                    Female
+                                </label>
+                            </div>
+                            <FixedUnitInput
+                                inputLabel="Weight"
+                                onChange={val => this.setState({ weight: Number(val) })}
+                                number={this.state.weight}
+                                unit="lbs"
+                            />
+                            <FixedUnitInput
+                                inputLabel="Height"
+                                onChange={val => this.setState({ height: Number(val) })}
+                                number={this.state.height}
+                                unit="in"
+                            />
+                            <FixedUnitInput
+                                inputLabel="Met. Clear. Rate (M)"
+                                onChange={val => this.setState({ maleMetabolic: Number(val) })}
+                                number={this.state.maleMetabolic}
+                                unit="mg/mL per hr"
+                            />
+                            <FixedUnitInput
+                                inputLabel="Met. Clear. Rate (F)"
+                                onChange={val => this.setState({ femaleMetabolic: Number(val) })}
+                                number={this.state.femaleMetabolic}
+                                unit="mg/mL per hr"
+                            />
+                            <FixedUnitOutput
+                                outputLabel="BMI"
+                                number={defaultRound(this.getBMI())}
+                                unit=""
+                            />
+                            <FixedUnitOutput
+                                outputLabel="Widmark-R Value"
+                                number={defaultRound(this.getWidmarkR())}
+                                unit=""
+                            />
+                        </CollapseBlock>
                     </div>
                     <div className="col-sm">
                         <GenericOutput
@@ -417,9 +493,8 @@ export default class BetterBAC extends React.Component {
                             unit="wine bottles"
                         />
                     </div>
-
-                    {this.renderBACTable()}
                 </div>
+                {this.renderBACTable()}
             </div>
         );
     }
