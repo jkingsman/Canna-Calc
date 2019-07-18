@@ -20,7 +20,7 @@ export default class BetterBAC extends React.Component {
             amountIn: 3,
             numberConsumed: 1,
             drinks: [],
-            weight: 230,
+            weight: 240,
             height: 76,
             isMale: true,
             maleMetabolic: 0.015,
@@ -182,6 +182,22 @@ export default class BetterBAC extends React.Component {
         this.setState({ drinks: drinkList });
     }
 
+    getDriveStatusUnit(bac) {
+        let statusEmoji;
+
+        if (bac > 0.2) {
+            statusEmoji = "🚨☠️☠️🚨";
+        } else if (bac <= 0.2 && bac > 0.07) {
+            statusEmoji = "🚨";
+        } else if (bac <= 0.07 && bac >= 0.06) {
+            statusEmoji = "❗";
+        } else {
+            statusEmoji = "👌";
+        }
+
+        return `%  ${statusEmoji}`;
+    }
+
     renderDrinks() {
         this.getFirstDrinkTime();
         if (!this.state.drinks) {
@@ -240,10 +256,10 @@ export default class BetterBAC extends React.Component {
                     {results.map((result, i) => (
                         <tr key={i}>
                             <td>{result.time}</td>
-                            <td>{defaultRound(result.widmarkBAC)}</td>
-                            <td>{defaultRound(result.smartRWidmarkBAC)}</td>
-                            <td>{defaultRound(result.decayBAC)}</td>
-                            <td>{defaultRound(result.smartRWidmarkDecayBAC)}</td>
+                            <td>{defaultRound(result.widmarkBAC)} {this.getDriveStatusUnit(result.widmarkBAC)}</td>
+                            <td>{defaultRound(result.smartRWidmarkBAC)} {this.getDriveStatusUnit(result.smartRWidmarkBAC)}</td>
+                            <td>{defaultRound(result.decayBAC)} {this.getDriveStatusUnit(result.decayBAC)}</td>
+                            <td>{defaultRound(result.smartRWidmarkDecayBAC)} {this.getDriveStatusUnit(result.smartRWidmarkDecayBAC)}</td>
                         </tr>
                     ))}
                 </tbody>
