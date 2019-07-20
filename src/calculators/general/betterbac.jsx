@@ -231,10 +231,11 @@ export default class BetterBAC extends React.Component {
             return null;
         }
 
-        const halfHourInMillis = 30 * 60 * 1000;
+        const dataIntervalInMillis = 30 * 60 * 1000;  // 30 minutes
+        const intervalsToRun = 15;
         let results = [];
-        for (let i = 0; i <= 15; i++) {
-            let time = this.getFirstDrinkTime() + i * halfHourInMillis;
+        for (let i = 0; i <= intervalsToRun; i++) {
+            let time = this.getFirstDrinkTime() + i * dataIntervalInMillis;
             results.push({
                 time: new Date(time).toLocaleTimeString(),
                 timeObj: new Date(time),
@@ -276,6 +277,13 @@ export default class BetterBAC extends React.Component {
                     data: results.map(drink => drink.smartRWidmarkDecayBAC),
                     borderColor: "#66ffcf",
                     backgroundColor: "#66ffcf",
+                },
+                {
+                    fill: false,
+                    label: "Driving Limit",
+                    data: results.map(() => .08),
+                    borderColor: "#ff0000",
+                    backgroundColor: "#ff0000",
                 },
             ],
         };
@@ -461,12 +469,12 @@ export default class BetterBAC extends React.Component {
                             <FixedUnitOutput
                                 outputLabel="BMI"
                                 number={defaultRound(this.getBMI())}
-                                unit=""
+                                unit="(calculated)"
                             />
                             <FixedUnitOutput
                                 outputLabel="Widmark-R Value"
                                 number={defaultRound(this.getWidmarkR())}
-                                unit=""
+                                unit="(calculated)"
                             />
                         </CollapseBlock>
                     </div>
