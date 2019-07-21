@@ -562,41 +562,12 @@ GenericOutput.defaultProps = {
     noPadding: false,
 };
 
-export class EquationBlock extends React.Component {
-    constructor(props) {
-        super(props);
-        this.uniqueID = newId();
-        this.state = { show: false };
-
-        this.toggleShow = this.toggleShow.bind(this);
-    }
-
-    toggleShow() {
-        this.setState({ show: !this.state.show });
-    }
-
-    renderEquations() {
-        if (this.state.show) {
-            return <pre>{this.props.equations.join("\n")}</pre>;
-        }
-
-        return null;
-    }
-
-    render() {
-        return (
-            <span>
-                <a
-                    className="equationTrigger"
-                    onClick={this.toggleShow}
-                    aria-label="Expand or Collapse Equation Block"
-                >
-                    {this.state.show ? "Hide" : "Show"} Equations {this.state.show ? "▴" : "▾"}
-                </a>
-                {this.renderEquations()}
-            </span>
-        );
-    }
+export function EquationBlock(props) {
+    return (
+        <CollapseBlock name="Equations">
+            <pre>{props.equations.join("\n")}</pre>
+        </CollapseBlock>
+    );
 }
 
 EquationBlock.propTypes = {
