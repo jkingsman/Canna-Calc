@@ -202,7 +202,6 @@ export default class BetterBAC extends React.Component {
     }
 
     renderDrinks() {
-        this.getFirstDrinkTime();
         if (!this.state.drinks) {
             return null;
         }
@@ -231,8 +230,8 @@ export default class BetterBAC extends React.Component {
             return null;
         }
 
-        const dataIntervalInMillis = 30 * 60 * 1000;  // 30 minutes
-        const intervalsToRun = 15;
+        const dataIntervalInMillis = 20 * 60 * 1000; // 30 minutes
+        const intervalsToRun = 16;
         let results = [];
         for (let i = 0; i <= intervalsToRun; i++) {
             let time = this.getFirstDrinkTime() + i * dataIntervalInMillis;
@@ -256,6 +255,7 @@ export default class BetterBAC extends React.Component {
                     data: results.map(drink => drink.widmarkBAC),
                     borderColor: "#fe8b36",
                     backgroundColor: "#fe8b36",
+                    tension: 0,
                 },
                 {
                     fill: false,
@@ -263,6 +263,7 @@ export default class BetterBAC extends React.Component {
                     data: results.map(drink => drink.decayBAC),
                     borderColor: "#66a1ff",
                     backgroundColor: "#66a1ff",
+                    tension: 0,
                 },
                 {
                     fill: false,
@@ -270,6 +271,7 @@ export default class BetterBAC extends React.Component {
                     data: results.map(drink => drink.smartRWidmarkBAC),
                     borderColor: "#c466ff",
                     backgroundColor: "#c466ff",
+                    tension: 0,
                 },
                 {
                     fill: false,
@@ -277,13 +279,15 @@ export default class BetterBAC extends React.Component {
                     data: results.map(drink => drink.smartRWidmarkDecayBAC),
                     borderColor: "#66ffcf",
                     backgroundColor: "#66ffcf",
+                    tension: 0,
                 },
                 {
                     fill: false,
                     label: "Driving Limit",
-                    data: results.map(() => .08),
+                    data: results.map(() => 0.08),
                     borderColor: "#ff0000",
                     backgroundColor: "#ff0000",
+                    tension: 0,
                 },
             ],
         };
@@ -370,53 +374,54 @@ export default class BetterBAC extends React.Component {
     render() {
         return (
             <div className="container">
-                {this.renderDrinks()}
                 <div className="row">
                     <div className="col-sm">
-                        <FixedUnitInput
-                            inputLabel="ABV"
-                            onChange={val => this.setState({ abvIn: Number(val) })}
-                            number={this.state.abvIn}
-                            unit="%"
-                        />
-                        <GenericInput
-                            inputLabel="Amount"
-                            onChange={val => this.setState({ amountIn: Number(val) })}
-                            conversionFactors={ConversionFactors.drinkVolume}
-                            number={this.state.amountIn}
-                        />
-                        <FixedUnitInput
-                            inputLabel="Number Consumed"
-                            onChange={val => this.setState({ numberConsumed: Number(val) })}
-                            number={this.state.numberConsumed}
-                            unit="drinks"
-                        />
-                        <FreeInput
-                            inputLabel="Date"
-                            onChange={val => this.setState({ drinkDate: val })}
-                            val={this.state.drinkDate}
-                        />
-                        <FreeInput
-                            inputLabel="Time"
-                            onChange={val => this.setState({ drinkTime: val })}
-                            val={this.state.drinkTime}
-                        />
-                        <button
-                            type="button"
-                            className="btn btn-primary"
-                            onClick={() => this.clearLocal()}
-                        >
-                            Clear
-                        </button>
-                        <button
-                            type="button"
-                            className="btn btn-primary float-right"
-                            onClick={() => this.addDrink()}
-                        >
-                            Add
-                        </button>
-                        <hr />
-                        <CollapseBlock name="Settings">
+                        <CollapseBlock name="Drink Addition" show>
+                            <FixedUnitInput
+                                inputLabel="ABV"
+                                onChange={val => this.setState({ abvIn: Number(val) })}
+                                number={this.state.abvIn}
+                                unit="%"
+                            />
+                            <GenericInput
+                                inputLabel="Amount"
+                                onChange={val => this.setState({ amountIn: Number(val) })}
+                                conversionFactors={ConversionFactors.drinkVolume}
+                                number={this.state.amountIn}
+                            />
+                            <FixedUnitInput
+                                inputLabel="Number Consumed"
+                                onChange={val => this.setState({ numberConsumed: Number(val) })}
+                                number={this.state.numberConsumed}
+                                unit="drinks"
+                            />
+                            <FreeInput
+                                inputLabel="Date"
+                                onChange={val => this.setState({ drinkDate: val })}
+                                val={this.state.drinkDate}
+                            />
+                            <FreeInput
+                                inputLabel="Time"
+                                onChange={val => this.setState({ drinkTime: val })}
+                                val={this.state.drinkTime}
+                            />
+                            <button
+                                type="button"
+                                className="btn btn-primary"
+                                onClick={() => this.clearLocal()}
+                            >
+                                Clear
+                            </button>
+                            <button
+                                type="button"
+                                className="btn btn-primary float-right"
+                                onClick={() => this.addDrink()}
+                            >
+                                Add
+                            </button>
+                        </CollapseBlock>
+                        <br />
+                        <CollapseBlock name="Subject Settings">
                             <div className="form-group">
                                 <label>
                                     <input
@@ -454,6 +459,14 @@ export default class BetterBAC extends React.Component {
                                 number={this.state.height}
                                 unit="in"
                             />
+                            <FixedUnitOutput
+                                outputLabel="BMI"
+                                number={defaultRound(this.getBMI())}
+                                unit="(calculated)"
+                            />
+                        </CollapseBlock>
+                        <br />
+                        <CollapseBlock name="Metabolic Settings">
                             <FixedUnitInput
                                 inputLabel="Met. Clear. Rate (M)"
                                 onChange={val => this.setState({ maleMetabolic: Number(val) })}
@@ -467,39 +480,39 @@ export default class BetterBAC extends React.Component {
                                 unit="mg/mL per hr"
                             />
                             <FixedUnitOutput
-                                outputLabel="BMI"
-                                number={defaultRound(this.getBMI())}
-                                unit="(calculated)"
-                            />
-                            <FixedUnitOutput
                                 outputLabel="Widmark-R Value"
                                 number={defaultRound(this.getWidmarkR())}
                                 unit="(calculated)"
                             />
                         </CollapseBlock>
+                        <br />
+                        <CollapseBlock name="Equivalencies">
+                            <GenericOutput
+                                outputLabel="Total Ethanol"
+                                number={defaultRound(this.getEthanol())}
+                                conversionFactors={ConversionFactors.drinkVolume}
+                                showSplitter={false}
+                            />
+                            <FixedUnitOutput
+                                outputLabel="Equivalent to"
+                                number={defaultRound(this.getEthanol() / this.alcoholPerDrink.shot)}
+                                unit="shots"
+                            />
+                            <FixedUnitOutput
+                                noColon
+                                number={defaultRound(this.getEthanol() / this.alcoholPerDrink.beer)}
+                                unit="beers"
+                            />
+                            <FixedUnitOutput
+                                noColon
+                                number={defaultRound(this.getEthanol() / this.alcoholPerDrink.wine)}
+                                unit="wine bottles"
+                            />
+                        </CollapseBlock>
                     </div>
                     <div className="col-sm">
-                        <GenericOutput
-                            outputLabel="Total Ethanol"
-                            number={defaultRound(this.getEthanol())}
-                            conversionFactors={ConversionFactors.drinkVolume}
-                            showSplitter={false}
-                        />
-                        <FixedUnitOutput
-                            outputLabel="Equivalent to"
-                            number={defaultRound(this.getEthanol() / this.alcoholPerDrink.shot)}
-                            unit="shots"
-                        />
-                        <FixedUnitOutput
-                            noColon
-                            number={defaultRound(this.getEthanol() / this.alcoholPerDrink.beer)}
-                            unit="beers"
-                        />
-                        <FixedUnitOutput
-                            noColon
-                            number={defaultRound(this.getEthanol() / this.alcoholPerDrink.wine)}
-                            unit="wine bottles"
-                        />
+                        <h2>Drinks</h2>
+                        {this.renderDrinks()}
                     </div>
                 </div>
                 {this.renderBACTable()}

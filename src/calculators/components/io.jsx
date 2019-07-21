@@ -610,7 +610,7 @@ EquationBlock.defaultProps = {
 export class CollapseBlock extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { show: false };
+        this.state = { show: this.props.show };
 
         this.toggleShow = this.toggleShow.bind(this);
     }
@@ -627,7 +627,8 @@ export class CollapseBlock extends React.Component {
                     onClick={this.toggleShow}
                     aria-label="Expand or Collapse Data"
                 >
-                    {this.state.show ? "Hide" : "Show"} {this.props.name} {this.state.show ? "▴" : "▾"}
+                    {this.state.show ? "Hide" : "Show"} {this.props.name}{" "}
+                    {this.state.show ? "▴" : "▾"}
                 </a>
                 {this.state.show ? this.props.children : null}
             </span>
@@ -638,8 +639,10 @@ export class CollapseBlock extends React.Component {
 CollapseBlock.propTypes = {
     children: PropTypes.node.isRequired,
     name: PropTypes.string,
+    show: PropTypes.bool.isRequired,
 };
 
 CollapseBlock.defaultProps = {
     name: "",
+    show: false,
 };
