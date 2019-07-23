@@ -18,6 +18,7 @@ export default class BetterBAC extends React.Component {
     constructor(props) {
         super(props);
 
+        this.ver = 1
         this.state = {
             abvIn: 40,
             amountIn: 3,
@@ -26,14 +27,18 @@ export default class BetterBAC extends React.Component {
             weight: 240,
             height: 76,
             isMale: true,
+            absorptionOffset: 30,
             maleMetabolic: 0.015,
             femaleMetabolic: 0.017,
             drinkTime: new Date().toLocaleTimeString(),
             drinkDate: new Date().toLocaleDateString(),
+            intervalMins: 20,
+            intervals: 16,
         };
 
         let state = localStorage.getItem("state");
-        if (state && JSON.parse(state).drinks.length > 0) {
+        let ver = localStorage.getItem("ver") == this.ver;
+        if (ver && state && JSON.parse(state).drinks.length > 0) {
             this.state = JSON.parse(state);
         }
 
@@ -134,7 +139,7 @@ export default class BetterBAC extends React.Component {
     }
 
     getFirstDrinkTime() {
-        return Math.min(...this.state.drinks.map(drink => drink.time));
+        return Math.min(...this.state.drinks.map(drink => drink.time)) - this.getAbsorptionOffsetMillis() - 1000;
     }
 
     getLastDrinkTime() {
@@ -145,6 +150,10 @@ export default class BetterBAC extends React.Component {
         return dayjs(this.state.drinkDate + " " + this.state.drinkTime)
             .add(mins, "minute")
             .format("HHmm");
+    }
+
+    getAbsorptionOffsetMillis() {
+        return this.state.absorptionOffset * 60 * 1000;
     }
 
     getBMI() {
@@ -168,7 +177,9 @@ export default class BetterBAC extends React.Component {
             amount: this.state.amountIn,
             number: this.state.numberConsumed,
             etoh: this.state.amountIn * this.state.numberConsumed * (this.state.abvIn / 100),
-            time: Date.parse(this.state.drinkTime + " " + this.state.numberConsumed),
+            time: Date.parse(this.state.drinkTime + " " + this.state.drinkDate) + this.getAbsorptionOffsetMillis(),
+            displayTime: Date.parse(this.state.drinkTime + " " + this.state.drinkDate),
+            absorptionOffset: this.state.absorptionOffset,
         };
 
         drinkList.push(drinkObj);
@@ -211,7 +222,7 @@ export default class BetterBAC extends React.Component {
             .map(drink => {
                 return `${drink.number}x ${defaultRound(drink.amount)} fl.oz. ${
                     drink.abv
-                }% (${new Date(drink.time).toLocaleTimeString()})`;
+                }% (${new Date(drink.displayTime).toLocaleTimeString()}, ${drink.absorptionOffset} min offset)`;
             });
 
         return (
@@ -230,8 +241,8 @@ export default class BetterBAC extends React.Component {
             return null;
         }
 
-        const dataIntervalInMillis = 20 * 60 * 1000; // 30 minutes
-        const intervalsToRun = 16;
+        const dataIntervalInMillis = this.state.intervalMins * 60 * 1000;
+        const intervalsToRun = this.state.intervals;
         let results = [];
         for (let i = 0; i <= intervalsToRun; i++) {
             let time = this.getFirstDrinkTime() + i * dataIntervalInMillis;
@@ -356,6 +367,7 @@ export default class BetterBAC extends React.Component {
 
     componentDidUpdate() {
         localStorage.setItem("state", JSON.stringify(this.state));
+        localStorage.setItem("ver", this.ver);
     }
 
     clearLocal() {
@@ -366,7 +378,7 @@ export default class BetterBAC extends React.Component {
                 drinkDate: new Date().toLocaleDateString(),
             },
             function() {
-                localStorage.setItem("state", JSON.stringify(this.state));
+                localStorage.setItem("state", null);
             }
         );
     }
@@ -405,6 +417,12 @@ export default class BetterBAC extends React.Component {
                                 onChange={val => this.setState({ drinkTime: val })}
                                 val={this.state.drinkTime}
                             />
+                            <FixedUnitInput
+                                inputLabel="Absorp. Time"
+                                onChange={val => this.setState({ absorptionOffset: Number(val) })}
+                                number={this.state.absorptionOffset}
+                                unit="minutes"
+                            />
                             <button
                                 type="button"
                                 className="btn btn-primary"
@@ -420,7 +438,7 @@ export default class BetterBAC extends React.Component {
                                 Add
                             </button>
                         </CollapseBlock>
-                        <br />
+                        <hr />
                         <CollapseBlock name="Subject Settings">
                             <div className="form-group">
                                 <label>
@@ -486,6 +504,21 @@ export default class BetterBAC extends React.Component {
                             />
                         </CollapseBlock>
                         <br />
+                        <CollapseBlock name="Chart Settings">
+                            <FixedUnitInput
+                                inputLabel="Interval"
+                                onChange={val => this.setState({ intervalMins: Number(val) })}
+                                number={this.state.intervalMins}
+                                unit="minutes"
+                            />
+                            <FixedUnitInput
+                                inputLabel="Intervals"
+                                onChange={val => this.setState({ intervals: Number(val) })}
+                                number={this.state.intervals}
+                                unit=""
+                            />
+                        </CollapseBlock>
+                        <br />
                         <CollapseBlock name="Equivalencies">
                             <GenericOutput
                                 outputLabel="Total Ethanol"
@@ -511,6 +544,7 @@ export default class BetterBAC extends React.Component {
                         </CollapseBlock>
                     </div>
                     <div className="col-sm">
+                        <hr />
                         <h2>Drinks</h2>
                         {this.renderDrinks()}
                     </div>
