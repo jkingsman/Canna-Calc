@@ -18,7 +18,7 @@ export default class BetterBAC extends React.Component {
     constructor(props) {
         super(props);
 
-        this.ver = 1
+        this.ver = 2
         this.state = {
             abvIn: 40,
             amountIn: 3,
@@ -27,6 +27,7 @@ export default class BetterBAC extends React.Component {
             weight: 240,
             height: 76,
             isMale: true,
+            flOzH2OOffset: 8,
             absorptionOffset: 30,
             maleMetabolic: 0.015,
             femaleMetabolic: 0.017,
@@ -43,6 +44,7 @@ export default class BetterBAC extends React.Component {
         }
 
         this.alcoholPerDrink = {
+            stdDrink: 0.6, // 14g ethanol in fl oz
             shot: 0.8, // 2fl oz * .4 abv
             beer: 0.72, // 12fl oz * .06abv
             wine: 3.29, // 25.36fl oz * .13 abv
@@ -139,7 +141,7 @@ export default class BetterBAC extends React.Component {
     }
 
     getFirstDrinkTime() {
-        return Math.min(...this.state.drinks.map(drink => drink.time)) - this.getAbsorptionOffsetMillis() - 1000;
+        return Math.min(...this.state.drinks.map(drink => drink.time)) - (20 * 60 * 1000);
     }
 
     getLastDrinkTime() {
@@ -497,6 +499,12 @@ export default class BetterBAC extends React.Component {
                                 number={this.state.femaleMetabolic}
                                 unit="mg/mL per hr"
                             />
+                            <FixedUnitInput
+                                inputLabel="H20 Offset"
+                                onChange={val => this.setState({ flOzH2OOffset: Number(val) })}
+                                number={this.state.flOzH2OOffset}
+                                unit="fl. oz."
+                            />
                             <FixedUnitOutput
                                 outputLabel="Widmark-R Value"
                                 number={defaultRound(this.getWidmarkR())}
@@ -540,6 +548,16 @@ export default class BetterBAC extends React.Component {
                                 noColon
                                 number={defaultRound(this.getEthanol() / this.alcoholPerDrink.wine)}
                                 unit="wine bottles"
+                            />
+                            <FixedUnitOutput
+                                noColon
+                                number={defaultRound(this.getEthanol() / this.alcoholPerDrink.stdDrink)}
+                                unit="standard drinks"
+                            />
+                            <FixedUnitOutput
+                                outputLabel="Should drink"
+                                number={defaultRound(this.getEthanol() / this.alcoholPerDrink.stdDrink * (this.state.flOzH2OOffset * .0295735296))}
+                                unit="liters H2O"
                             />
                         </CollapseBlock>
                     </div>
