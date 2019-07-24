@@ -277,6 +277,7 @@ export default class BetterBAC extends React.Component {
                     borderColor: "#66a1ff",
                     backgroundColor: "#66a1ff",
                     tension: 0,
+                    hidden: true,
                 },
                 {
                     fill: false,
@@ -285,6 +286,7 @@ export default class BetterBAC extends React.Component {
                     borderColor: "#c466ff",
                     backgroundColor: "#c466ff",
                     tension: 0,
+                    hidden: true,
                 },
                 {
                     fill: false,
