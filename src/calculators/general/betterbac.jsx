@@ -325,7 +325,6 @@ export default class BetterBAC extends React.Component {
         return (
             <div className="row">
                 <div className="col-sm">
-                    <hr />
                     <Line data={data} options={options} />
                     <CollapseBlock name="Data">
                         <table className="table">
@@ -441,8 +440,9 @@ export default class BetterBAC extends React.Component {
                             >
                                 Add
                             </button>
+                            <hr />
                         </CollapseBlock>
-                        <hr />
+                        <br />
                         <CollapseBlock name="Subject Settings">
                             <div className="form-group">
                                 <label>
@@ -562,11 +562,12 @@ export default class BetterBAC extends React.Component {
                                 unit="liters H2O"
                             />
                         </CollapseBlock>
+                        <hr />
                     </div>
                     <div className="col-sm">
-                        <hr />
                         <h2>Drinks</h2>
                         {this.renderDrinks()}
+                        <hr />
                     </div>
                 </div>
                 {this.renderBACTable()}
