@@ -326,7 +326,7 @@ export default class CalculatorContainer extends React.Component {
                     id="btus"
                     keywords="btus thermal energy power temperature"
                     searchTerm={this.state.searchTerm}
-                    title="BTU/AC Unit Calculator"
+                    title="BTUs Generated/Heat Offset Calculator"
                 >
                     <BTUCalculator />
                 </CardTemplate>

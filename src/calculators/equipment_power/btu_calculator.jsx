@@ -72,7 +72,7 @@ export default class BTUCalculator extends React.Component {
                         <FixedUnitInput
                             inputLabel="CO₂ Generators"
                             onChange={val => this.setState({ co2Count: Number(val) })}
-                            number={this.state.co2BTUs}
+                            number={this.state.co2Count}
                             unit="generators"
                         />
                         <FixedUnitInput
