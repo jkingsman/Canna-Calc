@@ -131,7 +131,7 @@ export default class BetterBAC extends React.Component {
         let lastVal = 0;
         for (let i = this.getFirstDrinkTime(); i <= time; i += 1000) {
             if (drinks.hasOwnProperty(i)) {
-                lastVal += drinks[i] * 23.342386982 / (widmark * kilos) / 10;
+                lastVal += drinks[i] * 23.342386982 / (widmark * kilos) / 10;  // 1 fl oz ethanol = 23.3... grams
             } else {
                 lastVal -= metabolicDecay;
             }
