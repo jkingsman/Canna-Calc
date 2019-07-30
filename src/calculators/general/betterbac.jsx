@@ -18,9 +18,7 @@ export default class BetterBAC extends React.Component {
     constructor(props) {
         super(props);
 
-        this.chartNeedsRerender = true;
         this.ver = 2;
-
         this.state = {
             abvIn: 40,
             amountIn: 3,
@@ -37,12 +35,15 @@ export default class BetterBAC extends React.Component {
             drinkDate: new Date().toLocaleDateString(),
             intervalMins: 20,
             intervals: 16,
+            chartNeedsRerender: true,
         };
 
         let state = localStorage.getItem("state");
         let ver = localStorage.getItem("ver") == this.ver;
         if (ver && state && JSON.parse(state).drinks.length > 0) {
-            this.state = JSON.parse(state);
+            let storedState = JSON.parse(state);
+            storedState.chartNeedsRerender = true; // always rerender on load
+            this.state = storedState;
         }
 
         this.alcoholPerDrink = {
@@ -193,16 +194,14 @@ export default class BetterBAC extends React.Component {
             drinks: drinkList,
             drinkTime: new Date().toLocaleTimeString(),
             drinkDate: new Date().toLocaleDateString(),
+            chartNeedsRerender: true,
         });
-
-        this.chartNeedsRerender = true;
     }
 
     deleteDrink(i) {
         let drinkList = this.state.drinks;
         drinkList.splice(i, 1);
-        this.setState({ drinks: drinkList });
-        this.chartNeedsRerender = true;
+        this.setState({ drinks: drinkList, chartNeedsRerender: true });
     }
 
     getDriveStatusUnit(bac) {
@@ -252,7 +251,7 @@ export default class BetterBAC extends React.Component {
             return null;
         }
 
-        if (!this.chartNeedsRerender) {
+        if (!this.state.chartNeedsRerender) {
             // don't rerender if the drinks haven't changed
             return this.cachedChart;
         }
@@ -390,7 +389,7 @@ export default class BetterBAC extends React.Component {
             </div>
         );
 
-        this.chartNeedsRerender = false;
+        this.setState({ chartNeedsRerender: false });
         return this.cachedChart;
     }
 
@@ -477,7 +476,10 @@ export default class BetterBAC extends React.Component {
                                         value="male"
                                         checked={this.state.isMale}
                                         onChange={ev =>
-                                            this.setState({ isMale: ev.target.value === "male" })
+                                            this.setState({
+                                                isMale: ev.target.value === "male",
+                                                chartNeedsRerender: true,
+                                            })
                                         }
                                     />
                                     Male
@@ -489,7 +491,10 @@ export default class BetterBAC extends React.Component {
                                         value="female"
                                         checked={!this.state.isMale}
                                         onChange={ev =>
-                                            this.setState({ isMale: ev.target.value === "male" })
+                                            this.setState({
+                                                isMale: ev.target.value === "male",
+                                                chartNeedsRerender: true,
+                                            })
                                         }
                                     />
                                     Female
@@ -497,13 +502,17 @@ export default class BetterBAC extends React.Component {
                             </div>
                             <FixedUnitInput
                                 inputLabel="Weight"
-                                onChange={val => this.setState({ weight: Number(val) })}
+                                onChange={val =>
+                                    this.setState({ weight: Number(val), chartNeedsRerender: true })
+                                }
                                 number={this.state.weight}
                                 unit="lbs"
                             />
                             <FixedUnitInput
                                 inputLabel="Height"
-                                onChange={val => this.setState({ height: Number(val) })}
+                                onChange={val =>
+                                    this.setState({ height: Number(val), chartNeedsRerender: true })
+                                }
                                 number={this.state.height}
                                 unit="in"
                             />
@@ -517,19 +526,34 @@ export default class BetterBAC extends React.Component {
                         <CollapseBlock name="Metabolic Settings">
                             <FixedUnitInput
                                 inputLabel="Met. Clear. Rate (M)"
-                                onChange={val => this.setState({ maleMetabolic: Number(val) })}
+                                onChange={val =>
+                                    this.setState({
+                                        maleMetabolic: Number(val),
+                                        chartNeedsRerender: true,
+                                    })
+                                }
                                 number={this.state.maleMetabolic}
                                 unit="mg/mL per hr"
                             />
                             <FixedUnitInput
                                 inputLabel="Met. Clear. Rate (F)"
-                                onChange={val => this.setState({ femaleMetabolic: Number(val) })}
+                                onChange={val =>
+                                    this.setState({
+                                        femaleMetabolic: Number(val),
+                                        chartNeedsRerender: true,
+                                    })
+                                }
                                 number={this.state.femaleMetabolic}
                                 unit="mg/mL per hr"
                             />
                             <FixedUnitInput
                                 inputLabel="H20 Offset"
-                                onChange={val => this.setState({ flOzH2OOffset: Number(val) })}
+                                onChange={val =>
+                                    this.setState({
+                                        flOzH2OOffset: Number(val),
+                                        chartNeedsRerender: true,
+                                    })
+                                }
                                 number={this.state.flOzH2OOffset}
                                 unit="fl. oz."
                             />
@@ -543,13 +567,23 @@ export default class BetterBAC extends React.Component {
                         <CollapseBlock name="Chart Settings">
                             <FixedUnitInput
                                 inputLabel="Interval"
-                                onChange={val => this.setState({ intervalMins: Number(val) })}
+                                onChange={val =>
+                                    this.setState({
+                                        intervalMins: Number(val),
+                                        chartNeedsRerender: true,
+                                    })
+                                }
                                 number={this.state.intervalMins}
                                 unit="minutes"
                             />
                             <FixedUnitInput
                                 inputLabel="Intervals"
-                                onChange={val => this.setState({ intervals: Number(val) })}
+                                onChange={val =>
+                                    this.setState({
+                                        intervals: Number(val),
+                                        chartNeedsRerender: true,
+                                    })
+                                }
                                 number={this.state.intervals}
                                 unit=""
                             />
