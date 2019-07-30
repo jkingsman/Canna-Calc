@@ -18,7 +18,9 @@ export default class BetterBAC extends React.Component {
     constructor(props) {
         super(props);
 
-        this.ver = 2
+        this.chartNeedsRerender = true;
+        this.ver = 2;
+
         this.state = {
             abvIn: 40,
             amountIn: 3,
@@ -131,7 +133,7 @@ export default class BetterBAC extends React.Component {
         let lastVal = 0;
         for (let i = this.getFirstDrinkTime(); i <= time; i += 1000) {
             if (drinks.hasOwnProperty(i)) {
-                lastVal += drinks[i] * 23.342386982 / (widmark * kilos) / 10;  // 1 fl oz ethanol = 23.3... grams
+                lastVal += drinks[i] * 23.342386982 / (widmark * kilos) / 10; // 1 fl oz ethanol = 23.3... grams
             } else {
                 lastVal -= metabolicDecay;
             }
@@ -141,7 +143,7 @@ export default class BetterBAC extends React.Component {
     }
 
     getFirstDrinkTime() {
-        return Math.min(...this.state.drinks.map(drink => drink.time)) - (20 * 60 * 1000);
+        return Math.min(...this.state.drinks.map(drink => drink.time)) - 20 * 60 * 1000;
     }
 
     getLastDrinkTime() {
@@ -179,7 +181,9 @@ export default class BetterBAC extends React.Component {
             amount: this.state.amountIn,
             number: this.state.numberConsumed,
             etoh: this.state.amountIn * this.state.numberConsumed * (this.state.abvIn / 100),
-            time: Date.parse(this.state.drinkTime + " " + this.state.drinkDate) + this.getAbsorptionOffsetMillis(),
+            time:
+                Date.parse(this.state.drinkTime + " " + this.state.drinkDate) +
+                this.getAbsorptionOffsetMillis(),
             displayTime: Date.parse(this.state.drinkTime + " " + this.state.drinkDate),
             absorptionOffset: this.state.absorptionOffset,
         };
@@ -190,12 +194,15 @@ export default class BetterBAC extends React.Component {
             drinkTime: new Date().toLocaleTimeString(),
             drinkDate: new Date().toLocaleDateString(),
         });
+
+        this.chartNeedsRerender = true;
     }
 
     deleteDrink(i) {
         let drinkList = this.state.drinks;
         drinkList.splice(i, 1);
         this.setState({ drinks: drinkList });
+        this.chartNeedsRerender = true;
     }
 
     getDriveStatusUnit(bac) {
@@ -224,7 +231,9 @@ export default class BetterBAC extends React.Component {
             .map(drink => {
                 return `${drink.number}x ${defaultRound(drink.amount)} fl.oz. ${
                     drink.abv
-                }% (${new Date(drink.displayTime).toLocaleTimeString()}, ${drink.absorptionOffset} min offset)`;
+                }% (${new Date(drink.displayTime).toLocaleTimeString()}, ${
+                    drink.absorptionOffset
+                } min offset)`;
             });
 
         return (
@@ -241,6 +250,11 @@ export default class BetterBAC extends React.Component {
     renderBACTable() {
         if (this.state.drinks.length === 0) {
             return null;
+        }
+
+        if (!this.chartNeedsRerender) {
+            // don't rerender if the drinks haven't changed
+            return this.cachedChart;
         }
 
         const dataIntervalInMillis = this.state.intervalMins * 60 * 1000;
@@ -322,7 +336,7 @@ export default class BetterBAC extends React.Component {
             },
         };
 
-        return (
+        this.cachedChart = (
             <div className="row">
                 <div className="col-sm">
                     <Line data={data} options={options} />
@@ -366,6 +380,9 @@ export default class BetterBAC extends React.Component {
                 </div>
             </div>
         );
+
+        this.chartNeedsRerender = false;
+        return this.cachedChart;
     }
 
     componentDidUpdate() {
@@ -553,12 +570,18 @@ export default class BetterBAC extends React.Component {
                             />
                             <FixedUnitOutput
                                 noColon
-                                number={defaultRound(this.getEthanol() / this.alcoholPerDrink.stdDrink)}
+                                number={defaultRound(
+                                    this.getEthanol() / this.alcoholPerDrink.stdDrink
+                                )}
                                 unit="standard drinks"
                             />
                             <FixedUnitOutput
                                 outputLabel="Should drink"
-                                number={defaultRound(this.getEthanol() / this.alcoholPerDrink.stdDrink * (this.state.flOzH2OOffset * .0295735296))}
+                                number={defaultRound(
+                                    this.getEthanol() /
+                                        this.alcoholPerDrink.stdDrink *
+                                        (this.state.flOzH2OOffset * 0.0295735296)
+                                )}
                                 unit="liters H2O"
                             />
                         </CollapseBlock>
