@@ -284,24 +284,24 @@ export default class BetterBAC extends React.Component {
                     backgroundColor: "#fe8b36",
                     tension: 0,
                 },
-                {
-                    fill: false,
-                    label: "Widmark Decay",
-                    data: results.map(drink => drink.decayBAC),
-                    borderColor: "#66a1ff",
-                    backgroundColor: "#66a1ff",
-                    tension: 0,
-                    hidden: true,
-                },
-                {
-                    fill: false,
-                    label: "Smart-R Widmark",
-                    data: results.map(drink => drink.smartRWidmarkBAC),
-                    borderColor: "#c466ff",
-                    backgroundColor: "#c466ff",
-                    tension: 0,
-                    hidden: true,
-                },
+                // {
+                //     fill: false,
+                //     label: "Widmark Decay",
+                //     data: results.map(drink => drink.decayBAC),
+                //     borderColor: "#66a1ff",
+                //     backgroundColor: "#66a1ff",
+                //     tension: 0,
+                //     hidden: true,
+                // },
+                // {
+                //     fill: false,
+                //     label: "Smart-R Widmark",
+                //     data: results.map(drink => drink.smartRWidmarkBAC),
+                //     borderColor: "#c466ff",
+                //     backgroundColor: "#c466ff",
+                //     tension: 0,
+                //     hidden: true,
+                // },
                 {
                     fill: false,
                     label: "Smart-R Widmark Decay",
@@ -334,6 +334,15 @@ export default class BetterBAC extends React.Component {
                     },
                 ],
             },
+            legend: {
+                labels: {
+                    filter: function(item) {
+                        // Logic to remove a particular legend item goes here
+                        return !item.text.includes("Driving Limit");
+                    },
+                },
+            },
+            responsive: true,
         };
 
         this.cachedChart = (

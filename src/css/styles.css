@@ -1,4 +1,4 @@
-/* 
+/*
  * FONTS
  */
 
@@ -57,7 +57,7 @@
     font-display: swap;
 }
 
-/* 
+/*
  * CORE STYLES
  */
 
@@ -109,7 +109,7 @@ input[disabled] {
     background-color: #d3d3d3;
 }
 
-/* 
+/*
  * PRINT FULL WIDTH
  */
 
@@ -125,7 +125,7 @@ input[disabled] {
     }
 }
 
-/* 
+/*
  * RESPONSIVENESS
  */
 
@@ -175,7 +175,7 @@ input[disabled] {
     display: inline;
 }
 
-/* 
+/*
  * CARDS AND INPUTS
  */
 
@@ -215,7 +215,7 @@ input[disabled] {
     cursor: pointer;
 }
 
-/* 
+/*
  * FOOTER
  */
 
