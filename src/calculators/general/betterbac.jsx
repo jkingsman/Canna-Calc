@@ -57,7 +57,7 @@ export default class BetterBAC extends React.Component {
     getEthanol() {
         if (this.state.drinks.length > 0) {
             return this.state.drinks
-                .map(drink => drink.etoh)
+                .map(drink => drink.number * drink.etoh)
                 .reduce((accumulator, currentValue) => accumulator + currentValue);
         }
 
