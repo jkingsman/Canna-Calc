@@ -43,6 +43,8 @@ export default class BetterBAC extends React.Component {
         if (ver && state && JSON.parse(state).drinks.length > 0) {
             let storedState = JSON.parse(state);
             storedState.chartNeedsRerender = true; // always rerender on load
+            storedState.drinkTime = new Date().toLocaleTimeString(); // always start with fresh date
+            storedState.drinkDate = new Date().toLocaleDateString();
             this.state = storedState;
         }
 
