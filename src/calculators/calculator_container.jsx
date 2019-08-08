@@ -36,6 +36,7 @@ import YieldCalculator from "app/calculators/plants_consumables/yield_calculator
 import YieldDryWetCalculator from "app/calculators/plants_consumables/yielddrywet_calculator";
 import PlantCount from "app/calculators/plants_consumables/plantcount_calculator";
 import DewPoint from "app/calculators/plants_consumables/dew_point";
+import VaporPressureDeficit from "app/calculators/plants_consumables/vapor_pressure_deficit";
 
 import {
     PercentageToMG,
@@ -386,6 +387,14 @@ export default class CalculatorContainer extends React.Component {
                     title="Dew Point"
                 >
                     <DewPoint />
+                </CardTemplate>
+                <CardTemplate
+                    id="vaporPressureDeficit"
+                    keywords="vapor pressure deficit vpd humidity dew point"
+                    searchTerm={this.state.searchTerm}
+                    title="Vapor Pressure Deficit Calculator (VPD)"
+                >
+                    <VaporPressureDeficit />
                 </CardTemplate>
                 <CardTemplate
                     id="growthTimeline"
