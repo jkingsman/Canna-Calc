@@ -41,7 +41,7 @@ export default class VaporPressureDeficit extends React.Component {
                 <p>
                     Vapor pressure deficit is the difference between the present and saturated
                     moisture content of the air and affects plant transpiration. For most plants, a
-                    VPD of between 0.4kPa and 0.1.25kPa is ideal; ideal conditions for cannabis vary
+                    VPD of between 0.4kPa and 1.25kPa is ideal; ideal conditions for cannabis vary
                     wildly depending on source but generally reside around 0.8kPa to 0.12kPa.
                 </p>
                 <EquationBlock
