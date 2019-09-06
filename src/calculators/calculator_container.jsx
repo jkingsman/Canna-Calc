@@ -8,7 +8,6 @@ import BetterBAC from "app/calculators/general/betterbac";
 import Notes from "app/calculators/general/notes";
 import PercentChange from "app/calculators/general/percentchange_calculator";
 import CylinderCalculator from "app/calculators/general/cylinder_calculator";
-import PercentConstituent from "app/calculators/general/percent_constituent";
 import LinearProcess from "app/calculators/general/linear_process";
 import DateCalculator from "app/calculators/general/date_calculator";
 import ConversionFactors from "app/utils/conversion_factors";
@@ -56,6 +55,7 @@ import {
     VariableServingPotencyWeight,
     VariableServingPotencyVolume,
 } from "app/calculators/concentratesedibles/edible_calculators";
+import PercentConstituent from "app/calculators/general/percent_constituent";
 
 export default class CalculatorContainer extends React.Component {
     constructor(props) {
@@ -285,14 +285,6 @@ export default class CalculatorContainer extends React.Component {
                     title="Percent Change"
                 >
                     <PercentChange />
-                </CardTemplate>
-                <CardTemplate
-                    id="percentConstituent"
-                    keywords="% percent additive terpense after"
-                    searchTerm={this.state.searchTerm}
-                    title="Max Percent Constituent (Terpene Addition)"
-                >
-                    <PercentConstituent />
                 </CardTemplate>
                 <CardTemplate
                     id="cylinderVolume"
@@ -564,6 +556,14 @@ export default class CalculatorContainer extends React.Component {
                     title="Concentrate to Capsule THC Breakdown"
                 >
                     <CapsuleCalculator />
+                </CardTemplate>
+                <CardTemplate
+                    id="percentConstituent"
+                    keywords="% percent additive terpense after"
+                    searchTerm={this.state.searchTerm}
+                    title="Max Percent Constituent (Terpene Addition)"
+                >
+                    <PercentConstituent />
                 </CardTemplate>
                 {!this.isSearching() ? (
                     ""
