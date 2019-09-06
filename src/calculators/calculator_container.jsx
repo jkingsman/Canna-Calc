@@ -55,7 +55,7 @@ import {
     VariableServingPotencyWeight,
     VariableServingPotencyVolume,
 } from "app/calculators/concentratesedibles/edible_calculators";
-import PercentConstituent from "app/calculators/general/percent_constituent";
+import PercentConstituent from "app/calculators/concentratesedibles/percent_constituent";
 
 export default class CalculatorContainer extends React.Component {
     constructor(props) {
