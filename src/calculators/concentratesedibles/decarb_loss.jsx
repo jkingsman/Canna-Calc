@@ -1,6 +1,12 @@
 import React from "react";
 
-import { FixedUnitInput, FixedUnitOutput, EquationBlock } from "app/calculators/components/io";
+import {
+    GenericInput,
+    FixedUnitInput,
+    FixedUnitOutput,
+    EquationBlock,
+} from "app/calculators/components/io";
+import ConversionFactors from "app/utils/conversion_factors";
 import { defaultRound } from "app/utils/math";
 
 export default class DecarbLoss extends React.Component {
@@ -8,12 +14,14 @@ export default class DecarbLoss extends React.Component {
         super(props);
         this.state = {
             totalWeight: 25,
+            productWeight: 10,
+            productPotency: 21,
         };
     }
 
-    getPostDecarbWeight() {
+    getPostDecarbWeight(input) {
         const decarbConstant = 314.45 / 358.4733;
-        return this.state.totalWeight * decarbConstant;
+        return input * decarbConstant;
     }
 
     render() {
@@ -35,6 +43,7 @@ export default class DecarbLoss extends React.Component {
                     ]}
                 />
                 <hr />
+                <h5>THCa Loss Only</h5>
                 <div className="row">
                     <div className="col-sm">
                         <FixedUnitInput
@@ -47,8 +56,44 @@ export default class DecarbLoss extends React.Component {
                     <div className="col-sm">
                         <FixedUnitOutput
                             outputLabel="Post-Decarb THC Content"
-                            number={defaultRound(this.getPostDecarbWeight())}
+                            number={defaultRound(this.getPostDecarbWeight(this.state.totalWeight))}
                             unit="mg/g"
+                        />
+                    </div>
+                </div>
+                <hr />
+                <h5>Product-Based Loss</h5>
+                <div className="row">
+                    <div className="col-sm">
+                        <GenericInput
+                            inputLabel="Product Amount"
+                            onChange={val => this.setState({ productWeight: Number(val) })}
+                            conversionFactors={ConversionFactors.basicWeight}
+                            number={this.state.productWeight}
+                        />
+                        <FixedUnitInput
+                            inputLabel="Product THCa Percentage"
+                            onChange={val => this.setState({ productPotency: Number(val) })}
+                            number={this.state.productPotency}
+                            unit="%"
+                        />
+                    </div>
+                    <div className="col-sm">
+                        <FixedUnitOutput
+                            outputLabel="Pre-Decarb THC"
+                            number={defaultRound(
+                                this.state.productWeight * this.state.productPotency * 10
+                            )}
+                            unit="mg"
+                        />
+                        <FixedUnitOutput
+                            outputLabel="Post-Decarb THC"
+                            number={defaultRound(
+                                this.getPostDecarbWeight(
+                                    this.state.productWeight * this.state.productPotency * 10
+                                )
+                            )}
+                            unit="mg"
                         />
                     </div>
                 </div>
