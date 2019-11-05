@@ -535,7 +535,7 @@ export default class CalculatorContainer extends React.Component {
                 </CardTemplate>
                 <CardTemplate
                     id="decarbLoss"
-                    keywords="decarboxylation thca time temperature"
+                    keywords="decarboxylation thca time temperature butter oil edible medible heat"
                     searchTerm={this.state.searchTerm}
                     title="Decarboxylation Curve Prediction"
                 >
