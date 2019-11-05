@@ -54,6 +54,7 @@ import {
     EdibleServings,
     VariableServingPotencyWeight,
     VariableServingPotencyVolume,
+    OilButterPotency,
 } from "app/calculators/concentratesedibles/edible_calculators";
 import PercentConstituent from "app/calculators/concentratesedibles/percent_constituent";
 
@@ -501,6 +502,8 @@ export default class CalculatorContainer extends React.Component {
                     <EdibleProduct />
                     <hr />
                     <EdibleServings />
+                    <hr />
+                    <OilButterPotency />
                 </CardTemplate>
                 <CardTemplate
                     id="potency"

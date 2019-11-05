@@ -524,3 +524,107 @@ export class EdibleServings extends React.Component {
         );
     }
 }
+
+export class OilButterPotency extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            productWeight: 10,
+            productPotency: 25,
+            infuserVolume: 10,
+            bakedGoodOil: 1,
+            bakedGoodServings: 12,
+            decarbCorrection: true,
+        };
+    }
+
+    decarbLoss() {
+        if (this.state.decarbCorrection) {
+            return 314.45 / 358.4733;
+        }
+
+        return 1;
+    }
+
+    getTotalTHC() {
+        return (
+            this.state.productWeight * (this.state.productPotency / 100) * 1000 * this.decarbLoss()
+        );
+    }
+
+    getTHCperTblsp() {
+        const infuserVolumeInTblsp = this.state.infuserVolume * 16;
+        return this.getTotalTHC() / infuserVolumeInTblsp;
+    }
+
+    getTHCperTsp() {
+        return this.getTHCperTblsp() / 3;
+    }
+
+    render() {
+        return (
+            <div className="container">
+                <h5>Oil/Butter Potency</h5>
+                <p>
+                    Determine potency of an oil or butter prepared specifically for a recipe
+                    assuming 100% THC extraction.
+                </p>
+                <EquationBlock
+                    equations={[
+                        "Oil Total THC = Product Amount * Potency",
+                        "Oil THC per amt = Oil Total THC / Oil Infused",
+                    ]}
+                />
+                <hr />
+                <div className="row">
+                    <div className="col-sm">
+                        <GenericInput
+                            inputLabel="Product Amount"
+                            onChange={val => this.setState({ productWeight: Number(val) })}
+                            conversionFactors={ConversionFactors.basicWeight}
+                            number={this.state.productWeight}
+                        />
+                        <FixedUnitInput
+                            inputLabel="Product Potency"
+                            onChange={val => this.setState({ productPotency: Number(val) })}
+                            number={this.state.productPotency}
+                            unit="% THC"
+                        />
+                        <GenericInput
+                            inputLabel="Oil/Butter Infused"
+                            onChange={val => this.setState({ infuserVolume: Number(val) })}
+                            conversionFactors={ConversionFactors.cookingVolume}
+                            number={this.state.infuserVolume}
+                        />
+                        <Checkbox
+                            label="Correct for decarboxylation losses"
+                            onChange={val =>
+                                this.setState({
+                                    decarbCorrection: val,
+                                })
+                            }
+                            checked
+                        />
+                    </div>
+                    <div className="col-sm">
+                        <FixedUnitOutput
+                            outputLabel="Oil/Butter Total THC"
+                            number={defaultRound(this.getTotalTHC())}
+                            unit="mg"
+                        />
+                        <FixedUnitOutput
+                            outputLabel="Oil/Butter THC/tbsp"
+                            number={defaultRound(this.getTHCperTblsp())}
+                            unit="mg/tbsp"
+                        />
+                        <FixedUnitOutput
+                            outputLabel="Oil/Butter THC/tsp"
+                            number={defaultRound(this.getTHCperTsp())}
+                            unit="mg/tsp"
+                        />
+                    </div>
+                </div>
+            </div>
+        );
+    }
+}
