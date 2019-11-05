@@ -578,6 +578,55 @@ EquationBlock.defaultProps = {
     equations: ["<no equations provided>"],
 };
 
+export class Checkbox extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            checked: this.props.checked,
+        };
+
+        this.handleChange = this.handleChange.bind(this);
+
+        this.inputID = newId();
+    }
+
+    handleChange(ev) {
+        console.log(ev.target.checked);
+        this.setState(
+            {
+                checked: ev.target.checked,
+            },
+            this.props.onChange(ev.target.checked)
+        );
+    }
+
+    render() {
+        return (
+            <div className="form-group">
+                <label htmlFor={"input" + this.inputID} className={"text-label"}>
+                    <input
+                        type="checkbox"
+                        checked={this.state.checked}
+                        onChange={this.handleChange}
+                    />&nbsp;{this.props.label}
+                </label>
+            </div>
+        );
+    }
+}
+
+Checkbox.propTypes = {
+    label: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+    checked: PropTypes.bool,
+};
+
+Checkbox.defaultProps = {
+    inputLabel: "",
+    onChange: () => null,
+    checked: false,
+};
+
 export class CollapseBlock extends React.Component {
     constructor(props) {
         super(props);

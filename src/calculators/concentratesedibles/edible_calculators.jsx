@@ -6,6 +6,7 @@ import {
     FixedUnitOutput,
     GenericOutput,
     EquationBlock,
+    Checkbox,
 } from "app/calculators/components/io";
 import ConversionFactors from "app/utils/conversion_factors";
 import { defaultRound } from "app/utils/math";
@@ -19,11 +20,22 @@ export class VariableServingPotencyVolume extends React.Component {
             infuserVolume: 10,
             bakedGoodOil: 1,
             bakedGoodServings: 12,
+            decarbCorrection: true,
         };
     }
 
+    decarbLoss() {
+        if (this.state.decarbCorrection) {
+            return 314.45 / 358.4733;
+        }
+
+        return 1;
+    }
+
     getTotalTHC() {
-        return this.state.productWeight * (this.state.productPotency / 100) * 1000;
+        return (
+            this.state.productWeight * (this.state.productPotency / 100) * 1000 * this.decarbLoss()
+        );
     }
 
     getTHCperTblsp() {
@@ -93,6 +105,15 @@ export class VariableServingPotencyVolume extends React.Component {
                             number={this.state.bakedGoodServings}
                             unit="servings"
                         />
+                        <Checkbox
+                            label="Correct for decarboxylation losses"
+                            onChange={val =>
+                                this.setState({
+                                    decarbCorrection: val,
+                                })
+                            }
+                            checked
+                        />
                     </div>
                     <div className="col-sm">
                         <FixedUnitOutput
@@ -131,11 +152,22 @@ export class VariableServingPotencyWeight extends React.Component {
             infuserWeight: 100,
             bakedGoodOil: 25,
             bakedGoodServings: 12,
+            decarbCorrection: true,
         };
     }
 
+    decarbLoss() {
+        if (this.state.decarbCorrection) {
+            return 314.45 / 358.4733;
+        }
+
+        return 1;
+    }
+
     getTotalTHC() {
-        return this.state.productWeight * (this.state.productPotency / 100) * 1000;
+        return (
+            this.state.productWeight * (this.state.productPotency / 100) * 1000 * this.decarbLoss()
+        );
     }
 
     getTHCperG() {
@@ -203,6 +235,15 @@ export class VariableServingPotencyWeight extends React.Component {
                             number={this.state.bakedGoodServings}
                             unit="servings"
                         />
+                        <Checkbox
+                            label="Correct for decarboxylation losses"
+                            onChange={val =>
+                                this.setState({
+                                    decarbCorrection: val,
+                                })
+                            }
+                            checked
+                        />
                     </div>
                     <div className="col-sm">
                         <FixedUnitOutput
@@ -239,7 +280,16 @@ export class EdiblePotency extends React.Component {
             productWeight: 10,
             productPotency: 25,
             servings: 25,
+            decarbCorrection: true,
         };
+    }
+
+    decarbLoss() {
+        if (this.state.decarbCorrection) {
+            return 314.45 / 358.4733;
+        }
+
+        return 1;
     }
 
     getMGPerServing() {
@@ -247,7 +297,8 @@ export class EdiblePotency extends React.Component {
             this.state.productWeight *
             (this.state.productPotency / 100) /
             this.state.servings *
-            1000
+            1000 *
+            this.decarbLoss()
         );
     }
 
@@ -283,6 +334,15 @@ export class EdiblePotency extends React.Component {
                             number={this.state.servings}
                             unit="servings"
                         />
+                        <Checkbox
+                            label="Correct for decarboxylation losses"
+                            onChange={val =>
+                                this.setState({
+                                    decarbCorrection: val,
+                                })
+                            }
+                            checked
+                        />
                     </div>
                     <div className="col-sm">
                         <FixedUnitOutput
@@ -304,12 +364,21 @@ export class EdibleProduct extends React.Component {
             productPotency: 25,
             servings: 25,
             mgPerServing: 10,
+            decarbCorrection: true,
         };
+    }
+
+    decarbCorrection() {
+        if (this.state.decarbCorrection) {
+            return 358.4733 / 314.45;
+        }
+
+        return 1;
     }
 
     getTHCNeeded() {
         // returns grams
-        return this.state.servings * this.state.mgPerServing / 1000;
+        return this.state.servings * this.state.mgPerServing / 1000 * this.decarbCorrection();
     }
 
     getProductWeightNeeded() {
@@ -348,6 +417,15 @@ export class EdibleProduct extends React.Component {
                             number={this.state.servings}
                             unit="servings"
                         />
+                        <Checkbox
+                            label="Correct for decarboxylation losses"
+                            onChange={val =>
+                                this.setState({
+                                    decarbCorrection: val,
+                                })
+                            }
+                            checked
+                        />
                     </div>
                     <div className="col-sm">
                         <GenericOutput
@@ -370,14 +448,24 @@ export class EdibleServings extends React.Component {
             productWeight: 10,
             productPotency: 25,
             mgPerServing: 100,
+            decarbCorrection: true,
         };
+    }
+
+    decarbLoss() {
+        if (this.state.decarbCorrection) {
+            return 314.45 / 358.4733;
+        }
+
+        return 1;
     }
 
     getServings() {
         return (
             this.state.productWeight *
             (this.state.productPotency / 100) *
-            1000 /
+            1000 *
+            this.decarbLoss() /
             this.state.mgPerServing
         );
     }
@@ -413,6 +501,15 @@ export class EdibleServings extends React.Component {
                             onChange={val => this.setState({ mgPerServing: Number(val) })}
                             number={this.state.mgPerServing}
                             unit="mg"
+                        />
+                        <Checkbox
+                            label="Correct for decarboxylation losses"
+                            onChange={val =>
+                                this.setState({
+                                    decarbCorrection: val,
+                                })
+                            }
+                            checked
                         />
                     </div>
                     <div className="col-sm">

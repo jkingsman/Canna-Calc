@@ -486,6 +486,11 @@ export default class CalculatorContainer extends React.Component {
                         all THC is removed from plant material) and is therefore most accurate for
                         oils baked into the goods.
                     </p>
+                    <p>
+                        Decarboxylation losses are small THC losses that occur as THCa is converted
+                        to THC. See the <strong>Decarboxylation Loss</strong> calculator for more
+                        information. In most cases, this should remain checked.
+                    </p>
                     <hr />
                     <VariableServingPotencyVolume />
                     <hr />
