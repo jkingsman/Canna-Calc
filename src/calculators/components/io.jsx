@@ -591,7 +591,6 @@ export class Checkbox extends React.Component {
     }
 
     handleChange(ev) {
-        console.log(ev.target.checked);
         this.setState(
             {
                 checked: ev.target.checked,

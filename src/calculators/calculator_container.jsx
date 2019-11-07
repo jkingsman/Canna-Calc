@@ -481,13 +481,6 @@ export default class CalculatorContainer extends React.Component {
                     title="Edible Potency"
                 >
                     <p>
-                        Note that these calculators do not consider THCa to THC weight loss; to
-                        correct for this, use our Decarboxylation Loss calculator to adjust Product
-                        Weight or multiply your potency by .877. This assumes perfect yield (e.g.
-                        all THC is removed from plant material) and is therefore most accurate for
-                        oils baked into the goods.
-                    </p>
-                    <p>
                         Decarboxylation losses are small THC losses that occur as THCa is converted
                         to THC. See the <strong>Decarboxylation Loss</strong> calculator for more
                         information. In most cases, this should remain checked.
@@ -496,6 +489,18 @@ export default class CalculatorContainer extends React.Component {
                     <VariableServingPotencyVolume />
                     <hr />
                     <VariableServingPotencyWeight />
+                </CardTemplate>
+                <CardTemplate
+                    id="oilPotency"
+                    keywords="thc potency mg milligrams grams ml ejuice vape vaporizer liquid wax oil concentrate extract baking cannaoil cannabutter servings size medibles"
+                    searchTerm={this.state.searchTerm}
+                    title="Oil/Butter Potency"
+                >
+                    <p>
+                        Decarboxylation losses are small THC losses that occur as THCa is converted
+                        to THC. See the <strong>Decarboxylation Loss</strong> calculator for more
+                        information. In most cases, this should remain checked.
+                    </p>
                     <hr />
                     <EdiblePotency />
                     <hr />
