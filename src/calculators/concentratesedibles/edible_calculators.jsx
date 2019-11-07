@@ -628,3 +628,81 @@ export class OilButterPotency extends React.Component {
         );
     }
 }
+
+export class PartialOilButter extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            oilPotency: 65,
+            totalOil: 25,
+            servings: 20,
+            finalPotency: 15,
+        };
+    }
+
+    getMedicatedAmt() {
+        return (
+            (this.state.servings * this.state.finalPotency) / this.state.oilPotency
+        );
+    }
+
+    render() {
+        return (
+            <div className="container">
+                <h5>Partial Oil/Butter Blend</h5>
+                <p>
+                    Determine the blend of medicated butter/oil with regular butter/oil for recipes
+                    with a known desired dosage, but where using solely medicated butter/oil would
+                    result in too potent of a dosage.
+                </p>
+                <EquationBlock
+                    equations={[
+                        "Total THC needed = Desired Servings * Desired Potency",
+                        "Medicated Oil Amount = Total THC Needed / Medicated Oil Potency",
+                    ]}
+                />
+                <hr />
+                <div className="row">
+                    <div className="col-sm">
+                        <FixedUnitInput
+                            inputLabel="Medicated Oil Potency"
+                            onChange={val => this.setState({ oilPotency: Number(val) })}
+                            number={this.state.oilPotency}
+                            unit="mg THC/tbsp"
+                        />
+                        <FixedUnitInput
+                            inputLabel="Recipe Oil Called For"
+                            onChange={val => this.setState({ totalOil: Number(val) })}
+                            number={this.state.totalOil}
+                            unit="tbsp"
+                        />
+                        <FixedUnitInput
+                            inputLabel="Desired Servings"
+                            onChange={val => this.setState({ servings: Number(val) })}
+                            number={this.state.servings}
+                            unit=""
+                        />
+                        <FixedUnitInput
+                            inputLabel="Desired Potency"
+                            onChange={val => this.setState({ finalPotency: Number(val) })}
+                            number={this.state.finalPotency}
+                            unit="mg/serving"
+                        />
+                    </div>
+                    <div className="col-sm">
+                        <FixedUnitOutput
+                            outputLabel="Medicated Oil Amount"
+                            number={defaultRound(this.getMedicatedAmt())}
+                            unit="tbsp"
+                        />
+                        <FixedUnitOutput
+                            outputLabel="Regular Oil Amount"
+                            number={defaultRound(Math.max(this.state.totalOil - this.getMedicatedAmt(), 0))}
+                            unit="tbsp"
+                        />
+                    </div>
+                </div>
+            </div>
+        );
+    }
+}
