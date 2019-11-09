@@ -277,8 +277,8 @@ const ConversionFactors = {
             ml: m => Number(m),
             cc: m => Number(m),
             "cm³": m => Number(m),
-            tbsp: m => Number(m) * 14.7867648,
-            tsp: m => Number(m) / 4.92892159,
+            tbsp: m => Number(m) / 14.7867648,
+            tsp: m => Number(m) * 4.92892159,
         },
     },
 
