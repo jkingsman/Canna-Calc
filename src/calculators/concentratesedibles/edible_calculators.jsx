@@ -55,7 +55,7 @@ export class VariableServingPotencyVolume extends React.Component {
     render() {
         return (
             <div className="container">
-                <h5>Complete Recipe (Volume)</h5>
+                <h5>Complete Recipe (Flowers, Volume)</h5>
                 <p>
                     Determine serving and potency breakdown of an oil or butter prepared
                     specifically for a recipe assuming 100% THC extraction.
@@ -185,7 +185,7 @@ export class VariableServingPotencyWeight extends React.Component {
     render() {
         return (
             <div className="container">
-                <h5>Complete Recipe (Weight)</h5>
+                <h5>Complete Recipe (Flowers, Weight)</h5>
                 <p>
                     Determine serving and potency breakdown of an oil or butter prepared
                     specifically for a recipe assuming 100% THC extraction.
@@ -256,6 +256,82 @@ export class VariableServingPotencyWeight extends React.Component {
                             number={defaultRound(this.getTHCperG())}
                             unit="mg/g"
                         />
+                        <FixedUnitOutput
+                            outputLabel="Baked Good Total THC"
+                            number={defaultRound(this.getTHCinBakedGood())}
+                            unit="mg"
+                        />
+                        <FixedUnitOutput
+                            outputLabel="THC/Serving"
+                            number={defaultRound(this.getTHCperServing())}
+                            unit="mg/serving"
+                        />
+                    </div>
+                </div>
+            </div>
+        );
+    }
+}
+
+export class VariableServingPotencyVolumeButter extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            potencyPerCup: 1000,
+            bakedGoodOil: 1,
+            bakedGoodServings: 12,
+        };
+    }
+
+    getTHCinBakedGood() {
+        return this.state.potencyPerCup * this.state.bakedGoodOil;
+    }
+
+    getTHCperServing() {
+        return this.getTHCinBakedGood() / this.state.bakedGoodServings;
+    }
+
+    render() {
+        return (
+            <div className="container">
+                <h5>Complete Recipe (Oil/Butter, Volume)</h5>
+                <p>
+                    Determine serving and potency breakdown of a general oil or butter preparation
+                    for a recipe.
+                </p>
+                <EquationBlock
+                    equations={[
+                        "Baked Good Total THC = Oil THC per amount * Baked Good Oil Amt.",
+                        "THC per Serving = Baked Good Total THC / Servings",
+                    ]}
+                />
+                <hr />
+                <div className="row">
+                    <div className="col-sm">
+                        <FixedUnitInput
+                            inputLabel="Oil/Butter Potency"
+                            onChange={val => this.setState({ potencyPerCup: Number(val) })}
+                            number={this.state.potencyPerCup}
+                            unit="mg/cup"
+                        />
+                        <GenericInput
+                            inputLabel="Baked Good Oil Amt."
+                            onChange={val => this.setState({ bakedGoodOil: Number(val) })}
+                            conversionFactors={ConversionFactors.cookingVolume}
+                            number={this.state.bakedGoodOil}
+                        />
+                        <FixedUnitInput
+                            inputLabel="Baked Good Servings"
+                            onChange={val =>
+                                this.setState({
+                                    bakedGoodServings: Number(val),
+                                })
+                            }
+                            number={this.state.bakedGoodServings}
+                            unit="servings"
+                        />
+                    </div>
+                    <div className="col-sm">
                         <FixedUnitOutput
                             outputLabel="Baked Good Total THC"
                             number={defaultRound(this.getTHCinBakedGood())}
@@ -641,9 +717,7 @@ export class PartialOilButter extends React.Component {
     }
 
     getMedicatedAmt() {
-        return (
-            (this.state.servings * this.state.finalPotency) / this.state.oilPotency
-        );
+        return this.state.servings * this.state.finalPotency / this.state.oilPotency;
     }
 
     render() {
@@ -697,7 +771,9 @@ export class PartialOilButter extends React.Component {
                         />
                         <FixedUnitOutput
                             outputLabel="Regular Oil Amount"
-                            number={defaultRound(Math.max(this.state.totalOil - this.getMedicatedAmt(), 0))}
+                            number={defaultRound(
+                                Math.max(this.state.totalOil - this.getMedicatedAmt(), 0)
+                            )}
                             unit="tbsp"
                         />
                     </div>
