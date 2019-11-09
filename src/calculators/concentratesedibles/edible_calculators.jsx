@@ -296,8 +296,8 @@ export class VariableServingPotencyVolumeButter extends React.Component {
             <div className="container">
                 <h5>Complete Recipe (Oil/Butter, Volume)</h5>
                 <p>
-                    Determine serving and potency breakdown of a general oil or butter preparation
-                    for a recipe.
+                    Determine serving and potency breakdown of an edible made with a known medicated
+                    oil/butter.
                 </p>
                 <EquationBlock
                     equations={[
