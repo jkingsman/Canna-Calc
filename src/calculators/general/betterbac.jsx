@@ -59,8 +59,7 @@ export default class BetterBAC extends React.Component {
     getEthanol() {
         if (this.state.drinks.length > 0) {
             return this.state.drinks
-                .map(drink => drink.number * drink.etoh)
-                .reduce((accumulator, currentValue) => accumulator + currentValue);
+                .reduce((accumulator, currentValue) => accumulator + currentValue.etoh, 0);
         }
 
         return 0;
@@ -106,7 +105,7 @@ export default class BetterBAC extends React.Component {
         const kilos = this.state.weight * 0.453592;
 
         let drinks = {};
-        this.state.drinks.forEach(drink => (drinks[drink.time] = drink.etoh * drink.number));
+        this.state.drinks.forEach(drink => (drinks[drink.time] = drink.etoh));
 
         let lastVal = 0;
         for (let i = this.getFirstDrinkTime(); i <= time; i += 1000) {
@@ -131,7 +130,7 @@ export default class BetterBAC extends React.Component {
         const widmark = this.getWidmarkR();
 
         let drinks = {};
-        this.state.drinks.forEach(drink => (drinks[drink.time] = drink.etoh * drink.number));
+        this.state.drinks.forEach(drink => (drinks[drink.time] = drink.etoh));
 
         let lastVal = 0;
         for (let i = this.getFirstDrinkTime(); i <= time; i += 1000) {
