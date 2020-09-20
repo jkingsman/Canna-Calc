@@ -732,7 +732,7 @@ export class PartialOilButter extends React.Component {
                 <EquationBlock
                     equations={[
                         "Medicated Oil Amount = Serving Count * Serving THC / Medicated Oil Potency",
-                        "Regular Oil = Total Oil Needed - Medicated Oil Amount"
+                        "Regular Oil = Total Oil Needed - Medicated Oil Amount",
                     ]}
                 />
                 <hr />
