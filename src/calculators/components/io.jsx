@@ -99,7 +99,8 @@ export class FixedUnitInput extends React.Component {
                     htmlFor={"input" + this.inputID}
                     className={this.props.noPadding ? "" : "text-label"}
                 >
-                    {this.props.inputLabel}:&nbsp;
+                    {this.props.inputLabel}
+                    {this.props.noColon ? "" : ":"}&nbsp;
                 </label>
                 <input
                     type="number"
@@ -122,6 +123,7 @@ FixedUnitInput.propTypes = {
     negative: PropTypes.bool,
     unit: PropTypes.string,
     noPadding: PropTypes.bool,
+    noColon: PropTypes.bool,
 };
 
 FixedUnitInput.defaultProps = {
@@ -131,6 +133,7 @@ FixedUnitInput.defaultProps = {
     negative: false,
     unit: "unit",
     noPadding: false,
+    noColon: false,
 };
 
 export class FreeOutput extends React.Component {

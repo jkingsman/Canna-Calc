@@ -43,6 +43,7 @@ import {
     Density,
     FreeWeight,
 } from "app/calculators/concentratesedibles/thc_conversions";
+import Salad from "app/calculators/concentratesedibles/salad_calculator";
 import DecarbLoss from "app/calculators/concentratesedibles/decarb_loss";
 import DecarbCurve from "app/calculators/concentratesedibles/decarb_curve";
 import ExtractionEfficiency from "app/calculators/concentratesedibles/extraction_efficiency";
@@ -474,7 +475,7 @@ export default class CalculatorContainer extends React.Component {
                 {this.isSearching() ? (
                     ""
                 ) : (
-                    <h2 className="group-header">Edible Calculators & Cannabis Concentrate Help</h2>
+                    <h2 className="group-header">Edible Calculators, Concentrates, and Blending</h2>
                 )}
                 <CardTemplate
                     id="ediblePotency"
@@ -535,6 +536,14 @@ export default class CalculatorContainer extends React.Component {
                     <Density />
                     <hr />
                     <FreeWeight />
+                </CardTemplate>
+                <CardTemplate
+                    id="salad"
+                    keywords="blend salad cbd thc thca cbda percent percentage potency mg milligrams grams ml"
+                    searchTerm={this.state.searchTerm}
+                    title="Salads & Blending"
+                >
+                    <Salad />
                 </CardTemplate>
                 <CardTemplate
                     id="decarbLoss"
