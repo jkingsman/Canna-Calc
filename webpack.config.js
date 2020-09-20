@@ -79,5 +79,8 @@ module.exports = {
     devServer: {
         contentBase: './dist',
         hot: true
+    },
+    watchOptions: {
+        poll: true
     }
 };
