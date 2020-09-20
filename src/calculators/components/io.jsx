@@ -454,6 +454,10 @@ export class GenericOutput extends React.Component {
     }
 
     render() {
+        if (this.props.shouldHide) {
+            return null;
+        }
+
         return (
             <div className="form-group">
                 <label
@@ -483,6 +487,7 @@ GenericOutput.propTypes = {
     per: PropTypes.bool,
     showSplitter: PropTypes.bool,
     noPadding: PropTypes.bool,
+    shouldHide: PropTypes.bool,
 };
 
 GenericOutput.defaultProps = {
@@ -493,6 +498,7 @@ GenericOutput.defaultProps = {
     per: false,
     showSplitter: false,
     noPadding: false,
+    shouldHide: false,
 };
 
 export default class GenericCalculator extends React.Component {

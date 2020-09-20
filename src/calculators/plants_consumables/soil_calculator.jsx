@@ -17,12 +17,12 @@ export default class SoilCalculator extends React.Component {
             medium1Amt: 0.5,
             medium2: "Perlite",
             medium2Amt: 0.25,
-            medium3: "Worm Castings",
-            medium3Amt: 0.1,
-            medium4: "Bat Guano",
-            medium4Amt: 0.1,
-            medium5: "Bone Meal",
-            medium5Amt: 0.1,
+            medium3: "",
+            medium3Amt: 0,
+            medium4: "",
+            medium4Amt: 0,
+            medium5: "",
+            medium5Amt: 0,
             potCount: 25,
         };
     }
@@ -121,30 +121,35 @@ export default class SoilCalculator extends React.Component {
                             number={this.getAmounts()[0]}
                             conversionFactors={ConversionFactors.basicVolume}
                             showSplitter={false}
+                            shouldHide={this.state.medium1.length == 0}
                         />
                         <GenericOutput
                             outputLabel={`Total ${this.state.medium2}`}
                             number={this.getAmounts()[1]}
                             conversionFactors={ConversionFactors.basicVolume}
                             showSplitter={false}
+                            shouldHide={this.state.medium2.length == 0}
                         />
                         <GenericOutput
                             outputLabel={`Total ${this.state.medium3}`}
                             number={this.getAmounts()[2]}
                             conversionFactors={ConversionFactors.basicVolume}
                             showSplitter={false}
+                            shouldHide={this.state.medium3.length == 0}
                         />
                         <GenericOutput
                             outputLabel={`Total ${this.state.medium4}`}
                             number={this.getAmounts()[3]}
                             conversionFactors={ConversionFactors.basicVolume}
                             showSplitter={false}
+                            shouldHide={this.state.medium4.length == 0}
                         />
                         <GenericOutput
                             outputLabel={`Total ${this.state.medium5}`}
                             number={this.getAmounts()[4]}
                             conversionFactors={ConversionFactors.basicVolume}
                             showSplitter={false}
+                            shouldHide={this.state.medium5.length == 0}
                         />
                     </div>
                 </div>
