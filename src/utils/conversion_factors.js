@@ -205,7 +205,7 @@ const ConversionFactors = {
             "fl. oz": m => Number(m),
             gal: m => Number(m) * 128,
             liter: m => Number(m) * 33.814,
-            ml: m => Number(m) / 29.5735,
+            mL: m => Number(m) / 29.5735,
             pint: m => Number(m) * 19.2152,
         },
         from: {
@@ -213,7 +213,7 @@ const ConversionFactors = {
             "fl. oz": m => Number(m),
             gal: m => Number(m) / 128,
             liter: m => Number(m) / 33.814,
-            ml: m => Number(m) * 29.5735,
+            mL: m => Number(m) * 29.5735,
             pint: m => Number(m) / 19.2152,
         },
     },
@@ -232,7 +232,7 @@ const ConversionFactors = {
             "km³": m => Number(m) * 1000000000,
             liter: m => Number(m) / 1000,
             "mi³": m => Number(m) * 4.16818183e9,
-            ml: m => Number(m) / 1000000,
+            mL: m => Number(m) / 1000000,
             "mm³": m => Number(m) / 1000000000,
             pint: m => Number(m) / 2113.3764,
             quart: m => Number(m) / 1056.6882,
@@ -253,7 +253,7 @@ const ConversionFactors = {
             "km³": m => Number(m) / 1000000000,
             liter: m => Number(m) * 1000,
             "mi³": m => Number(m) / 4.16818183e9,
-            ml: m => Number(m) * 1000000,
+            mL: m => Number(m) * 1000000,
             "mm³": m => Number(m) * 1000000000,
             pint: m => Number(m) * 2113.3764,
             quart: m => Number(m) * 1056.6882,
@@ -265,16 +265,16 @@ const ConversionFactors = {
 
     tinyVolume: {
         to: {
-            // to get X to ml from...
-            ml: m => Number(m),
+            // to get X to mL from...
+            mL: m => Number(m),
             cc: m => Number(m),
             "cm³": m => Number(m),
             tbsp: m => Number(m) * 14.7867648,
             tsp: m => Number(m) / 4.92892159,
         },
         from: {
-            // to get X from ml into...
-            ml: m => Number(m),
+            // to get X from mL into...
+            mL: m => Number(m),
             cc: m => Number(m),
             "cm³": m => Number(m),
             tbsp: m => Number(m) / 14.7867648,
