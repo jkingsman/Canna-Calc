@@ -180,7 +180,8 @@ export default class CapsuleCalculator extends React.Component {
                     </div>
                     <i>
                         *1 mL ≈ 1 g for water, which can be used as an approximate conversion if
-                        exact volume is not known.
+                        exact volume is not known. If filling by weight, <strong>mL</strong> can be
+                        read as <strong>mg</strong> wherever the unit appears.
                     </i>
                 </div>
             </div>
