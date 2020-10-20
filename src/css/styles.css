@@ -244,3 +244,42 @@ input[disabled] {
     margin-top: 10px;
     max-width: 200px;
 }
+
+.multi-input-container {
+    padding-bottom: 10px;
+}
+
+.multi-input-add-input {
+    border: black solid 1px;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 1px 2px 2px 0px black;
+}
+
+.multi-input-child {
+    outline: lightgrey solid 1px;
+    margin: 6px;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: center;
+}
+
+.multi-input-delete-btn {
+    cursor: pointer;
+
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+}
+
+.multi-input-content {
+    order: 0;
+    flex: 1 0 auto;
+    align-self: auto;
+    text-align: center;
+}

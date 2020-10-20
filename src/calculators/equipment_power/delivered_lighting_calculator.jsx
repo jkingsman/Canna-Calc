@@ -5,9 +5,11 @@ import {
     FixedUnitInput,
     FixedUnitOutput,
     EquationBlock,
+    MultiInputContainer,
 } from "app/calculators/components/io";
 import ConversionFactors from "app/utils/conversion_factors";
 import { defaultRound } from "app/utils/math";
+import newId from "app/utils/unique_key";
 
 export default class DeliveredLightingCalculator extends React.Component {
     constructor(props) {
@@ -22,7 +24,12 @@ export default class DeliveredLightingCalculator extends React.Component {
             light3Count: 1,
             light4Lumens: 2000,
             light4Count: 1,
+            fields: []
         };
+    }
+
+    testFunc(input) {
+        console.log(input)
     }
 
     getTotalIllumination() {
@@ -39,6 +46,8 @@ export default class DeliveredLightingCalculator extends React.Component {
     }
 
     render() {
+        console.log(this.state.fields)
+
         return (
             <div className="container">
                 <p>Determine the lumnens per area delivered by given lights.</p>
@@ -105,6 +114,26 @@ export default class DeliveredLightingCalculator extends React.Component {
                             number={this.state.light4Count}
                             unit="lights"
                         />
+                        <MultiInputContainer
+                            addButtonLabel="light"
+                            newFieldGenerator={(val) =>
+                                <div>
+                                    <FixedUnitInput
+                                        inputLabel={`Light ${val} Lumens`}
+                                        key={"multiInput" + newId()}
+                                        onChange={() => null}
+                                        number={100}
+                                    />
+                                    <FixedUnitInput
+                                        inputLabel={`Light ${val} Count`}
+                                        key={"multiInput" + newId()}
+                                        onChange={() => null}
+                                        number={5}
+                                    />
+                                </div>
+                            }
+                            onFieldChange={fields => this.setState({fields})}
+                            />
                     </div>
                     <div className="col-sm">
                         <FixedUnitOutput

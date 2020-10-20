@@ -674,3 +674,64 @@ CollapseBlock.defaultProps = {
     name: "",
     show: false,
 };
+
+export class MultiInputContainer extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            inputs: this.props.defaultInput,
+        };
+
+        this.props.onFieldChange(this.props.defaultInput);
+
+        this.addInput = this.addInput.bind(this);
+        this.renderInputs = this.renderInputs.bind(this);
+    }
+
+    renderInputs() {
+        return this.state.inputs.map((input, idx) => (
+            <div key={"multiInput" + newId()} className="multi-input-child">
+                <span onClick={() => this.removeInput(idx)} className="multi-input-delete-btn">❌</span>
+                <div className="multi-input-content">
+                    {idx}th: {input}
+                </div>
+            </div>)
+        )
+    }
+
+    addInput() {
+        let inputs = [...this.state.inputs, this.props.newFieldGenerator(this.state.inputs.length)];
+        this.setState({ inputs });
+        this.props.onFieldChange(inputs);
+    }
+
+    removeInput(idx) {
+        let inputs = this.state.inputs;
+        inputs.splice(idx, 1);
+        this.setState({ inputs });
+        this.props.onFieldChange(inputs);
+    }
+
+    render() {
+        return (
+            <div className="multi-input-container">
+                {this.renderInputs()}
+                <div onClick={this.addInput} className="multi-input-add-input">
+                    ➕ Add {this.props.addButtonLabel}
+                </div>
+            </div>
+        );
+    }
+}
+
+MultiInputContainer.propTypes = {
+    newFieldGenerator: PropTypes.func.isRequired,
+    onFieldChange: PropTypes.func.isRequired,
+    addButtonLabel: PropTypes.string,
+    defaultInput: PropTypes.array,
+};
+
+MultiInputContainer.defaultProps = {
+    addButtonLabel: "",
+    defaultInput: [],
+};
