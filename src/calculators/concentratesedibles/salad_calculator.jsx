@@ -64,7 +64,6 @@ export default class Salad extends React.Component {
     render() {
         return (
             <div className="container">
-                <h5>Fixed Input</h5>
                 <p>Determine the amount and potency of a final salad given known inputs.</p>
                 <EquationBlock
                     equations={[
