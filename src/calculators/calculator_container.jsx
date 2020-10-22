@@ -120,12 +120,12 @@ export default class CalculatorContainer extends React.Component {
     }
 
     renderExperimental() {
-        if (window.location.search.substr(1).startsWith("experimental")) {
-            document.cookie = "experimental=true; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+        if (window.location.search.substr(1).startsWith("beta")) {
+            document.cookie = "beta=true; expires=Fri, 31 Dec 9999 23:59:59 GMT";
             let header = this.isSearching() ? (
                 ""
             ) : (
-                <h2 className="group-header">🔬🧪 Experimental</h2>
+                <h2 className="group-header">🔬🧪 From the Labs...</h2>
             );
 
             return (
@@ -158,8 +158,8 @@ export default class CalculatorContainer extends React.Component {
                 </div>
             );
         } else {
-            if (document.cookie.includes('experimental')) {
-                window.location.replace('/?experimental');
+            if (document.cookie.includes('beta')) {
+                window.location.replace('/?beta');
             } else {
                 return null;
             }
