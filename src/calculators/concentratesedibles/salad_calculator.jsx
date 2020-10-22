@@ -179,6 +179,12 @@ export class Salad extends React.Component {
                             unit="% CBD"
                             noColon={true}
                         />
+                        <FixedUnitOutput
+                            outputLabel="Ratio: 1THC to"
+                            number={defaultRound(this.getTotalCBD() / this.getTotalTHC())}
+                            unit="CBD"
+                            noColon={true}
+                        />
                     </div>
                 </div>
             </div>
