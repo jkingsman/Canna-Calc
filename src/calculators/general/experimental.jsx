@@ -14,7 +14,7 @@ import { defaultRound } from "app/utils/math";
 import { Line } from "react-chartjs-2";
 import dayjs from "dayjs";
 
-export default class BetterBAC extends React.Component {
+export class BetterBAC extends React.Component {
     constructor(props) {
         super(props);
 
@@ -646,6 +646,87 @@ export default class BetterBAC extends React.Component {
                     </div>
                 </div>
                 {this.renderBACTable()}
+            </div>
+        );
+    }
+}
+
+export class DrinkEquiv extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            abvIn: 40,
+            amountIn: 3,
+            numberConsumed: 1,
+        };
+
+        this.alcoholPerDrink = {
+            stdDrink: 0.6, // 14g ethanol in fl oz
+            shot: 0.8, // 2fl oz * .4 abv
+            beer: 0.72, // 12fl oz * .06abv
+            wine: 3.29, // 25.36fl oz * .13 abv
+        };
+    }
+
+    getEthanol() {
+        return this.state.amountIn * this.state.numberConsumed * (this.state.abvIn / 100);
+    }
+
+    render() {
+        return (
+            <div className="container">
+                <div className="row">
+                    <div className="col-sm">
+                        <FixedUnitInput
+                            inputLabel="ABV"
+                            onChange={val => this.setState({ abvIn: Number(val) })}
+                            number={this.state.abvIn}
+                            unit="%"
+                        />
+                        <GenericInput
+                            inputLabel="Amount"
+                            onChange={val => this.setState({ amountIn: Number(val) })}
+                            conversionFactors={ConversionFactors.drinkVolume}
+                            number={this.state.amountIn}
+                        />
+                        <FixedUnitInput
+                            inputLabel="Number Consumed"
+                            onChange={val => this.setState({ numberConsumed: Number(val) })}
+                            number={this.state.numberConsumed}
+                            unit="drinks"
+                        />
+                        <hr />
+                    </div>
+                    <div className="col-sm">
+                        <h2>Equivalencies</h2>
+                        <GenericOutput
+                            outputLabel="Total Ethanol"
+                            number={defaultRound(this.getEthanol())}
+                            conversionFactors={ConversionFactors.drinkVolume}
+                            showSplitter={false}
+                        />
+                        <FixedUnitOutput
+                            outputLabel="Equivalent to"
+                            number={defaultRound(this.getEthanol() / this.alcoholPerDrink.shot)}
+                            unit="shots"
+                        />
+                        <FixedUnitOutput
+                            noColon
+                            number={defaultRound(this.getEthanol() / this.alcoholPerDrink.beer)}
+                            unit="beers"
+                        />
+                        <FixedUnitOutput
+                            noColon
+                            number={defaultRound(this.getEthanol() / this.alcoholPerDrink.wine)}
+                            unit="wine bottles"
+                        />
+                        <FixedUnitOutput
+                            noColon
+                            number={defaultRound(this.getEthanol() / this.alcoholPerDrink.stdDrink)}
+                            unit="standard drinks"
+                        />
+                    </div>
+                </div>
             </div>
         );
     }

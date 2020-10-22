@@ -3,7 +3,7 @@ import React from "react";
 import CardTemplate from "app/calculators/components/card_template";
 import GeneralCalculatorTemplate from "app/calculators/general/general_calculator_template";
 
-import BetterBAC from "app/calculators/general/betterbac";
+import { BetterBAC, DrinkEquiv } from "app/calculators/general/experimental";
 
 import Notes from "app/calculators/general/notes";
 import PercentChange from "app/calculators/general/percentchange_calculator";
@@ -119,17 +119,34 @@ export default class CalculatorContainer extends React.Component {
         document.body.style.display = "block";
     }
 
-    renderBAC() {
-        if (window.location.search.substr(1).startsWith("bac")) {
+    renderExperimental() {
+        if (window.location.search.substr(1).startsWith("experimental")) {
+            let header = this.isSearching() ? (
+                ""
+            ) : (
+                <h2 className="group-header">🔬🧪 Experimental</h2>
+            );
+
             return (
-                <CardTemplate
-                    id="bac"
-                    keywords="bac"
-                    searchTerm={this.state.searchTerm}
-                    title="Better BAC"
-                >
-                    <BetterBAC />
-                </CardTemplate>
+                <div>
+                    {header}
+                    <CardTemplate
+                        id="bac"
+                        keywords="bac"
+                        searchTerm={this.state.searchTerm}
+                        title="Better BAC"
+                    >
+                        <BetterBAC />
+                    </CardTemplate>
+                    <CardTemplate
+                        id="drinkEquiv"
+                        keywords="bac"
+                        searchTerm={this.state.searchTerm}
+                        title="Drink Equivalancies"
+                    >
+                        <DrinkEquiv />
+                    </CardTemplate>
+                </div>
             );
         }
 
@@ -148,12 +165,14 @@ export default class CalculatorContainer extends React.Component {
                     id="searchBar"
                     type="search"
                 />{" "}
+                {this.renderExperimental()}
                 {this.isSearching() ? (
                     ""
                 ) : (
-                    <h2>General Cannabis Growing Calculators &amp; Conversions</h2>
+                    <h2 className="group-header">
+                        General Cannabis Growing Calculators &amp; Conversions
+                    </h2>
                 )}
-                {this.renderBAC()}
                 <CardTemplate
                     id="notes"
                     keywords="notes text save"
