@@ -69,6 +69,20 @@ export default class CalculatorContainer extends React.Component {
         };
 
         window.addEventListener("hashchange", this.trackHashChange, false);
+
+        // advance input focus on enter
+        window.onkeypress = function(e) {
+            if (e.which == 13) {
+                e.preventDefault();
+                const currentNode = event.target;
+                const inputs = document.querySelectorAll("input:not(#searchBar)");
+                const currentIndex = [...inputs].findIndex(el => currentNode.isEqualNode(el));
+
+                const targetIndex = (currentIndex + 1) % inputs.length;
+                inputs[targetIndex].focus();
+            }
+        };
+
         this.setSearchTerm = this.setSearchTerm.bind(this);
     }
 
@@ -158,8 +172,8 @@ export default class CalculatorContainer extends React.Component {
                 </div>
             );
         } else {
-            if (document.cookie.includes('beta')) {
-                window.location.replace('/?beta');
+            if (document.cookie.includes("beta")) {
+                window.location.replace("/?beta");
             } else {
                 return null;
             }
