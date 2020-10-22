@@ -121,6 +121,7 @@ export default class CalculatorContainer extends React.Component {
 
     renderExperimental() {
         if (window.location.search.substr(1).startsWith("experimental")) {
+            document.cookie = "experimental=true; expires=Fri, 31 Dec 9999 23:59:59 GMT";
             let header = this.isSearching() ? (
                 ""
             ) : (
@@ -156,9 +157,13 @@ export default class CalculatorContainer extends React.Component {
                     </CardTemplate>
                 </div>
             );
+        } else {
+            if (document.cookie.includes('experimental')) {
+                window.location.replace('/?experimental');
+            } else {
+                return null;
+            }
         }
-
-        return null;
     }
 
     render() {
