@@ -68,6 +68,10 @@ module.exports = {
             responseStrategy: 'network-first',
             autoUpdate: true,
             minify: true,
+            externals: [
+                'https://canna-calc.com/',
+                'https://canna-calc.com/index.html'
+            ]
         })
     ],
     resolve: {
