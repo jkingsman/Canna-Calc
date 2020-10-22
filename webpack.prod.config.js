@@ -38,7 +38,9 @@ module.exports = {
         ]
     },
     plugins: [
-        new ManifestPlugin(),
+        new ManifestPlugin({
+            seed: {'start_url': '/index.html'}
+        }),
         new CopyWebpackPlugin([{
             from: 'src/favicon',
             to: 'favicon'
@@ -67,11 +69,7 @@ module.exports = {
         new OfflinePlugin({
             responseStrategy: 'network-first',
             autoUpdate: true,
-            minify: true,
-            externals: [
-                'https://canna-calc.com/',
-                'https://canna-calc.com/index.html'
-            ]
+            minify: true
         })
     ],
     resolve: {
