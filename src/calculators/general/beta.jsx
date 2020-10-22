@@ -819,10 +819,14 @@ export class SaladGenerator extends React.Component {
             }))
             .filter(combo => combo.thc >= this.state.minThc)
             .sort(
-                (a, b) =>
-                    distance(a.cbdRatio, this.state.cbdRatio) -
-                    distance(b.cbdRatio, this.state.cbdRatio)
-            )
+                (a, b) => {
+                    let ratioDistance = distance(a.cbdRatio, this.state.cbdRatio) - distance(b.cbdRatio, this.state.cbdRatio);
+                    if (ratioDistance == 0) {
+                        return a.combination.length - b.combination.length;
+                    }
+
+                    return ratioDistance;
+                })
             .slice(0, 5);
     }
 
