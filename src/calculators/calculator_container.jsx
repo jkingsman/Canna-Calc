@@ -103,6 +103,11 @@ export default class CalculatorContainer extends React.Component {
 
         clearTimeout(this.searchReportDebouncer);
 
+        if (ev.target.value == 'beta') {
+            document.cookie = "beta=true; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+            location.reload();
+        }
+
         this.searchReportDebouncer = setTimeout(() => {
             if (this.state.searchTerm.length > 0) {
                 /* eslint-disable no-undef */
@@ -134,8 +139,7 @@ export default class CalculatorContainer extends React.Component {
     }
 
     renderBeta() {
-        if (window.location.search.substr(1).startsWith("beta")) {
-            document.cookie = "beta=true; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+        if (document.cookie.includes("beta")) {
             let header = this.isSearching() ? (
                 ""
             ) : (
@@ -171,13 +175,9 @@ export default class CalculatorContainer extends React.Component {
                     </CardTemplate>
                 </div>
             );
-        } else {
-            if (document.cookie.includes("beta")) {
-                window.location.replace("/?beta");
-            } else {
-                return null;
-            }
         }
+
+        return null;
     }
 
     render() {
