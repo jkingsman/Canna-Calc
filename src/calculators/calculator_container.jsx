@@ -3,7 +3,7 @@ import React from "react";
 import CardTemplate from "app/calculators/components/card_template";
 import GeneralCalculatorTemplate from "app/calculators/general/general_calculator_template";
 
-import { BetterBAC, SaladGenerator, DrinkEquiv } from "app/calculators/general/experimental";
+import { BetterBAC, SaladGenerator, DrinkEquiv } from "app/calculators/general/beta";
 
 import Notes from "app/calculators/general/notes";
 import PercentChange from "app/calculators/general/percentchange_calculator";
@@ -119,7 +119,7 @@ export default class CalculatorContainer extends React.Component {
         document.body.style.display = "block";
     }
 
-    renderExperimental() {
+    renderBeta() {
         if (window.location.search.substr(1).startsWith("beta")) {
             document.cookie = "beta=true; expires=Fri, 31 Dec 9999 23:59:59 GMT";
             let header = this.isSearching() ? (
@@ -178,7 +178,7 @@ export default class CalculatorContainer extends React.Component {
                     id="searchBar"
                     type="search"
                 />{" "}
-                {this.renderExperimental()}
+                {this.renderBeta()}
                 {this.isSearching() ? (
                     ""
                 ) : (

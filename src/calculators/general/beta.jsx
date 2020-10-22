@@ -683,18 +683,21 @@ export class DrinkEquiv extends React.Component {
                             onChange={val => this.setState({ abvIn: Number(val) })}
                             number={this.state.abvIn}
                             unit="%"
+                            onlyNumericInput={true}
                         />
                         <GenericInput
                             inputLabel="Amount"
                             onChange={val => this.setState({ amountIn: Number(val) })}
                             conversionFactors={ConversionFactors.drinkVolume}
                             number={this.state.amountIn}
+                            onlyNumericInput={true}
                         />
                         <FixedUnitInput
                             inputLabel="Number Consumed"
                             onChange={val => this.setState({ numberConsumed: Number(val) })}
                             number={this.state.numberConsumed}
                             unit="drinks"
+                            onlyNumericInput={true}
                         />
                         <hr />
                     </div>
@@ -857,18 +860,21 @@ export class SaladGenerator extends React.Component {
                             onChange={val => this.setState({ cbdRatio: Number(val) })}
                             number={this.state.cbdRatio}
                             unit="CBD"
+                            onlyNumericInput={true}
                         />
                         <FixedUnitInput
                             inputLabel="Max Elements"
                             onChange={val => this.setState({ maxElements: Number(val) })}
                             number={this.state.maxElements}
                             unit=""
+                            onlyNumericInput={true}
                         />
                         <FixedUnitInput
                             inputLabel="Min. THC"
                             onChange={val => this.setState({ minThc: Number(val) })}
                             number={this.state.minThc}
                             unit="%"
+                            onlyNumericInput={true}
                         />
                         <hr />
                         <FixedUnitInput
@@ -876,6 +882,7 @@ export class SaladGenerator extends React.Component {
                             onChange={val => this.setState({ product1Weight: Number(val) })}
                             number={this.state.product1Weight}
                             unit="g"
+                            onlyNumericInput={true}
                         />
                         <FixedUnitInput
                             inputLabel=""
@@ -883,6 +890,7 @@ export class SaladGenerator extends React.Component {
                             number={this.state.product1THC}
                             unit="% THC"
                             noColon={true}
+                            onlyNumericInput={true}
                         />
                         <FixedUnitInput
                             inputLabel=""
@@ -890,6 +898,7 @@ export class SaladGenerator extends React.Component {
                             number={this.state.product1CBD}
                             unit="% CBD"
                             noColon={true}
+                            onlyNumericInput={true}
                         />
 
                         <FixedUnitInput
@@ -897,6 +906,7 @@ export class SaladGenerator extends React.Component {
                             onChange={val => this.setState({ product2Weight: Number(val) })}
                             number={this.state.product2Weight}
                             unit="g"
+                            onlyNumericInput={true}
                         />
                         <FixedUnitInput
                             inputLabel=""
@@ -904,6 +914,7 @@ export class SaladGenerator extends React.Component {
                             number={this.state.product2THC}
                             unit="% THC"
                             noColon={true}
+                            onlyNumericInput={true}
                         />
                         <FixedUnitInput
                             inputLabel=""
@@ -911,6 +922,7 @@ export class SaladGenerator extends React.Component {
                             number={this.state.product2CBD}
                             unit="% CBD"
                             noColon={true}
+                            onlyNumericInput={true}
                         />
 
                         <FixedUnitInput
@@ -918,6 +930,7 @@ export class SaladGenerator extends React.Component {
                             onChange={val => this.setState({ product3Weight: Number(val) })}
                             number={this.state.product3Weight}
                             unit="g"
+                            onlyNumericInput={true}
                         />
                         <FixedUnitInput
                             inputLabel=""
@@ -925,6 +938,7 @@ export class SaladGenerator extends React.Component {
                             number={this.state.product3THC}
                             unit="% THC"
                             noColon={true}
+                            onlyNumericInput={true}
                         />
                         <FixedUnitInput
                             inputLabel=""
@@ -932,6 +946,7 @@ export class SaladGenerator extends React.Component {
                             number={this.state.product3CBD}
                             unit="% CBD"
                             noColon={true}
+                            onlyNumericInput={true}
                         />
 
                         <FixedUnitInput
@@ -939,6 +954,7 @@ export class SaladGenerator extends React.Component {
                             onChange={val => this.setState({ product4Weight: Number(val) })}
                             number={this.state.product4Weight}
                             unit="g"
+                            onlyNumericInput={true}
                         />
                         <FixedUnitInput
                             inputLabel=""
@@ -946,6 +962,7 @@ export class SaladGenerator extends React.Component {
                             number={this.state.product4THC}
                             unit="% THC"
                             noColon={true}
+                            onlyNumericInput={true}
                         />
                         <FixedUnitInput
                             inputLabel=""
@@ -953,6 +970,7 @@ export class SaladGenerator extends React.Component {
                             number={this.state.product4CBD}
                             unit="% CBD"
                             noColon={true}
+                            onlyNumericInput={true}
                         />
                     </div>
                     <div className="col-sm">{this.renderCombos()}</div>
