@@ -1,7 +1,6 @@
 const webpack = require('webpack');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const OfflinePlugin = require('offline-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const path = require('path');
 
@@ -66,11 +65,6 @@ module.exports = {
             to: 'redirects'
         }]),
         new UglifyJsPlugin(),
-        new OfflinePlugin({
-            responseStrategy: 'network-first',
-            autoUpdate: true,
-            minify: true
-        })
     ],
     resolve: {
         extensions: ['*', '.js', '.jsx'],
