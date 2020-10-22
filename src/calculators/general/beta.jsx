@@ -783,11 +783,13 @@ export class SaladGenerator extends React.Component {
 
         // HACK this is just the absolute worst
         for (let i = 1; i <= 4; i++) {
-            options.push({
-                weight: this.state[`product${i}Weight`],
-                thc: this.state[`product${i}THC`],
-                cbd: this.state[`product${i}CBD`],
-            });
+            if (this.state[`product${i}Weight`] !== 0) {
+                options.push({
+                    weight: this.state[`product${i}Weight`],
+                    thc: this.state[`product${i}THC`],
+                    cbd: this.state[`product${i}CBD`],
+                });
+            }
         }
 
         return options;
