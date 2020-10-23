@@ -66,7 +66,12 @@ module.exports = {
             to: 'redirects'
         }]),
         new UglifyJsPlugin(),
-        new WorkboxPlugin.GenerateSW()
+        new WorkboxPlugin.GenerateSW({
+            runtimeCaching: [{
+                handler: 'StaleWhileRevalidate',
+                urlPattern: /.*/,
+            }],
+        })
     ],
     resolve: {
         extensions: ['*', '.js', '.jsx'],
