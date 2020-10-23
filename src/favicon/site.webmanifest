@@ -1,7 +1,9 @@
 {
     "name": "Canna-Calc",
     "short_name": "Canna-Calc",
+    "description": "Use pot growing calculators to enhance your grow. Cannabis calculators, weed math, cannabis horticulture help, and more!",
     "start_url": "/?utm_source=pwa",
+    "display": "standalone",
     "icons": [
         {
             "src": "android-chrome-192x192.png",
