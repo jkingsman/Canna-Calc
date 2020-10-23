@@ -3,7 +3,7 @@ import React from "react";
 import CardTemplate from "app/calculators/components/card_template";
 import GeneralCalculatorTemplate from "app/calculators/general/general_calculator_template";
 
-import { BetterBAC, SaladGenerator, DrinkEquiv } from "app/calculators/general/beta";
+import { BetterBAC, DrinkEquiv } from "app/calculators/general/beta";
 
 import Notes from "app/calculators/general/notes";
 import PercentChange from "app/calculators/general/percentchange_calculator";
@@ -43,7 +43,10 @@ import {
     Density,
     FreeWeight,
 } from "app/calculators/concentratesedibles/thc_conversions";
-import Salad from "app/calculators/concentratesedibles/salad_calculator";
+import {
+    Salad,
+    SaladGenerator,
+}from "app/calculators/concentratesedibles/salad_calculator";
 import DecarbLoss from "app/calculators/concentratesedibles/decarb_loss";
 import DecarbCurve from "app/calculators/concentratesedibles/decarb_curve";
 import ExtractionEfficiency from "app/calculators/concentratesedibles/extraction_efficiency";
@@ -164,14 +167,6 @@ export default class CalculatorContainer extends React.Component {
                         title="Drink Equivalancies"
                     >
                         <DrinkEquiv />
-                    </CardTemplate>
-                    <CardTemplate
-                        id="saladGeneration"
-                        keywords="salad blend"
-                        searchTerm={this.state.searchTerm}
-                        title="Salad Generator"
-                    >
-                        <SaladGenerator />
                     </CardTemplate>
                 </div>
             );
@@ -590,6 +585,8 @@ export default class CalculatorContainer extends React.Component {
                     title="Salads & Blending"
                 >
                     <Salad />
+                    <hr />
+                    <SaladGenerator />
                 </CardTemplate>
                 <CardTemplate
                     id="decarbLoss"
