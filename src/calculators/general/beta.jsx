@@ -664,7 +664,7 @@ export class DrinkEquiv extends React.Component {
             stdDrink: 0.6, // 14g ethanol in fl oz
             shot: 0.8, // 2fl oz * .4 abv
             beer: 0.72, // 12fl oz * .06abv
-            wine: 3.29, // 25.36fl oz * .13 abv
+            wine: 3.29686721, // 25.360517fl oz * .13 abv
         };
     }
 
@@ -709,21 +709,25 @@ export class DrinkEquiv extends React.Component {
                             outputLabel="Equivalent to"
                             number={defaultRound(this.getEthanol() / this.alcoholPerDrink.shot)}
                             unit="shots"
+                            tooltip="2fl. oz. @ 40% ABV"
                         />
                         <FixedUnitOutput
                             noColon
                             number={defaultRound(this.getEthanol() / this.alcoholPerDrink.beer)}
                             unit="beers"
+                            tooltip="12fl. oz. @ 6% ABV"
                         />
                         <FixedUnitOutput
                             noColon
                             number={defaultRound(this.getEthanol() / this.alcoholPerDrink.wine)}
                             unit="wine bottles"
+                            tooltip="750mL @ 13% ABV"
                         />
                         <FixedUnitOutput
                             noColon
                             number={defaultRound(this.getEthanol() / this.alcoholPerDrink.stdDrink)}
                             unit="standard drinks"
+                            tooltip="14g ethanol in fl. oz."
                         />
                     </div>
                 </div>

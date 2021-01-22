@@ -184,6 +184,11 @@ export class FixedUnitOutput extends React.Component {
     }
 
     render() {
+        let unitBlock = this.props.unit;
+        if (this.props.tooltip) {
+            unitBlock = <abbr title={this.props.tooltip}>{this.props.unit}</abbr>
+        }
+
         return (
             <div className="form-group">
                 <label htmlFor={"output" + this.inputID} className="text-label">
@@ -196,7 +201,7 @@ export class FixedUnitOutput extends React.Component {
                     className="calc-input-width"
                     id={"output" + this.inputID}
                 />{" "}
-                {this.props.unit}
+                {unitBlock}
             </div>
         );
     }
@@ -208,6 +213,7 @@ FixedUnitOutput.propTypes = {
     unit: PropTypes.string,
     noColon: PropTypes.bool,
     prefix: PropTypes.string,
+    tooltip: PropTypes.string,
 };
 
 FixedUnitOutput.defaultProps = {
@@ -216,6 +222,7 @@ FixedUnitOutput.defaultProps = {
     unit: "units",
     noColon: false,
     prefix: "",
+    tooltip: null,
 };
 
 export class GenericInput extends React.Component {
