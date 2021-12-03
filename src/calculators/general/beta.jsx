@@ -658,6 +658,7 @@ export class DrinkEquiv extends React.Component {
             abvIn: 40,
             amountIn: 3,
             numberConsumed: 1,
+            drinks: []
         };
 
         this.alcoholPerDrink = {
@@ -669,7 +670,19 @@ export class DrinkEquiv extends React.Component {
     }
 
     getEthanol() {
-        return this.state.amountIn * this.state.numberConsumed * (this.state.abvIn / 100);
+        if (this.state.drinks.length > 0) {
+            return this.state.drinks.map((drink) => drink.amountIn * drink.numberConsumed * (drink.abvIn / 100)).reduce((a, b) => a + b, 0)
+        } else {
+            return this.state.amountIn * this.state.numberConsumed * (this.state.abvIn / 100);
+        }
+    }
+
+    addDrink() {
+        this.setState({drinks: this.state.drinks.concat({'abvIn': this.state.abvIn, 'amountIn': this.state.amountIn, 'numberConsumed': this.state.numberConsumed})});
+    }
+
+    renderDrinks() {
+        return this.state.drinks.map((drink, i) => <li key={i}>{drink.numberConsumed}x {drink.amountIn} fl. oz. @ {drink.abvIn}%</li>);
     }
 
     render() {
@@ -695,10 +708,21 @@ export class DrinkEquiv extends React.Component {
                             number={this.state.numberConsumed}
                             unit="drinks"
                         />
+                        <button
+                            type="button"
+                            className="btn btn-primary"
+                            onClick={() => this.addDrink()}
+                        >
+                            Add
+                        </button>
                         <hr />
+                        <ul>
+                            {this.renderDrinks()}
+                        </ul>
                     </div>
                     <div className="col-sm">
                         <h2>Equivalencies</h2>
+                        <p>Using {this.state.drinks.length > 0 ? 'drinks list' : 'form input'}</p>
                         <GenericOutput
                             outputLabel="Total Ethanol"
                             number={defaultRound(this.getEthanol())}
@@ -728,6 +752,12 @@ export class DrinkEquiv extends React.Component {
                             number={defaultRound(this.getEthanol() / this.alcoholPerDrink.stdDrink)}
                             unit="standard drinks"
                             tooltip="14g ethanol in fl. oz."
+                        />
+                        <FixedUnitOutput
+                            outputLabel="Water intake"
+                            number={defaultRound(this.getEthanol() / .6 * .5)}
+                            unit="liters"
+                            tooltip="500mL per .6 fl. oz. (one std. drink)"
                         />
                     </div>
                 </div>
